@@ -2,28 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>workshop-testing</artifactId>
-	<groupId>nl.javadude.monopoly.workshop</groupId>
+	<artifactId>Xebium</artifactId>
+	<groupId>nl.xebia.xke.xebium</groupId>
 	<version>1.0-SNAPSHOT</version>
-	<name>Monopoly :: Workshop :: Testing</name>
+	<name>Xebium</name>
 	<packaging>jar</packaging>
-	<inceptionYear>2008</inceptionYear>
 	<properties>
-		<selenium-client-version>1.0.1</selenium-client-version>
-		<selenium-version>2.0a2</selenium-version>
-		<fitnium-version>1.3.0</fitnium-version>
+		<selenium-client-version>2.0a5</selenium-client-version>
+		<selenium-version>2.0a5</selenium-version>
 	</properties>
+
 	<!-- Dependency list -->
 	<dependencies>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitnesse</artifactId>
-			<version>20081201</version>
+			<version>20100303</version>
 		</dependency>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitlibrary</artifactId>
-			<version>20080812</version>
+			<version>20100303</version>
 		</dependency>
 		<!-- test dependencies -->
 		<dependency>
@@ -48,11 +47,13 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.8.5</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>1.8.5</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -104,15 +105,33 @@
 	</build>
 	<developers>
 		<developer>
-			<id>jvanerp</id>
-			<email>jvanerp@xebia.com</email>
-			<name>Jeroen van Erp</name>
+			<id>sgrijpink</id>
+			<email>sgrijpink@xebia.com</email>
+			<name>Sjors Grijpink</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
 		<developer>
-			<id>lvanderpoel</id>
-			<email>lvanderpoel@xebia.com</email>
-			<name>Lieke van der Poel</name>
+			<id>cgeusebroek</id>
+			<email>cgeusebroek@xebia.com</email>
+			<name>Chris Geusebroek</name>
+			<organization>Xebia B.V.</organization>
+		</developer>
+		<developer>
+			<id>cwortel</id>
+			<email>cwortel@xebia.com</email>
+			<name>Cirilo Wortel</name>
+			<organization>Xebia B.V.</organization>
+		</developer>
+		<developer>
+			<id>amolenaar</id>
+			<email>amolenaar@xebia.com</email>
+			<name>Arjan Molenaar</name>
+			<organization>Xebia B.V.</organization>
+		</developer>
+		<developer>
+			<id>evanderkoogh</id>
+			<email>evanderkoogh@xebia.com</email>
+			<name>Erwin van der Koogh</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
 	</developers>
