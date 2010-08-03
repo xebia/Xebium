@@ -12,6 +12,15 @@
 		<selenium-version>2.0a5</selenium-version>
 	</properties>
 
+	<repositories>
+
+		<!-- Central repository -->
+		<repository>
+			<id>repo1</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
 	<!-- Dependency list -->
 	<dependencies>
 		<dependency>
