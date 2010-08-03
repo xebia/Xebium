@@ -26,12 +26,12 @@
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitnesse</artifactId>
-			<version>20100303</version>
+			<version>20081201</version>
 		</dependency>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitlibrary</artifactId>
-			<version>20100303</version>
+			<version>20080812</version>
 		</dependency>
 		<!-- test dependencies -->
 		<dependency>
