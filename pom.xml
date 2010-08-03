@@ -19,6 +19,10 @@
 			<id>repo1</id>
 			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
+		<repository>
+			<id>xebia</id>
+			<url>http://maven2.xebia.com/</url>
+		</repository>
 	</repositories>
 
 	<!-- Dependency list -->
@@ -26,7 +30,7 @@
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitnesse</artifactId>
-			<version>20081201</version>
+			<version>20100303</version>
 		</dependency>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
