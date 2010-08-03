@@ -74,17 +74,14 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
-			<artifactId>selenium-java-client-driver</artifactId>
-			<version>${selenium-client-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
+    	<dependency>
+	    	<groupId>org.seleniumhq.selenium</groupId>
+    		<artifactId>selenium</artifactId>
 			<version>${selenium-version}</version>
-		</dependency>
+    	</dependency>
+
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>
