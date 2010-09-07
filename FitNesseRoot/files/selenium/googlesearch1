@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://www.google.nl/" />
+<link rel="selenium.base" href="http://localhost:9992/" />
 <title>googlesearch1</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>btnG</td>
-	<td>Google zoeken</td>
+	<td>Google search</td>
 </tr>
 <tr>
 	<td>waitForElementPresent</td>
@@ -32,7 +32,7 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
+	<td>click</td>
 	<td>link=Project Xebium! - The Xebia Fitnesse Selenium integration solution ...</td>
 	<td></td>
 </tr>

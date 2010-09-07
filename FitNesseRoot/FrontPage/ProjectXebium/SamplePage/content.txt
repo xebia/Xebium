@@ -1,4 +1,4 @@
-
 >BasicFixture
+>TableFixture
 >DefineVariablesFixture
 >DataDrivenFixture

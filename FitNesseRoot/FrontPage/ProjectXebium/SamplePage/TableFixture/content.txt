@@ -1,0 +1,15 @@
+This is an example of the table fixture format
+
+
+The used format should be
+| execute | !-${command}-! | on | !-${target}-! | with value | !-${value}-! |
+
+The script (used in the basic fixture) would turn out something like:
+
+| base url | www.google.com |
+| execute | open | on | / | with value ||
+| execute | type | on | q | with value | xebium is the new test solution |
+| execute | clickAndWait | on | btnG | with value | Google search |
+| execute | waitForElementPresent | on | link=Project Xebium! - The Xebia Fitnesse Selenium integration soluition | with value ||
+| execute | click | on | link=Project Xebium! - The Xebia Fitnesse Selenium integration solution | with value ||
+| execute | waitForTextPresent | on |Project Xebium! - The Xebia Fitnesse Selenium integration solution.| with value ||
