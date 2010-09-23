@@ -2,6 +2,7 @@ package com.xebia.incubator.xebium;
 
 import java.io.File;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
@@ -17,6 +18,9 @@ public class SeleniumScriptFixture {
 	private int timeoutInSeconds = 30;
 	private boolean multiWindow = false;
 
+	static {
+		BasicConfigurator.configure();
+	}
 	
 	public String runScript(String scriptName) throws Exception {
 		File suiteFile = asFile(scriptName);
@@ -27,17 +31,19 @@ public class SeleniumScriptFixture {
 		
 		SeleniumServer remoteControl = new SeleniumServer(configuration);
 		remoteControl.start();
-		
-		HTMLLauncher launcher = new HTMLLauncher(remoteControl);
-		String result = null;
-		//try {
-			result = launcher.runHTMLSuite(browser, browserURL, suiteFile, outputFile, timeoutInSeconds, multiWindow);
-		//} catch (SeleniumCommandTimedOutException e) {
-		//	LOG.error("HTML suite failed with timeout", e);
-		//}
 
-		// TODO: do something with result
-		remoteControl.stop();
+		String result = null;
+		try {
+			HTMLLauncher launcher = new HTMLLauncher(remoteControl);
+			//try {
+				result = launcher.runHTMLSuite(browser, browserURL, suiteFile, outputFile, timeoutInSeconds, multiWindow);
+			//} catch (SeleniumCommandTimedOutException e) {
+			//	LOG.error("HTML suite failed with timeout", e);
+			//}
+		} finally {
+			// TODO: do something with result
+			remoteControl.stop();
+		}
 		
 		return result;
 	}
