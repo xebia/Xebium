@@ -1,2 +1,10 @@
+!path target/classes
 
+
+|Import|
+|com.xebia.incubator.xebium|
+
+SeleniumScriptFixture
+
+|script|selenium script fixture|
 | run script | http://files/selenium/googlesearch1 |

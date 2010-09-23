@@ -1,0 +1,51 @@
+package com.xebia.incubator.xebium;
+
+import java.io.File;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.server.RemoteControlConfiguration;
+import org.openqa.selenium.server.SeleniumServer;
+import org.openqa.selenium.server.htmlrunner.HTMLLauncher;
+
+public class SeleniumScriptFixture {
+
+	private static Logger LOG = Logger.getLogger(SeleniumScriptFixture.class);
+	
+	private String browser = "*firefox";
+	private String browserURL = "http://google.nl";
+	private File outputFile = new File("SeleniumScriptFixture.log");
+	private int timeoutInSeconds = 30;
+	private boolean multiWindow = false;
+
+	
+	public String runScript(String scriptName) throws Exception {
+		File suiteFile = asFile(scriptName);
+		
+		RemoteControlConfiguration configuration = new RemoteControlConfiguration();
+		configuration.setProxyInjectionModeArg(true);
+		configuration.setPort(4444);
+		
+		SeleniumServer remoteControl = new SeleniumServer(configuration);
+		remoteControl.start();
+		
+		HTMLLauncher launcher = new HTMLLauncher(remoteControl);
+		String result = null;
+		//try {
+			result = launcher.runHTMLSuite(browser, browserURL, suiteFile, outputFile, timeoutInSeconds, multiWindow);
+		//} catch (SeleniumCommandTimedOutException e) {
+		//	LOG.error("HTML suite failed with timeout", e);
+		//}
+
+		// TODO: do something with result
+		remoteControl.stop();
+		
+		return result;
+	}
+
+	private File asFile(final String scriptName) {
+		String fileName = scriptName.replaceAll("http:", "FitNesseRoot");
+		
+		return new File(fileName);
+	}
+	
+}
