@@ -14,7 +14,7 @@ public class SeleniumScriptFixture {
 	
 	private String browser = "*firefox";
 	private String browserURL = "http://google.com";
-	private File outputFile = new File("SeleniumScriptFixture.log");
+	private File outputFile = new File("SeleniumScriptFixture.html");
 	private int timeoutInSeconds = 30;
 	private boolean multiWindow = false;
 
@@ -60,13 +60,17 @@ public class SeleniumScriptFixture {
 		this.browserURL = removeAnchorTag(browserUrl);
 	}
 	
+	public void setOutputFile(String outputFileName) {
+		this.outputFile = asFile(outputFileName);
+	}
+	
 	public String runSuite(String scriptName) throws Exception {
 		if (remoteControl == null) {
 			throw new IllegalStateException("Remote control should have been started before tests are executed");
 		}
 
 		File suiteFile = asFile(scriptName);
-		
+
 		String result = null;
 		try {
 			LOG.info("Server started, launching test suite");

@@ -18,5 +18,6 @@ SeleniumScriptFixture
 
 |script|selenium script fixture|
 | start server with browser | firefox | on url | http://google.com |
+| set output file | http://files/selenium/testResults.html |
 | run suite | http://files/selenium/testsuite.html |
 | stop server |
