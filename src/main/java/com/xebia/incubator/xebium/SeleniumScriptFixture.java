@@ -13,7 +13,7 @@ public class SeleniumScriptFixture {
 	private static Logger LOG = Logger.getLogger(SeleniumScriptFixture.class);
 	
 	private String browser = "*firefox";
-	private String browserURL = "http://google.nl";
+	private String browserURL = "http://google.com";
 	private File outputFile = new File("SeleniumScriptFixture.log");
 	private int timeoutInSeconds = 30;
 	private boolean multiWindow = false;
@@ -24,6 +24,18 @@ public class SeleniumScriptFixture {
 		BasicConfigurator.configure();
 	}
 
+    protected String getBrowserCode(String browser) {
+        if ("IE".equalsIgnoreCase(browser))
+            return "*iehta";
+        if ("FIREFOX".equalsIgnoreCase(browser))
+            return "*firefox";
+        if ("SAFARI".equalsIgnoreCase(browser))
+            return "*safari";
+        if ("OPERA".equalsIgnoreCase(browser))
+            return "*opera";
+        return browser;
+    }
+
 	public void startServer() throws Exception {
 		RemoteControlConfiguration configuration = new RemoteControlConfiguration();
 		configuration.setProxyInjectionModeArg(true);
@@ -33,6 +45,21 @@ public class SeleniumScriptFixture {
 		remoteControl.start();
 	}
 
+	public void startServerWithBrowserOnUrl(String browser, String url) throws Exception {
+		browser = getBrowserCode(browser);
+		browserURL = removeAnchorTag(url);
+
+		startServer();
+	}
+
+	public void setTimeoutToSeconds(int timeoutInSeconds) {
+		this.timeoutInSeconds = timeoutInSeconds;
+	}
+	
+	public void setBrowserUrl(String browserUrl) {
+		this.browserURL = removeAnchorTag(browserUrl);
+	}
+	
 	public String runSuite(String scriptName) throws Exception {
 		if (remoteControl == null) {
 			throw new IllegalStateException("Remote control should have been started before tests are executed");
@@ -68,18 +95,25 @@ public class SeleniumScriptFixture {
 	 * @param scriptName
 	 * @return a sane path name. Relative to the CWD.
 	 */
-	private File asFile(String scriptName) {
-		// <HACK>
-		if (scriptName.startsWith("<") && scriptName.endsWith(">")) {
-			// scriptName is something like
-			// '<a href="http://some.url/files/selenium/Suite">http://files/selenium/Suite</a>'
+	private File asFile(final String scriptName) {
+		String fileName = removeAnchorTag(scriptName).replaceAll("http:/", "FitNesseRoot");
+		
+		return new File(fileName);
+	}
+
+	/**
+     * scriptName is something like
+	 * '<a href="http://some.url/files/selenium/Suite">http://files/selenium/Suite</a>'.
+	 * 
+	 * @param scriptName
+	 * @return
+	 */
+	private String removeAnchorTag(String scriptName) {
+		if (scriptName.startsWith("<a") && scriptName.endsWith("</a>")) {
 			scriptName = scriptName.split(">", 2)[1].split("<", 2)[0];
 			LOG.debug("Extracted script name from URL: " + scriptName);
 		}
-		// </HACK>
-		String fileName = scriptName.replaceAll("http:/", "FitNesseRoot");
-		
-		return new File(fileName);
+		return scriptName;
 	}
 	
 }
