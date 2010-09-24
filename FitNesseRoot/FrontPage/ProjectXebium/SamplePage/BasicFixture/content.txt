@@ -17,4 +17,6 @@
 SeleniumScriptFixture
 
 |script|selenium script fixture|
-| run script | http://files/selenium/testsuite.html |
+| start server |
+| run suite | http://files/selenium/testsuite.html |
+| stop server |

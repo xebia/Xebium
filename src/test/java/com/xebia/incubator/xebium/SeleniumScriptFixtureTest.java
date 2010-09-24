@@ -6,26 +6,40 @@ import static org.junit.Assert.assertEquals;
 import org.apache.log4j.BasicConfigurator;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SeleniumScriptFixtureTest {
 
-	@Before
-	public void setUp() throws Exception {
+	SeleniumScriptFixture fixture;
+	
+	@BeforeClass
+	public void classSetUp() throws Exception {
 		BasicConfigurator.configure();
 	}
-
+	
+	@Before
+	public void setUp() throws Exception {
+		fixture = new SeleniumScriptFixture();
+		fixture.startServer();
+	}
+	
 	@After
 	public void tearDown() throws Exception {
+		fixture.stopServer();
+		fixture = null;
 	}
 
 	@Test
 	public void testRunScript() throws Exception {
-		SeleniumScriptFixture fixture = new SeleniumScriptFixture();
-		
-		assertEquals("PASSED", fixture.runScript("http://files/selenium/testsuite.html"));
+		assertEquals("PASSED", fixture.runSuite("http://files/selenium/testsuite.html"));
 	}
-	
+
+	@Test
+	public void testRunScriptWithAnchor() throws Exception {
+		assertEquals("PASSED", fixture.runSuite("<a href='SomeFancyPancyUrl'>http://files/selenium/testsuite.html</a>"));
+	}
+
 	/*
 	@Test
 	@Ignore
