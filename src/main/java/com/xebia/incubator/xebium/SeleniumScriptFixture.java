@@ -46,7 +46,7 @@ public class SeleniumScriptFixture {
 	}
 
 	public void startServerWithBrowserOnUrl(String browser, String url) throws Exception {
-		browser = getBrowserCode(browser);
+		this.browser = getBrowserCode(browser);
 		browserURL = removeAnchorTag(url);
 
 		startServer();
