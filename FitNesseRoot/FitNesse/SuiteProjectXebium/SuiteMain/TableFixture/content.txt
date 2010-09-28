@@ -1,3 +1,7 @@
+
+|Import|
+|com.xebia.incubator.xebium|
+
 This is an example of the table fixture format
 
 The used format should be
@@ -7,8 +11,15 @@ The used format should be
 
 The script (used in the basic fixture) would turn out something like:
 
+|comment|
 |script|selenium driver fixture|
-| start browser | firefox | on url | www.google.com |
+| start browser | firefox | on host | localhost | on port | 4444 | on url | http://www.google.com |
+| ensure | do | open | on | / |
+| ensure | do | type | on | q | with | xebium is the new test solution |
+
+
+|script|selenium driver fixture|
+| start browser | firefox | on url | http://www.google.com |
 | ensure | do | open | on | / |
 | ensure | do | type | on | q | with | xebium is the new test solution |
 | stop browser |

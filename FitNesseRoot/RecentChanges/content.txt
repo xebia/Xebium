@@ -4,11 +4,9 @@
 |FitNesse.SuiteProjectXebium.SamplePage.TableFixture||20:01:23 di, sep 28, 2010|
 |FitNesse.SuiteProjectXebium||19:59:17 di, sep 28, 2010|
 |FrontPage.ProjectXebium.SamplePage.TableFixture||17:25:04 Tue, Sep 28, 2010|
-|FrontPage.ProjectXebium.SamplePage.BasicFixture||22:01:10 Mon, Sep 27, 2010|
 |||21:01:01 Mon, Sep 27, 2010|
 |FrontPage.ProjectXebium.SamplePage.DataDrivenFixture||22:19:16 Sat, Sep 25, 2010|
 |FitNesse.UserGuide.SliM.SetUp||21:20:46 Sat, Sep 25, 2010|
 |FrontPage.ProjectXebium.ProjectBacklog||18:28:22 Thu, Sep 23, 2010|
 |FrontPage.ProjectXebium||20:27:45 Sun, Sep 19, 2010|
 |FrontPage.ProjectXebium.SamplePage||16:45:24 Tue, Aug 31, 2010|
-|FrontPage||16:43:31 Tue, Aug 31, 2010|

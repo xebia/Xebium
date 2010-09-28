@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.thoughtworks.selenium.CommandProcessor;
+import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
 
 public class SeleniumDriverFixture {
@@ -20,6 +21,8 @@ public class SeleniumDriverFixture {
 	}
 
 	public CommandProcessor detectWebDriverCommandProcessor(String browser, String browserUrl) {
+		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
+		
 		if ("firefox".equals(browser)) {
 			return new WebDriverCommandProcessor(browserUrl, DesiredCapabilities.firefox());
 		} else if ("iexplore".equals(browser)) {
@@ -39,7 +42,12 @@ public class SeleniumDriverFixture {
         LOG.debug("Started command processor");
 	}
 
-
+	public void startBrowserOnHostOnPortOnUrl(String browserStartCommand, String serverHost, int serverPort, String browserUrl) {
+		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browserStartCommand, FitNesseUtil.removeAnchorTag(browserUrl));
+		commandProcessor.start();
+        LOG.debug("Started HTML command processor");
+	}
+	
 //	private CommandProcessor detectCommandProcessor(String serverHost, int serverPort, String browserStartCommand, String browserURL) {
 //		if ("*webdriver".equals(browserStartCommand)) {
 //			return new WebDriverCommandProcessor(browserURL);
@@ -51,6 +59,11 @@ public class SeleniumDriverFixture {
 //		return new HttpCommandProcessor(serverHost, serverPort, browserStartCommand, browserURL);
 //	}
 
+	public boolean do_(String command) {
+		LOG.info("Performing | " + command + " |");
+		return internalDoCommand(command, null);
+	}
+	
 	public boolean doOn(String command, String target) {
 		LOG.info("Performing | " + command + " | " + target + " |");
 		return internalDoCommand(command, new String[] { target });
@@ -80,6 +93,7 @@ public class SeleniumDriverFixture {
 	public void stopBrowser() {
         this.commandProcessor.stop();
         LOG.info("Command processor stopped");
+        this.commandProcessor = null;
 	}
 
 

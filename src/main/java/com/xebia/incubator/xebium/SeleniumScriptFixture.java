@@ -47,7 +47,7 @@ public class SeleniumScriptFixture {
 
 	public void startServerWithBrowserOnUrl(String browser, String url) throws Exception {
 		this.browser = getBrowserCode(browser);
-		browserURL = removeAnchorTag(url);
+		browserURL = FitNesseUtil.removeAnchorTag(url);
 
 		startServer();
 	}
@@ -57,7 +57,7 @@ public class SeleniumScriptFixture {
 	}
 	
 	public void setBrowserUrl(String browserUrl) {
-		this.browserURL = removeAnchorTag(browserUrl);
+		this.browserURL = FitNesseUtil.removeAnchorTag(browserUrl);
 	}
 	
 	public void setOutputFile(String outputFileName) {
@@ -100,24 +100,9 @@ public class SeleniumScriptFixture {
 	 * @return a sane path name. Relative to the CWD.
 	 */
 	private File asFile(final String scriptName) {
-		String fileName = removeAnchorTag(scriptName).replaceAll("http:/", "FitNesseRoot");
+		String fileName = FitNesseUtil.removeAnchorTag(scriptName).replaceAll("http:/", "FitNesseRoot");
 		
 		return new File(fileName);
 	}
 
-	/**
-     * scriptName is something like
-	 * '<a href="http://some.url/files/selenium/Suite">http://files/selenium/Suite</a>'.
-	 * 
-	 * @param scriptName
-	 * @return
-	 */
-	private String removeAnchorTag(String scriptName) {
-		if (scriptName.startsWith("<a") && scriptName.endsWith("</a>")) {
-			scriptName = scriptName.split(">", 2)[1].split("<", 2)[0];
-			LOG.debug("Extracted script name from URL: " + scriptName);
-		}
-		return scriptName;
-	}
-	
 }
