@@ -1,9 +1,6 @@
 |!c !2 Contents|
 |!contents -g|
 
-!path fitnesse.jar
-!path classes
-
 
 
 

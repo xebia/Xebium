@@ -7,8 +7,9 @@ import org.apache.log4j.BasicConfigurator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-
+@Ignore
 public class SeleniumScriptFixtureTest {
 
 	SeleniumScriptFixture fixture;

@@ -2,8 +2,11 @@ package com.xebia.incubator.xebium;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+
+@Ignore
 public class SeleniumDriverFixtureTest {
 
 	@Test

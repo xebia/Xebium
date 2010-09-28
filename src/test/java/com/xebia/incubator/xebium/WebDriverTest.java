@@ -1,10 +1,8 @@
 package com.xebia.incubator.xebium;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,7 +36,7 @@ public class WebDriverTest {
 		
 		driver.close();
 	}
-	
+	@Ignore
 	@Test
 	public void testWebDriverCommandProcessor() throws MalformedURLException {
 		
