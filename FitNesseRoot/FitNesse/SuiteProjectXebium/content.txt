@@ -1,8 +1,6 @@
-
 !define TEST_SYSTEM {slim}
 
 !contents
-
 
 !*****> '''Classpath'''
 # begin of maven classpath
