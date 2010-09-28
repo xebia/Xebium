@@ -5,13 +5,12 @@
 * @param name The name of the test case, if any. It may be used to embed title into the source.
 */
 function format(testCase, name) {
-    var baseUrl = testCase.baseUrl || options.baseUrl;
+     var baseUrl = testCase.baseUrl || options.baseUrl;
     
-    var commandsText = '| script |\n';
-    commandsText += '| start | selenium driver |\n';
-    commandsText += '| start browser | firefox | with selenium rc | ' + options.host + ' | on port | ' + options.port + ' | point at | !-' + baseUrl + '-! |\n';
-    commandsText += formatCommands(testCase.commands);
-     commandsText += '| shutdown browser |\n';
+     var commandsText = '| script | selenium driver fixture |\n';
+     commandsText += '| start browser | ' + options.browser + ' | on url | ' + baseUrl + ' |\n';
+     commandsText += formatCommands(testCase.commands);
+     commandsText += '| stop browser |\n';
  
      return commandsText;
 }
@@ -96,16 +95,13 @@ function trim(text) {
 }
 
 this.options = {
-    'port': '4444',
-    'host': 'localhost',
+    'browser': 'firefox',
     'baseUrl': 'http://localhost'
 }
 
 this.configForm =
-        '<description>Selenium RC default host</description>' +
-        '<textbox id="options_host" />' +
-        '<description>Selenium RC default port</description>' +
-        '<textbox id="options_port" />' +
-        '<description>Selenium RC default base URL</description>' +
+        '<description>Default browser</description>' +
+        '<textbox id="options_browser" />' +
+        '<description>Default base URL</description>' +
         '<textbox id="options_baseUrl" />';
         
