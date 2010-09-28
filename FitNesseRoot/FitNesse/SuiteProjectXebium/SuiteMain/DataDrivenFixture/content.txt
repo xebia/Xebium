@@ -1,12 +1,22 @@
-!contents -R2 -g -p -f -h
+|Import|
+|fitnesse.slim.test|
+|fitnesse.fixtures|
+|com.xebia.incubator.xebium|
 
-Okay, here we should decide how to set up the data driven selenium tests.
+|Library|
+|selenium driver fixture|
 
-We want something like this:
 
-| Selenese | http://files/selenium/datadriven |
-| username | password | page contains |
-| john | secret | John logged in |
-| jim |s123 | Login failed |
+!| Scenario | search for | query | something and check for | output |
+| start browser | firefox | on url | http://www.google.com |
+| ensure | do | open | on | / | with ||
+| ensure | do | type | on | q | with | @query |
+| ensure | do | click | on | btnG | with | Google search |
+| ensure | do | waitForPageToLoad | on | |
+| ensure | do | isTextPresent | on | @output | with ||
+| stop browser |
 
-Do we?
+| Search For Something And Check For |
+| query | output |
+| xebia | xebia |
+| google | google |

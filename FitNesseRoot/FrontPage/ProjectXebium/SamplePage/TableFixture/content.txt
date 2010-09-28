@@ -31,7 +31,7 @@ The used format should be
 The script (used in the basic fixture) would turn out something like:
 
 |script|selenium driver fixture|
-| start browser | firefox | on url | http://www.google.com |
+| start browser | firefox | on url | http://www.google.nl |
 | ensure | do | open | on | / |
 | ensure | do | type | on | q | with | xebium is the new test solution |
-| stop browser |
+

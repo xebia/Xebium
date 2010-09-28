@@ -1,4 +1,5 @@
-|FitNesse.SuiteProjectXebium.SuiteMain.TableFixture||20:05:27 di, sep 28, 2010|
+|FitNesse.SuiteProjectXebium.SuiteMain.DataDrivenFixture||21:28:52 Tue, Sep 28, 2010|
+|FitNesse.SuiteProjectXebium.SuiteMain.TableFixture||20:58:25 Tue, Sep 28, 2010|
 |FitNesse.SuiteProjectXebium.SuiteMain||20:05:12 di, sep 28, 2010|
 |FitNesse.SuiteProjectXebium.SamplePage||20:04:35 di, sep 28, 2010|
 |FitNesse.SuiteProjectXebium.SamplePage.TableFixture||20:01:23 di, sep 28, 2010|

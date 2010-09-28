@@ -9,6 +9,9 @@ The used format should be
 | check | do | !-${command}-! | on | !-${target}-! |
 | check | do | !-${command}-! | on | !-${target}-! | with | !-${value}-! |
 
+|import|
+|com.xebia.incubator.xebium|
+
 The script (used in the basic fixture) would turn out something like:
 
 |comment|

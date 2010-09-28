@@ -1,12 +1,33 @@
-!contents -R2 -g -p -f -h
+!define TEST_SYSTEM {slim}
 
-Okay, here we should decide how to set up the data driven selenium tests.
+!path target/classes
+!path target/dependency/ant-1.6.5.jar
+!path target/dependency/fitnesse-20100303.jar
+!path target/dependency/selenium-server-2.0a5.jar
+!path target/dependency/selenium-common-2.0a5.jar
+!path target/dependency/selenium-2.0a5.jar
+!path target/dependency/log4j-1.2.13.jar
+!path target/dependency/commons-logging-1.1.1.jar
+!path target/dependency/servlet-api-2.5-6.1.9.jar
 
-We want something like this:
 
-| Selenese | http://files/selenium/datadriven |
-| username | password | page contains |
-| john | secret | John logged in |
-| jim |s123 | Login failed |
+|Import|
+|fitnesse.slim.test|
+|fitnesse.fixtures|
+|com.xebia.incubator.xebium|
 
-Do we?
+|Library|
+|selenium driver fixture|
+
+| Scenario | search for | query | something and check for | output |
+| start browser | firefox | on url | www.google.com |
+| ensure | do | open | on | / | with ||
+| ensure | do | type | on | q | with | @query |
+| ensure | do | clickAndWait | on | btnG | with | Google search |
+| ensure | do | waitForTextPresent | on | @output | with ||
+
+
+| Search For Something And Check For |
+| query | output |
+| xebia | xebia |
+| google | google |
