@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>Xebium</artifactId>
 	<groupId>nl.xebia.xke.xebium</groupId>
@@ -10,7 +10,9 @@
 	<properties>
 		<selenium-client-version>2.0a5</selenium-client-version>
 		<selenium-version>2.0a5</selenium-version>
-	</properties> 
+		<fitnesse.version>20100303</fitnesse.version>
+		<fitnesse.port>8000</fitnesse.port>
+	</properties>
 
 	<repositories>
 
@@ -25,12 +27,20 @@
 		</repository>
 	</repositories>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>vt-oss-releases</id>
+			<name>Valtech Open Source Releases</name>
+			<url>http://source.valtech.com/repo/content/repositories/releases/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<!-- Dependency list -->
 	<dependencies>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitnesse</artifactId>
-			<version>20100303</version>
+			<version>${fitnesse.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
@@ -78,16 +88,16 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-    	<dependency>
-	    	<groupId>org.seleniumhq.selenium</groupId>
-    		<artifactId>selenium</artifactId>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium</artifactId>
 			<version>${selenium-version}</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>org.seleniumhq.selenium</groupId>
-    		<artifactId>selenium-server</artifactId>
-    		<version>2.0a5</version>
-    	</dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>2.0a5</version>
+		</dependency>
         <dependency>
             <groupId>rhino</groupId>
             <artifactId>js</artifactId>
@@ -95,7 +105,7 @@
         <scope>test</scope>
     </dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -106,7 +116,7 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-<!--
+			<!--
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>selenium-maven-plugin</artifactId>
@@ -142,6 +152,61 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>fitnesse</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.valtech.source.maven</groupId>
+						<artifactId>maven-fitnesse-cpgen-plugin</artifactId>
+						<version>1.0</version>
+						<configuration>
+							<fitnesseRoot>${basedir}/FitNesseRoot</fitnesseRoot>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>gencp</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>commons-io</groupId>
+								<artifactId>commons-io</artifactId>
+								<version>1.4</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.1.1</version>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+								<configuration>
+									<mainClass>fitnesseMain.FitNesseMain</mainClass>
+									<arguments>
+										<argument>-o</argument>
+										<argument>-p</argument>
+										<argument>${fitnesse.port}</argument>
+										<argument>-d</argument>
+										<argument>.</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<developers>
 		<developer>
 			<id>sgrijpink</id>
@@ -150,9 +215,9 @@
 			<organization>Xebia B.V.</organization>
 		</developer>
 		<developer>
-			<id>cgeusebroek</id>
-			<email>cgeusebroek@xebia.com</email>
-			<name>Chris Geusebroek</name>
+			<id>kgeusebroek</id>
+			<email>kgeusebroek@xebia.com</email>
+			<name>Kris Geusebroek</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
 		<developer>
