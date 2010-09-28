@@ -52,7 +52,7 @@
 !path ${M2_REPO}/mx4j/mx4j-tools/3.0.1/mx4j-tools-3.0.1.jar
 !path ${M2_REPO}/org/mortbay/jetty/servlet-api-2.5/6.1.9/servlet-api-2.5-6.1.9.jar
 !path ${M2_REPO}/rhino/js/1.7R1/js-1.7R1.jar
-!path /Users/kaastra/projects/xebium/target/classes
-!path /Users/kaastra/projects/xebium/target/test-classes
+!path /Users/arjan/Workspace/Xebium/target/classes
+!path /Users/arjan/Workspace/Xebium/target/test-classes
 # end of maven classpath
 *****!
