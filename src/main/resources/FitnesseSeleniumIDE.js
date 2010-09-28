@@ -7,13 +7,13 @@
 function format(testCase, name) {
     var baseUrl = testCase.baseUrl || options.baseUrl;
     
-	var commandsText = '| script |\n';
-	commandsText += '| start | selenium driver |\n';
-	commandsText += '| start browser | firefox | with selenium rc | ' + options.host + ' | on port | ' + options.port + ' | point at | !-' + baseUrl + '-! |\n';
+    var commandsText = '| script |\n';
+    commandsText += '| start | selenium driver |\n';
+    commandsText += '| start browser | firefox | with selenium rc | ' + options.host + ' | on port | ' + options.port + ' | point at | !-' + baseUrl + '-! |\n';
     commandsText += formatCommands(testCase.commands);
- 	commandsText += '| shutdown browser |\n';
+     commandsText += '| shutdown browser |\n';
  
- 	return commandsText;
+     return commandsText;
 }
 
 /**
@@ -23,37 +23,37 @@ function format(testCase, name) {
  * @param The array of commands to sort.
  */
 function formatCommands(commands) {
-	var commandsText = '';
-	
-	for (i = 0; i < commands.length; i++) {
+    var commandsText = '';
+    
+    for (i = 0; i < commands.length; i++) {
         var command = commands[i];
         if (command.value === '') {
             commandsText += "| ensure | do | " + command.command + " | on | " + command.target + " |\n";
         } else {
             commandsText += "| ensure | do | " + command.command + " | on | " + command.target + " | with | " + command.value + " |\n";
         }
- 	}
- 	return  commandsText;
+     }
+     return  commandsText;
 }
 
 function getSourceForCommand(commandObj) {
-	var text = null;
+    var text = null;
 
- 	if (commandObj.type == 'command') {
- 		// Set up variables to use for substitution
-     	var command = commandObj.command;
-     	var target = commandObj.target;
-     	var value = commandObj.value;
-     	
-     	var template = getCommandTemplate(commandObj);
-     	text = template.replace(/\$\{([a-zA-Z0-9_\.]+)\}/g,
-			function(str, p1, offset, s) {
-            	result = eval(p1);
-            	return result != null ? result : '';
-        	});
- 	}
+     if (commandObj.type == 'command') {
+         // Set up variables to use for substitution
+         var command = commandObj.command;
+         var target = commandObj.target;
+         var value = commandObj.value;
+         
+         var template = getCommandTemplate(commandObj);
+         text = template.replace(/\$\{([a-zA-Z0-9_\.]+)\}/g,
+            function(str, p1, offset, s) {
+                result = eval(p1);
+                return result != null ? result : '';
+            });
+     }
 
-	return text;
+    return text;
 }
 
 /**
@@ -63,26 +63,26 @@ function getSourceForCommand(commandObj) {
  * @param source The source to parse
  */
 function parse(testCase, source) {
- 	var commands = [];
+     var commands = [];
 
-	var lines = source.split(/\n/g);
+    var lines = source.split(/\n/g);
 
-	for (i = 0; i < lines.length; i++) {
-		// Catch some special cases (?)
-		// TODO: extract BaseUrl
-	log.info('Iterating source for line "' + i + '"');
-		var command = getCommandForSource(lines[i]);
-		if (command) commands.push(command);	
-	}
-	
- 	testCase.commands = commands;
+    for (i = 0; i < lines.length; i++) {
+        // Catch some special cases (?)
+        // TODO: extract BaseUrl
+    log.info('Iterating source for line "' + i + '"');
+        var command = getCommandForSource(lines[i]);
+        if (command) commands.push(command);    
+    }
+    
+     testCase.commands = commands;
 }
 
 function getCommandForSource(line) {
-	line = trim(line);
-	if (!line || line === "") return;
+    line = trim(line);
+    if (!line || line === "") return;
 
-	log.debug('Getting source for "' + line + '"');
+    log.debug('Getting source for "' + line + '"');
 
     var re = new RegExp("^\\|[^\\|]+\\|[^\\|]+\\|([^\\|]+)\\|[^\\|]+\\|([^\\|]+)\\|[^\\|]+\\|([^\\|]+)\\|$");
     var result = re.exec(line);
@@ -92,13 +92,13 @@ function getCommandForSource(line) {
 }
 
 function trim(text) {
-	return ((text && text.toString()) || "").replace( /^\s+|\s+$/g, "" );
+    return ((text && text.toString()) || "").replace( /^\s+|\s+$/g, "" );
 }
 
 this.options = {
-	'port': '4444',
-	'host': 'localhost',
-	'baseUrl': 'http://localhost'
+    'port': '4444',
+    'host': 'localhost',
+    'baseUrl': 'http://localhost'
 }
 
 this.configForm =
