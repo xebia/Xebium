@@ -14,7 +14,7 @@ public class SeleniumScriptFixtureTest {
 	SeleniumScriptFixture fixture;
 	
 	@BeforeClass
-	public void classSetUp() throws Exception {
+	public static void classSetUp() throws Exception {
 		BasicConfigurator.configure();
 	}
 	

@@ -1,0 +1,12 @@
+!contents -R2 -g -p -f -h
+
+Okay, here we should decide how to set up the data driven selenium tests.
+
+We want something like this:
+
+| Selenese | http://files/selenium/datadriven |
+| username | password | page contains |
+| john | secret | John logged in |
+| jim |s123 | Login failed |
+
+Do we?
