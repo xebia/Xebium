@@ -52,10 +52,12 @@ public class SeleniumDriverFixture {
 //	}
 
 	public boolean doOn(String command, String target) {
+		LOG.info("Performing | " + command + " | " + target + " |");
 		return internalDoCommand(command, new String[] { target });
 	}
 	
 	public boolean doOnWith(String command, String target, String value) {
+		LOG.info("Performing | " + command + " | " + target + " | " + value + " |");
 		return internalDoCommand(command, new String[] { target, value });
 	}
 
