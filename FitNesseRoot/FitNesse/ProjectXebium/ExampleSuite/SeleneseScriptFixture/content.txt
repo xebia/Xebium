@@ -1,10 +1,6 @@
+Selenium Script Fixture
 
-|Import|
-|com.xebia.incubator.xebium|
-
-SeleniumScriptFixture
-
-|script|selenium script fixture|
+|script|selenese script fixture|
 | start server with browser | firefox | on url | http://xebia.com |
 | set output file | http://files/selenium/testResults.html |
 | set timeout to | 60 | seconds |

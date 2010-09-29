@@ -1,16 +1,9 @@
-
-|Import|
-|com.xebia.incubator.xebium|
-
 This is an example of the table fixture format
 
 The used format should be
 |comment |
 | check | do | !-${command}-! | on | !-${target}-! |
 | check | do | !-${command}-! | on | !-${target}-! | with | !-${value}-! |
-
-|import|
-|com.xebia.incubator.xebium|
 
 The script (used in the basic fixture) would turn out something like:
 

@@ -7,11 +7,17 @@
 |'''US'''|'''Description'''                                                                                           |'''Status'''|
 |00      |'''Setup development environment (svn/maven/etc) '''                                                        |DONE        |
 |01      |'''As a test user I am capable of running Selenium scripts from Fitnesse'''                                 |DONE (test suite) |
-|02      |'''As a test user I get readable results when Fitnesse executes a Selenium script'''                        |            |
-|        |- dev note: Fitnesse runs the script line by line in order to pinpoint specific results                     |            |
+|02      |'''As a test user I get readable results when Fitnesse executes a Selenium script'''                        |See note        |
+|        |- dev note: Fitnesse runs the script line by line in order to pinpoint specific results                     |DONE        |
 |03      |'''As a test user I am able to view Selenium scripts in a readable fashion.'''                              |YES - follow link |
-|        |- Scripts are nicely formatted when viewed in Fitnesse                                                      |            |
-|04      |'''As a test user I am able to define variables that can be used as input by the Selenium script'''         |            |
-|05      |'''Fitnesse is capable of running recursively throe a list of values repeating the same test (data driven)'''|            |
+|        |- Scripts are nicely formatted when viewed in Fitnesse                                                      |DONE        |
+|04      |'''As a test user I am able to define variables that can be used as input by the Selenium script'''         |DONE        |
+|05      |'''Fitnesse is capable of running recursively throe a list of values repeating the same test (data driven)'''|DONE        |
 |06      |'''As a test user I have a generic mechanism for defining context for an application under test.'''         |            |
 |        |- fields and values can be easily specified which can be used for data driven testing.                      |            |
+
+Note: Selenium IDE contains a lot of commands. Not all are implemented by the current CommandProcessor. E.g. ''verifyTextPresent''
+should invoke ''isTextPresent'' and ''verifyTextNotPresent'' should also invoke ''isTextPresent'' and invert the result.
+
+This is an exercise still to be performed.
+

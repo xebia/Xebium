@@ -1,10 +1,9 @@
-!define TEST_SYSTEM {slim}
-
 !contents
+
 
 !*****> '''Classpath'''
 # begin of maven classpath
-!define M2_REPO (/Users/kgeusebroek/.m2/repository)
+!define M2_REPO (/Users/arjan/.m2/repository)
 !path ${M2_REPO}/org/fitnesse/fitnesse/20100303/fitnesse-20100303.jar
 !path ${M2_REPO}/org/fitnesse/fitlibrary/20080812/fitlibrary-20080812.jar
 !path ${M2_REPO}/junit/junit/4.5/junit-4.5.jar

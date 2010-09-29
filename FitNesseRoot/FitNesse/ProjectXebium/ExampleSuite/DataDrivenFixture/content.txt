@@ -1,7 +1,3 @@
-|Import|
-|fitnesse.slim.test|
-|fitnesse.fixtures|
-|com.xebia.incubator.xebium|
 
 |Library|
 |selenium driver fixture|
