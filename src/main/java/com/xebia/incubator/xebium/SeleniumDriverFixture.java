@@ -2,6 +2,7 @@ package com.xebia.incubator.xebium;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -22,23 +23,30 @@ public class SeleniumDriverFixture {
 
 	public CommandProcessor detectWebDriverCommandProcessor(String browser, String browserUrl) {
 		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
+		Capabilities capabilities;
 		
-		if ("firefox".equals(browser)) {
-			return new WebDriverCommandProcessor(browserUrl, DesiredCapabilities.firefox());
-		} else if ("iexplore".equals(browser)) {
-			return new WebDriverCommandProcessor(browserUrl, DesiredCapabilities.internetExplorer());
-		} else if ("chrome".equals(browser)) {
-			return new WebDriverCommandProcessor(browserUrl, DesiredCapabilities.chrome());
-		} else if ("htmlUnit".equals(browser)) {
-			return new WebDriverCommandProcessor(browserUrl, DesiredCapabilities.htmlUnit());
+		if ("firefox".equalsIgnoreCase(browser)) {
+			capabilities = DesiredCapabilities.firefox();
+		} else if ("iexplore".equalsIgnoreCase(browser)) {
+			capabilities = DesiredCapabilities.internetExplorer();
+		} else if ("chrome".equalsIgnoreCase(browser)) {
+			capabilities = DesiredCapabilities.chrome();
+		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
+			capabilities = DesiredCapabilities.htmlUnit();
+		} else {
+			throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'");
 		}
-		throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'");
+		return new WebDriverCommandProcessor(browserUrl, capabilities);
 	}
 	
 	public void startBrowserOnUrl(String browser, String browserUrl) {
 
         commandProcessor = detectWebDriverCommandProcessor(browser, browserUrl);
         commandProcessor.start();
+		// Deal with commands:
+		// - starting with 'assert' or 'verify' -> 'is' or 'get' + nullcheck
+		// - ending on 'AndWait' -> command + waitForPageToLoad
+
         LOG.debug("Started command processor");
 	}
 
@@ -78,6 +86,13 @@ public class SeleniumDriverFixture {
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
+		// Deal with commands:
+		// - starting with 'assert' or 'verify' -> 'is'
+		// - ending on 'AndWait' -> command + waitForPageToLoad
+		
+		// TODO: check if command exists
+		// TODO: is does not exist: derive default command from command name (assert*/verify*/*NotPresent/*AndWait)
+		//       and register as new command.
 		try {
 			 String output = commandProcessor.doCommand(command, values);
 			 if (output != null && LOG.isDebugEnabled()) {

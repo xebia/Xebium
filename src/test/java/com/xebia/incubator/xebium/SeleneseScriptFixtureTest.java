@@ -10,9 +10,9 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 @Ignore
-public class SeleniumScriptFixtureTest {
+public class SeleneseScriptFixtureTest {
 
-	SeleniumScriptFixture fixture;
+	SeleneseScriptFixture fixture;
 	
 	@BeforeClass
 	public static void classSetUp() throws Exception {
@@ -21,7 +21,7 @@ public class SeleniumScriptFixtureTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		fixture = new SeleniumScriptFixture();
+		fixture = new SeleneseScriptFixture();
 		fixture.startServer();
 	}
 	

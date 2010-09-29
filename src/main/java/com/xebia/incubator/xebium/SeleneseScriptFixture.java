@@ -8,9 +8,9 @@ import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.server.htmlrunner.HTMLLauncher;
 
-public class SeleniumScriptFixture {
+public class SeleneseScriptFixture {
 
-	private static Logger LOG = Logger.getLogger(SeleniumScriptFixture.class);
+	private static Logger LOG = Logger.getLogger(SeleneseScriptFixture.class);
 	
 	private String browser = "*firefox";
 	private String browserURL = "http://google.com";
