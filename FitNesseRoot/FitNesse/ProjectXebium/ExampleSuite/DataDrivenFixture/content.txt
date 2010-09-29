@@ -1,18 +1,29 @@
+In this example we use the Selenium Driver Fixture statements in a scenario. This required the commands
+to be available. The Library table makes sure that happens.
+
+!2 Preparation
 
 |Library|
 |selenium driver fixture|
 
 
-!| Scenario | search for | query | something and check for | output |
-| start browser | firefox | on url | http://www.google.com |
-| ensure | do | open | on | / | with ||
+| Scenario | search for | query | something and check for | output |
+| ensure | do | open | on | / |
 | ensure | do | type | on | q | with | @query |
-| ensure | do | click | on | btnG | with | Google search |
-| ensure | do | waitForPageToLoad | on | |
-| ensure | do | isTextPresent | on | @output | with ||
-| stop browser |
+| ensure | do | clickAndWait | on | btnG |
+| ensure | do | verifyTextPresent | on | @output |
+
+!2 The actual test
+
+|script |
+| start browser | firefox | on url | http://www.google.com |
+
+Here's an example of a data table for the scenario mentioned above.
 
 | Search For Something And Check For |
 | query | output |
-| xebia | xebia |
-| google | google |
+| google | Google Maps |
+| xebia | www.xebia.com |
+
+|script|
+| stop browser |

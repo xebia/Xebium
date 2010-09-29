@@ -82,7 +82,7 @@ public class SeleniumDriverFixture {
 		return internalDoCommand(command, new String[] { target, value });
 	}
 
-	public boolean internalDoCommand(String command, String[] values) {
+	public boolean internalDoCommand(String methodName, String[] values) {
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
@@ -93,16 +93,37 @@ public class SeleniumDriverFixture {
 		// TODO: check if command exists
 		// TODO: is does not exist: derive default command from command name (assert*/verify*/*NotPresent/*AndWait)
 		//       and register as new command.
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
+		String output = null;
 		try {
-			 String output = commandProcessor.doCommand(command, values);
-			 if (output != null && LOG.isDebugEnabled()) {
-				 LOG.debug("Command processor returned '" + output + "'");
-			 }
-			 return true;
+			output = commandProcessor.doCommand(command.getSeleniumCommand(), values);
+
+			if (output != null && LOG.isDebugEnabled()) {
+				LOG.debug("Command processor returned '" + output + "'");
+			}
+
+			if (command.isAndWaitCommand()) {
+				commandProcessor.doCommand("waitForPageToLoad", new String[] {});
+			}
+			
 		} catch (SeleniumException e) {
 			LOG.error("Execution of command failed: " + e.getMessage());
 			return false;
 		}
+
+		if (command.isVerifyCommand()) {
+			if (command.isNegateCommand()) {
+				return "false".equals(output);
+			} else {
+				return "true".equals(output);
+			}
+		} else if (command.isAssertCommand()) {
+			if ((command.isNegateCommand() && !"false".equals(output))
+					|| (!command.isNegateCommand() && !"true".equals(output))) {
+				throw new AssertionError(output);
+			}
+		}
+		return true;
 	}
 
 	public void stopBrowser() {
