@@ -197,6 +197,10 @@ public class ExtendedSeleniumCommand {
 		return methodName.startsWith(VERIFY);
 	}
 	
+	public boolean isBooleanCommand() {
+		return getSeleniumCommand().startsWith("is");
+	}
+	
 	public String getSeleniumCommand() {
 		if (SELENIUM_COMMANDS.contains(methodName)) {
 			return methodName;

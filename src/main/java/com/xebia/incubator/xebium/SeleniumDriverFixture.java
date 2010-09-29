@@ -112,11 +112,13 @@ public class SeleniumDriverFixture {
 		}
 
 		if (command.isVerifyCommand()) {
+			// Check for boolean is- commands
 			if (command.isNegateCommand()) {
-				return "false".equals(output);
+				return command.isBooleanCommand() ? "false".equals(output) : !values[0].equals(output);
 			} else {
-				return "true".equals(output);
+				return command.isBooleanCommand() ? "true".equals(output) : values[0].equals(output);
 			}
+			// Check for get- commands
 		} else if (command.isAssertCommand()) {
 			if ((command.isNegateCommand() && !"false".equals(output))
 					|| (!command.isNegateCommand() && !"true".equals(output))) {
