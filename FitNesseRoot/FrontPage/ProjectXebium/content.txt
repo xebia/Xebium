@@ -1,6 +1,0 @@
-
-!define TEST_SYSTEM {slim}
-
->SamplePage
->FunctionalTests
->ProjectBacklog
