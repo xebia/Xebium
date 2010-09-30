@@ -6,12 +6,10 @@ import java.net.MalformedURLException;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class WebDriverTest {
 
@@ -29,7 +27,7 @@ public class WebDriverTest {
 		WebDriver driver = new FirefoxDriver(DesiredCapabilities.firefox());
 
 		// Query the driver to find out more information
-		 Capabilities actualCapabilities = ((RemoteWebDriver) driver).getCapabilities();
+		// Capabilities actualCapabilities = ((RemoteWebDriver) driver).getCapabilities();
 
 		// And now use it
 		driver.get("http://www.google.com");
