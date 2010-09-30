@@ -12,6 +12,12 @@ import java.util.Set;
  */
 public class ExtendedSeleniumCommand {
 
+	private static final String GET = "get";
+
+	private static final String IS = "is";
+
+	private static final String STORE = "store";
+
 	private static final String VERIFY = "verify";
 
 	private static final String ASSERT = "assert";
@@ -160,7 +166,7 @@ public class ExtendedSeleniumCommand {
 		"shiftKeyDown",
 		"shiftKeyUp",
 		"shutDownSeleniumServer",
-		"store",
+		STORE,
 		"submit",
 		"type",
 		"typeKeys",
@@ -197,28 +203,34 @@ public class ExtendedSeleniumCommand {
 		return methodName.startsWith(VERIFY);
 	}
 	
+	public boolean isStoreCommand() {
+		return methodName.startsWith(STORE);
+	}
+	
 	public boolean isBooleanCommand() {
-		return getSeleniumCommand().startsWith("is");
+		return getSeleniumCommand().startsWith(IS);
 	}
 	
 	public String getSeleniumCommand() {
-		if (SELENIUM_COMMANDS.contains(methodName)) {
-			return methodName;
-		} else if (isAssertCommand() || isVerifyCommand()) {
-			String name = methodName.substring(6);
+		String seleniumName = methodName;
+		
+		if (isAssertCommand() || isVerifyCommand() || isStoreCommand()) {
+			// ASSERT.length() == VERIFY.length()
+			String noun = seleniumName.substring(isStoreCommand() ? STORE.length() : ASSERT.length());
 			
 			if (isNegateCommand()) {
-				name = name.substring(0, name.length() - NOT_PRESENT.length()) + "Present";
+				noun = noun.substring(0, noun.length() - NOT_PRESENT.length()) + "Present";
 			}
 			
-			if (SELENIUM_COMMANDS.contains("is" + name)) {
-				return "is" + name;
-			} else if (SELENIUM_COMMANDS.contains("get" + name)) {
-				return "get" + name;
+			if (SELENIUM_COMMANDS.contains(IS + noun)) {
+				seleniumName = IS + noun;
+			} else if (SELENIUM_COMMANDS.contains(GET + noun)) {
+				seleniumName = GET + noun;
 			}
-		} else if (isAndWaitCommand()) {
-			return methodName.substring(0, methodName.length() - AND_WAIT.length());
 		}
-		return null;
+		if (isAndWaitCommand()) {
+			seleniumName = seleniumName.substring(0, seleniumName.length() - AND_WAIT.length());
+		}
+		return seleniumName;
 	}
 }

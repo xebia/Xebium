@@ -21,7 +21,7 @@ public class SeleniumDriverFixture {
 		BasicConfigurator.configure();
 	}
 
-	public CommandProcessor detectWebDriverCommandProcessor(String browser, String browserUrl) {
+	public CommandProcessor detectWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
 		Capabilities capabilities;
 		
@@ -39,60 +39,35 @@ public class SeleniumDriverFixture {
 		return new WebDriverCommandProcessor(browserUrl, capabilities);
 	}
 	
-	public void startBrowserOnUrl(String browser, String browserUrl) {
-
+	public void startBrowserOnUrl(final String browser, final String browserUrl) {
         commandProcessor = detectWebDriverCommandProcessor(browser, browserUrl);
         commandProcessor.start();
-		// Deal with commands:
-		// - starting with 'assert' or 'verify' -> 'is' or 'get' + nullcheck
-		// - ending on 'AndWait' -> command + waitForPageToLoad
-
         LOG.debug("Started command processor");
 	}
 
-	public void startBrowserOnHostOnPortOnUrl(String browserStartCommand, String serverHost, int serverPort, String browserUrl) {
+	public void startBrowserOnHostOnPortOnUrl(final String browserStartCommand, final String serverHost, final int serverPort, final String browserUrl) {
 		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browserStartCommand, FitNesseUtil.removeAnchorTag(browserUrl));
 		commandProcessor.start();
         LOG.debug("Started HTML command processor");
 	}
 	
-//	private CommandProcessor detectCommandProcessor(String serverHost, int serverPort, String browserStartCommand, String browserURL) {
-//		if ("*webdriver".equals(browserStartCommand)) {
-//			return new WebDriverCommandProcessor(browserURL);
-//		} else if ("*firefox-wd".equals(browserStartCommand)) {
-//			return new WebDriverCommandProcessor(browserURL, DesiredCapabilities.firefox());
-//		} else if ("*iexplore-wd".equals(browserStartCommand)) {
-//			return new WebDriverCommandProcessor(browserURL, DesiredCapabilities.internetExplorer());
-//		}
-//		return new HttpCommandProcessor(serverHost, serverPort, browserStartCommand, browserURL);
-//	}
-
-	public boolean do_(String command) {
-		LOG.info("Performing | " + command + " |");
-		return internalDoCommand(command, null);
-	}
-	
-	public boolean doOn(String command, String target) {
+	public boolean doOn(final String command, final String target) {
 		LOG.info("Performing | " + command + " | " + target + " |");
 		return internalDoCommand(command, new String[] { target });
 	}
 	
-	public boolean doOnWith(String command, String target, String value) {
+	public boolean doOnWith(final String command, final String target, final String value) {
 		LOG.info("Performing | " + command + " | " + target + " | " + value + " |");
 		return internalDoCommand(command, new String[] { target, value });
 	}
 
-	public boolean internalDoCommand(String methodName, String[] values) {
+	public boolean internalDoCommand(final String methodName, final String[] values) {
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
-		// Deal with commands:
-		// - starting with 'assert' or 'verify' -> 'is'
-		// - ending on 'AndWait' -> command + waitForPageToLoad
+
+		// TODO: substitute previously stored variables in values[]
 		
-		// TODO: check if command exists
-		// TODO: is does not exist: derive default command from command name (assert*/verify*/*NotPresent/*AndWait)
-		//       and register as new command.
 		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 		String output = null;
 		try {
@@ -105,33 +80,36 @@ public class SeleniumDriverFixture {
 			if (command.isAndWaitCommand()) {
 				commandProcessor.doCommand("waitForPageToLoad", new String[] {});
 			}
-			
 		} catch (SeleniumException e) {
 			LOG.error("Execution of command failed: " + e.getMessage());
 			return false;
 		}
 
 		if (command.isVerifyCommand()) {
-			// Check for boolean is- commands
-			if (command.isNegateCommand()) {
-				return command.isBooleanCommand() ? "false".equals(output) : !values[0].equals(output);
-			} else {
-				return command.isBooleanCommand() ? "true".equals(output) : values[0].equals(output);
-			}
-			// Check for get- commands
+			return checkResult(output, command, values[0]);
 		} else if (command.isAssertCommand()) {
-			if ((command.isNegateCommand() && !"false".equals(output))
-					|| (!command.isNegateCommand() && !"true".equals(output))) {
+			if (!checkResult(output, command, values[0])) {
 				throw new AssertionError(output);
 			}
+		} else if (command.isStoreCommand()) {
+			// TODO: Store output, variable name is last value[value.length() -1]
 		}
 		return true;
 	}
 
+	private boolean checkResult(String output, ExtendedSeleniumCommand command,
+			final String values) {
+		if (command.isNegateCommand()) {
+			return command.isBooleanCommand() ? "false".equals(output) : !values.equals(output);
+		} else {
+			return command.isBooleanCommand() ? "true".equals(output) : values.equals(output);
+		}
+	}
+
 	public void stopBrowser() {
         this.commandProcessor.stop();
-        LOG.info("Command processor stopped");
         this.commandProcessor = null;
+        LOG.info("Command processor stopped");
 	}
 
 
