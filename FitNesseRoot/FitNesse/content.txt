@@ -1,5 +1,6 @@
-|!c !2 Contents|
-|!contents -g|
+Welcome to the project Xebium demo FitNesse.
+
+!contents -g
 
 
 

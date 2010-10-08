@@ -25,34 +25,37 @@ function formatCommands(commands) {
     var commandsText = '';
     
     for (i = 0; i < commands.length; i++) {
-        var command = commands[i];
-        if (command.value === '') {
-            commandsText += "| ensure | do | " + command.command + " | on | " + command.target + " |\n";
-        } else {
-            commandsText += "| ensure | do | " + command.command + " | on | " + command.target + " | with | " + command.value + " |\n";
-        }
-     }
-     return  commandsText;
+        commandsText += getSourceForCommand(commands[i]) + "\n";
+    }
+    return  commandsText;
 }
+
 
 function getSourceForCommand(commandObj) {
     var text = null;
 
-     if (commandObj.type == 'command') {
+    if (commandObj.type == 'comment') {
+    	return "| note | " + commandObj.comment + " |";
+    } else if (commandObj.type == 'command') {
          // Set up variables to use for substitution
          var command = commandObj.command;
          var target = commandObj.target;
          var value = commandObj.value;
          
-         var template = getCommandTemplate(commandObj);
-         text = template.replace(/\$\{([a-zA-Z0-9_\.]+)\}/g,
-            function(str, p1, offset, s) {
-                result = eval(p1);
-                return result != null ? result : '';
-            });
-     }
-
-    return text;
+         if (/^store/.test(command)) {
+         	if (value === '') {
+             	return "| $" + target + "= | is | " + command.replace(/^store/, "get") + " |";
+         	} else {
+             	return "| $" + value + "= | is | " + command.replace(/^store/, "get") + " | on | " + target + " |";
+         	}
+     	} else if (value === '') {
+             return "| ensure | do | " + command + " | on | " + target + " |";
+        } else {
+         	if (/[A-Z].*[a=z][A-Z]/.test(value)) { value = "!-" + value + "-!"; }
+            return "| ensure | do | " + command + " | on | " + target + " | with | " + value + " |";
+        }
+    }
+    return "| note | Untranslatable: '" + commandObj.toString + "' |";
 }
 
 /**
@@ -78,20 +81,26 @@ function parse(testCase, source) {
 }
 
 function getCommandForSource(line) {
-    line = trim(line);
-    if (!line || line === "") return;
+	// | ensure | do | ${command} | on | ${target} | with | ${value} |
+	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*with\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
+		return new Command(match[1], match[2], match[3]);
 
-    log.debug('Getting source for "' + line + '"');
+	// | ensure | do | ${command} | on | ${target} |
+	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
+		return new Command(match[1], match[2]);
 
-    var re = new RegExp("^\\|[^\\|]+\\|[^\\|]+\\|([^\\|]+)\\|[^\\|]+\\|([^\\|]+)\\|[^\\|]+\\|([^\\|]+)\\|$");
-    var result = re.exec(line);
-    if (result) {
-        return new Command(trim(result[1]), trim(result[2]), trim(result[3]));
-    }
-}
+	// format: | $value= | is | ${command} | on | ${target} |
+	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
+		return new Command(match[2].replace(/^get/, 'store'), match[3], match[1]);
 
-function trim(text) {
-    return ((text && text.toString()) || "").replace( /^\s+|\s+$/g, "" );
+	// format: | $value= | is | ${command} |
+	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
+		return new Command(match[2].replace(/^get/, 'store'), match[1]);
+
+	// format: | note | ${text} |
+	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*/.exec(line)) {
+		return new Comment(match[1]);
+	}
 }
 
 this.options = {

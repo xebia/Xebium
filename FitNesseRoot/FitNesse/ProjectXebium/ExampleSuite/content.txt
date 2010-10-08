@@ -1,5 +1,8 @@
-!contents
+!contents -g
 
+noFitNessePage
+
+/ThisIsAFitNessePage
 
 !*****> '''Classpath'''
 # begin of maven classpath

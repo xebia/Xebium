@@ -53,22 +53,44 @@ public class SeleniumDriverFixture {
 	
 	public boolean doOn(final String command, final String target) {
 		LOG.info("Performing | " + command + " | " + target + " |");
-		return internalDoCommand(command, new String[] { target });
+		return executeDoCommand(command, new String[] { target });
 	}
 	
 	public boolean doOnWith(final String command, final String target, final String value) {
 		LOG.info("Performing | " + command + " | " + target + " | " + value + " |");
-		return internalDoCommand(command, new String[] { target, value });
+		return executeDoCommand(command, new String[] { target, value });
 	}
 
-	public boolean internalDoCommand(final String methodName, final String[] values) {
+	public String is(final String command) {
+		return executeCommand(command, new String[] { });
+	}
+	
+	public String isOn(final String command, final String target) {
+		return executeCommand(command, new String[] { target });
+	}
+
+	private String executeCommand(final String methodName, final String[] values) {
+		return executeCommand(new ExtendedSeleniumCommand(methodName), values);
+	}
+	
+	private boolean executeDoCommand(final String methodName, final String[] values) {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
+		String output = executeCommand(command, values);
+
+		if (command.isVerifyCommand()) {
+			return checkResult(output, command, values[0]);
+		} else if (command.isAssertCommand()) {
+			if (!checkResult(output, command, values[0])) {
+				throw new AssertionError(output);
+			}
+		}
+		return true;
+	}
+
+	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values) {
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
-
-		// TODO: substitute previously stored variables in values[]
-		
-		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 		String output = null;
 		try {
 			output = commandProcessor.doCommand(command.getSeleniumCommand(), values);
@@ -82,19 +104,8 @@ public class SeleniumDriverFixture {
 			}
 		} catch (SeleniumException e) {
 			LOG.error("Execution of command failed: " + e.getMessage());
-			return false;
 		}
-
-		if (command.isVerifyCommand()) {
-			return checkResult(output, command, values[0]);
-		} else if (command.isAssertCommand()) {
-			if (!checkResult(output, command, values[0])) {
-				throw new AssertionError(output);
-			}
-		} else if (command.isStoreCommand()) {
-			// TODO: Store output, variable name is last value[value.length() -1]
-		}
-		return true;
+		return output;
 	}
 
 	private boolean checkResult(String output, ExtendedSeleniumCommand command,
