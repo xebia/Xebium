@@ -212,6 +212,26 @@ public class JavascriptTestCase {
     }
 
     @Test
+    public void shouldWikiWordsAndUrlsToFitnesse() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('someUrl', 'http://example.com'))");
+        eval("commands.push(new Command('testWikiWord', 'WikiWord', 'W10W'))");
+        eval("commands.push(new Command('testVariable', 'foo', '${locVar}'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+                "| ensure | do | someUrl | on | !-http://example.com-! |\n" +
+                "| ensure | do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
+                "| ensure | do | testVariable | on | foo | with | $locVar |\n" +
+				"| stop browser |\n"
+				, result);
+    }
+
+    
+    @Test
     public void shouldExecuteCommandOnTargetWithValueToSelenese() {
 		// Only open and check command should be parsed
 		eval("var fittable = '| script | selenium driver fixture |\\n' +" +

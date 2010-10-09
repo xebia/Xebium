@@ -35,7 +35,7 @@ function getSourceForCommand(commandObj) {
 	function escape(s) {
 		var m;
 		if (m = /^\$\{(\w+)\}$/.exec(s)) { return '$' + m[1]; }
-     	//if (/[A-Z].*[a=z][A-Z]/.test(value)) { value = "!-" + value + "-!"; }
+     	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s)) { return "!-" + s + "-!"; }
 		return s;
 	}
 	
@@ -46,22 +46,22 @@ function getSourceForCommand(commandObj) {
     } else if (commandObj.type == 'command') {
          // Set up variables to use for substitution
          var command = commandObj.command;
-         var target = escape(commandObj.target);
-         var value = escape(commandObj.value);
+         var target = commandObj.target;
+         var value = commandObj.value;
          
          if (/^store/.test(command)) {
          	if (value === '') {
              	return "| $" + target + "= | is | " + command.replace(/^store/, "get") + " |";
          	} else {
-             	return "| $" + value + "= | is | " + command.replace(/^store/, "get") + " | on | " + target + " |";
+             	return "| $" + value + "= | is | " + command.replace(/^store/, "get") + " | on | " + escape(target) + " |";
          	}
      	} else if (value === '') {
-             return "| ensure | do | " + command + " | on | " + target + " |";
+             return "| ensure | do | " + command + " | on | " + escape(target) + " |";
         } else {
-            return "| ensure | do | " + command + " | on | " + target + " | with | " + value + " |";
+            return "| ensure | do | " + command + " | on | " + escape(target) + " | with | " + escape(value) + " |";
         }
     }
-    return "| note | Untranslatable: '" + commandObj.toString + "' |";
+    return "| note | !-Untranslatable: '" + commandObj.toString + "'-! |";
 }
 
 /**
