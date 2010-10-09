@@ -32,15 +32,22 @@ function formatCommands(commands) {
 
 
 function getSourceForCommand(commandObj) {
-    var text = null;
+	function escape(s) {
+		var m;
+		if (m = /^\$\{(\w+)\}$/.exec(s)) { return '$' + m[1]; }
+     	//if (/[A-Z].*[a=z][A-Z]/.test(value)) { value = "!-" + value + "-!"; }
+		return s;
+	}
+	
+	var text = null;
 
     if (commandObj.type == 'comment') {
     	return "| note | " + commandObj.comment + " |";
     } else if (commandObj.type == 'command') {
          // Set up variables to use for substitution
          var command = commandObj.command;
-         var target = commandObj.target;
-         var value = commandObj.value;
+         var target = escape(commandObj.target);
+         var value = escape(commandObj.value);
          
          if (/^store/.test(command)) {
          	if (value === '') {
@@ -51,7 +58,6 @@ function getSourceForCommand(commandObj) {
      	} else if (value === '') {
              return "| ensure | do | " + command + " | on | " + target + " |";
         } else {
-         	if (/[A-Z].*[a=z][A-Z]/.test(value)) { value = "!-" + value + "-!"; }
             return "| ensure | do | " + command + " | on | " + target + " | with | " + value + " |";
         }
     }
@@ -81,21 +87,32 @@ function parse(testCase, source) {
 }
 
 function getCommandForSource(line) {
+	function unescape(s) {
+		var m
+		// Convert variable from $fit to ${selenese} style
+		if (m = /\$(\w+)$/.exec(s)) { s = '${' + m[1] + '}'; }
+		// Clear escape characters from text section
+		if (m = /^!-(\w+)-!$/.exec(s)) { s = m[1]; }
+		return s;
+	}
+	
+	var match;
+	
 	// | ensure | do | ${command} | on | ${target} | with | ${value} |
-	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*with\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
-		return new Command(match[1], match[2], match[3]);
+	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*with\s*\|\s*([^\|]+?)\s*\|\s*/.exec(line)) {
+		return new Command(match[1], unescape(match[2]), unescape(match[3]));
 
 	// | ensure | do | ${command} | on | ${target} |
-	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
-		return new Command(match[1], match[2]);
+	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|]+?)\s*\|\s*/.exec(line)) {
+		return new Command(match[1], unescape(match[2]));
 
 	// format: | $value= | is | ${command} | on | ${target} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
-		return new Command(match[2].replace(/^get/, 'store'), match[3], match[1]);
+		return new Command(match[2].replace(/^get/, 'store'), unescape(match[3]), unescape(match[1]));
 
 	// format: | $value= | is | ${command} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
-		return new Command(match[2].replace(/^get/, 'store'), match[1]);
+		return new Command(match[2].replace(/^get/, 'store'), unescape(match[1]));
 
 	// format: | note | ${text} |
 	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*/.exec(line)) {
