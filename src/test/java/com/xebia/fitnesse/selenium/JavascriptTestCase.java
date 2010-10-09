@@ -109,27 +109,70 @@ public class JavascriptTestCase {
 		assertEquals("object", (String) result);
 		result = eval("cmd.type");
 		assertEquals("command", (String) result);
-		
 	}
-	
 	
 	@Test
 	public void testEmptyTestCase() {
 		String result = (String) eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com'; format(tc, 'name');");
 		
-		assertEquals("| script |\n" +
-						"| start | selenium driver |\n" +
-						"| start browser | firefox | with selenium rc | localhost | on port | 4444 | point at | !-http://example.com-! |\n" +
-						"| shutdown browser |\n" 
-						, result);
+		assertEquals("| script | selenium driver fixture |\n" +
+					 "| start browser | firefox | on url | http://example.com |\n" +
+					 "| stop browser |\n" 
+					 , result);
 	}
 	
     @Test
     public void testExecuteCommandOnTargetWithValueToSelenese() {
-        eval("var cmd = getCommandForSource('| ensure | do | ${command} | on | ${target} | with | ${value} |');");
-        assertEquals("${command}", eval("cmd.command"));
+        eval("var cmd = getCommandForSource('| ensure | do | {command} | on | {target} | with | complex value |');");
+        assertEquals("{command}", eval("cmd.command"));
+        assertEquals("{target}", eval("cmd.target"));
+        assertEquals("complex value", eval("cmd.value"));
+    }
+
+    @Test
+    public void testExecuteCommandOnTargetToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | target value|');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("target value", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+
+    @Test
+    public void testExecuteCommandOnEscapedTargetToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | !-target-! |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("target", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+    
+    @Test
+    public void testExecuteCommandOnEscapedTargetWithEscapedValueToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | !-target-! | with | !-value-!|');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("target", eval("cmd.target"));
+        assertEquals("value", eval("cmd.value"));
+    }
+
+    @Test
+    public void testExecuteCommandOnVariableToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | $target|');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("${target}", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+
+    @Test
+    public void testExecuteCommandOnVariableWithVariableToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | $target | with | $value|');");
+        assertEquals("command", eval("cmd.command"));
         assertEquals("${target}", eval("cmd.target"));
         assertEquals("${value}", eval("cmd.value"));
+    }
+
+    @Test
+    public void testExecuteCommentToSelenese() {
+        eval("var cmd = getCommandForSource('| note | My comments |');");
+        assertEquals("My comments", eval("cmd.comment"));
     }
 
     @Test
@@ -141,23 +184,40 @@ public class JavascriptTestCase {
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
-                "| script |\n" +
-				"| start | selenium driver |\n" +
-				"| start browser | firefox | with selenium rc | localhost | on port | 4444 | point at | !-http://example.com-! |\n" +
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
 				"| ensure | do | open | on | http://myurl.com |\n" +
                 "| ensure | do | open | on | foo | with | bar |\n" +
-				"| shutdown browser |\n"
+				"| stop browser |\n"
+				, result);
+    }
+
+    @Test
+    public void shouldStoreCommandOnTargetToFitnesse() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('storeLocation', 'locVar'))");
+        eval("commands.push(new Command('storeTest', 'foo', 'bar'))");
+        eval("commands.push(new Command('verifyTest', 'foo', '${locVar}'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+				"| $locVar= | is | getLocation |\n" +
+                "| $bar= | is | getTest | on | foo |\n" +
+                "| ensure | do | verifyTest | on | foo | with | $locVar |\n" +
+				"| stop browser |\n"
 				, result);
     }
 
     @Test
     public void shouldExecuteCommandOnTargetWithValueToSelenese() {
 		// Only open and check command should be parsed
-		eval("var fittable = '| script |\\n' +" +
-				"'| start | selenium driver |\\n' +" +
-				"'| start browser | firefox | with selenium rc | localhost | on port | 4444 | point at | http://example.com |\\n' +" +
+		eval("var fittable = '| script | selenium driver fixture |\\n' +" +
+				"'| start browser | firefox | on url | http://example.com |\\n' +" +
 				"'| ensure | do | open | on | http://www.google.com | with | dummy |\\n' +" +
-                "'| shutdown browser |\\n';");
+                "'| stop browser |\\n';");
 		eval("var tc = new TestCase();");
 		eval("parse(tc, fittable);");
 		eval("var commands = tc.commands;");
@@ -166,6 +226,23 @@ public class JavascriptTestCase {
 		assertEquals("open", eval("commands[0].command"));
         assertEquals("http://www.google.com", eval("commands[0].target"));
         assertEquals("dummy", eval("commands[0].value"));
+    }
+
+    @Test
+    public void shouldExecuteStoreCommandToSelenese() {
+		// Only open and check command should be parsed
+		eval("var fittable = '| script | selenium driver fixture |\\n' +" +
+				"'| start browser | firefox | on url | http://example.com |\\n' +" +
+				"'| $MyVar= | is | getValue | on | link=Test |\\n' +" +
+                "'| stop browser |\\n';");
+		eval("var tc = new TestCase();");
+		eval("parse(tc, fittable);");
+		eval("var commands = tc.commands;");
+
+		assertEquals(1.0, eval("commands.length"));
+		assertEquals("storeValue", eval("commands[0].command"));
+        assertEquals("link=Test", eval("commands[0].target"));
+        assertEquals("MyVar", eval("commands[0].value"));
     }
 
 }
