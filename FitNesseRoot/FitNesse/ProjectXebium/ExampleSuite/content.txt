@@ -6,55 +6,5 @@ noFitNessePage
 
 !*****> '''Classpath'''
 # begin of maven classpath
-!define M2_REPO (/Users/arjan/.m2/repository)
-!path ${M2_REPO}/org/fitnesse/fitnesse/20100303/fitnesse-20100303.jar
-!path ${M2_REPO}/org/fitnesse/fitlibrary/20080812/fitlibrary-20080812.jar
-!path ${M2_REPO}/junit/junit/4.5/junit-4.5.jar
-!path ${M2_REPO}/org/easymock/easymock/3.0/easymock-3.0.jar
-!path ${M2_REPO}/cglib/cglib-nodep/2.2/cglib-nodep-2.2.jar
-!path ${M2_REPO}/org/objenesis/objenesis/1.2/objenesis-1.2.jar
-!path ${M2_REPO}/org/easymock/easymockclassextension/3.0/easymockclassextension-3.0.jar
-!path ${M2_REPO}/org/mockito/mockito-all/1.8.5/mockito-all-1.8.5.jar
-!path ${M2_REPO}/org/mockito/mockito-core/1.8.5/mockito-core-1.8.5.jar
-!path ${M2_REPO}/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar
-!path ${M2_REPO}/org/slf4j/slf4j-api/1.5.0/slf4j-api-1.5.0.jar
-!path ${M2_REPO}/org/slf4j/slf4j-log4j12/1.5.0/slf4j-log4j12-1.5.0.jar
-!path ${M2_REPO}/log4j/log4j/1.2.13/log4j-1.2.13.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium/2.0a5/selenium-2.0a5.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-chrome-driver/2.0a5/selenium-chrome-driver-2.0a5.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-remote-client/2.0a5/selenium-remote-client-2.0a5.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-remote-common/2.0a5/selenium-remote-common-2.0a5.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-common/2.0a5/selenium-common-2.0a5.jar
-!path ${M2_REPO}/org/json/json/20080701/json-20080701.jar
-!path ${M2_REPO}/commons-codec/commons-codec/1.4/commons-codec-1.4.jar
-!path ${M2_REPO}/com/google/collections/google-collections/1.0/google-collections-1.0.jar
-!path ${M2_REPO}/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar
-!path ${M2_REPO}/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-htmlunit-driver/2.0a5/selenium-htmlunit-driver-2.0a5.jar
-!path ${M2_REPO}/net/sourceforge/htmlunit/htmlunit/2.7/htmlunit-2.7.jar
-!path ${M2_REPO}/xalan/xalan/2.7.1/xalan-2.7.1.jar
-!path ${M2_REPO}/xalan/serializer/2.7.1/serializer-2.7.1.jar
-!path ${M2_REPO}/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar
-!path ${M2_REPO}/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar
-!path ${M2_REPO}/commons-lang/commons-lang/2.4/commons-lang-2.4.jar
-!path ${M2_REPO}/net/sourceforge/htmlunit/htmlunit-core-js/2.7/htmlunit-core-js-2.7.jar
-!path ${M2_REPO}/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar
-!path ${M2_REPO}/net/sourceforge/nekohtml/nekohtml/1.9.14/nekohtml-1.9.14.jar
-!path ${M2_REPO}/net/sourceforge/cssparser/cssparser/0.9.5/cssparser-0.9.5.jar
-!path ${M2_REPO}/org/w3c/css/sac/1.3/sac-1.3.jar
-!path ${M2_REPO}/commons-io/commons-io/1.4/commons-io-1.4.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-firefox-driver/2.0a5/selenium-firefox-driver-2.0a5.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-ie-driver/2.0a5/selenium-ie-driver-2.0a5.jar
-!path ${M2_REPO}/net/java/dev/jna/jna/3.2.2/jna-3.2.2.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-support/2.0a5/selenium-support-2.0a5.jar
-!path ${M2_REPO}/org/hamcrest/hamcrest-all/1.1/hamcrest-all-1.1.jar
-!path ${M2_REPO}/org/seleniumhq/selenium/selenium-server/2.0a5/selenium-server-2.0a5.jar
-!path ${M2_REPO}/ant/ant/1.6.5/ant-1.6.5.jar
-!path ${M2_REPO}/bouncycastle/bcprov-jdk15/135/bcprov-jdk15-135.jar
-!path ${M2_REPO}/mx4j/mx4j-tools/3.0.1/mx4j-tools-3.0.1.jar
-!path ${M2_REPO}/org/mortbay/jetty/servlet-api-2.5/6.1.9/servlet-api-2.5-6.1.9.jar
-!path ${M2_REPO}/rhino/js/1.7R1/js-1.7R1.jar
-!path /Users/arjan/Workspace/Xebium/target/classes
-!path /Users/arjan/Workspace/Xebium/target/test-classes
 # end of maven classpath
 *****!
