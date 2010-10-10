@@ -186,7 +186,7 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-				"| ensure | do | open | on | http://myurl.com |\n" +
+				"| ensure | do | open | on | !-http://myurl.com-! |\n" +
                 "| ensure | do | open | on | foo | with | bar |\n" +
 				"| stop browser |\n"
 				, result);
