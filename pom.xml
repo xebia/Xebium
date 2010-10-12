@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>Xebium</artifactId>
 	<groupId>nl.xebia.xke.xebium</groupId>
@@ -34,7 +34,6 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<!-- Dependency list -->
 	<dependencies>
 		<dependency>
 			<groupId>org.fitnesse</groupId>
@@ -46,23 +45,6 @@
 			<artifactId>fitlibrary</artifactId>
 			<version>20080812</version>
 		</dependency>
-		<!-- test dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.5.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium</artifactId>
@@ -73,12 +55,24 @@
 			<artifactId>selenium-server</artifactId>
 			<version>${selenium.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>rhino</groupId>
-            <artifactId>js</artifactId>
-            <version>1.7R1</version>
-        <scope>test</scope>
-    </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>rhino</groupId>
+			<artifactId>js</artifactId>
+			<version>1.7R1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -91,42 +85,9 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			<!--
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>selenium-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start-server</goal>
-						</goals>
-						<configuration>
-							<background>true</background>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
--->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>selenium-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>selenese</goal>
-						</goals>
-						<configuration>
-							<browser>*firefox</browser>
-							<startURL>http://google.nl</startURL>
-							<suite>FitNesseRoot/files/selenium/testsuite.html</suite>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
+	
 	<profiles>
 		<profile>
 			<id>fitnesse</id>
@@ -182,6 +143,7 @@
 			</build>
 		</profile>
 	</profiles>
+	
 	<developers>
 		<developer>
 			<id>sgrijpink</id>
@@ -205,6 +167,12 @@
 			<id>amolenaar</id>
 			<email>amolenaar@xebia.com</email>
 			<name>Arjan Molenaar</name>
+			<organization>Xebia B.V.</organization>
+		</developer>
+		<developer>
+			<id>tkaastra</id>
+			<email>tkaastra@xebia.com</email>
+			<name>Tjeerd Kaastra</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
 		<developer>
