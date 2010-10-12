@@ -146,6 +146,14 @@ public class JavascriptTestCase {
     }
     
     @Test
+    public void testExecuteCommandOnEscapedUrlTargetToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | !-http://target-! |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("http://target", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+    
+    @Test
     public void testExecuteCommandOnEscapedTargetWithEscapedValueToSelenese() {
         eval("var cmd = getCommandForSource('| ensure | do | command | on | !-target-! | with | !-value-!|');");
         assertEquals("command", eval("cmd.command"));

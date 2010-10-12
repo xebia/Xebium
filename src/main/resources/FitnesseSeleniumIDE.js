@@ -92,7 +92,7 @@ function getCommandForSource(line) {
 		// Convert variable from $fit to ${selenese} style
 		if (m = /\$(\w+)$/.exec(s)) { s = '${' + m[1] + '}'; }
 		// Clear escape characters from text section
-		if (m = /^!-(\w+)-!$/.exec(s)) { s = m[1]; }
+		if (m = /^!-(.+?)-!$/.exec(s)) { s = m[1]; }
 		return s;
 	}
 	
