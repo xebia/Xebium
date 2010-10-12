@@ -8,8 +8,7 @@
 	<name>Xebium</name>
 	<packaging>jar</packaging>
 	<properties>
-		<selenium-client-version>2.0a5</selenium-client-version>
-		<selenium-version>2.0a5</selenium-version>
+		<selenium.version>2.0a5</selenium.version>
 		<fitnesse.version>20100303</fitnesse.version>
 		<fitnesse.port>8000</fitnesse.port>
 	</properties>
@@ -67,12 +66,12 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium</artifactId>
-			<version>${selenium-version}</version>
+			<version>${selenium.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>2.0a5</version>
+			<version>${selenium.version}</version>
 		</dependency>
         <dependency>
             <groupId>rhino</groupId>
