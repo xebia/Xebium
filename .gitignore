@@ -1,4 +1,7 @@
 *.zip
+.classpath
+.project
+.settings/
 FitNesseRoot/ErrorLogs/
 FitNesseRoot/RecentChanges
 FitNesseRoot/files/selenium/testResults.html
