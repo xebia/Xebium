@@ -1,0 +1,7 @@
+*.zip
+FitNesseRoot/ErrorLogs/
+FitNesseRoot/RecentChanges
+FitNesseRoot/files/selenium/testResults.html
+FitNesseRoot/files/testResults/
+target/
+velocity.log
