@@ -10,6 +10,7 @@
 	<properties>
 		<selenium.version>2.0a5</selenium.version>
 		<fitnesse.version>20100303</fitnesse.version>
+		<fitlibrary.version>20091020</fitlibrary.version>
 		<fitnesse.port>8000</fitnesse.port>
 	</properties>
 
@@ -21,8 +22,9 @@
 			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
 		<repository>
-			<id>xebia</id>
-			<url>http://maven2.xebia.com/</url>
+			<id>vt-oss-releases</id>
+			<name>Valtech Open Source Releases</name>
+			<url>http://source.valtech.com/repo/content/repositories/releases/</url>
 		</repository>
 	</repositories>
 
@@ -43,7 +45,7 @@
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitlibrary</artifactId>
-			<version>20080812</version>
+			<version>${fitlibrary.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
