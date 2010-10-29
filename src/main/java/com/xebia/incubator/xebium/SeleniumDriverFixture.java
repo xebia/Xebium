@@ -78,9 +78,9 @@ public class SeleniumDriverFixture {
 		String output = executeCommand(command, values);
 
 		if (command.isVerifyCommand()) {
-			return checkResult(output, command, values[0]);
+			return checkResult(output, command, values[values.length - 1]);
 		} else if (command.isAssertCommand()) {
-			if (!checkResult(output, command, values[0])) {
+			if (!checkResult(output, command, values[values.length - 1])) {
 				throw new AssertionError(output);
 			}
 		}

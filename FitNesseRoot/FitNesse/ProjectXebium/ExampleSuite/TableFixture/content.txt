@@ -2,20 +2,15 @@ This is an example of the table fixture format
 
 The used format should be
 |comment |
-| check | do | !-${command}-! | on | !-${target}-! |
-| check | do | !-${command}-! | on | !-${target}-! | with | !-${value}-! |
+| ensure | do | !-${command}-! | on | !-${target}-! |
+| ensure | do | !-${command}-! | on | !-${target}-! | with | !-${value}-! |
 
 The script (used in the basic fixture) would turn out something like:
 
-|comment|
-|script|selenium driver fixture|
-| start browser | firefox | on host | localhost | on port | 4444 | on url | http://www.google.com |
-| ensure | do | open | on | / |
-| ensure | do | type | on | q | with | xebium is the new test solution |
-
-
-|script|selenium driver fixture|
-| start browser | firefox | on url | http://www.google.com |
-| ensure | do | open | on | / |
-| ensure | do | type | on | q | with | xebium is the new test solution |
+|script|selenium driver fixture| 
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |
+| ensure | do | verifyTitle | on | !-FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |
+| ensure | do | verifyTextPresent | on | Test |
+| ensure | do | verifyText | on | //tr[1]/td[2] | with | selenium driver fixture |
 | stop browser |
