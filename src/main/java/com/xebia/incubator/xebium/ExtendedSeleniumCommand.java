@@ -22,6 +22,10 @@ public class ExtendedSeleniumCommand {
 
 	private static final String ASSERT = "assert";
 
+	private static final String WAIT_FOR = "waitFor";
+	
+	private static final String WAIT_FOR_NOT = "waitForNot";
+	
 	private static final String NOT_PRESENT = "NotPresent";
 
 	private static final String AND_WAIT = "AndWait";
@@ -186,13 +190,17 @@ public class ExtendedSeleniumCommand {
 		this.methodName = methodName;
 	}
 
+	public boolean isWaitForCommand() {
+		return methodName.startsWith(WAIT_FOR);
+	}
+	
 	public boolean isAndWaitCommand() {
-		return methodName.endsWith(AND_WAIT);
+		return  methodName.endsWith(AND_WAIT);
 	}
 	
 	// TODO: process this in JS
 	public boolean isNegateCommand() {
-		return methodName.endsWith(NOT_PRESENT);
+		return methodName.startsWith(WAIT_FOR_NOT) || methodName.endsWith(NOT_PRESENT);
 	}
 	
 	public boolean isAssertCommand() {
@@ -212,14 +220,21 @@ public class ExtendedSeleniumCommand {
 	}
 	
 	public String getSeleniumCommand() {
+		// for commands like "waitForCondition"
+		if (SELENIUM_COMMANDS.contains(methodName)) {
+			return methodName;
+		}
+		
 		String seleniumName = methodName;
 		
-		if (isAssertCommand() || isVerifyCommand() || isStoreCommand()) {
+		if (isAssertCommand() || isVerifyCommand() || isStoreCommand() || isWaitForCommand()) {
 			// ASSERT.length() == VERIFY.length()
-			String noun = seleniumName.substring(isStoreCommand() ? STORE.length() : ASSERT.length());
+			String noun = seleniumName.substring(isStoreCommand() ? STORE.length() :
+				(isWaitForCommand() ? WAIT_FOR.length() : ASSERT.length()));
 			
 			if (isNegateCommand()) {
-				noun = noun.substring(0, noun.length() - NOT_PRESENT.length()) + "Present";
+				//noun = noun.substring(0, noun.length() - NOT_PRESENT.length()) + "Present";
+				noun = noun.replaceAll("Not([A-Z])", "$1");
 			}
 			
 			if (SELENIUM_COMMANDS.contains(IS + noun)) {
