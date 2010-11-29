@@ -44,17 +44,19 @@ function getSourceForCommand(commandObj) {
     if (commandObj.type == 'comment') {
     	return "| note | " + commandObj.comment + " |";
     } else if (commandObj.type == 'command') {
-         // Set up variables to use for substitution
-         var command = commandObj.command;
-         var target = commandObj.target;
-         var value = commandObj.value;
+        // Set up variables to use for substitution
+        var command = commandObj.command;
+        var target = commandObj.target;
+        var value = commandObj.value;
          
-         if (/^store/.test(command)) {
+        if (/^store/.test(command)) {
          	if (value === '') {
              	return "| $" + target + "= | is | " + command.replace(/^store/, "get") + " |";
          	} else {
              	return "| $" + value + "= | is | " + command.replace(/^store/, "get") + " | on | " + escape(target) + " |";
          	}
+//        } else if (/^set/.test(command)) {
+//        	return "| set " + command.replace(/^set([A-Z])/, /\1l/
      	} else if (value === '') {
              return "| ensure | do | " + command + " | on | " + escape(target) + " |";
         } else {
