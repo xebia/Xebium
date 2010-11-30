@@ -228,5 +228,11 @@
 			<name>Erwin van der Koogh</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
+		<developer>
+			<id>asikkema</id>
+			<email>asikkema@xebia.com</email>
+			<name>Albert Sikkema</name>
+			<organization>Xebia B.V.</organization>
+		</developer>		
 	</developers>
 </project>
