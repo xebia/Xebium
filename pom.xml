@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>Xebium</artifactId>
-	<groupId>nl.xebia.xke.xebium</groupId>
+	<artifactId>xebium</artifactId>
+	<groupId>com.xebia.incubator</groupId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Xebium</name>
 	<packaging>jar</packaging>
 	<properties>
-		<selenium.version>2.0a5</selenium.version>
+		<selenium.version>2.0a6</selenium.version>
 		<fitnesse.version>20100303</fitnesse.version>
 		<fitlibrary.version>20091020</fitlibrary.version>
 		<fitnesse.port>8000</fitnesse.port>
@@ -26,6 +26,11 @@
 			<name>Valtech Open Source Releases</name>
 			<url>http://source.valtech.com/repo/content/repositories/releases/</url>
 		</repository>
+		<repository>
+			<id>os-xebia</id>
+			<name>Xebia Open Source Repository</name>
+			<url>http://os.xebia.com/repository/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -35,6 +40,20 @@
 			<url>http://source.valtech.com/repo/content/repositories/releases/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>os-xebia-deploy</id>
+			<name>Xebia Open Source Repository</name>
+			<url>scp://os.xebia.com/data/websites/os.xebia.com/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>os-xebia-deploy</id>
+			<name>Xebia Open Source Repository</name>
+			<url>scp://os.xebia.com/data/websites/os.xebia.com/maven2</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 
 	<dependencies>
 		<dependency>
@@ -66,25 +85,13 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
+			<version>4.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>rhino</groupId>
 			<artifactId>js</artifactId>
 			<version>1.7R1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.8.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-all</artifactId>
-			<version>1.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -99,28 +106,36 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-4</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-jar</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
+		<profile>
+			<id>jar-with-dependencies</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.2-beta-4</version>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+						<executions>
+							<execution>
+								<id>make-jar</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>			
+				</plugins>
+			</build>
+		</profile>
+	
 		<profile>
 			<id>fitnesse</id>
 			<build>
@@ -175,7 +190,7 @@
 			</build>
 		</profile>
 	</profiles>
-
+	
 	<developers>
 		<developer>
 			<id>sgrijpink</id>
@@ -211,12 +226,6 @@
 			<id>evanderkoogh</id>
 			<email>evanderkoogh@xebia.com</email>
 			<name>Erwin van der Koogh</name>
-			<organization>Xebia B.V.</organization>
-		</developer>
-		<developer>
-			<id>asikkema</id>
-			<email>asikkema@xebia.com</email>
-			<name>Albert Sikkema</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
 	</developers>

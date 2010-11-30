@@ -1,0 +1,14 @@
+Here is a complex examle using store- and waitFor- commands:
+
+| script | selenium driver fixture |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.UsingVariables-! |
+| ensure | do | setTimeout | on | 1000 |
+| $pageName= | is | getText | on | //span |
+| $title= | is | getTitle |
+| ensure | do | click | on | link=Search |
+| ensure | do | waitForElementPresent | on | //form[@action='search'] |
+| ensure | do | type | on | searchString | with | $pageName |
+| ensure | do | click | on | searchType |
+| ensure | do | waitForTextPresent | on | $title |
+| stop browser |

@@ -1,8 +1,8 @@
 Selenium Script Fixture
 
 |script|selenese script fixture|
-| start server with browser | firefox | on url | http://xebia.com |
+| start server with browser | firefox | on url | http://localhost:${FITNESSE_PORT} |
 | set output file | http://files/selenium/testResults.html |
 | set timeout to | 60 | seconds |
-| check | run suite | http://files/selenium/xebiasuite.html | PASSED |
+| check | run suite | http://files/selenium/testsuite.html | PASSED |
 | stop server |

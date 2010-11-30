@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://google.com" />
-<title>googlesearch1</title>
+<link rel="selenium.base" href="http://localhost:8000/" />
+<title>testcase</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">googlesearch1</td></tr>
+<tr><td rowspan="1" colspan="3">testcase</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -17,33 +17,23 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>q</td>
-	<td>xebium is the new test solution</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>btnG</td>
-	<td>Google search</td>
-</tr>
-<tr>
-	<td>waitForPageToLoad</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForElementPresent</td>
-	<td>link=Xebia App Incubator - Home</td>
+	<td>clickAndWait</td>
+	<td>//img</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Xebia App Incubator - Home</td>
+	<td>link=Example Suite</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTitle</td>
-	<td>Xebia App Incubator - Home</td>
+	<td>clickAndWait</td>
+	<td>link=Selenese Script Fixture</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>SeleneseScriptFixture</td>
 	<td></td>
 </tr>
 

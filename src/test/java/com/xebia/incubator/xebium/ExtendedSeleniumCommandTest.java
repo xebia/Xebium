@@ -14,6 +14,7 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertFalse(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertTrue(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
@@ -25,6 +26,7 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertTrue(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
@@ -36,17 +38,44 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertTrue(command.isVerifyCommand());
 		assertTrue(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
 	}
 	
 	@Test
+	public void testWaitForTextPresent() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("waitForTextPresent");
+		
+		assertFalse(command.isVerifyCommand());
+		assertFalse(command.isNegateCommand());
+		assertTrue(command.isWaitForCommand());
+		assertFalse(command.isAndWaitCommand());
+		assertFalse(command.isAssertCommand());
+		assertEquals("isTextPresent", command.getSeleniumCommand());
+	}
+
+	
+	@Test
+	public void testWaitForNotTextPresent() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("waitForNotTextPresent");
+		
+		assertFalse(command.isVerifyCommand());
+		assertTrue(command.isNegateCommand());
+		assertTrue(command.isWaitForCommand());
+		assertFalse(command.isAndWaitCommand());
+		assertFalse(command.isAssertCommand());
+		assertEquals("isTextPresent", command.getSeleniumCommand());
+	}
+
+	@Test
 	public void testClick() {
 		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("click");
 		
 		assertFalse(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("click", command.getSeleniumCommand());
@@ -58,6 +87,7 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertFalse(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
 		assertTrue(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("click", command.getSeleniumCommand());

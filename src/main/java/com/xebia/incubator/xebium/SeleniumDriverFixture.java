@@ -81,7 +81,7 @@ public class SeleniumDriverFixture {
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 		final String output = executeCommand(command, values);
 
-		if (command.isVerifyCommand()) {
+		if (command.isVerifyCommand() || command.isWaitForCommand()) {
 			return checkResult(output, command, values[values.length - 1]);
 		} else if (command.isAssertCommand()) {
 			if (!checkResult(output, command, values[values.length - 1])) {
