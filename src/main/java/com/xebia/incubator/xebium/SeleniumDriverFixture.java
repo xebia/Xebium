@@ -20,6 +20,8 @@ public class SeleniumDriverFixture {
 
 	private CommandProcessor commandProcessor;
 
+	private long timeout = 30000;
+	
 	// TODO: decide: move to method or move to separate fixture.
 	static {
 		BasicConfigurator.configure();
@@ -106,7 +108,7 @@ public class SeleniumDriverFixture {
 			}
 
 			if (command.isAndWaitCommand()) {
-				commandProcessor.doCommand("waitForPageToLoad", new String[] {});
+				commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
 			}
 		} catch (final SeleniumException e) {
 			LOG.error("Execution of command failed: " + e.getMessage());
