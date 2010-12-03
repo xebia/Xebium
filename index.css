@@ -1,0 +1,63 @@
+body, html { margin: 0pt; padding: 0pt; background-color: rgb(255, 255, 255); font-family: Lucida Grande,Lucida Sans Unicode,sans-serif; font-size: 14px; color: black; }
+a { color: rgb(46, 115, 218); }
+a:visited { color: rgb(93, 108, 213); }
+a:hover { color: rgb(51, 129, 255); }
+#top-block { border-bottom: 1px solid rgb(180, 180, 180); background: url('gradient-bg.png') repeat-x scroll right bottom white; }
+#top-left-block { width: 40%; padding: 60px 10px 40px 40px; }
+#top-right-block { width: 57%; position: absolute; top: 44px; right: 0pt; text-align: left; overflow: hidden; }
+#top-right-block:hover { width: 57%; }
+.home h1 { font-size: 50px; font-family: Myriad Pro,Helvetica Neue,Helvetica,sans-serif; font-weight: normal; margin: 0pt; color: black; }
+.home h2 { font-size: 20px; font-weight: normal; margin: 0pt 0pt 30px; color: rgb(102, 102, 102); }
+#top-left-block p { line-height: 150%; color: rgb(51, 51, 51); margin-top: 15px; margin-bottom: 5px; }
+.payment-buttons { position: relative; overflow: hidden; padding: 1px 0pt 5px; margin: 20px 0pt 0px; }
+#top-left-block .payment-buttons { margin-top: 40px; }
+.payment-buttons a {
+    display: block;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    padding: 10px 20px 12px;
+    text-align: center;
+    min-width: 110px;
+    color: white;
+    text-shadow: 0px -1px 1px rgb(102, 102, 102);
+    text-decoration: none;
+    border-bottom-left-radius: 8px 8px;
+    border-bottom-right-radius: 8px 8px;
+    border-top-left-radius: 8px 8px;
+    border-top-right-radius: 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    -moz-box-shadow: 0px 1px 3px rgb(192, 192, 192);
+    -webkit-box-shadow: silver 0px 1px 3px;
+}
+.payment-buttons a.download {
+    background:-moz-linear-gradient(center bottom , #653A71 0%, #D5BFDB 100%) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, 0% 100%, 0% 0%, from(#653A71), to(#D5BFDB));
+    border:1px solid #653A71;
+};
+
+#top-left-block p.note { font-size: 12px; margin-top: 5px; color: rgb(102, 102, 102); }
+#bottom-block { background-color: rgb(252, 252, 252); border-top: 1px solid rgb(197, 197, 197); padding: 10px 10px 30px 40px; }
+.features { margin-top: 40px; margin-bottom: 15px; margin-left: 40px; overflow: hidden; }
+.feature-block { width: 48%; float: left; position: relative; margin-bottom: 40px; }
+.feature-block img { width: 30%; max-width: 180px; -moz-border-radius: 8px 8px 8px 8px; -moz-box-shadow: 0px 1px 2px rgb(153, 153, 153); margin-left: 1px; margin-right: 20px; float: left; }
+.feature-block h3, .feature-block p { font-size: 14px; padding-right: 8%; margin-right: 10px; color: black; }
+.feature-block h3 { font-weight: bold; margin-top: 4px; margin-bottom: 0pt; }
+.feature-block p { margin-top: 5px; line-height: 150%; }
+.thin-line { height: 2px; border-top: 1px solid rgb(204, 204, 204); margin-left: 40px; margin-right: 40px; margin-bottom: 40px; }
+.disclaimer { font-size: 9px; color: rgb(187, 187, 187); max-width: 600px; margin-top: 20px; margin-bottom: 0px; }
+.disclaimer a { color: rgb(187, 187, 187); }
+.author { position: absolute; width: 33%; right: 40px; }
+.userpic { -moz-border-radius: 8px 8px 8px 8px; float: left; margin-right: 15px; margin-bottom: 200px; }
+.author p { font-size: 12px; margin: 1px 0pt 5px; line-height: 140%; }
+.more { margin-left: 40px; margin-bottom: 40px; width: 50%; }
+.more h3, p {  }
+.more h3 { margin-top: 15px; margin-bottom: 5px; font-size: 14px; }
+.more p { font-size: 13px; margin-top: 0pt; margin-bottom: 5px; line-height: 140%; }
+#footer {
+    width: 100%;
+    height:5em;
+    margin:0 auto;
+    position:relative;
+    background-color: black;
+}
