@@ -2,6 +2,7 @@ body, html { margin: 0pt; padding: 0pt; background-color: rgb(255, 255, 255); fo
 a { color: rgb(46, 115, 218); }
 a:visited { color: rgb(93, 108, 213); }
 a:hover { color: rgb(51, 129, 255); }
+#fork-me img { z-index: 999; position: absolute; top: 0; right: 0; border: 0; }
 #top-block { border-bottom: 1px solid rgb(180, 180, 180); background: url('gradient-bg.png') repeat-x scroll right bottom white; }
 #top-left-block { width: 40%; padding: 60px 10px 40px 40px; }
 #top-right-block { width: 57%; position: absolute; top: 44px; right: 0pt; text-align: left; overflow: hidden; }
