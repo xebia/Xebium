@@ -1,6 +1,6 @@
 Xebium
 ======
-
+[Xebium](http://xebia.github.com/Xebium/) combines the powers of FitNesse and Selenium. Visit the [xebium home page](http://xebia.github.com/Xebium/) for more details and examples.
 
 Features
 --------
