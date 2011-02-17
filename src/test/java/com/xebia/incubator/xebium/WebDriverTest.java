@@ -1,5 +1,6 @@
 package com.xebia.incubator.xebium;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.net.MalformedURLException;
@@ -34,6 +35,7 @@ public class WebDriverTest {
 		
 		driver.close();
 	}
+	
 	@Ignore
 	@Test
 	public void testWebDriverCommandProcessor() throws MalformedURLException {
@@ -45,6 +47,20 @@ public class WebDriverTest {
 		// And now use it
 		assertNull(processor.doCommand("open", new String[] { "/" }));
 		assertNull(processor.doCommand("type", new String[] { "q", "xebium is the new test solution" }));
+	}
+
+	@Ignore
+	@Test
+	public void testCaptureScreenshhotCommand() throws MalformedURLException {
+		
+		WebDriverCommandProcessor processor = new WebDriverCommandProcessor("http://www.google.com", DesiredCapabilities.firefox());
+		
+		processor.start();
+		
+		// And now use it
+		assertNull(processor.doCommand("open", new String[] { "/" }));
+		// SeIDE supports captureEntirePageScreenshot[AndWait]
+		assertNotNull(processor.doCommand("captureScreenshotToString", new String[] { }));
 	}
 
 }

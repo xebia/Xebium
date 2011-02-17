@@ -45,9 +45,6 @@ public class ExtendedSeleniumCommand {
 		"assignId",
 		"attachFile",
 		"break",
-		"captureEntirePageScreenshot",
-		"captureEntirePageScreenshotToString",
-		"captureScreenshot",
 		"captureScreenshotToString",
 		"check",
 		"chooseCancelOnNextConfirmation",
@@ -215,6 +212,10 @@ public class ExtendedSeleniumCommand {
 		return methodName.startsWith(STORE);
 	}
 	
+	public boolean isCaptureEntirePageScreenshotCommand() {
+		return methodName.startsWith("captureEntirePageScreenshot");
+	}
+
 	public boolean isBooleanCommand() {
 		return getSeleniumCommand().startsWith(IS);
 	}
@@ -242,10 +243,14 @@ public class ExtendedSeleniumCommand {
 			} else if (SELENIUM_COMMANDS.contains(GET + noun)) {
 				seleniumName = GET + noun;
 			}
+		} else if (isCaptureEntirePageScreenshotCommand()) {
+			seleniumName = "captureScreenshotToString";
 		}
+		
 		if (isAndWaitCommand()) {
 			seleniumName = seleniumName.substring(0, seleniumName.length() - AND_WAIT.length());
 		}
 		return seleniumName;
 	}
+
 }

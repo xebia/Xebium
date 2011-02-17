@@ -61,7 +61,7 @@ public class SeleneseScriptFixture {
 	}
 	
 	public void setOutputFile(String outputFileName) {
-		this.outputFile = asFile(outputFileName);
+		this.outputFile = FitNesseUtil.asFile(outputFileName);
 	}
 	
 	public String runSuite(String scriptName) throws Exception {
@@ -69,7 +69,7 @@ public class SeleneseScriptFixture {
 			throw new IllegalStateException("Remote control should have been started before tests are executed");
 		}
 
-		File suiteFile = asFile(scriptName);
+		File suiteFile = FitNesseUtil.asFile(scriptName);
 
 		String result = null;
 		try {
@@ -91,18 +91,4 @@ public class SeleneseScriptFixture {
 		remoteControl = null;
 	}
 	
-	/**
-	 * Obtain the script name from a wiki url. The URL may be in the format
-	 * <code>http://files/selenium/Suite</code> and 
-	 * <code>&lt;a href="/files/selenium/Suite"&gt;http://files/selenium/Suite&lt;/a&gt;</code>
-	 * 
-	 * @param scriptName
-	 * @return a sane path name. Relative to the CWD.
-	 */
-	private File asFile(final String scriptName) {
-		String fileName = FitNesseUtil.removeAnchorTag(scriptName).replaceAll("http:/", "FitNesseRoot");
-		
-		return new File(fileName);
-	}
-
 }

@@ -1,0 +1,11 @@
+Demonstrate how to create a screenshot of the current browser page.
+
+
+| script | selenium driver fixture |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}  |
+| ensure | do | open | on | / |
+| ensure | do | clickAndWait | on | //img |
+| ensure | do | clickAndWait | on | link=Example Suite |
+| ensure | do | clickAndWait | on | link=Screenshot Test |
+| ensure | do | captureEntirePageScreenshot | on | http://files/screenshotTest.png |
+| stop browser |

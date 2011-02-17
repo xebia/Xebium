@@ -1,5 +1,7 @@
 package com.xebia.incubator.xebium;
 
+import java.io.File;
+
 public class FitNesseUtil {
 
 	private FitNesseUtil() {
@@ -22,6 +24,20 @@ public class FitNesseUtil {
 	}
 	
 	
+	/**
+	 * Obtain the script name from a wiki url. The URL may be in the format
+	 * <code>http://files/selenium/Suite</code> and 
+	 * <code>&lt;a href="/files/selenium/Suite"&gt;http://files/selenium/Suite&lt;/a&gt;</code>
+	 * 
+	 * @param scriptName
+	 * @return a sane path name. Relative to the CWD.
+	 */
+	public static File asFile(final String scriptName) {
+		String fileName = removeAnchorTag(scriptName).replaceAll("http:/", "FitNesseRoot");
+		
+		return new File(fileName);
+	}
+
 	
 	
 }

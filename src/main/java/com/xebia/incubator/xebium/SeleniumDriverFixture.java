@@ -2,9 +2,16 @@ package com.xebia.incubator.xebium;
 
 import static org.apache.commons.lang.StringUtils.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -89,6 +96,8 @@ public class SeleniumDriverFixture {
 			if (!checkResult(output, command, values[values.length - 1])) {
 				throw new AssertionError(output);
 			}
+		} else if (command.isCaptureEntirePageScreenshotCommand()) {
+			writeToFile(values[0], output);
 		}
 		return true;
 	}
@@ -144,6 +153,18 @@ public class SeleniumDriverFixture {
 
 	private boolean isRegularExpression(final String value) {
 		return startsWithIgnoreCase(value, REGEXP);
+	}
+
+	private void writeToFile(final String filename, final String output) {
+		// TODO: strip URL part or something. Whatever we need to make it accessable through the web
+		File file = FitNesseUtil.asFile(filename);
+		try {
+			FileOutputStream w = new FileOutputStream(file);
+			w.write(Base64.decodeBase64(output));
+			w.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Unable to create writer for file " + file, e);
+		}
 	}
 
 	public void stopBrowser() {
