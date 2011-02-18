@@ -167,7 +167,7 @@ public class ExtendedSeleniumCommand {
 		"shiftKeyDown",
 		"shiftKeyUp",
 		"shutDownSeleniumServer",
-		STORE,
+		"store",
 		"submit",
 		"type",
 		"typeKeys",
