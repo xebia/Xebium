@@ -87,6 +87,16 @@ public class SeleniumDriverFixture {
 	}
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
+		
+		if ("pause".equals(methodName)) {
+			try {
+				Thread.sleep(Integer.parseInt(values[0]));
+			} catch (Exception e) {
+				LOG.warn("Pause command interrupted", e);
+			}
+			return true;
+		}
+		
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 		final String output = executeCommand(command, values);
 
