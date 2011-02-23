@@ -1,17 +1,18 @@
 package com.xebia.incubator.xebium;
 
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang.StringUtils.join;
+import static org.apache.commons.lang.StringUtils.removeStartIgnoreCase;
+import static org.apache.commons.lang.StringUtils.startsWithIgnoreCase;
+import static org.apache.commons.lang.StringUtils.trim;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -88,15 +89,6 @@ public class SeleniumDriverFixture {
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
 		
-		if ("pause".equals(methodName)) {
-			try {
-				Thread.sleep(Integer.parseInt(values[0]));
-			} catch (Exception e) {
-				LOG.warn("Pause command interrupted", e);
-			}
-			return true;
-		}
-		
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 		final String output = executeCommand(command, values);
 
@@ -113,11 +105,21 @@ public class SeleniumDriverFixture {
 	}
 
 	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values) {
-		final String valuesString = join(values, ", ");
-		LOG.debug("executeCommand. Command: " + command.getSeleniumCommand() + " with values: [" + valuesString +"]");
+		LOG.debug("executeCommand. Command: " + command.getSeleniumCommand() + " with values: [" + join(values, ", ") +"]");
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
+		
+		// Handle special cases first
+		if ("pause".equals(command.getSeleniumCommand())) {
+			try {
+				Thread.sleep(Integer.parseInt(values[0]));
+			} catch (Exception e) {
+				LOG.warn("Pause command interrupted", e);
+			}
+			return null;
+		}
+		
 		String output = null;
 		try {
 			output = commandProcessor.doCommand(command.getSeleniumCommand(), values);
