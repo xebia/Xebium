@@ -93,5 +93,54 @@ public class ExtendedSeleniumCommandTest {
 		assertEquals("click", command.getSeleniumCommand());
 	}
 	
-	
+	@Test
+	public void testRegexpMatch() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
+		
+		assertTrue(command.matches("regexp:A..D", "ABCD"));
+		assertFalse(command.matches("regexp:A..D", "_ABCD_"));
+		assertFalse(command.matches("regexp:A..D", "_DBCA_"));
+	}
+
+	@Test
+	public void testRegexpiMatch() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
+		
+		assertTrue(command.matches("regexpi:A..D", "ABCD"));
+		assertFalse(command.matches("regexpi:A..D", "_ABCD_"));
+		assertFalse(command.matches("regexpi:A..D", "_DBCA_"));
+		assertTrue(command.matches("regexpi:A..D", "aBCD"));
+		assertFalse(command.matches("regexpi:A..D", "_aBCd_"));
+	}
+
+	@Test
+	public void testExactMatch() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
+		
+		assertTrue(command.matches("exact:A..D", "A..D"));
+		assertFalse(command.matches("exact:A..D", "ABCD"));
+	}
+
+	@Test
+	public void testGlobMatch() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
+		
+		assertTrue(command.matches("glob:A*D", "A..D"));
+		assertTrue(command.matches("glob:A??D", "ABCD"));
+		assertTrue(command.matches("glob:A*D", "A something in the middle D"));
+		assertFalse(command.matches("glob:A?D", "ABCD"));
+		assertFalse(command.matches("glob:A*D", "DCBA"));
+	}
+
+	@Test
+	public void testGlobAsDefaultMatch() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
+		
+		assertTrue(command.matches("A*D", "A..D"));
+		assertTrue(command.matches("A??D", "ABCD"));
+		assertTrue(command.matches("A*D", "A something in the middle D"));
+		assertFalse(command.matches("A?D", "ABCD"));
+		assertFalse(command.matches("A*D", "DCBA"));
+	}
+
 }

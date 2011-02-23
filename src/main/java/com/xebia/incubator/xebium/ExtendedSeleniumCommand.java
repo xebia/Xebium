@@ -1,8 +1,12 @@
 package com.xebia.incubator.xebium;
 
+import static org.apache.commons.lang.StringUtils.removeStartIgnoreCase;
+import static org.apache.commons.lang.StringUtils.trim;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * This class provides calls to all operations defined in the Selenium IDE.
@@ -29,6 +33,14 @@ public class ExtendedSeleniumCommand {
 	private static final String NOT_PRESENT = "NotPresent";
 
 	private static final String AND_WAIT = "AndWait";
+
+	// Matching types
+	private static final String REGEXP = "regexp:";
+	private static final String REGEXPI = "regexpi:";
+	private static final String EXACT = "exact:";
+	private static final String GLOB = "glob:";
+
+
 
 	// keywords copied from org.openqa.selenium.WebDriverCommandProcessor
 	private static final Set<String> SELENIUM_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
@@ -251,6 +263,56 @@ public class ExtendedSeleniumCommand {
 			seleniumName = seleniumName.substring(0, seleniumName.length() - AND_WAIT.length());
 		}
 		return seleniumName;
+	}
+
+	/**
+	 * Match values the Selenese way:
+	 * 
+	 * <ul>
+	 *  <li>"regexp:" for regular expressions</li>
+	 *  <li>"regexpi:" for case insensitive regular expressions</li>
+	 *  <li>"exact:" for exact matching</li>
+	 *  <li>"glob:" for filesystem-like ('*' and '?') matching</li>
+	 * </ul>
+	 * 
+	 * If no type is defined, glob is to be used.
+	 * 
+	 * @param expected
+	 * @param actual
+	 * @return
+	 */
+	public boolean matches(String expected, String actual) {
+		boolean result;
+		if (isBooleanCommand()) {
+			result = (isNegateCommand() ? "false" : "true").equals(actual);
+			
+		} else if (expected.startsWith(REGEXP)) {
+			final String regex = trim(removeStartIgnoreCase(expected, REGEXP));
+			result = Pattern.compile(regex).matcher(actual).matches();
+			
+		} else if (expected.startsWith(REGEXPI)) {
+			final String regex = trim(removeStartIgnoreCase(expected, REGEXPI));
+			result = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(actual).matches();
+			
+		} else if (expected.startsWith(EXACT)){
+			final String str = trim(removeStartIgnoreCase(expected, EXACT));
+			result = str.equals(actual);
+			
+		} else {
+			// "glob:"
+			final String pattern;
+			if (expected.startsWith(GLOB)) {
+				pattern = trim(removeStartIgnoreCase(expected, GLOB));
+			} else {
+				pattern = expected;
+			}
+			result = globToRegExp(pattern).matcher(actual).matches();
+		}
+		return result;
+	}
+
+	private Pattern globToRegExp(String pattern) {
+		return Pattern.compile(pattern.replaceAll("\\?", ".").replaceAll("\\*", ".*"));
 	}
 
 }

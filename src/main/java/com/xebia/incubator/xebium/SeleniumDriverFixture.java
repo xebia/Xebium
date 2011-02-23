@@ -1,9 +1,6 @@
 package com.xebia.incubator.xebium;
 
 import static org.apache.commons.lang.StringUtils.join;
-import static org.apache.commons.lang.StringUtils.removeStartIgnoreCase;
-import static org.apache.commons.lang.StringUtils.startsWithIgnoreCase;
-import static org.apache.commons.lang.StringUtils.trim;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,8 +18,6 @@ import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
 
 public class SeleniumDriverFixture {
-
-	private static final String REGEXP = "regexp:";
 
 	private static Logger LOG = Logger.getLogger(SeleniumDriverFixture.class);
 
@@ -76,15 +71,11 @@ public class SeleniumDriverFixture {
 	}
 
 	public String is(final String command) {
-		return executeCommand(command, new String[] { });
+		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { });
 	}
 
 	public String isOn(final String command, final String target) {
-		return executeCommand(command, new String[] { target });
-	}
-
-	private String executeCommand(final String methodName, final String[] values) {
-		return executeCommand(new ExtendedSeleniumCommand(methodName), values);
+		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { target });
 	}
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
@@ -93,9 +84,9 @@ public class SeleniumDriverFixture {
 		final String output = executeCommand(command, values);
 
 		if (command.isVerifyCommand() || command.isWaitForCommand()) {
-			return checkResult(output, command, values[values.length - 1]);
+			return checkResult(command, values[values.length - 1], output);
 		} else if (command.isAssertCommand()) {
-			if (!checkResult(output, command, values[values.length - 1])) {
+			if (!checkResult(command, values[values.length - 1], output)) {
 				throw new AssertionError(output);
 			}
 		} else if (command.isCaptureEntirePageScreenshotCommand()) {
@@ -106,6 +97,7 @@ public class SeleniumDriverFixture {
 
 	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values) {
 		LOG.debug("executeCommand. Command: " + command.getSeleniumCommand() + " with values: [" + join(values, ", ") +"]");
+		
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
@@ -137,34 +129,11 @@ public class SeleniumDriverFixture {
 		return output;
 	}
 
-	private boolean checkResult(final String output, final ExtendedSeleniumCommand command,
-			final String value) {
-		boolean result;
-		if (command.isNegateCommand()) {
-			result = command.isBooleanCommand() ? "false".equals(output) : !smartCompare(value, output);
-		} else {
-			result = command.isBooleanCommand() ? "true".equals(output) : smartCompare(value, output);
-		}
-		LOG.info("command " + command.getSeleniumCommand() + " with value " + value + " compared to output " + output + " is: " + result);
+	private boolean checkResult(ExtendedSeleniumCommand command,
+			String expected, String actual) {
+		boolean result = command.matches(expected, actual);
+		LOG.info("command " + command.getSeleniumCommand() + " with value '" + expected + "' compared to output '" + actual + "' is: " + result);
 		return result;
-	}
-
-	private boolean smartCompare(final String value, final String output) {
-		if (isRegularExpression(value)) {
-			return compareRegex(value, output);
-		} else {
-			return value.equals(output);
-		}
-	}
-
-	private boolean compareRegex(final String value, final String output) {
-		final String regex = trim(removeStartIgnoreCase(value, REGEXP));
-		LOG.debug("compareRegex: regex="+regex);
-		return trim(output).matches(regex);
-	}
-
-	private boolean isRegularExpression(final String value) {
-		return startsWithIgnoreCase(value, REGEXP);
 	}
 
 	private void writeToFile(final String filename, final String output) {
