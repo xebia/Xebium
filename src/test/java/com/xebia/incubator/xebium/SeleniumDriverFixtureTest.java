@@ -28,11 +28,6 @@ public class SeleniumDriverFixtureTest {
 	}
 
 	@Test
-	public void testStartBrowserOnUrl() {
-		seleniumDriverFixture.startBrowserOnUrl("htmlUnit", "http://localhost");
-	}
-	
-	@Test
 	public void shouldVerifyRegularTextWithRegularExpressions() throws Exception {
 		given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("Di 9 november 2010. Het laatste nieuws het eerst op nu.nl");
 		final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "regexp:.*Het laatste nieuws het eerst op nu.nl");
