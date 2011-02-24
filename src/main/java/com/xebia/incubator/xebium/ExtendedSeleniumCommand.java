@@ -41,7 +41,7 @@ public class ExtendedSeleniumCommand {
 	private static final String GLOB = "glob:";
 
 	// keywords copied from org.openqa.selenium.WebDriverCommandProcessor
-	private static final Set<String> SELENIUM_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
+	private static final Set<String> WEB_DRIVER_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
 		"addLocationStrategy",
 		"addSelection",
 		"altKeyDown",
@@ -159,8 +159,23 @@ public class ExtendedSeleniumCommand {
 		this.methodName = methodName;
 	}
 
+	public static boolean isSupportedByWebDriver(String methodName) {
+		return WEB_DRIVER_COMMANDS.contains(methodName);
+	}
+	
 	public boolean isWaitForCommand() {
 		return methodName.startsWith(WAIT_FOR);
+	}
+	
+	/**
+	 * Command is a "waitFor-" command, but is not supported natively by Selenium,
+	 * hence it should act as "verify-" command and in case of failure retries
+	 * should be done.
+	 * 
+	 * @return
+	 */
+	public boolean requiresPolling() {
+		return isWaitForCommand() && !isSupportedByWebDriver(methodName);
 	}
 	
 	public boolean isAndWaitCommand() {
@@ -194,7 +209,7 @@ public class ExtendedSeleniumCommand {
 	
 	public String getSeleniumCommand() {
 		// for commands like "waitForCondition"
-		if (SELENIUM_COMMANDS.contains(methodName)) {
+		if (WEB_DRIVER_COMMANDS.contains(methodName)) {
 			return methodName;
 		}
 		
@@ -210,9 +225,9 @@ public class ExtendedSeleniumCommand {
 				noun = noun.replaceAll("Not([A-Z])", "$1");
 			}
 			
-			if (SELENIUM_COMMANDS.contains(IS + noun)) {
+			if (isSupportedByWebDriver(IS + noun)) {
 				seleniumName = IS + noun;
-			} else if (SELENIUM_COMMANDS.contains(GET + noun)) {
+			} else if (isSupportedByWebDriver(GET + noun)) {
 				seleniumName = GET + noun;
 			}
 		} else if (isCaptureEntirePageScreenshotCommand()) {

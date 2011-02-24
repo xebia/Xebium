@@ -94,6 +94,12 @@ public class ExtendedSeleniumCommandTest {
 	}
 	
 	@Test
+	public void testRequiredPollingCommands() {
+		assertTrue(new ExtendedSeleniumCommand("waitForTextPresent").requiresPolling());
+		assertFalse(new ExtendedSeleniumCommand("waitForPageToLoad").requiresPolling());
+	}
+
+	@Test
 	public void testRegexpMatch() {
 		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
 		

@@ -30,6 +30,8 @@ public class SeleniumDriverFixture {
 	
 	private long stepDelay = 0;
 	
+	private long pollDelay = 100;
+	
 	// TODO: decide: move to method or move to separate fixture.
 	static {
 		BasicConfigurator.configure();
@@ -135,7 +137,7 @@ public class SeleniumDriverFixture {
 	 */
 	public String is(final String command) {
 		LOG.info("Storing result from  | " + command + " |");
-		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { });
+		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { }, stepDelay);
 	}
 
 	/**
@@ -149,13 +151,27 @@ public class SeleniumDriverFixture {
 	 */
 	public String isOn(final String command, final String target) {
 		LOG.info("Storing result from | " + command + " | " + target + " |");
-		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { target });
+		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { target }, stepDelay);
 	}
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
 		
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
-		final String output = executeCommand(command, values);
+		
+		if (command.requiresPolling()) {
+			long timeoutTime = System.currentTimeMillis() + timeout;
+			boolean result;
+			String output;
+			
+			do {
+				output = executeCommand(command, values, pollDelay);
+				result = checkResult(command, values[values.length - 1], output);
+			} while (!result && timeoutTime > System.currentTimeMillis());
+
+			return result;
+		}
+		
+		String output = executeCommand(command, values, stepDelay);
 
 		if (command.isVerifyCommand() || command.isWaitForCommand()) {
 			return checkResult(command, values[values.length - 1], output);
@@ -169,8 +185,10 @@ public class SeleniumDriverFixture {
 		return true;
 	}
 
-	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values) {
-		LOG.debug("executeCommand. Command: " + command.getSeleniumCommand() + " with values: [" + join(values, ", ") +"]");
+	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values, long delay) {
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("executeCommand. Command: " + command.getSeleniumCommand() + " with values: [" + join(values, ", ") +"]");
+		}
 		
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
@@ -201,9 +219,9 @@ public class SeleniumDriverFixture {
 			LOG.error("Execution of command failed: " + e.getMessage());
 		}
 		
-		if (this.stepDelay > 0) {
+		if (delay > 0) {
 			try {
-				Thread.sleep(this.stepDelay);
+				Thread.sleep(delay);
 			} catch (Exception e) {
 				LOG.warn("Step delay sleep command interrupted", e);
 			}
