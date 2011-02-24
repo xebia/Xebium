@@ -9,9 +9,12 @@ import java.io.IOException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
@@ -32,27 +35,26 @@ public class SeleniumDriverFixture {
 		BasicConfigurator.configure();
 	}
 
-	public CommandProcessor detectWebDriverCommandProcessor(final String browser, String browserUrl) {
+	public CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
-		Capabilities capabilities;
-
+		WebDriver driver;
+		
 		if ("firefox".equalsIgnoreCase(browser)) {
-			capabilities = DesiredCapabilities.firefox();
+			driver = new FirefoxDriver();
 		} else if ("iexplore".equalsIgnoreCase(browser)) {
-			capabilities = DesiredCapabilities.internetExplorer();
+			driver = new InternetExplorerDriver();
 		} else if ("chrome".equalsIgnoreCase(browser)) {
-			capabilities = DesiredCapabilities.chrome();
+			driver = new ChromeDriver();
 		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
-			capabilities = DesiredCapabilities.htmlUnit();
+			driver = new HtmlUnitDriver(true);
 		} else {
 			throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'");
 		}
-		return new WebDriverCommandProcessor(browserUrl, capabilities);
+		return new WebDriverCommandProcessor(browserUrl, driver);
 	}
 
 	public void startBrowserOnUrl(final String browser, final String browserUrl) {
-		commandProcessor = detectWebDriverCommandProcessor(browser, browserUrl);
-		commandProcessor.start();
+		commandProcessor = startWebDriverCommandProcessor(browser, browserUrl);
 		LOG.debug("Started command processor");
 	}
 
