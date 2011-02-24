@@ -60,21 +60,72 @@ public class SeleniumDriverFixture {
 		LOG.debug("Started HTML command processor");
 	}
 
+	/**
+	 * <code>
+	 * | set timeout to | 500 |
+	 * </code>
+	 * 
+	 * Set the timeout, both local and on the running selenium server.
+	 * @param timeout Timeout in milliseconds (ms)
+	 */
+	public void setTimeoutTo(long timeout) {
+		this.timeout = timeout;
+		doOn("setTimeout", "" + timeout);
+	}
+		
+	/**
+	 * <code>
+	 * | ensure | do | <i>open</i> | on | <i>/</i> |
+	 * </code>
+	 * 
+	 * @param command
+	 * @param target
+	 * @return
+	 */
 	public boolean doOn(final String command, final String target) {
 		LOG.info("Performing | " + command + " | " + target + " |");
 		return executeDoCommand(command, new String[] { target });
 	}
 
+	/**
+	 * <code>
+	 * | ensure | do | <i>type</i> | on | <i>searchString</i> | with | <i>some text</i> |
+	 * </code>
+	 * 
+	 * @param command
+	 * @param target
+	 * @param value
+	 * @return
+	 */
 	public boolean doOnWith(final String command, final String target, final String value) {
 		LOG.info("Performing | " + command + " | " + target + " | " + value + " |");
 		return executeDoCommand(command, new String[] { target, value });
 	}
 
+	/**
+	 * <code>
+	 * | <i>$title=</i> | is | <i>getTitle</i> |
+	 * </code>
+	 * 
+	 * @param command
+	 * @return
+	 */
 	public String is(final String command) {
+		LOG.info("Storing result from  | " + command + " |");
 		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { });
 	}
 
+	/**
+	 * <code>
+	 * | <i>$pageName=,/i> | is | <i>getText</i> | on | <i>//span</i> |
+	 * </code>
+	 * 
+	 * @param command
+	 * @param target
+	 * @return
+	 */
 	public String isOn(final String command, final String target) {
+		LOG.info("Storing result from | " + command + " | " + target + " |");
 		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { target });
 	}
 
@@ -137,7 +188,6 @@ public class SeleniumDriverFixture {
 	}
 
 	private void writeToFile(final String filename, final String output) {
-		// TODO: strip URL part or something. Whatever we need to make it accessable through the web
 		File file = FitNesseUtil.asFile(filename);
 		try {
 			FileOutputStream w = new FileOutputStream(file);

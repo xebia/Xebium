@@ -266,20 +266,43 @@ public class ExtendedSeleniumCommand {
 	}
 
 	/**
-	 * Match values the Selenese way:
-	 * 
+	 * <p><i>(From the Selenium docs)</i></p>
+	 * <p>
+	 * Various Pattern syntaxes are available for matching string values:
+	 * </p>
 	 * <ul>
-	 *  <li>"regexp:" for regular expressions</li>
-	 *  <li>"regexpi:" for case insensitive regular expressions</li>
-	 *  <li>"exact:" for exact matching</li>
-	 *  <li>"glob:" for filesystem-like ('*' and '?') matching</li>
+	 * <li><strong>glob:</strong><em>pattern</em>: Match a string against a
+	 * "glob" (aka "wildmat") pattern. "Glob" is a kind of limited
+	 * regular-expression syntax typically used in command-line shells. In a
+	 * glob pattern, "*" represents any sequence of characters, and "?"
+	 * represents any single character. Glob patterns match against the entire
+	 * string.</li>
+	 * <li><strong>regexp:</strong><em>regexp</em>: Match a string using a
+	 * regular-expression. The full power of JavaScript regular-expressions is
+	 * available.</li>
+	 * <li><strong>regexpi:</strong><em>regexpi</em>: Match a string using a
+	 * case-insensitive regular-expression.</li>
+	 * <li><strong>exact:</strong><em>string</em>:
+	 * 
+	 * Match a string exactly, verbatim, without any of that fancy wildcard
+	 * stuff.</li>
 	 * </ul>
+	 * <p>
+	 * If no pattern prefix is specified, Selenium assumes that it's a "glob"
+	 * pattern.
+	 * </p>
+	 * <p>
+	 * For commands that return multiple values (such as verifySelectOptions),
+	 * the string being matched is a comma-separated list of the return values,
+	 * where both commas and backslashes in the values are backslash-escaped.
+	 * When providing a pattern, the optional matching syntax (i.e. glob,
+	 * regexp, etc.) is specified once, as usual, at the beginning of the
+	 * pattern.
+	 * </p>
 	 * 
-	 * If no type is defined, glob is to be used.
-	 * 
-	 * @param expected
-	 * @param actual
-	 * @return
+	 * @param expected expected result, optionally prefixed
+	 * @param actual Actual result coming from Selenium
+	 * @return is it a match?
 	 */
 	public boolean matches(String expected, String actual) {
 		boolean result;
