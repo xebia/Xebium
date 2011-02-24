@@ -3,10 +3,10 @@ package com.xebia.incubator.xebium;
 import static org.apache.commons.lang.StringUtils.removeStartIgnoreCase;
 import static org.apache.commons.lang.StringUtils.trim;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
+
+import org.openqa.selenium.WebDriverCommandProcessor;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 /**
  * This class provides calls to all operations defined in the Selenium IDE.
@@ -16,22 +16,19 @@ import java.util.regex.Pattern;
  */
 public class ExtendedSeleniumCommand {
 
+	// WebDriver supported prefixes
 	private static final String GET = "get";
-
 	private static final String IS = "is";
 
+	// Selenese prefixes
 	private static final String STORE = "store";
-
 	private static final String VERIFY = "verify";
-
 	private static final String ASSERT = "assert";
-
 	private static final String WAIT_FOR = "waitFor";
-	
 	private static final String WAIT_FOR_NOT = "waitForNot";
-	
-	private static final String NOT_PRESENT = "NotPresent";
 
+	// Selenese suffixes
+	private static final String NOT_PRESENT = "NotPresent";
 	private static final String AND_WAIT = "AndWait";
 
 	// Matching types
@@ -40,159 +37,11 @@ public class ExtendedSeleniumCommand {
 	private static final String EXACT = "exact:";
 	private static final String GLOB = "glob:";
 
+	// We need a command processor in order to figure out if commands are supported at all.
+	// Also provide a driver, since that triggers the methodName map to be constructed :/.
+	private static final WebDriverCommandProcessor SELENIUM_COMMANDS = new WebDriverCommandProcessor("/", new HtmlUnitDriver(true));
 
-
-	// keywords copied from org.openqa.selenium.WebDriverCommandProcessor
-	private static final Set<String> SELENIUM_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
-		"addLocationStrategy",
-		"addScript",
-		"addSelection",
-		"allowNativeXpath",
-		"altKeyDown",
-		"altKeyUp",
-		"answerOnNextPrompt",
-		"assertErrorOnNext",
-		"assertFailureOnNext",
-		"assertSelected",
-		"assignId",
-		"attachFile",
-		"break",
-		"captureScreenshotToString",
-		"check",
-		"chooseCancelOnNextConfirmation",
-		"chooseOkOnNextConfirmation",
-		"click",
-		"clickAt",
-		"close",
-		"contextMenu",
-		"contextMenuAt",
-		"controlKeyDown",
-		"controlKeyUp",
-		"createCookie",
-		"deleteAllVisibleCookies",
-		"deleteCookie",
-		"deselectPopUp",
-		"doubleClick",
-		"doubleClickAt",
-		"dragAndDrop",
-		"dragAndDropToObject",
-		"dragdrop",
-		"echo",
-		"fireEvent",
-		"focus",
-		"getAlert",
-		"getAllButtons",
-		"getAllFields",
-		"getAllLinks",
-		"getAllWindowIds",
-		"getAllWindowNames",
-		"getAllWindowTitles",
-		"getAttribute",
-		"getAttributeFromAllWindows",
-		"getBodyText",
-		"getConfirmation",
-		"getCookie",
-		"getCookieByName",
-		"getCursorPosition",
-		"getElementHeight",
-		"getElementIndex",
-		"getElementPositionLeft",
-		"getElementPositionTop",
-		"getElementWidth",
-		"getEval",
-		"getExpression",
-		"getHtmlSource",
-		"getLocation",
-		"getMouseSpeed",
-		"getPrompt",
-		"getSelectOptions",
-		"getSelectedId",
-		"getSelectedIds",
-		"getSelectedIndex",
-		"getSelectedIndexes",
-		"getSelectedLabel",
-		"getSelectedLabels",
-		"getSelectedValue",
-		"getSelectedValues",
-		"getSpeed",
-		"getTable",
-		"getText",
-		"getTitle",
-		"getValue",
-		"getWhetherThisFrameMatchFrameExpression",
-		"getWhetherThisWindowMatchWindowExpression",
-		"getXpathCount",
-		"goBack",
-		"highlight",
-		"ignoreAttributesWithoutValue",
-		"isAlertPresent",
-		"isChecked",
-		"isConfirmationPresent",
-		"isCookiePresent",
-		"isEditable",
-		"isElementPresent",
-		"isOrdered",
-		"isPromptPresent",
-		"isSomethingSelected",
-		"isTextPresent",
-		"isVisible",
-		"keyDown",
-		"keyDownNative",
-		"keyPress",
-		"keyPressNative",
-		"keyUp",
-		"keyUpNative",
-		"metaKeyDown",
-		"metaKeyUp",
-		"mouseDown",
-		"mouseDownAt",
-		"mouseDownRight",
-		"mouseDownRightAt",
-		"mouseMove",
-		"mouseMoveAt",
-		"mouseOut",
-		"mouseOver",
-		"mouseUp",
-		"mouseUpAt",
-		"mouseUpRight",
-		"mouseUpRightAt",
-		"open",
-		"openWindow",
-		"pause",
-		"refresh",
-		"removeAllSelections",
-		"removeScript",
-		"removeSelection",
-		"retrieveLastRemoteControlLogs",
-		"rollup",
-		"runScript",
-		"select",
-		"selectFrame",
-		"selectPopUp",
-		"selectWindow",
-		"setBrowserLogLevel", // NoOp
-		"setContext", // NoOp
-		"setCursorPosition",
-		"setMouseSpeed",
-		"setSpeed", // NoOp
-		"setTimeout",
-		"shiftKeyDown",
-		"shiftKeyUp",
-		"shutDownSeleniumServer",
-		"store",
-		"submit",
-		"type",
-		"typeKeys",
-		"uncheck",
-		"useXpathLibrary", // NoOp
-		"waitForCondition",
-		"waitForFrameToLoad", // NoOp
-		"waitForPageToLoad",
-		"waitForPopUp",
-		"windowFocus",
-		"windowMaximize"
-	}));
-
+	
 	private String methodName;
 	
 	public ExtendedSeleniumCommand(String methodName) {
@@ -234,7 +83,7 @@ public class ExtendedSeleniumCommand {
 	
 	public String getSeleniumCommand() {
 		// for commands like "waitForCondition"
-		if (SELENIUM_COMMANDS.contains(methodName)) {
+		if (SELENIUM_COMMANDS.isMethodAvailable(methodName)) {
 			return methodName;
 		}
 		
@@ -250,9 +99,9 @@ public class ExtendedSeleniumCommand {
 				noun = noun.replaceAll("Not([A-Z])", "$1");
 			}
 			
-			if (SELENIUM_COMMANDS.contains(IS + noun)) {
+			if (SELENIUM_COMMANDS.isMethodAvailable(IS + noun)) {
 				seleniumName = IS + noun;
-			} else if (SELENIUM_COMMANDS.contains(GET + noun)) {
+			} else if (SELENIUM_COMMANDS.isMethodAvailable(GET + noun)) {
 				seleniumName = GET + noun;
 			}
 		} else if (isCaptureEntirePageScreenshotCommand()) {
