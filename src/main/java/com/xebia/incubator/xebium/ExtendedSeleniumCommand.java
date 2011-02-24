@@ -170,11 +170,11 @@ public class ExtendedSeleniumCommand {
 		"selectFrame",
 		"selectPopUp",
 		"selectWindow",
-		"setBrowserLogLevel",
-		"setContext",
+		"setBrowserLogLevel", // NoOp
+		"setContext", // NoOp
 		"setCursorPosition",
 		"setMouseSpeed",
-		"setSpeed",
+		"setSpeed", // NoOp
 		"setTimeout",
 		"shiftKeyDown",
 		"shiftKeyUp",
@@ -184,9 +184,9 @@ public class ExtendedSeleniumCommand {
 		"type",
 		"typeKeys",
 		"uncheck",
-		"useXpathLibrary",
+		"useXpathLibrary", // NoOp
 		"waitForCondition",
-		"waitForFrameToLoad",
+		"waitForFrameToLoad", // NoOp
 		"waitForPageToLoad",
 		"waitForPopUp",
 		"windowFocus",

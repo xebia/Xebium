@@ -25,6 +25,8 @@ public class SeleniumDriverFixture {
 
 	private long timeout = 30000;
 	
+	private long stepDelay = 0;
+	
 	// TODO: decide: move to method or move to separate fixture.
 	static {
 		BasicConfigurator.configure();
@@ -73,6 +75,25 @@ public class SeleniumDriverFixture {
 		doOn("setTimeout", "" + timeout);
 	}
 		
+	/**
+	 * Set delay between steps.
+	 * <code>
+	 * | set step delay to | 500 |
+	 * | set step delay to | slow |
+	 * | set step delay to | fast |
+	 * </code>
+	 * @param stepDelay delay in milliseconds
+	 */
+	public void setStepDelayTo(String stepDelay) {
+		if ("slow".equals(stepDelay)) {
+			this.stepDelay = 1000;
+		} else if ("fast".equals(stepDelay)) {
+			this.stepDelay = 0;
+		} else {
+			this.stepDelay = Long.parseLong(stepDelay);
+		}
+	}
+	
 	/**
 	 * <code>
 	 * | ensure | do | <i>open</i> | on | <i>/</i> |
@@ -156,7 +177,7 @@ public class SeleniumDriverFixture {
 		// Handle special cases first
 		if ("pause".equals(command.getSeleniumCommand())) {
 			try {
-				Thread.sleep(Integer.parseInt(values[0]));
+				Thread.sleep(Long.parseLong(values[0]));
 			} catch (Exception e) {
 				LOG.warn("Pause command interrupted", e);
 			}
@@ -176,6 +197,14 @@ public class SeleniumDriverFixture {
 			}
 		} catch (final SeleniumException e) {
 			LOG.error("Execution of command failed: " + e.getMessage());
+		}
+		
+		if (this.stepDelay > 0) {
+			try {
+				Thread.sleep(this.stepDelay);
+			} catch (Exception e) {
+				LOG.warn("Step delay sleep command interrupted", e);
+			}
 		}
 		return output;
 	}
