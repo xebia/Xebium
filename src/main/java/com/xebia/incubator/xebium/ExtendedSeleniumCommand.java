@@ -286,11 +286,11 @@ public class ExtendedSeleniumCommand {
 			
 		} else if (expected.startsWith(REGEXP)) {
 			final String regex = trim(removeStartIgnoreCase(expected, REGEXP));
-			result = Pattern.compile(regex).matcher(actual).matches();
+			result = Pattern.compile(regex, Pattern.DOTALL).matcher(actual).matches();
 			
 		} else if (expected.startsWith(REGEXPI)) {
 			final String regex = trim(removeStartIgnoreCase(expected, REGEXPI));
-			result = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(actual).matches();
+			result = Pattern.compile(regex, Pattern.DOTALL | Pattern.CASE_INSENSITIVE).matcher(actual).matches();
 			
 		} else if (expected.startsWith(EXACT)){
 			final String str = trim(removeStartIgnoreCase(expected, EXACT));

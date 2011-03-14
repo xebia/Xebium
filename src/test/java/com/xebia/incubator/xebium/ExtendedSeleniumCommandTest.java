@@ -149,4 +149,12 @@ public class ExtendedSeleniumCommandTest {
 		assertFalse(command.matches("A*D", "DCBA"));
 	}
 
+	@Test
+	public void testMultiLineRegexp() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyText");
+		String text = "This is a nice\ntext on multiple lines\n\nand it matches the requirements";
+		
+		assertTrue(command.matches("regexp:.*multiple lines.*", text));
+
+	}
 }
