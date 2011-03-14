@@ -94,6 +94,18 @@ public class ExtendedSeleniumCommandTest {
 	}
 	
 	@Test
+	public void testVerifyNotChecked() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyNotChecked");
+		
+		assertTrue(command.isVerifyCommand());
+		assertTrue(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
+		assertFalse(command.isAndWaitCommand());
+		assertFalse(command.isAssertCommand());
+		assertEquals("isChecked", command.getSeleniumCommand());
+	}
+	
+	@Test
 	public void testRequiredPollingCommands() {
 		assertTrue(new ExtendedSeleniumCommand("waitForTextPresent").requiresPolling());
 		assertFalse(new ExtendedSeleniumCommand("waitForPageToLoad").requiresPolling());

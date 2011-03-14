@@ -28,10 +28,6 @@ public class ExtendedSeleniumCommand {
 
 	private static final String WAIT_FOR = "waitFor";
 	
-	private static final String WAIT_FOR_NOT = "waitForNot";
-	
-	private static final String NOT_PRESENT = "NotPresent";
-
 	private static final String AND_WAIT = "AndWait";
 
 	// Matching types
@@ -184,7 +180,7 @@ public class ExtendedSeleniumCommand {
 	
 	// TODO: process this in JS
 	public boolean isNegateCommand() {
-		return methodName.startsWith(WAIT_FOR_NOT) || methodName.endsWith(NOT_PRESENT);
+		return methodName.matches(".*[a-z]Not[A-Z].*");
 	}
 	
 	public boolean isAssertCommand() {
@@ -216,14 +212,16 @@ public class ExtendedSeleniumCommand {
 		String seleniumName = methodName;
 		
 		if (isAssertCommand() || isVerifyCommand() || isStoreCommand() || isWaitForCommand()) {
-			// ASSERT.length() == VERIFY.length()
-			String noun = seleniumName.substring(isStoreCommand() ? STORE.length() :
-				(isWaitForCommand() ? WAIT_FOR.length() : ASSERT.length()));
+			String noun = seleniumName;
 			
 			if (isNegateCommand()) {
 				//noun = noun.substring(0, noun.length() - NOT_PRESENT.length()) + "Present";
-				noun = noun.replaceAll("Not([A-Z])", "$1");
+				noun = noun.replaceAll("([a-z])Not([A-Z])", "$1$2");
 			}
+			
+			// ASSERT.length() == VERIFY.length()
+			noun = noun.substring(isStoreCommand() ? STORE.length() :
+				(isWaitForCommand() ? WAIT_FOR.length() : ASSERT.length()));
 			
 			if (isSupportedByWebDriver(IS + noun)) {
 				seleniumName = IS + noun;
