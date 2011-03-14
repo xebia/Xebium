@@ -119,6 +119,8 @@ function getCommandForSource(line) {
 	// format: | note | ${text} |
 	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*/.exec(line)) {
 		return new Comment(match[1]);
+	} else {
+		log.info('Ignoring line: "' + line + '"');
 	}
 }
 
