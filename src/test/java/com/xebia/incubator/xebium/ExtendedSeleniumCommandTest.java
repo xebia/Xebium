@@ -155,6 +155,8 @@ public class ExtendedSeleniumCommandTest {
 		String text = "This is a nice\ntext on multiple lines\n\nand it matches the requirements";
 		
 		assertTrue(command.matches("regexp:.*multiple lines.*", text));
+		assertTrue(command.matches("regexpi:.*multiple lines.*", text));
+		assertTrue(command.matches("glob:*multiple lines*", text));
 
 	}
 }
