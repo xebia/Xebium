@@ -280,7 +280,7 @@ public class ExtendedSeleniumCommand {
 	public boolean matches(String expected, String actual) {
 		boolean result;
 		if (isBooleanCommand()) {
-			result = (isNegateCommand() ? "false" : "true").equals(actual);
+			result = "true".equals(actual);
 			
 		} else if (expected.startsWith(REGEXP)) {
 			final String regex = trim(removeStartIgnoreCase(expected, REGEXP));
@@ -303,6 +303,9 @@ public class ExtendedSeleniumCommand {
 				pattern = expected;
 			}
 			result = globToRegExp(pattern).matcher(actual).matches();
+		}
+		if (isNegateCommand()) {
+			result = !result;
 		}
 		return result;
 	}

@@ -35,6 +35,13 @@ public class SeleniumDriverFixtureTest {
 	}
 
 	@Test
+	public void shouldNegateIfCommandRequiresIt() throws Exception {
+		given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("Di 9 november 2010. Het laatste nieuws het eerst op nu.nl");
+		final boolean result = seleniumDriverFixture.doOnWith("verifyNotText", "//*[@id='masthead']/div/h1", "regexp:.*Het laatste nieuws het eerst op nu.nl");
+		assertThat(result, is(false));
+	}
+
+	@Test
 	public void shouldNotMatchWithoutRegularExpression() throws Exception {
 		given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("Di 9 november 2010. Het laatste nieuws het eerst op nu.nl");
 		final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "Het laatste nieuws het eerst op nu.nl");

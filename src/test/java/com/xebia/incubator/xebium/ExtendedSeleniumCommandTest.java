@@ -106,6 +106,18 @@ public class ExtendedSeleniumCommandTest {
 	}
 	
 	@Test
+	public void testVerifyNotText() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("verifyNotText");
+		
+		assertTrue(command.isVerifyCommand());
+		assertTrue(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
+		assertFalse(command.isAndWaitCommand());
+		assertFalse(command.isAssertCommand());
+		assertEquals("getText", command.getSeleniumCommand());
+	}
+	
+	@Test
 	public void testRequiredPollingCommands() {
 		assertTrue(new ExtendedSeleniumCommand("waitForTextPresent").requiresPolling());
 		assertFalse(new ExtendedSeleniumCommand("waitForPageToLoad").requiresPolling());
