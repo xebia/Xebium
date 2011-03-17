@@ -8,3 +8,5 @@ FitNesseRoot/files/selenium/testResults.html
 FitNesseRoot/files/testResults/
 target/
 velocity.log
+.idea
+*.iml
