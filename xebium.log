@@ -1,0 +1,1103 @@
+2011-02-24 10:57:29,435 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 10:57:29,437 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 10:57:31,003 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 10:57:34,583 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 10:57:34,583 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 10:57:36,584 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 10:57:36,584 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 10:57:36,724 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 10:57:36,725 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 10:57:36,797 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 10:57:36,797 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 10:57:38,798 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 10:57:38,798 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 10:57:38,906 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 10:57:38,906 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 10:57:38,964 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 10:57:38,964 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 10:57:38,964 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 10:57:38,965 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 10:58:10,156 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 10:58:10,183 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 10:58:13,815 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 10:58:17,591 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 10:58:17,625 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 10:58:17,678 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 10:58:17,678 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 10:58:17,722 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 10:58:17,722 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 10:58:19,723 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 10:58:19,723 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 10:58:19,792 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 10:58:19,792 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 10:58:21,793 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 10:58:21,793 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 10:58:22,069 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-02-24 10:58:22,069 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'true' is: true>
+2011-02-24 10:58:22,070 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 10:58:22,070 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 11:00:50,441 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 11:00:50,476 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 11:00:52,811 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 11:00:58,494 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 11:00:58,495 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 11:00:58,644 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 11:00:58,645 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 11:00:58,686 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 11:00:58,686 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 11:01:00,687 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 11:01:00,687 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 11:01:00,761 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 11:01:00,761 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 11:01:02,762 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 11:01:02,762 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 11:01:02,818 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-02-24 11:01:02,819 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'true' is: true>
+2011-02-24 11:01:02,819 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 11:01:02,819 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 11:03:39,494 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 11:03:39,561 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 11:03:41,153 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 11:03:51,094 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 11:03:51,105 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 11:03:51,389 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 11:03:51,389 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 11:03:51,432 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 11:03:51,432 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 11:03:51,499 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 11:03:51,500 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 11:03:53,529 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 11:03:53,530 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 11:03:53,530 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 11:03:53,530 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 11:03:54,952 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 11:04:50,193 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 11:04:50,195 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 11:04:51,250 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 11:04:54,631 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 11:04:54,632 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 11:04:54,723 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 11:04:54,723 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 11:04:54,773 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 11:04:54,773 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 11:04:54,832 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 11:04:54,833 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 11:04:54,875 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 11:04:54,875 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 11:04:54,875 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 11:04:54,876 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 11:04:56,236 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 11:05:33,900 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 11:05:33,902 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 11:05:34,812 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 11:05:38,968 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 11:05:39,041 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 11:05:40,103 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 11:05:40,103 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 11:05:41,208 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 11:05:41,208 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 11:05:42,410 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 11:05:42,411 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 11:05:43,229 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-02-24 11:05:44,229 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'true' is: true>
+2011-02-24 11:05:44,230 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 11:05:44,230 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 11:05:46,407 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 11:50:46,368 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 11:50:46,390 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.ProjectXebium.ExampleSuite.UsingVariables |>
+2011-02-24 11:50:47,877 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.ProjectXebium.ExampleSuite.UsingVariables]>
+2011-02-24 11:50:51,777 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setTimeout | 1000 |>
+2011-02-24 11:50:51,778 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setTimeout with values: [1000]>
+2011-02-24 11:50:51,778 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getText | //span |>
+2011-02-24 11:50:51,778 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//span]>
+2011-02-24 11:50:51,939 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'UsingVariables'>
+2011-02-24 11:50:51,939 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from  | getTitle |>
+2011-02-24 11:50:51,939 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getTitle with values: []>
+2011-02-24 11:50:51,955 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'FitNesse.ProjectXebium.ExampleSuite.UsingVariables'>
+2011-02-24 11:50:51,955 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Search |>
+2011-02-24 11:50:51,955 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Search]>
+2011-02-24 11:50:52,580 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForElementPresent | //form[@action='search'] |>
+2011-02-24 11:50:52,581 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//form[@action='search']]>
+2011-02-24 11:50:52,626 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-02-24 11:50:52,626 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//form[@action='search']' compared to output 'true' is: true>
+2011-02-24 11:50:52,627 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | searchString | UsingVariables |>
+2011-02-24 11:50:52,627 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [searchString, UsingVariables]>
+2011-02-24 11:50:52,732 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | searchType |>
+2011-02-24 11:50:52,732 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [searchType]>
+2011-02-24 11:50:55,508 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | FitNesse.ProjectXebium.ExampleSuite.UsingVariables |>
+2011-02-24 11:50:55,508 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.ProjectXebium.ExampleSuite.UsingVariables]>
+2011-02-24 11:50:55,541 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-02-24 11:50:55,541 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.ProjectXebium.ExampleSuite.UsingVariables' compared to output 'true' is: true>
+2011-02-24 11:50:56,394 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 13:06:51,697 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 13:06:51,699 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 13:06:52,565 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 13:06:58,215 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 13:06:58,215 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 13:06:59,289 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 13:06:59,289 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 13:07:00,447 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 13:07:00,447 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 13:07:01,520 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 13:07:01,520 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 13:07:01,628 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 13:07:02,628 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 13:07:02,629 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | html/body/div[29]/div[1]/div[3]/div[2]/span/span/button |>
+2011-02-24 13:07:02,629 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [html/body/div[29]/div[1]/div[3]/div[2]/span/span/button]>
+2011-02-24 13:07:02,670 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: html/body/div[29]/div[1]/div[3]/div[2]/span/span/button not found>
+2011-02-24 13:07:04,711 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 13:07:39,774 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 13:07:39,776 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 13:07:40,631 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 13:07:44,333 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 13:07:44,333 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 13:07:45,399 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 13:07:45,399 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 13:07:46,747 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | html/body/div[29]/div[1]/div[3]/div[2]/span/span/button |>
+2011-02-24 13:07:46,747 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [html/body/div[29]/div[1]/div[3]/div[2]/span/span/button]>
+2011-02-24 13:07:46,827 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: html/body/div[29]/div[1]/div[3]/div[2]/span/span/button not found>
+2011-02-24 13:07:47,828 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 13:07:47,828 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 13:07:47,890 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 13:07:48,890 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 13:07:48,891 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | html/body/div[29]/div[1]/div[3]/div[2]/span/span/button |>
+2011-02-24 13:07:48,891 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [html/body/div[29]/div[1]/div[3]/div[2]/span/span/button]>
+2011-02-24 13:07:48,952 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: html/body/div[29]/div[1]/div[3]/div[2]/span/span/button not found>
+2011-02-24 13:07:50,991 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 13:21:46,367 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 13:21:46,369 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 13:21:46,374 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 13:21:50,381 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 13:21:50,381 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 13:21:51,441 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 13:21:51,441 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 13:21:52,549 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | html/body/div[29]/div[1]/div[3]/div[2]/span/span/button |>
+2011-02-24 13:21:52,549 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [html/body/div[29]/div[1]/div[3]/div[2]/span/span/button]>
+2011-02-24 13:21:52,634 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: html/body/div[29]/div[1]/div[3]/div[2]/span/span/button not found>
+2011-02-24 13:21:53,635 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 13:21:53,635 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 13:21:53,685 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 13:21:54,685 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 13:21:54,686 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | html/body/div[29]/div[1]/div[3]/div[2]/span/span/button |>
+2011-02-24 13:21:54,686 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [html/body/div[29]/div[1]/div[3]/div[2]/span/span/button]>
+2011-02-24 13:21:54,752 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: html/body/div[29]/div[1]/div[3]/div[2]/span/span/button not found>
+2011-02-24 13:21:56,818 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 14:03:25,449 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 14:03:25,459 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 14:03:25,545 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 14:03:30,362 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 14:03:30,362 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 14:03:31,536 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 14:03:31,537 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 14:03:32,650 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:03:32,650 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:03:32,745 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 14:03:32,745 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 14:03:32,819 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 14:03:33,820 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 14:03:33,820 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:03:33,820 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:03:34,966 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 14:04:01,669 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 14:04:01,671 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 14:04:01,691 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 14:04:06,060 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 14:04:06,060 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 14:04:07,122 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 14:04:07,123 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 14:04:08,250 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:04:08,250 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:04:08,341 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 14:04:08,341 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 14:04:08,399 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 14:04:09,400 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 14:04:09,400 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:04:09,400 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:04:10,508 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 14:07:15,225 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 14:07:15,227 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 14:07:15,234 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 14:07:19,797 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 14:07:19,820 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 14:07:20,883 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 14:07:20,905 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 14:07:22,004 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 2000 |>
+2011-02-24 14:07:22,004 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [2000]>
+2011-02-24 14:07:24,005 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:07:24,005 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:07:24,100 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 14:07:24,101 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 14:07:24,160 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 14:07:25,161 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 14:07:25,161 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:07:25,161 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:07:26,324 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 14:13:35,819 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 14:13:35,832 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 14:13:35,836 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 14:13:42,474 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 14:13:42,519 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 14:13:43,620 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 14:13:43,620 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 14:13:44,724 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 3000 |>
+2011-02-24 14:13:44,724 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [3000]>
+2011-02-24 14:13:47,725 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:13:47,725 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:13:47,818 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 14:13:47,818 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 14:13:47,872 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 14:13:48,872 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 14:13:48,873 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:13:48,873 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:13:49,971 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-02-24 14:15:17,694 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-02-24 14:15:17,696 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /HARMPGUI/ |>
+2011-02-24 14:15:17,702 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/HARMPGUI/]>
+2011-02-24 14:15:21,795 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-username | harmist1 |>
+2011-02-24 14:15:21,796 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-username, harmist1]>
+2011-02-24 14:15:22,863 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | panel-login-input-password | harmist1 |>
+2011-02-24 14:15:22,864 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [panel-login-input-password, harmist1]>
+2011-02-24 14:15:23,971 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | pause | 3000 |>
+2011-02-24 14:15:23,971 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: pause with values: [3000]>
+2011-02-24 14:15:26,972 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-login-button-ok-button |>
+2011-02-24 14:15:26,972 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-login-button-ok-button]>
+2011-02-24 14:15:28,124 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | HARM Patrooninformatie - Inlog historie |>
+2011-02-24 14:15:28,124 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [HARM Patrooninformatie - Inlog historie]>
+2011-02-24 14:15:28,167 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-02-24 14:15:29,168 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'HARM Patrooninformatie - Inlog historie' compared to output 'false' is: false>
+2011-02-24 14:15:29,168 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | panel-inlog-historie-button-ok-button |>
+2011-02-24 14:15:29,169 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [panel-inlog-historie-button-ok-button]>
+2011-02-24 14:15:31,720 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:43:44,100 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:43:44,121 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setSpeed | 2000 |>
+2011-03-08 09:43:44,125 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setSpeed with values: [2000]>
+2011-03-08 09:43:44,126 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:43:44,126 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:43:44,990 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | q | cirilo wortel |>
+2011-03-08 09:43:44,990 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [q, cirilo wortel]>
+2011-03-08 09:43:46,237 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | btnG |>
+2011-03-08 09:43:46,237 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [btnG]>
+2011-03-08 09:43:46,330 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Cirilo Wortel - Netherlands | LinkedIn |>
+2011-03-08 09:43:46,330 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Cirilo Wortel - Netherlands | LinkedIn]>
+2011-03-08 09:43:46,734 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 09:43:46,735 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 09:43:47,285 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | Cirilo Wortel's Summary |>
+2011-03-08 09:43:47,285 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [Cirilo Wortel's Summary]>
+2011-03-08 09:43:47,324 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 09:43:47,324 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'Cirilo Wortel's Summary' compared to output 'false' is: false>
+2011-03-08 09:43:48,045 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:47:44,041 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:47:44,044 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setSpeed | 2000 |>
+2011-03-08 09:47:44,049 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setSpeed with values: [2000]>
+2011-03-08 09:47:44,049 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:47:44,050 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:47:46,520 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Voorpagina |>
+2011-03-08 09:47:46,521 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Voorpagina]>
+2011-03-08 09:47:51,425 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 09:47:51,426 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 09:47:51,992 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:47:51,992 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:47:52,016 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 09:47:52,017 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 09:47:53,100 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:51:11,516 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:51:11,518 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setSpeed | 2000 |>
+2011-03-08 09:51:11,524 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setSpeed with values: [2000]>
+2011-03-08 09:51:11,525 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:51:11,525 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:51:13,787 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Voorpagina |>
+2011-03-08 09:51:13,787 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Voorpagina]>
+2011-03-08 09:51:18,412 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 09:51:18,413 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 09:51:18,980 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:51:18,981 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:51:19,003 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 09:51:19,004 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 09:51:20,039 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:51:49,216 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:51:49,219 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setSpeed | 2000 |>
+2011-03-08 09:51:49,224 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setSpeed with values: [2000]>
+2011-03-08 09:51:49,225 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:51:49,225 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:51:53,532 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Voorpagina |>
+2011-03-08 09:51:53,532 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Voorpagina]>
+2011-03-08 09:51:58,476 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 09:51:58,477 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 09:51:59,143 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:51:59,144 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:51:59,168 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 09:51:59,168 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 09:52:00,457 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:53:29,591 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:53:29,594 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setSpeed | 2000 |>
+2011-03-08 09:53:29,600 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setSpeed with values: [2000]>
+2011-03-08 09:53:29,601 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:53:29,601 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:53:32,712 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Voorpagina |>
+2011-03-08 09:53:32,712 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Voorpagina]>
+2011-03-08 09:53:37,436 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 09:53:37,436 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 09:53:37,622 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:53:37,622 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:53:37,631 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 09:53:37,631 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 09:53:38,667 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:53:59,458 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:53:59,460 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setSpeed | 2000 |>
+2011-03-08 09:53:59,466 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setSpeed with values: [2000]>
+2011-03-08 09:53:59,467 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:53:59,467 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:54:03,719 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Voorpagina |>
+2011-03-08 09:54:03,720 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Voorpagina]>
+2011-03-08 09:54:08,950 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5 |>
+2011-03-08 09:54:08,987 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5]>
+2011-03-08 09:54:09,521 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:54:09,521 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:54:09,578 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 09:54:09,578 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 09:54:10,620 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:54:54,764 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:54:54,766 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:54:54,771 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:54:58,915 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Voorpagina |>
+2011-03-08 09:54:58,915 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Voorpagina]>
+2011-03-08 09:55:04,335 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5 |>
+2011-03-08 09:55:04,336 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5]>
+2011-03-08 09:55:04,875 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:55:04,876 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:55:04,893 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 09:55:04,893 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 09:55:05,875 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:55:44,563 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:55:44,565 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:55:44,570 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:55:47,715 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 09:55:47,715 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 09:55:52,752 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5 |>
+2011-03-08 09:55:52,753 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5]>
+2011-03-08 09:55:53,268 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:55:53,268 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:55:53,294 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 09:55:53,294 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 09:55:54,259 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:56:28,313 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:56:28,315 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:56:28,321 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:56:30,136 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 09:56:30,136 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 09:56:35,777 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 500 |>
+2011-03-08 09:56:35,778 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [500]>
+2011-03-08 09:56:36,308 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:56:36,308 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:56:36,332 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 09:56:36,333 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 09:56:37,277 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:56:57,063 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:56:57,065 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:56:57,070 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:56:59,852 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 09:56:59,852 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 09:57:05,498 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 09:57:05,498 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 09:57:06,044 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:57:06,044 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:57:06,067 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 09:57:06,067 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 09:57:07,112 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:57:46,237 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:57:46,239 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:57:46,244 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:57:48,447 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 09:57:48,447 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 09:57:54,550 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 50000 |>
+2011-03-08 09:57:54,550 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [50000]>
+2011-03-08 09:57:55,130 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:57:55,131 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:57:55,154 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 09:57:55,154 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 09:57:56,213 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 09:58:16,686 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 09:58:16,688 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 09:58:16,694 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 09:58:19,780 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 09:58:19,780 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 09:58:33,267 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 500 |>
+2011-03-08 09:58:33,267 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [500]>
+2011-03-08 09:58:33,791 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 09:58:33,791 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 09:58:33,816 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 09:58:33,817 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 09:58:34,693 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:20:30,353 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:20:30,371 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:20:30,376 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:20:33,799 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:20:33,799 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:20:39,766 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 500 |>
+2011-03-08 10:20:39,767 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [500]>
+2011-03-08 10:20:40,344 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:20:40,344 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:20:40,382 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:20:40,383 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:20:41,419 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:21:05,621 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:21:05,623 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:21:05,629 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:21:08,832 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:21:08,832 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:21:17,373 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5000 |>
+2011-03-08 10:21:17,373 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5000]>
+2011-03-08 10:21:17,902 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:21:17,902 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:21:17,925 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:21:17,925 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:21:18,982 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:53:10,858 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:53:10,860 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:53:10,866 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:53:13,689 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:53:13,690 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:53:20,465 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForFrameToLoad | 5000 |>
+2011-03-08 10:53:20,466 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForFrameToLoad with values: [5000]>
+2011-03-08 10:53:20,467 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:53:20,468 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:53:20,489 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:53:20,489 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:53:21,529 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:53:41,589 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:53:41,591 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:53:41,597 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:53:44,236 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:53:44,236 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:53:51,090 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForFrameToLoad | 500 |>
+2011-03-08 10:53:51,091 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForFrameToLoad with values: [500]>
+2011-03-08 10:53:51,092 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:53:51,093 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:53:51,107 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:53:51,107 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:53:52,145 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:54:09,937 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:54:09,938 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:54:09,944 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:54:13,046 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:54:13,047 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:54:18,062 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForFrameToLoad | 500 |>
+2011-03-08 10:54:18,063 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForFrameToLoad with values: [500]>
+2011-03-08 10:54:18,065 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:54:18,065 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:54:18,081 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:54:18,081 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:54:19,116 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:54:50,538 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:54:50,540 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:54:50,545 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:54:52,193 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:54:52,193 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:54:58,453 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForFrameToLoad | 50 |>
+2011-03-08 10:54:58,453 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForFrameToLoad with values: [50]>
+2011-03-08 10:54:58,455 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:54:58,455 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:54:58,519 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:54:58,519 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:54:59,467 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:55:29,160 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:55:29,162 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:55:29,166 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:55:32,019 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:55:32,020 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:55:37,686 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForFrameToLoad | 5 |>
+2011-03-08 10:55:37,686 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForFrameToLoad with values: [5]>
+2011-03-08 10:55:37,687 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:55:37,688 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:55:37,721 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:55:37,721 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:55:38,722 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 10:56:33,418 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 10:56:33,420 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 10:56:33,425 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 10:56:35,283 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 10:56:35,283 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 10:56:40,620 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5 |>
+2011-03-08 10:56:40,625 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5]>
+2011-03-08 10:56:41,137 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 10:56:41,137 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 10:56:41,161 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 10:56:41,161 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 10:56:42,198 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:11:52,475 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 11:11:52,542 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 11:11:52,547 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 11:11:56,205 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Algemeen |>
+2011-03-08 11:11:56,206 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 11:12:03,900 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForPageToLoad | 5 |>
+2011-03-08 11:12:03,919 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: waitForPageToLoad with values: [5]>
+2011-03-08 11:12:04,495 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 11:12:04,495 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 11:12:04,560 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 11:12:04,560 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 11:12:05,605 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:13:21,332 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 11:13:21,334 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 11:13:21,339 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 11:13:23,973 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 11:13:23,973 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 11:13:23,997 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 11:13:23,998 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'true' is: true>
+2011-03-08 11:13:24,836 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:14:08,594 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 11:14:08,596 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 11:14:08,602 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 11:14:11,609 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen | 500 |>
+2011-03-08 11:14:11,609 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen, 500]>
+2011-03-08 11:14:20,570 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 11:14:20,570 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 11:14:20,594 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 11:14:20,594 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 11:14:21,634 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:14:47,372 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 11:14:47,373 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 11:14:47,378 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 11:14:49,451 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen | 5 |>
+2011-03-08 11:14:49,451 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen, 5]>
+2011-03-08 11:14:54,550 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 11:14:54,551 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 11:14:54,587 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 11:14:54,587 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Facebook-banner']' compared to output 'false' is: false>
+2011-03-08 11:14:55,578 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:57:33,039 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 11:57:33,041 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 11:57:33,046 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 11:57:35,769 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 11:57:35,770 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 11:57:35,797 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299581855793'>
+2011-03-08 11:57:35,797 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 11:57:35,798 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 11:57:44,994 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 11:57:45,023 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 11:57:45,039 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299581865037'>
+2011-03-08 11:57:45,039 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299581865037 - 1299581855793 |>
+2011-03-08 11:57:45,040 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299581865037 - 1299581855793]>
+2011-03-08 11:57:45,056 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '9244'>
+2011-03-08 11:57:45,057 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 9244 < 5000 | true |>
+2011-03-08 11:57:45,057 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [9244 < 5000, true]>
+2011-03-08 11:57:45,073 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 11:57:45,073 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'false' is: false>
+2011-03-08 11:57:46,116 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:57:46,125 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 11:57:46,126 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 11:59:27,790 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 11:59:27,793 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 11:59:27,800 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 11:59:30,837 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 11:59:30,838 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 11:59:30,865 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299581970861'>
+2011-03-08 11:59:30,866 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 11:59:30,866 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 11:59:37,400 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 11:59:37,400 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 11:59:37,416 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299581977413'>
+2011-03-08 11:59:37,416 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299581977413 - 1299581970861 |>
+2011-03-08 11:59:37,416 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299581977413 - 1299581970861]>
+2011-03-08 11:59:37,430 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '6552'>
+2011-03-08 11:59:37,430 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 6552 < 5000 | true |>
+2011-03-08 11:59:37,430 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [6552 < 5000, true]>
+2011-03-08 11:59:37,446 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 11:59:37,447 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'false' is: false>
+2011-03-08 11:59:38,435 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 11:59:38,435 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 11:59:38,436 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 13:18:42,160 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:18:42,244 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:18:42,278 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:18:44,954 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:18:44,954 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:18:44,983 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299586724978'>
+2011-03-08 13:18:44,983 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | @do | link=Algemeen |>
+2011-03-08 13:18:44,984 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: @do with values: [link=Algemeen]>
+2011-03-08 13:18:44,985 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:18:44,985 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:18:45,003 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299586725000'>
+2011-03-08 13:18:45,004 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299586725000 - 1299586724978 |>
+2011-03-08 13:18:45,004 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299586725000 - 1299586724978]>
+2011-03-08 13:18:45,023 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '22'>
+2011-03-08 13:18:45,024 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 22 < 7000 | true |>
+2011-03-08 13:18:45,024 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [22 < 7000, true]>
+2011-03-08 13:18:45,040 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:18:45,040 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:18:45,943 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:18:45,944 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 13:18:45,944 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 13:19:29,170 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:19:29,173 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:19:29,178 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:19:32,097 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:19:32,097 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:19:32,127 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299586772123'>
+2011-03-08 13:19:32,128 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:19:32,128 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:19:38,029 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:19:38,055 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:19:38,073 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299586778071'>
+2011-03-08 13:19:38,074 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299586778071 - 1299586772123 |>
+2011-03-08 13:19:38,074 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299586778071 - 1299586772123]>
+2011-03-08 13:19:38,092 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '5948'>
+2011-03-08 13:19:38,092 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 5948 < 7000 | true |>
+2011-03-08 13:19:38,092 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [5948 < 7000, true]>
+2011-03-08 13:19:38,109 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:19:38,109 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:19:39,192 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:19:39,192 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 13:19:39,193 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 13:41:12,129 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:41:12,132 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:41:12,137 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:41:14,560 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:41:14,560 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:41:14,588 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588074584'>
+2011-03-08 13:41:14,589 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:41:14,589 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:41:21,772 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:41:21,837 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:41:22,520 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588082510'>
+2011-03-08 13:41:22,520 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588082510 - 1299588074584 |>
+2011-03-08 13:41:22,521 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588082510 - 1299588074584]>
+2011-03-08 13:41:22,536 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '7926'>
+2011-03-08 13:41:22,537 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 7926 < 7000 | true |>
+2011-03-08 13:41:22,537 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [7926 < 7000, true]>
+2011-03-08 13:41:22,555 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 13:41:22,555 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'false' is: false>
+2011-03-08 13:41:23,633 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:41:23,634 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 13:41:23,634 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 13:41:57,220 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:41:57,222 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:41:57,227 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:41:59,908 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:41:59,908 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:41:59,932 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588119928'>
+2011-03-08 13:41:59,932 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:41:59,933 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:42:05,720 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:42:05,739 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:42:05,807 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588125805'>
+2011-03-08 13:42:05,808 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588125805 - 1299588119928 |>
+2011-03-08 13:42:05,808 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588125805 - 1299588119928]>
+2011-03-08 13:42:05,821 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '5877'>
+2011-03-08 13:42:05,822 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 5877 < 7000 | true |>
+2011-03-08 13:42:05,822 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [5877 < 7000, true]>
+2011-03-08 13:42:05,838 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:42:05,838 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:42:06,820 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:42:06,820 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 13:42:06,820 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 13:43:14,673 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:43:14,675 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:43:14,681 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:43:16,131 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:43:16,131 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:43:16,157 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588196151'>
+2011-03-08 13:43:16,157 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:43:16,158 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:43:22,485 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:43:22,508 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:43:22,600 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588202597'>
+2011-03-08 13:43:22,601 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588202597 - 1299588196151 |>
+2011-03-08 13:43:22,601 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588202597 - 1299588196151]>
+2011-03-08 13:43:22,615 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '6446'>
+2011-03-08 13:43:22,616 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 6446 < 7000 | true |>
+2011-03-08 13:43:22,616 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [6446 < 7000, true]>
+2011-03-08 13:43:22,630 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:43:22,631 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:43:23,674 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:43:23,674 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Facebook-banner'] |>
+2011-03-08 13:43:23,675 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Facebook-banner']]>
+2011-03-08 13:46:03,077 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:46:03,079 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:46:03,086 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:46:04,504 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:46:04,504 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:46:04,532 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588364528'>
+2011-03-08 13:46:04,533 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:46:04,533 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:46:10,631 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:46:10,631 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:46:10,647 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588370644'>
+2011-03-08 13:46:10,647 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588370644 - 1299588364528 |>
+2011-03-08 13:46:10,647 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588370644 - 1299588364528]>
+2011-03-08 13:46:10,663 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '6116'>
+2011-03-08 13:46:10,663 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 6116 < 7000 | true |>
+2011-03-08 13:46:10,664 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [6116 < 7000, true]>
+2011-03-08 13:46:10,704 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:46:10,705 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:46:11,748 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:46:11,749 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Klik hier!'] |>
+2011-03-08 13:46:11,749 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Klik hier!']]>
+2011-03-08 13:47:47,040 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:47:47,042 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:47:47,047 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:47:48,771 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:47:48,771 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:47:48,793 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588468789'>
+2011-03-08 13:47:48,794 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:47:48,794 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:47:54,170 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:47:54,171 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:47:54,189 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588474187'>
+2011-03-08 13:47:54,190 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588474187 - 1299588468789 |>
+2011-03-08 13:47:54,190 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588474187 - 1299588468789]>
+2011-03-08 13:47:54,207 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '5398'>
+2011-03-08 13:47:54,208 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 5398 < 7000 | true |>
+2011-03-08 13:47:54,208 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [5398 < 7000, true]>
+2011-03-08 13:47:54,277 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:47:54,278 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:47:54,278 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //img[@alt='Klik hier!'] |>
+2011-03-08 13:47:54,279 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//img[@alt='Klik hier!']]>
+2011-03-08 13:47:54,301 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 13:47:54,302 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//img[@alt='Klik hier!']' compared to output 'false' is: false>
+2011-03-08 13:47:55,338 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:49:12,955 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:49:12,958 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:49:12,963 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:49:14,942 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:49:14,942 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:49:14,968 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588554963'>
+2011-03-08 13:49:14,968 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:49:14,968 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:49:21,751 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:49:21,752 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:49:21,761 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588561759'>
+2011-03-08 13:49:21,762 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588561759 - 1299588554963 |>
+2011-03-08 13:49:21,762 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588561759 - 1299588554963]>
+2011-03-08 13:49:21,771 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '6796'>
+2011-03-08 13:49:21,772 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 6796 < 7000 | true |>
+2011-03-08 13:49:21,772 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [6796 < 7000, true]>
+2011-03-08 13:49:21,783 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:49:21,784 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:49:21,784 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | //*[@id='__lwBuffer1']/center/a/img |>
+2011-03-08 13:49:21,784 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//*[@id='__lwBuffer1']/center/a/img]>
+2011-03-08 13:49:21,804 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'false'>
+2011-03-08 13:49:21,805 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//*[@id='__lwBuffer1']/center/a/img' compared to output 'false' is: false>
+2011-03-08 13:49:22,915 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-08 13:50:56,414 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-08 13:50:56,416 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | / |>
+2011-03-08 13:50:56,421 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/]>
+2011-03-08 13:50:57,977 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:50:57,977 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:50:57,999 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588657994'>
+2011-03-08 13:50:57,999 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Algemeen |>
+2011-03-08 13:50:58,000 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Algemeen]>
+2011-03-08 13:51:03,561 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | new Date().getTime() |>
+2011-03-08 13:51:03,581 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [new Date().getTime()]>
+2011-03-08 13:51:03,587 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '1299588663585'>
+2011-03-08 13:51:03,588 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getEval | 1299588663585 - 1299588657994 |>
+2011-03-08 13:51:03,588 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [1299588663585 - 1299588657994]>
+2011-03-08 13:51:03,606 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned '5591'>
+2011-03-08 13:51:03,606 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyEval | 5591 < 7000 | true |>
+2011-03-08 13:51:03,606 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getEval with values: [5591 < 7000, true]>
+2011-03-08 13:51:03,614 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:51:03,615 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getEval with value 'true' compared to output 'true' is: true>
+2011-03-08 13:51:03,615 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyElementPresent | link=Uitgezette bever direct doodgereden |>
+2011-03-08 13:51:03,615 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [link=Uitgezette bever direct doodgereden]>
+2011-03-08 13:51:10,179 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-08 13:51:10,179 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value 'link=Uitgezette bever direct doodgereden' compared to output 'true' is: true>
+2011-03-08 13:51:11,070 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:43:42,570 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:43:42,589 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:43:42,605 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:43:46,577 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:43:46,577 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:43:47,863 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:43:47,863 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:43:47,907 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:43:47,908 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:43:47,944 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Refactor |>
+2011-03-17 15:43:47,944 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Refactor]>
+2011-03-17 15:43:51,315 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:44:29,588 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:44:29,591 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:44:29,596 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:44:29,959 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:44:29,959 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:44:31,288 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:44:31,289 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:44:31,332 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:44:31,332 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:44:31,366 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Refactor |>
+2011-03-17 15:44:31,366 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Refactor]>
+2011-03-17 15:44:33,031 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:47:02,362 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:47:02,365 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:47:02,371 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:47:02,787 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:47:02,787 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:47:03,937 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:47:03,938 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:47:03,980 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] | Refactor |>
+2011-03-17 15:47:03,980 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'], Refactor]>
+2011-03-17 15:47:04,020 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: Element //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] not found>
+2011-03-17 15:47:04,021 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:47:04,021 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:47:04,051 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@accesskey="r"] | Refactor |>
+2011-03-17 15:47:04,051 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@accesskey="r"], Refactor]>
+2011-03-17 15:47:04,083 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'Refactor'>
+2011-03-17 15:47:04,084 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getText with value 'Refactor' compared to output 'Refactor' is: false>
+2011-03-17 15:47:04,085 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Refactor |>
+2011-03-17 15:47:04,085 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Refactor]>
+2011-03-17 15:47:05,558 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:47:35,651 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:47:35,653 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:47:35,659 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:47:35,961 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:47:35,961 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:47:37,016 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:47:37,017 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:47:37,056 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] | Refactor |>
+2011-03-17 15:47:37,056 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'], Refactor]>
+2011-03-17 15:47:37,094 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: Element //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] not found>
+2011-03-17 15:47:37,094 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:47:37,094 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:47:37,121 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@accesskey="r"] | Refactor |>
+2011-03-17 15:47:37,121 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@accesskey="r"], Refactor]>
+2011-03-17 15:47:37,148 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'Refactor'>
+2011-03-17 15:47:37,149 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getText with value 'Refactor' compared to output 'Refactor' is: true>
+2011-03-17 15:47:37,149 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Refactor |>
+2011-03-17 15:47:37,149 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Refactor]>
+2011-03-17 15:47:38,623 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:49:28,823 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:49:28,825 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:49:28,830 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:49:29,228 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:49:29,228 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:49:30,388 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:49:30,389 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:49:30,428 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] | Refactor |>
+2011-03-17 15:49:30,428 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'], Refactor]>
+2011-03-17 15:49:30,471 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: Element //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] not found>
+2011-03-17 15:49:30,472 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:49:30,472 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:49:30,503 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@accesskey="r"] | Refactor |>
+2011-03-17 15:49:30,504 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@accesskey="r"], Refactor]>
+2011-03-17 15:49:30,533 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'Refactor'>
+2011-03-17 15:49:30,534 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getText with value 'Refactor' compared to output 'Refactor' is: true>
+2011-03-17 15:49:30,534 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | link=Refactor | Refactor |>
+2011-03-17 15:49:30,535 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [link=Refactor, Refactor]>
+2011-03-17 15:49:30,565 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Refactor |>
+2011-03-17 15:49:30,565 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Refactor]>
+2011-03-17 15:49:32,080 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:55:30,554 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:55:30,556 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:55:30,562 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:55:30,881 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:55:30,881 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:55:31,951 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:55:31,951 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:55:31,986 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] | Refactor |>
+2011-03-17 15:55:31,987 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'], Refactor]>
+2011-03-17 15:55:32,015 ERROR [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Execution of command failed: Element //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld<a title="create page" href="FitNesse.ProjectXebium.ExampleSuite.TestPagina.TestGevallen.VerifyNotVoorbeeld?edit&nonExistent=true">[?]</a>?refactor'] not found>
+2011-03-17 15:55:32,016 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyNotText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:55:32,016 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:55:32,038 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@accesskey="r"] | Refactor |>
+2011-03-17 15:55:32,038 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@accesskey="r"], Refactor]>
+2011-03-17 15:55:32,067 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'Refactor'>
+2011-03-17 15:55:32,067 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getText with value 'Refactor' compared to output 'Refactor' is: true>
+2011-03-17 15:55:32,068 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | link=Refactor | Refactor |>
+2011-03-17 15:55:32,068 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [link=Refactor, Refactor]>
+2011-03-17 15:55:32,099 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Refactor |>
+2011-03-17 15:55:32,099 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Refactor]>
+2011-03-17 15:55:33,594 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 15:56:39,290 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 15:56:39,292 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 15:56:39,297 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 15:56:39,604 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 15:56:39,605 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 15:56:40,683 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 15:56:40,683 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 15:56:41,415 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 16:06:33,930 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 16:06:33,932 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 16:06:33,940 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 16:06:34,298 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 16:06:34,298 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 16:06:35,437 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'] | Refactor |>
+2011-03-17 16:06:35,438 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='TestPagina.TestGevallen.VerifyNotVoorbeeld?refactor'], Refactor]>
+2011-03-17 16:06:36,140 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 16:11:07,169 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 16:11:07,171 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 16:11:07,178 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 16:11:07,494 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 16:11:07,494 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 16:11:08,567 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'] | Refactor |>
+2011-03-17 16:11:08,568 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'], Refactor]>
+2011-03-17 16:11:09,271 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 16:11:27,026 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 16:11:27,028 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 16:11:27,034 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 16:11:27,344 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=SliM |>
+2011-03-17 16:11:27,345 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 16:11:28,484 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'] | Refactor |>
+2011-03-17 16:11:28,485 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'], Refactor]>
+2011-03-17 16:11:29,231 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 16:12:13,644 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 16:12:13,646 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 16:12:13,651 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 16:12:13,960 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=SliM |>
+2011-03-17 16:12:13,961 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=SliM]>
+2011-03-17 16:12:14,495 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'] | Refactor |>
+2011-03-17 16:12:14,495 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'], Refactor]>
+2011-03-17 16:12:15,200 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 16:19:28,814 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 16:19:28,816 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 16:19:28,822 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 16:19:29,290 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'] | Refactor |>
+2011-03-17 16:19:29,290 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'], Refactor]>
+2011-03-17 16:19:29,353 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'Refactor'>
+2011-03-17 16:19:29,353 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getText with value 'Refactor' compared to output 'Refactor' is: true>
+2011-03-17 16:19:30,011 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-17 16:20:23,810 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-17 16:20:23,813 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide.SliM.ValueComparisons |>
+2011-03-17 16:20:23,818 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide.SliM.ValueComparisons]>
+2011-03-17 16:20:24,126 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | //a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'] | Refactor |>
+2011-03-17 16:20:24,126 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//a[@href='FitNesse.UserGuide.SliM.ValueComparisons?refactor'], Refactor]>
+2011-03-17 16:20:24,188 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'Refactor'>
+2011-03-17 16:20:24,188 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command getText with value 'Refactor' compared to output 'Refactor' is: true>
+2011-03-17 16:20:24,189 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyText | link=Refactor | Refactor |>
+2011-03-17 16:20:24,189 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [link=Refactor, Refactor]>
+2011-03-17 16:20:24,916 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-03-24 17:45:32,476 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-03-24 17:45:32,501 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.ProjectXebium.ExampleSuite.UsingVariables |>
+2011-03-24 17:45:32,532 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.ProjectXebium.ExampleSuite.UsingVariables]>
+2011-03-24 17:45:35,644 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setTimeout | 1000 |>
+2011-03-24 17:45:35,644 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setTimeout with values: [1000]>
+2011-03-24 17:45:35,645 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getText | //span |>
+2011-03-24 17:45:35,645 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//span]>
+2011-03-24 17:45:35,819 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'UsingVariables'>
+2011-03-24 17:45:35,819 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from  | getTitle |>
+2011-03-24 17:45:35,820 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getTitle with values: []>
+2011-03-24 17:45:35,837 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'FitNesse.ProjectXebium.ExampleSuite.UsingVariables'>
+2011-03-24 17:45:35,837 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Search |>
+2011-03-24 17:45:35,837 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Search]>
+2011-03-24 17:45:37,021 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForElementPresent | //form[@action='search'] |>
+2011-03-24 17:45:37,022 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//form[@action='search']]>
+2011-03-24 17:45:37,062 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-24 17:45:37,163 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//form[@action='search']' compared to output 'true' is: true>
+2011-03-24 17:45:37,163 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | searchString | UsingVariables |>
+2011-03-24 17:45:37,164 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [searchString, UsingVariables]>
+2011-03-24 17:45:37,275 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | searchType |>
+2011-03-24 17:45:37,275 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [searchType]>
+2011-03-24 17:45:43,511 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | FitNesse.ProjectXebium.ExampleSuite.UsingVariables |>
+2011-03-24 17:45:43,512 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.ProjectXebium.ExampleSuite.UsingVariables]>
+2011-03-24 17:45:43,535 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-03-24 17:45:43,635 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.ProjectXebium.ExampleSuite.UsingVariables' compared to output 'true' is: true>
+2011-03-24 17:45:44,372 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-04-01 23:14:17,596 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-04-01 23:14:17,606 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.ProjectXebium.ExampleSuite.UsingVariables |>
+2011-04-01 23:14:17,624 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.ProjectXebium.ExampleSuite.UsingVariables]>
+2011-04-01 23:14:18,252 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | setTimeout | 1000 |>
+2011-04-01 23:14:18,252 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: setTimeout with values: [1000]>
+2011-04-01 23:14:18,252 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from | getText | //span |>
+2011-04-01 23:14:18,252 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getText with values: [//span]>
+2011-04-01 23:14:18,334 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'UsingVariables'>
+2011-04-01 23:14:18,334 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Storing result from  | getTitle |>
+2011-04-01 23:14:18,334 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: getTitle with values: []>
+2011-04-01 23:14:18,350 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'FitNesse.ProjectXebium.ExampleSuite.UsingVariables'>
+2011-04-01 23:14:18,351 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | link=Search |>
+2011-04-01 23:14:18,351 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Search]>
+2011-04-01 23:14:18,934 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForElementPresent | //form[@action='search'] |>
+2011-04-01 23:14:18,935 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isElementPresent with values: [//form[@action='search']]>
+2011-04-01 23:14:18,954 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:14:19,055 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isElementPresent with value '//form[@action='search']' compared to output 'true' is: true>
+2011-04-01 23:14:19,056 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | type | searchString | UsingVariables |>
+2011-04-01 23:14:19,056 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: type with values: [searchString, UsingVariables]>
+2011-04-01 23:14:19,155 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | click | searchType |>
+2011-04-01 23:14:19,155 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [searchType]>
+2011-04-01 23:14:22,378 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | waitForTextPresent | FitNesse.ProjectXebium.ExampleSuite.UsingVariables |>
+2011-04-01 23:14:22,378 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.ProjectXebium.ExampleSuite.UsingVariables]>
+2011-04-01 23:14:22,419 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:14:22,519 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.ProjectXebium.ExampleSuite.UsingVariables' compared to output 'true' is: true>
+2011-04-01 23:14:23,216 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-04-01 23:22:44,083 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-04-01 23:22:44,107 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:22:44,112 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:22:44,699 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Fixture Code |>
+2011-04-01 23:22:44,699 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Fixture Code]>
+2011-04-01 23:22:47,451 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:22:47,451 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:22:49,463 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:22:49,464 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:22:49,499 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:22:49,499 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:22:49,500 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:22:49,500 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:22:49,650 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Test Systems |>
+2011-04-01 23:22:49,650 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Test Systems]>
+2011-04-01 23:22:52,219 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:22:52,220 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:22:54,041 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:22:54,041 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:22:54,170 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:22:54,170 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:22:55,003 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-04-01 23:23:33,646 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-04-01 23:23:33,648 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:23:33,655 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:23:34,110 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Fixture Code |>
+2011-04-01 23:23:34,111 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Fixture Code]>
+2011-04-01 23:23:36,793 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:23:36,793 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:23:38,746 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:23:38,746 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:23:38,806 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:23:38,806 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:23:38,826 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:23:38,826 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:23:38,977 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Fixture Code |>
+2011-04-01 23:23:38,977 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Fixture Code]>
+2011-04-01 23:23:41,775 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:23:41,776 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:23:43,641 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:23:43,641 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:23:43,677 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:23:43,677 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:23:43,678 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:23:43,678 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:23:43,825 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Test Systems |>
+2011-04-01 23:23:43,825 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Test Systems]>
+2011-04-01 23:23:46,339 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:23:46,340 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:23:48,085 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:23:48,085 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:23:48,110 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:23:48,111 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:23:48,828 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>
+2011-04-01 23:25:43,947 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Started command processor>
+2011-04-01 23:25:43,949 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:25:43,954 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:25:44,424 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Fixture Code |>
+2011-04-01 23:25:44,424 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Fixture Code]>
+2011-04-01 23:25:47,132 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:25:47,133 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:25:48,795 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:25:48,796 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:25:48,855 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:25:48,855 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:25:48,870 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:25:48,871 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:25:49,017 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Fixture Code |>
+2011-04-01 23:25:49,017 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Fixture Code]>
+2011-04-01 23:25:51,854 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:25:51,855 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:25:53,598 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:25:53,598 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:25:53,635 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:25:53,636 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:25:53,636 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | open | /FitNesse.UserGuide |>
+2011-04-01 23:25:53,636 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: open with values: [/FitNesse.UserGuide]>
+2011-04-01 23:25:53,809 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Test Systems |>
+2011-04-01 23:25:53,809 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Test Systems]>
+2011-04-01 23:25:56,295 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | clickAndWait | link=Where Used |>
+2011-04-01 23:25:56,295 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: click with values: [link=Where Used]>
+2011-04-01 23:25:57,867 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Performing | verifyTextPresent | FitNesse.UserGuide |>
+2011-04-01 23:25:57,867 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <executeCommand. Command: isTextPresent with values: [FitNesse.UserGuide]>
+2011-04-01 23:25:57,895 DEBUG [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor returned 'true'>
+2011-04-01 23:25:57,895 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <command isTextPresent with value 'FitNesse.UserGuide' compared to output 'true' is: true>
+2011-04-01 23:25:58,584 INFO [com.xebia.incubator.xebium.SeleniumDriverFixture] - <Command processor stopped>

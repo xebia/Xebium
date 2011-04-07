@@ -1,4 +1,4 @@
-Here is a complex examle using store- and waitFor- commands:
+!3 Here is a complex example using store- and waitFor- commands:
 
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |

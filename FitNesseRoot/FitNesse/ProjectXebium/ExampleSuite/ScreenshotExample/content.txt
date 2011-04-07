@@ -1,5 +1,4 @@
-Demonstrate how to create a screenshot of the current browser page.
-
+!2 Demonstrate how to create a screenshot of the active browser page in your test.
 
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}  |

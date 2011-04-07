@@ -2,7 +2,7 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help/>
+	<Help>Testcase that stores and reads back values to and from Variables</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
