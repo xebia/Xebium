@@ -56,6 +56,11 @@
 		</snapshotRepository>
 	</distributionManagement>
 
+  <scm>
+    <connection>scm:git:git://github.com/xebia/Xebium.git</connection>
+    <developerConnection>scm:git:git@github.com:xebia/Xebium.git</developerConnection>
+    <url>scm:git:http://github.com/xebia/Xebium</url>
+  </scm>
 
 	<dependencies>
 		<dependency>
