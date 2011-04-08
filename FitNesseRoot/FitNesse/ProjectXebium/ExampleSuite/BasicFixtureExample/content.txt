@@ -4,12 +4,12 @@
 | ensure | do | !-${command}-! | on | !-${target}-! |
 | ensure | do | !-${command}-! | on | !-${target}-! | with | !-${value}-! |
 
-!2 The script (used in the basic fixture) would turn out something like:
+!2 The script (used by the fixture) would turn out something like:
 
 | script | selenium driver fixture | 
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
-| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |
-| ensure | do | verifyTitle | on | !-FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |
-| ensure | do | verifyTextPresent | on | Test |
+| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.BasicFixtureExample-! |
+| ensure | do | verifyTitle | on | !-FitNesse.ProjectXebium.ExampleSuite.BasicFixtureExample-! |
+| ensure | do | verifyTextPresent | on | Xebium |
 | ensure | do | verifyText | on | //tr[1]/td[2] | with | selenium driver fixture |
 | stop browser |
