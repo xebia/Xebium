@@ -247,5 +247,11 @@
 			<name>Albert Sikkema</name>
 			<organization>Xebia B.V.</organization>
 		</developer>
+		<developer>
+			<id>bvanklingeren</id>
+			<email>bvanklingeren@xebia.com</email>
+			<name>Boudewijn van Klingeren</name>
+			<organization>Xebia B.V.</organization>
+		</developer>
 	</developers>
 </project>
