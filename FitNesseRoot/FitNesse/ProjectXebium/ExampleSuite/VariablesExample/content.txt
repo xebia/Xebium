@@ -1,4 +1,4 @@
-This page gives a nice demonstration of using variables to store and read back stuff from Selenium.
+!2 This page gives a nice demonstration of using variables to store and read back stuff from Selenium.
 
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT} |

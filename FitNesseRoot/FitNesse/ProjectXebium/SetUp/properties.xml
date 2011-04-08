@@ -2,13 +2,13 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help/>
+	<Help>Setup page inporting the Xebium code</Help>
+	<Normal/>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
 	<Suites/>
-	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>

@@ -1,13 +1,12 @@
-This is an example of the table fixture format
-
-The used format should be
+!2 This is an example of the table format used by Xebium
+!3 The used format as it is created by the Selenium IDE Xebium formatter
 |comment |
 | ensure | do | !-${command}-! | on | !-${target}-! |
 | ensure | do | !-${command}-! | on | !-${target}-! | with | !-${value}-! |
 
-The script (used in the basic fixture) would turn out something like:
+!2 The script (used in the basic fixture) would turn out something like:
 
-|script|selenium driver fixture| 
+| script | selenium driver fixture | 
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |
 | ensure | do | verifyTitle | on | !-FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |

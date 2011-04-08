@@ -1,3 +1,7 @@
+!contents -R2 -g -h
+
+!*> '''Variables Defined'''
+
 !define TEST_SYSTEM {slim}
 
-!contents -g
+*!

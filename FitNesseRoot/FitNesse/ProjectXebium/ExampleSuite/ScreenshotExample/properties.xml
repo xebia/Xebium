@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <properties>
+	<Edit/>
 	<Files/>
-	<Help></Help>
-	<Normal/>
+	<Help>Creating a Screenshot of your browser in a test</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suites></Suites>
+	<Suites/>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>
