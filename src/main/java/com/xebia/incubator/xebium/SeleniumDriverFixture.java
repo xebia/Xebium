@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -42,7 +43,11 @@ public class SeleniumDriverFixture {
 		WebDriver driver;
 		
 		if ("firefox".equalsIgnoreCase(browser)) {
-			driver = new FirefoxDriver();
+			FirefoxProfile profile = new FirefoxProfile();
+			// Ensure we deal with untrusted and unverified hosts.
+			profile.setAcceptUntrustedCertificates(true);
+			profile.setAssumeUntrustedCertificateIssuer(true);
+			driver = new FirefoxDriver(profile);
 		} else if ("iexplore".equalsIgnoreCase(browser)) {
 			driver = new InternetExplorerDriver();
 		} else if ("chrome".equalsIgnoreCase(browser)) {
@@ -60,8 +65,16 @@ public class SeleniumDriverFixture {
 		LOG.debug("Started command processor");
 	}
 
-	public void startBrowserOnHostOnPortOnUrl(final String browserStartCommand, final String serverHost, final int serverPort, final String browserUrl) {
-		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browserStartCommand, FitNesseUtil.removeAnchorTag(browserUrl));
+	public void startBrowserOnUrlUsingRemoteServer(final String browser, final String browserUrl) {
+		startBrowserOnUrlUsingRemoteServerOnHost(browser, browserUrl, "localhost");
+	}
+
+	public void startBrowserOnUrlUsingRemoteServerOnHost(final String browser, final String browserUrl, final String serverHost) {
+		startBrowserOnUrlUsingRemoteServerOnHostOnPort(browser, browserUrl, serverHost, 4444);
+	}
+
+	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
+		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browser, FitNesseUtil.removeAnchorTag(browserUrl));
 		commandProcessor.start();
 		LOG.debug("Started HTML command processor");
 	}
