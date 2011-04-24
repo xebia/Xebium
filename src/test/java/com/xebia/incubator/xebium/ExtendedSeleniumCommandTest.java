@@ -160,6 +160,7 @@ public class ExtendedSeleniumCommandTest {
 		assertTrue(command.matches("glob:A*D", "A something in the middle D"));
 		assertFalse(command.matches("glob:A?D", "ABCD"));
 		assertFalse(command.matches("glob:A*D", "DCBA"));
+		assertTrue(command.matches("glob:(14)", "(14)"));
 	}
 
 	@Test
@@ -171,6 +172,7 @@ public class ExtendedSeleniumCommandTest {
 		assertTrue(command.matches("A*D", "A something in the middle D"));
 		assertFalse(command.matches("A?D", "ABCD"));
 		assertFalse(command.matches("A*D", "DCBA"));
+		assertTrue(command.matches("(14)", "(14)"));
 	}
 
 	@Test
@@ -180,6 +182,7 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertTrue(command.matches("regexp:.*multiple lines.*", text));
 		assertTrue(command.matches("regexpi:.*multiple lines.*", text));
+		assertEquals("multiple lines", Globber.convertGlobToRegEx("*multiple lines*"));
 		assertTrue(command.matches("glob:*multiple lines*", text));
 
 	}
