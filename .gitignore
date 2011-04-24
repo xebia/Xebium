@@ -7,6 +7,6 @@ FitNesseRoot/RecentChanges
 FitNesseRoot/files/selenium/testResults.html
 FitNesseRoot/files/testResults/
 target/
-velocity.log
+*.log
 .idea
 *.iml
