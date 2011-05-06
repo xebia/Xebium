@@ -18,7 +18,7 @@
             and FitNesse is great for maintainable acceptance testing.
             Combining them gives you the ease of FitNesse <strong>and</strong> the power of Selenium, in a non-intrusive way:
             record your Selenium tests with the SeleniumIDE like you're used to,
-            then translate them automatically and run them from FitNesse!            
+            translate them automatically and run them from FitNesse!            
         </p>
         <p>✔&nbsp; Full Selenium-IDE - FitNesse roundtrip with your web tests.
         </p><p>✔&nbsp; Create data-driven tests.
@@ -45,17 +45,16 @@
       <div class="feature-block">
         <img src="seleniumIDE1.png" alt="SeleniumIDE table">
         <h3>Two way translation</h3>
-        <p>A script recorded in selenium can be easily translated into wiki syntax and pasted into FitNesse.
-        The other way around works too: wiki syntax can be copied to SeleniumIDE and translated into a selenium script.
+        <p>With use of the Xebium Format a script recorded in Seleinium IDE is automatically translated into wiki syntax and can be pasted into FitNesse.
+        And reverse: Wiki syntax can be copied back to Selenium IDE and can run as a selenium script.
         Very useful for debugging</p>
       </div>
       
       <div class="feature-block">
         <img src="seleniumIDE2.png" alt="SeleniumIDE source">
         <h3>Power of FitNesse</h3>
-        <p>You can execute any custom build fixture code around the execution of the selenium test.
-        This is great for bringing the system under test into the right state for the test to run.
-        It is also easier to clean up after a test.</p>
+        <p>You can execute any custom build fixture code around the execution of the selenium test and use the default Setup and Teardown mechanism.
+        This is great for bringing the system under test into the right state, setting up pre-conditions and cleaning up before running a test.</p>
       </div>
       
       <br clear="both">
@@ -72,7 +71,14 @@
 
       <div class="feature-block">
         <h3>Data driven testing</h3>
-        <p>Use FitNesse's variable substitution to make tests less dependent on hardcoded values.
+        <p>FitNesse's variable substitution makes tests less dependent on hardcoded values.<br/>
+       Use scenario tables to out-of-the-box create new methods enabling data-driven testing.  
+        </p>
+      </div>
+      
+            <div class="feature-block">
+        <h3>Reduced development costs</h3>
+        <p>Xebium empowers you to use FitNesse without any development support, no coding is required to get you started.  
         </p>
       </div>
             
@@ -103,7 +109,7 @@ git://github.com/xebia/Xebium</pre>
       <h3>Getting started</h3>
       
       <p>Prerequisites</p
-      <p>Make sure both FitNesse and Selenium are installed.</p>
+      <p>Make sure both FitNesse and Firefox with the Selenium IDE plugin are installed.</p>
       <ul>
         <li>Save the <a href="https://github.com/downloads/xebia/Xebium/xebium-1.0-SNAPSHOT-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
         <li>Start FitNesse</li>
@@ -118,15 +124,18 @@ git://github.com/xebia/Xebium</pre>
 | Import |
 | com.xebia.incubator.xebium |</pre>
         </li>
-        <li>Open SeleniumIDE and go to <i>Option -> Options</i>.<br/> Click the <i>Formats</i> tab and click the <i>Add</i> button.</li>          
-        <li>Provide a descriptive name like Xebium and copy the contents <a href="https://github.com/xebia/Xebium/blob/master/src/main/resources/FitnesseSeleniumIDE.js">FitnesseSeleniumIDE.js</a> into the text editor. </li>
-        <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy the code in the into the copy buffer and paste it into the testpage created earlier. The only thing left is to change the localhost into url of the site you actually want to test against.</li>
-        <li>Save it, and run the FitNesse test. 
+        <li>Open SeleniumIDE and go to <i>Options -> Options...</i>.<br/> Click the <i>Formats</i> tab and click the <i>Add</i> button.</li>          
+        <li>Provide a descriptive name like Xebium and copy the contents <a href="https://github.com/xebia/Xebium/blob/master/src/main/resources/FitnesseSeleniumIDE.js">FitnesseSeleniumIDE.js</a> into the text editor and press save. </li>
+        <li>Goto <i>Options -> Format</i> and select the previously created Xebium format.</li>
+        <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy its content into the copy buffer.</li>
+        <li>Go back to to the previously created testpage in FitNesse and paste the recorded script from the buffer.</li>
+        <li>The only thing left is to change the test url, which is by default<small>*</small> set to localhost, into the url of the site you actually want to test against.</li>
+        <li>Save it, and run the FitNesse test.<br/><br/>
+        <small>* Change the default base url by opening SeleniumIDE and going to <i>Options>Options...</i> select the <i>Formats</i> tab and select the Xebium format, now change the "Default base url" into your test url.</small>
       </ul>
       <h3>Screencast</h3>
       A screencast will come soon...
     </div>
-    
     <div id="bottom-block">
       <div class="disclaimer">
         disclaimer:
