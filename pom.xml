@@ -11,6 +11,7 @@
 		<fitnesse.version>20100303</fitnesse.version>
 		<fitlibrary.version>20091020</fitlibrary.version>
 		<fitnesse.port>8000</fitnesse.port>
+		<fitnesse.expiration>0</fitnesse.expiration>
 	</properties>
 
 	<repositories>
@@ -206,6 +207,8 @@
 										<argument>-o</argument>
 										<argument>-p</argument>
 										<argument>${fitnesse.port}</argument>
+										<argument>-e</argument>
+										<argument>${fitnesse.expiration}</argument>
 										<argument>-d</argument>
 										<argument>.</argument>
 									</arguments>
