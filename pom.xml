@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 	<properties>
 		<selenium.version>2.0b3</selenium.version>
-		<fitnesse.version>20100303</fitnesse.version>
+		<fitnesse.version>20110104</fitnesse.version>
 		<fitlibrary.version>20091020</fitlibrary.version>
 		<fitnesse.port>8000</fitnesse.port>
 		<fitnesse.expiration>0</fitnesse.expiration>
@@ -115,6 +115,14 @@
 	</dependencies>
 
 	<build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+         <artifactId>wagon-ssh</artifactId>
+         <version>1.0-beta-7</version>
+      </extension>
+    </extensions>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
