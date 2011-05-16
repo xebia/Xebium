@@ -225,6 +225,11 @@ public class SeleniumDriverFixture {
 				LOG.debug("Command processor returned '" + output + "'");
 			}
 
+			// Deal with Http status code
+			if (commandProcessor instanceof HttpCommandProcessor && output.startsWith("OK,")) {
+				output = output.substring(3);
+			}
+			
 			if (command.isAndWaitCommand()) {
 				commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
 			}
