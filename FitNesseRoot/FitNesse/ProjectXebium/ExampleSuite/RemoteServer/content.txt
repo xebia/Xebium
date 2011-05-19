@@ -1,0 +1,15 @@
+| script | selenium server fixture |
+| note | start selenium server | -proxyInjectionMode -debug |
+| start selenium server |
+
+| script | selenium driver fixture |
+| start browser | firefox | on url | http://google.com | using remote server |
+| ensure | do | open | on | / |
+| ensure | do | type | on | q | with | Xebium |
+| ensure | do | verifyTextPresent | on | Project Xebium |
+| stop browser |
+
+
+| script | selenium server fixture |
+| stop selenium server |
+
