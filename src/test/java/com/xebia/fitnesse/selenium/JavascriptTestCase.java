@@ -273,4 +273,20 @@ public class JavascriptTestCase {
         assertEquals("MyVar", eval("commands[0].value"));
     }
 
+    @Test
+    public void shouldMakeCommentsForNonFitnesseLines() {
+		// Only open and check command should be parsed
+		eval("var fittable = '| script | selenium driver fixture |\\n' +" +
+				"'| start browser | firefox | on url | http://example.com |\\n' +" +
+				"'some crap\\n' +" +
+				"'different crap\\n' +" +
+                "'| stop browser |\\n';");
+		eval("var tc = new TestCase();");
+		eval("parse(tc, fittable);");
+		eval("var commands = tc.commands;");
+
+		assertEquals(2.0, eval("commands.length"));
+		assertEquals("Error in line: 'some crap'", eval("commands[0].comment"));
+    }
+
 }

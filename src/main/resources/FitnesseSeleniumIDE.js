@@ -119,8 +119,10 @@ function getCommandForSource(line) {
 	// format: | note | ${text} |
 	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*/.exec(line)) {
 		return new Comment(match[1]);
-	} else {
-		log.info('Ignoring line: "' + line + '"');
+		
+	// Ignore | script/start browser/stop browser |, log the rest
+	} else if (!/^\s*$/.test(line) && !/^\|\s*script\s*\|.*/.test(line) && !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
+		return new Comment("Error in line: '" + line + "'");
 	}
 }
 

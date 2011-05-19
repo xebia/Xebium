@@ -1,6 +1,5 @@
 | script | selenium server fixture |
-| note | start selenium server | -proxyInjectionMode -debug |
-| start selenium server |
+| start selenium server | -proxyInjectionMode |
 
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://google.com | using remote server |
