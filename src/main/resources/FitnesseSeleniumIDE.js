@@ -35,7 +35,7 @@ function getSourceForCommand(commandObj) {
 	function escape(s) {
 		var m;
 		if (m = /^\$\{(\w+)\}$/.exec(s)) { return '$' + m[1]; }
-     	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s)) { return "!-" + s + "-!"; }
+     	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /@/.test(s)) { return "!-" + s + "-!"; }
 		return s;
 	}
 	
@@ -120,8 +120,8 @@ function getCommandForSource(line) {
 	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*/.exec(line)) {
 		return new Comment(match[1]);
 		
-	// Ignore | script/start browser/stop browser |, log the rest
-	} else if (!/^\s*$/.test(line) && !/^\|\s*script\s*\|.*/.test(line) && !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
+	// Ignore | script/scenario/start browser/stop browser |, log the rest
+	} else if (!/^\s*$/.test(line) && !/^\|\s*script\s*\|.*/i.test(line) && !/^\|\s*scenario\s*\|.*/i.test(line) && !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
 		return new Comment("Error in line: '" + line + "'");
 	}
 }

@@ -226,6 +226,7 @@ public class JavascriptTestCase {
         eval("commands.push(new Command('someUrl', 'http://example.com'))");
         eval("commands.push(new Command('testWikiWord', 'WikiWord', 'W10W'))");
         eval("commands.push(new Command('testVariable', 'foo', '${locVar}'))");
+        eval("commands.push(new Command('testEmail', 'anonymous@example.com'))");
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
@@ -234,6 +235,7 @@ public class JavascriptTestCase {
                 "| ensure | do | someUrl | on | !-http://example.com-! |\n" +
                 "| ensure | do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
                 "| ensure | do | testVariable | on | foo | with | $locVar |\n" +
+                "| ensure | do | testEmail | on | !-anonymous@example.com-! |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -287,6 +289,25 @@ public class JavascriptTestCase {
 
 		assertEquals(2.0, eval("commands.length"));
 		assertEquals("Error in line: 'some crap'", eval("commands[0].comment"));
+    }
+
+    @Test
+    public void shouldIgnoreFitnesseTableHeadings() {
+		// Only open and check command should be parsed
+		eval("var fittable = '| script | selenium driver fixture |\\n' +" +
+				"'| scenario | some name |\\n' +" +
+				"'| SCRIPT | some name |\\n' +" +
+				"'| ScEnArIo | some name |\\n' +" +
+				"'| start browser | firefox | on url | http://example.com |\\n' +" +
+				"'| ensure | do | something | on | |' +" +
+				"'different crap\\n' +" +
+                "'| stop browser |\\n';");
+		eval("var tc = new TestCase();");
+		eval("parse(tc, fittable);");
+		eval("var commands = tc.commands;");
+
+		assertEquals(1.0, eval("commands.length"));
+		assertEquals("something", eval("commands[0].command"));
     }
 
 }
