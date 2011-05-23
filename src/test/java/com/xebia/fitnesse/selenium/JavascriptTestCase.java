@@ -288,7 +288,7 @@ public class JavascriptTestCase {
 		eval("var commands = tc.commands;");
 
 		assertEquals(2.0, eval("commands.length"));
-		assertEquals("Error in line: 'some crap'", eval("commands[0].comment"));
+		assertEquals("Can't parse line: 'some crap'", eval("commands[0].comment"));
     }
 
     @Test
@@ -309,5 +309,25 @@ public class JavascriptTestCase {
 		assertEquals(1.0, eval("commands.length"));
 		assertEquals("something", eval("commands[0].command"));
     }
+
+    @Test
+    public void shouldParseDataPastedFromBrowser() {
+		// Only open and check command should be parsed
+		eval("var fittable = 'script \tselenium driver fixture\\n' +" +
+				"'start browser \tfirefox \ton url \thttp://example.com\\n' +" +
+				"'ensure \tdo \topen \ton \thttp://www.google.com \twith \tdummy\\n' +" +
+                "'stop browser\\n';");
+		eval("var tc = new TestCase();");
+		eval("parse(tc, fittable);");
+		eval("var commands = tc.commands;");
+
+		assertEquals(2.0, eval("commands.length"));
+		assertEquals("open", eval("commands[0].command"));
+        assertEquals("http://www.google.com", eval("commands[0].target"));
+        assertEquals("dummy", eval("commands[0].value"));
+		assertEquals("open", eval("commands[0].command"));
+
+    }
+
 
 }

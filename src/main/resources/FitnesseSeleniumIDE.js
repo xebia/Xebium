@@ -80,8 +80,32 @@ function parse(testCase, source) {
     for (i = 0; i < lines.length; i++) {
         // Catch some special cases (?)
         // TODO: extract BaseUrl
-    log.info('Iterating source for line "' + i + '"');
-        var command = getCommandForSource(lines[i]);
+        log.debug('Parsing line ' + i + ': "' + lines[i] + '"');
+        var command;
+        
+        try {
+        	command = getCommandForSource(lines[i]);
+        } catch (err) {
+        	if (err == 'unparsable') {
+	    		if (/\t/.test(lines[i])) {
+	    			// Line may be pasted directly from FitNesse page output
+	    			var line = '|' + lines[i].replace(/\t/g, '|') + '|';
+	    			try {
+	    				command = getCommandForSource(line);
+	    			} catch (err) {
+	    	        	if (err == 'unparsable') {
+	    	        		command = new Comment("Can't parse line: '" + line + "'");
+	    	        	} else {
+	    	        		log.error(err);
+	    	        	}
+	    			}
+	    		} else {
+	    			command = new Comment("Can't parse line: '" + lines[i] + "'");
+	    		}
+        	} else {
+        		log.error(err);
+        	}
+        }
         if (command) commands.push(command);    
     }
     
@@ -90,7 +114,7 @@ function parse(testCase, source) {
 
 function getCommandForSource(line) {
 	function unescape(s) {
-		var m
+		var m;
 		// Convert variable from $fit to ${selenese} style
 		if (m = /\$(\w+)$/.exec(s)) { s = '${' + m[1] + '}'; }
 		// Clear escape characters from text section
@@ -122,7 +146,7 @@ function getCommandForSource(line) {
 		
 	// Ignore | script/scenario/start browser/stop browser |, log the rest
 	} else if (!/^\s*$/.test(line) && !/^\|\s*script\s*\|.*/i.test(line) && !/^\|\s*scenario\s*\|.*/i.test(line) && !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
-		return new Comment("Error in line: '" + line + "'");
+		throw "unparsable";
 	}
 }
 
