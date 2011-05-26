@@ -329,5 +329,8 @@ public class JavascriptTestCase {
 
     }
 
-
+    @Test
+    public void shouldParseLenient() {
+        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
+    }
 }

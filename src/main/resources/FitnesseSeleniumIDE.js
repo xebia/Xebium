@@ -89,7 +89,7 @@ function parse(testCase, source) {
         	if (err == 'unparsable') {
 	    		if (/\t/.test(lines[i])) {
 	    			// Line may be pasted directly from FitNesse page output
-	    			var line = '|' + lines[i].replace(/\t/g, '|') + '|';
+	    			var line = '| ' + lines[i].replace(/\t/g, ' | ') + ' |';
 	    			try {
 	    				command = getCommandForSource(line);
 	    			} catch (err) {
@@ -125,27 +125,34 @@ function getCommandForSource(line) {
 	var match;
 	
 	// | ensure | do | ${command} | on | ${target} | with | ${value} |
-	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*with\s*\|\s*([^\|]+?)\s*\|\s*/.exec(line)) {
+	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*with\s*\|\s*([^\|]+?)\s*\|/.exec(line)) {
 		return new Command(match[1], unescape(match[2]), unescape(match[3]));
 
 	// | ensure | do | ${command} | on | ${target} |
-	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|]+?)\s*\|\s*/.exec(line)) {
+	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|]+?)\s*\|/.exec(line)) {
 		return new Command(match[1], unescape(match[2]));
 
+	// | ensure | do | ${command} | on | (some copy-paste cases)
+	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|/.exec(line)) {
+		return new Command(match[1]);
+
 	// format: | $value= | is | ${command} | on | ${target} |
-	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
+	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|/.exec(line)) {
 		return new Command(match[2].replace(/^get/, 'store'), unescape(match[3]), unescape(match[1]));
 
 	// format: | $value= | is | ${command} |
-	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*/.exec(line)) {
+	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|/.exec(line)) {
 		return new Command(match[2].replace(/^get/, 'store'), unescape(match[1]));
 
 	// format: | note | ${text} |
-	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*/.exec(line)) {
+	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|/.exec(line)) {
 		return new Comment(match[1]);
 		
 	// Ignore | script/scenario/start browser/stop browser |, log the rest
-	} else if (!/^\s*$/.test(line) && !/^\|\s*script\s*\|.*/i.test(line) && !/^\|\s*scenario\s*\|.*/i.test(line) && !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
+	} else if (!/^\s*$/.test(line)
+			&& !/^\|\s*script\s*\|.*/i.test(line)
+			&& !/^\|\s*scenario\s*\|.*/i.test(line)
+			&& !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
 		throw "unparsable";
 	}
 }
