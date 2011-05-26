@@ -47,6 +47,8 @@ public class SeleniumDriverFixture {
 			// Ensure we deal with untrusted and unverified hosts.
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
+			// Allow Basic Authentication without confirmation
+			profile.setPreference("network.http.phishy-userpass-length", 255);
 			driver = new FirefoxDriver(profile);
 		} else if ("iexplore".equalsIgnoreCase(browser)) {
 			driver = new InternetExplorerDriver();
