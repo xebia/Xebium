@@ -1,7 +1,8 @@
 package com.xebia.incubator.xebium;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.server.cli.RemoteControlLauncher;
@@ -9,7 +10,7 @@ import org.openqa.selenium.server.cli.RemoteControlLauncher;
 
 public class SeleniumServerFixture {
 
-	private static Logger LOG = Logger.getLogger(SeleniumServerFixture.class);
+	private static Logger LOG = LoggerFactory.getLogger(SeleniumServerFixture.class);
 
 	private static SeleniumServer seleniumProxy;
 

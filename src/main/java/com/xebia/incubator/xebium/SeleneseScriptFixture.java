@@ -2,15 +2,15 @@ package com.xebia.incubator.xebium;
 
 import java.io.File;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.server.htmlrunner.HTMLLauncher;
 
 public class SeleneseScriptFixture {
 
-	private static Logger LOG = Logger.getLogger(SeleneseScriptFixture.class);
+	private static Logger LOG = LoggerFactory.getLogger(SeleneseScriptFixture.class);
 	
 	private String browser = "*firefox";
 	private String browserURL = "http://google.com";
@@ -19,10 +19,6 @@ public class SeleneseScriptFixture {
 	private boolean multiWindow = false;
 
 	private SeleniumServer remoteControl;
-
-	static {
-		BasicConfigurator.configure();
-	}
 
     protected String getBrowserCode(String browser) {
         if ("IE".equalsIgnoreCase(browser))

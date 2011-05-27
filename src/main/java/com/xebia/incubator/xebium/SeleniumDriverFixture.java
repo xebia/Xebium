@@ -7,8 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +23,7 @@ import com.thoughtworks.selenium.SeleniumException;
 
 public class SeleniumDriverFixture {
 
-	private static Logger LOG = Logger.getLogger(SeleniumDriverFixture.class);
+	private static Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
 	private CommandProcessor commandProcessor;
 
@@ -33,11 +33,6 @@ public class SeleniumDriverFixture {
 	
 	private long pollDelay = 100;
 	
-	// TODO: decide: move to method or move to separate fixture.
-	static {
-		BasicConfigurator.configure();
-	}
-
 	public CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
 		WebDriver driver;
