@@ -279,6 +279,12 @@ public class ExtendedSeleniumCommand {
 	 */
 	public boolean matches(String expected, String actual) {
 		boolean result;
+		
+		// Be graceful with empty strings
+		if (actual == null) {
+			actual = "";
+		}
+		
 		if (isBooleanCommand()) {
 			result = "true".equals(actual);
 			

@@ -173,6 +173,7 @@ public class ExtendedSeleniumCommandTest {
 		assertFalse(command.matches("A?D", "ABCD"));
 		assertFalse(command.matches("A*D", "DCBA"));
 		assertTrue(command.matches("(14)", "(14)"));
+		assertFalse(command.matches("A*D", null));
 	}
 
 	@Test
