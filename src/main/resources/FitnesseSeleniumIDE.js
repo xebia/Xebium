@@ -5,13 +5,17 @@
 * @param name The name of the test case, if any. It may be used to embed title into the source.
 */
 function format(testCase, name) {
-     var baseUrl = testCase.baseUrl || options.baseUrl;
+     var baseUrl = testCase.getBaseURL();
     
-     var commandsText = '| script | selenium driver fixture |\n';
-     commandsText += '| start browser | ' + options.browser + ' | on url | ' + baseUrl + ' |\n';
-     commandsText += formatCommands(testCase.commands);
-     commandsText += '| stop browser |\n';
- 
+     var commandsText = '| script' + ('true' == options.libraryMode ? '' : ' | selenium driver fixture') + ' |\n';
+     if ('true' == options.noStartStop) {
+         commandsText += formatCommands(testCase.commands);
+     } else {
+		 commandsText += '| start browser | ' + options.browser + ' | on url | ' + baseUrl + ' |\n';
+	     commandsText += formatCommands(testCase.commands);
+	     commandsText += '| stop browser |\n';
+     }
+     
      return commandsText;
 }
 
@@ -159,12 +163,13 @@ function getCommandForSource(line) {
 
 this.options = {
     'browser': 'firefox',
-    'baseUrl': 'http://localhost'
+    'libraryMode': false,
+    'noStartStop': false
 }
 
 this.configForm =
         '<description>Default browser</description>' +
         '<textbox id="options_browser" />' +
-        '<description>Default base URL</description>' +
-        '<textbox id="options_baseUrl" />';
-        
+        '<checkbox id="options_libraryMode" label="Format as if the selenium driver fixture is defined as library"/>' + 
+        '<checkbox id="options_noStartStop" label="Do not add start/stop browser lines"/>'; 
+

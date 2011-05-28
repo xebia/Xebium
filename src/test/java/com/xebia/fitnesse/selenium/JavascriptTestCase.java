@@ -120,7 +120,25 @@ public class JavascriptTestCase {
 					 "| stop browser |\n" 
 					 , result);
 	}
-	
+
+    @Test
+    public void testLibraryModeOption() {
+		String result = (String) eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com'; options.libraryMode = 'true'; format(tc, 'name');");
+		
+		assertEquals("| script |\n" +
+					 "| start browser | firefox | on url | http://example.com |\n" +
+					 "| stop browser |\n" 
+					 , result);
+    }
+
+    @Test
+    public void testNoStartStopOption() {
+		String result = (String) eval("var tc = new TestCase(); options.noStartStop = 'true'; format(tc, 'name');");
+		
+		assertEquals("| script | selenium driver fixture |\n"
+					 , result);
+    }
+
     @Test
     public void testExecuteCommandOnTargetWithValueToSelenese() {
         eval("var cmd = getCommandForSource('| ensure | do | {command} | on | {target} | with | complex value |');");
@@ -333,4 +351,5 @@ public class JavascriptTestCase {
     public void shouldParseLenient() {
         // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
     }
+    
 }

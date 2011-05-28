@@ -429,6 +429,9 @@ TestCase.prototype.setBaseURL = function(baseURL) {
     this.baseURL = baseURL;
 }
 
+TestCase.prototype.getBaseURL = function() {
+    return this.baseUrl;
+}
 
 log = {
   debug: function() {},
