@@ -7,7 +7,7 @@ Features
 
 * Full Selenium-IDE - FitNesse roundtrip with your web tests
 * Create data-driven tests.
-* Tests are executed using the modern WebDriver interfaces.
+* Tests are executed using the modern WebDriver interfaces and Selenium Server.
 * Tests are run from FitNesse using the SLIM engine.
 
 Getting Started
