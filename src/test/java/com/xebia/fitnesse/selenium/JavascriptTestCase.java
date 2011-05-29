@@ -1,6 +1,8 @@
 package com.xebia.fitnesse.selenium;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,8 +23,8 @@ import org.mozilla.javascript.Undefined;
 
 public class JavascriptTestCase {
 
-	final static String TEST_ENVIRONMENT = "testCase.js";
-	final static String FILE_UNDER_TEST = "FitnesseSeleniumIDE.js";
+	final static String TEST_ENVIRONMENT = "src/test/resources/testCase.js";
+	final static String FILE_UNDER_TEST = "src/main/ide/chrome/content/formats/xebiumformatter.js";
 
 	final String EOL = System.getProperty("line.separator");
 
@@ -79,7 +81,7 @@ public class JavascriptTestCase {
 		StringBuffer contents = new StringBuffer();
 		
 		try {
-			InputStream in = getClass().getClassLoader().getResourceAsStream(name);
+			InputStream in = new FileInputStream(new File(name));
 			reader = new BufferedReader(new InputStreamReader(in));
 			String text = null;
 

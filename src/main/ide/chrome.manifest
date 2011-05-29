@@ -1,0 +1,7 @@
+content xebiumformatter chrome/content/
+
+#locale xebiumformatter en-US chrome/locale/en-US/
+#locale xebiumformatter fr-FR chrome/locale/fr-FR/
+
+# Custom format
+overlay chrome://selenium-ide/content/selenium-ide-overlay.xul chrome://xebiumformatter/content/formats/xebiumformatter-loader.xul
