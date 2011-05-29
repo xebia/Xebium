@@ -83,7 +83,7 @@ function parse(testCase, source) {
 
     for (i = 0; i < lines.length; i++) {
         // Catch some special cases (?)
-        // TODO: extract BaseUrl
+        // TODO: extract BaseUrl -> testCase.setBaseURL(url)
         log.debug('Parsing line ' + i + ': "' + lines[i] + '"');
         var command;
         
@@ -92,8 +92,8 @@ function parse(testCase, source) {
         } catch (err) {
         	if (err == 'unparsable') {
 	    		if (/\t/.test(lines[i])) {
-	    			// Line may be pasted directly from FitNesse page output
-	    			var line = '| ' + lines[i].replace(/\t/g, ' | ') + ' |';
+	    			// Line may be pasted directly from FitNesse page output (<-, -> for variable substitutions)
+	    			var line = '| ' + lines[i].replace(/<-\[.*\]\s*\t/, '=\t').replace(/->\[.*\]/, '').replace(/\t/g, ' | ') + ' |';
 	    			try {
 	    				command = getCommandForSource(line);
 	    			} catch (err) {

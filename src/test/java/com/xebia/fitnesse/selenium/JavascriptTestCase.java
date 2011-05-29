@@ -174,6 +174,15 @@ public class JavascriptTestCase {
     }
     
     @Test
+    public void shouldParseLenient() {
+        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
+        eval("var cmd = getCommandForSource('| ensure | do | command | on |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+
+    @Test
     public void testExecuteCommandOnEscapedTargetWithEscapedValueToSelenese() {
         eval("var cmd = getCommandForSource('| ensure | do | command | on | !-target-! | with | !-value-!|');");
         assertEquals("command", eval("cmd.command"));
@@ -350,8 +359,37 @@ public class JavascriptTestCase {
     }
 
     @Test
-    public void shouldParseLenient() {
-        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
+    public void shouldParseSubstitutedVariables() {
+    	eval("var fittable = 'script\tselenium driver fixture\\n' +" +
+			    "'start browser\tfirefox\ton url\thttp://localhost:8000/\\n' +" +
+			    "'ensure\tdo\topen\ton\t/FitNesse.ProjectXebium.ExampleSuite.VariablesExample\\n' +" +
+			    "'ensure\tdo\tsetTimeout\ton\t1000\\n' +" +
+			    "'$pageName<-[VariablesExample]\tis\tgetText\ton\t//span\\n' +" +
+			    "'$title<-[FitNesse.ProjectXebium.ExampleSuite.VariablesExample]\tis\tgetTitle\\n' +" +
+			    "'ensure\tdo\tclick\ton\tlink=Search\\n' +" +
+			    "'ensure\tdo\ttype\ton\tsearchString\twith\t$pageName->[VariablesExample]\\n' +" +
+			    "'ensure\tdo\twaitForTextPresent\ton\t$title->[FitNesse.ProjectXebium.ExampleSuite.VariablesExample]\\n' +" +
+			    "'stop browser';");
+
+		eval("var tc = new TestCase();");
+		eval("parse(tc, fittable);");
+		eval("var commands = tc.commands;");
+
+		assertEquals(8.0, eval("commands.length"));
+
+		assertEquals(eval("commands[2].comment").toString(), "storeText", eval("commands[2].command"));
+        assertEquals("//span", eval("commands[2].target"));
+        assertEquals("pageName", eval("commands[2].value"));
+
+		assertEquals(eval("commands[3].comment").toString(), "storeTitle", eval("commands[3].command"));
+        assertEquals("title", eval("commands[3].target"));
+
+		assertEquals(eval("commands[5].comment").toString(), "type", eval("commands[5].command"));
+        assertEquals("searchString", eval("commands[5].target"));
+        assertEquals("${pageName}", eval("commands[5].value"));
+
+		assertEquals(eval("commands[6].comment").toString(), "waitForTextPresent", eval("commands[6].command"));
+        assertEquals("${title}", eval("commands[6].target"));
     }
-    
+
 }
