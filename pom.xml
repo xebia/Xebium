@@ -229,6 +229,7 @@
       </build>
     </profile>
   </profiles>
+  <url>http://xebia.github.com/Xebium</url>
 
   <developers>
     <developer>
