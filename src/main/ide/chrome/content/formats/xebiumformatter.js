@@ -93,7 +93,7 @@ function parse(testCase, source) {
         	if (err == 'unparsable') {
 	    		if (/\t/.test(lines[i])) {
 	    			// Line may be pasted directly from FitNesse page output (<-, -> for variable substitutions)
-	    			var line = '| ' + lines[i].replace(/<-\[.*\]\s*\t/, '=\t').replace(/->\[.*\]/, '').replace(/\t/g, ' | ') + ' |';
+	    			var line = '| ' + lines[i].replace(/<-\[.*\]\s*\t/, '=\t').replace(/->\[.*?\]/g, '').replace(/\t/g, ' | ') + ' |';
 	    			try {
 	    				command = getCommandForSource(line);
 	    			} catch (err) {
@@ -120,7 +120,7 @@ function getCommandForSource(line) {
 	function unescape(s) {
 		var m;
 		// Convert variable from $fit to ${selenese} style
-		if (m = /\$(\w+)$/.exec(s)) { s = '${' + m[1] + '}'; }
+		s = s.replace(/\$(\w+)/g, '${$1}');
 		// Clear escape characters from text section
 		if (m = /^!-(.+?)-!$/.exec(s)) { s = m[1]; }
 		return s;
@@ -141,7 +141,7 @@ function getCommandForSource(line) {
 		return new Command(match[1]);
 
 	// format: | $value= | is | ${command} | on | ${target} |
-	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|\s]+)\s*\|/.exec(line)) {
+	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|]+?)\s*\|/.exec(line)) {
 		return new Command(match[2].replace(/^get/, 'store'), unescape(match[3]), unescape(match[1]));
 
 	// format: | $value= | is | ${command} |

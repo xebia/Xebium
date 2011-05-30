@@ -433,7 +433,4 @@ TestCase.prototype.getBaseURL = function() {
     return this.baseUrl;
 }
 
-log = {
-  debug: function() {},
-  info: function() {}
-}
+log = org.slf4j.LoggerFactory.getLogger("js");

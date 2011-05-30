@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import junit.framework.TestCase;
-
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -369,13 +367,14 @@ public class JavascriptTestCase {
 			    "'ensure\tdo\tclick\ton\tlink=Search\\n' +" +
 			    "'ensure\tdo\ttype\ton\tsearchString\twith\t$pageName->[VariablesExample]\\n' +" +
 			    "'ensure\tdo\twaitForTextPresent\ton\t$title->[FitNesse.ProjectXebium.ExampleSuite.VariablesExample]\\n' +" +
+			    "'$DIFF<-[9749]\tis\tgetEval\ton\t$END->[1306741646307] - $START->[1306741636558]\\n' +" +
 			    "'stop browser';");
 
 		eval("var tc = new TestCase();");
 		eval("parse(tc, fittable);");
 		eval("var commands = tc.commands;");
 
-		assertEquals(8.0, eval("commands.length"));
+		assertEquals(9.0, eval("commands.length"));
 
 		assertEquals(eval("commands[2].comment").toString(), "storeText", eval("commands[2].command"));
         assertEquals("//span", eval("commands[2].target"));
@@ -390,6 +389,10 @@ public class JavascriptTestCase {
 
 		assertEquals(eval("commands[6].comment").toString(), "waitForTextPresent", eval("commands[6].command"));
         assertEquals("${title}", eval("commands[6].target"));
+
+		assertEquals(eval("commands[7].comment").toString(), "storeEval", eval("commands[7].command"));
+        assertEquals("${END} - ${START}", eval("commands[7].target"));
+        assertEquals("DIFF", eval("commands[7].value"));
     }
 
 }
