@@ -21,6 +21,9 @@ import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
 
+/**
+ * Main fixture. Starts a browser session and execute commands.
+ */
 public class SeleniumDriverFixture {
 
 	private static Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
@@ -33,7 +36,7 @@ public class SeleniumDriverFixture {
 	
 	private long pollDelay = 100;
 	
-	public CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
+	private CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
 		WebDriver driver;
 		
@@ -57,19 +60,54 @@ public class SeleniumDriverFixture {
 		return new WebDriverCommandProcessor(browserUrl, driver);
 	}
 
+	/**
+	 * <p><code>
+	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> |
+	 * </code></p>
+	 * 
+	 * @param browser
+	 * @param browserUrl
+	 */
 	public void startBrowserOnUrl(final String browser, final String browserUrl) {
 		commandProcessor = startWebDriverCommandProcessor(browser, browserUrl);
 		LOG.debug("Started command processor");
 	}
 
+	/**
+	 * <p><code>
+	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> | using remote server |
+	 * </code></p>
+	 * 
+	 * @param browser
+	 * @param browserUrl
+	 */
 	public void startBrowserOnUrlUsingRemoteServer(final String browser, final String browserUrl) {
 		startBrowserOnUrlUsingRemoteServerOnHost(browser, browserUrl, "localhost");
 	}
 
+	/**
+	 * <p><code>
+	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> | using remote server on host | <i>localhost</i> |
+	 * </code></p>
+	 * 
+	 * @param browser
+	 * @param browserUrl
+	 * @param serverHost
+	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHost(final String browser, final String browserUrl, final String serverHost) {
 		startBrowserOnUrlUsingRemoteServerOnHostOnPort(browser, browserUrl, serverHost, 4444);
 	}
 
+	/**
+	 * <p><code>
+	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> | using remote server on host | <i>localhost</i> | on port | <i>4444</i> |
+	 * </code></p>
+	 * 
+	 * @param browser
+	 * @param browserUrl
+	 * @param serverHost
+	 * @param serverPort
+	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
 		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browser, FitNesseUtil.removeAnchorTag(browserUrl));
 		commandProcessor.start();
@@ -77,11 +115,12 @@ public class SeleniumDriverFixture {
 	}
 
 	/**
-	 * <code>
+	 * <p><code>
 	 * | set timeout to | 500 |
-	 * </code>
+	 * </code></p>
 	 * 
-	 * Set the timeout, both local and on the running selenium server.
+	 * <p>Set the timeout, both local and on the running selenium server.</p>
+	 * 
 	 * @param timeout Timeout in milliseconds (ms)
 	 */
 	public void setTimeoutTo(long timeout) {
@@ -90,12 +129,13 @@ public class SeleniumDriverFixture {
 	}
 		
 	/**
-	 * Set delay between steps.
-	 * <code>
+	 * <p>Set delay between steps.</p>
+	 * <p><code>
 	 * | set step delay to | 500 |
 	 * | set step delay to | slow |
 	 * | set step delay to | fast |
-	 * </code>
+	 * </code></p>
+	 * 
 	 * @param stepDelay delay in milliseconds
 	 */
 	public void setStepDelayTo(String stepDelay) {
@@ -109,9 +149,9 @@ public class SeleniumDriverFixture {
 	}
 	
 	/**
-	 * <code>
+	 * <p><code>
 	 * | ensure | do | <i>open</i> | on | <i>/</i> |
-	 * </code>
+	 * </code></p>
 	 * 
 	 * @param command
 	 * @param target
@@ -123,9 +163,9 @@ public class SeleniumDriverFixture {
 	}
 
 	/**
-	 * <code>
+	 * <p><code>
 	 * | ensure | do | <i>type</i> | on | <i>searchString</i> | with | <i>some text</i> |
-	 * </code>
+	 * </code></p>
 	 * 
 	 * @param command
 	 * @param target
@@ -138,9 +178,9 @@ public class SeleniumDriverFixture {
 	}
 
 	/**
-	 * <code>
+	 * <p><code>
 	 * | <i>$title=</i> | is | <i>getTitle</i> |
-	 * </code>
+	 * </code></p>
 	 * 
 	 * @param command
 	 * @return
@@ -151,9 +191,9 @@ public class SeleniumDriverFixture {
 	}
 
 	/**
-	 * <code>
-	 * | <i>$pageName=,/i> | is | <i>getText</i> | on | <i>//span</i> |
-	 * </code>
+	 * <p><code>
+	 * | <i>$pageName=</i> | is | <i>getText</i> | on | <i>//span</i> |
+	 * </code></p>
 	 * 
 	 * @param command
 	 * @param target

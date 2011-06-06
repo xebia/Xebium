@@ -8,6 +8,9 @@ import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.server.htmlrunner.HTMLLauncher;
 
+/**
+ * Run Selenese (html) test suites.
+ */
 public class SeleneseScriptFixture {
 
 	private static Logger LOG = LoggerFactory.getLogger(SeleneseScriptFixture.class);
