@@ -26,6 +26,12 @@ import com.thoughtworks.selenium.SeleniumException;
  */
 public class SeleniumDriverFixture {
 
+	enum ScreenshotPolicy {
+		NONE,
+		FAILURE,
+		STEP
+	}
+
 	private static Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
 	private CommandProcessor commandProcessor;
@@ -35,6 +41,16 @@ public class SeleniumDriverFixture {
 	private long stepDelay = 0;
 	
 	private long pollDelay = 100;
+
+	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
+
+	private int globalStepNumber = 1;
+
+	private String screenshotBaseDir = "FitNesseRoot/files/testResults/screenshots";
+	
+	public SeleniumDriverFixture() {
+		LOG.info("Instantiating a fresh Selenium Driver Fixture");
+	}
 	
 	private CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
@@ -149,6 +165,45 @@ public class SeleniumDriverFixture {
 	}
 	
 	/**
+	 * Instruct the driver to create screenshots
+	 * <p><code>
+	 * | save screenshot after | <i>failure</i> |
+	 * | save screenshot after | <i>error</i> |
+	 * </code></p>
+	 * 
+	 * <p><code>
+	 * | save screenshot after | <i>every step</i> |
+	 * | save screenshot after | <i>step</i> |
+	 * </code></p>
+	 * 
+	 * <p><code>
+	 * | save screenshot after | <i>nothing</i> |
+	 * | save screenshot after | <i>none</i> |
+	 * </code></p>
+	 */
+	public void saveScreenshotAfter(String crit) {
+		if ("none".equals(crit) || "nothing".equals(crit)) {
+			screenshotPolicy  = ScreenshotPolicy.NONE;
+		} else if ("failure".equals(crit) || "error".equals(crit)) {
+			screenshotPolicy  = ScreenshotPolicy.FAILURE;
+		} else if ("step".equals(crit) || "every step".equals(crit)) {
+			screenshotPolicy  = ScreenshotPolicy.STEP;
+		}
+		LOG.info("Screenshot policy set to " + screenshotPolicy);
+	}
+	
+	/**
+	 * <p><code>
+	 * | save screenshot after | <i>failure</i> | in folder | <i>FitNesseRoot/files/testResults/screenshots/!today(yyMMddhhmmss) |
+	 * | save screenshot after | <i>error</i> |
+	 * </code></p>
+	 */
+	public void saveScreenshotAfterInFolder(String crit, String baseDir) {
+		saveScreenshotAfter(crit);
+		screenshotBaseDir = FitNesseUtil.removeAnchorTag(baseDir);
+	}
+	
+	/**
 	 * <p><code>
 	 * | ensure | do | <i>open</i> | on | <i>/</i> |
 	 * </code></p>
@@ -207,32 +262,40 @@ public class SeleniumDriverFixture {
 	private boolean executeDoCommand(final String methodName, final String[] values) {
 		
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
+
+		String output;
+		boolean result = true;
 		
 		if (command.requiresPolling()) {
 			long timeoutTime = System.currentTimeMillis() + timeout;
-			boolean result;
-			String output;
 			
 			do {
 				output = executeCommand(command, values, pollDelay);
 				result = checkResult(command, values[values.length - 1], output);
 			} while (!result && timeoutTime > System.currentTimeMillis());
 
-			return result;
+		} else {
+
+			output = executeCommand(command, values, stepDelay);
+
+			if (command.isCaptureEntirePageScreenshotCommand()) {
+				writeToFile(values[0], output);
+				result = true;
+			} else if (command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
+				result = checkResult(command, values[values.length - 1], output);
+			}
 		}
 		
-		String output = executeCommand(command, values, stepDelay);
-
-		if (command.isVerifyCommand() || command.isWaitForCommand()) {
-			return checkResult(command, values[values.length - 1], output);
-		} else if (command.isAssertCommand()) {
-			if (!checkResult(command, values[values.length - 1], output)) {
-				throw new AssertionError(output);
-			}
-		} else if (command.isCaptureEntirePageScreenshotCommand()) {
-			writeToFile(values[0], output);
+		if ((!command.isAssertCommand() && !command.isVerifyCommand() &&screenshotPolicy == ScreenshotPolicy.STEP)
+				|| (!result && screenshotPolicy == ScreenshotPolicy.FAILURE)) {
+			captureScreenshot(methodName, values);
 		}
-		return true;
+
+		if (!result && command.isAssertCommand()) {
+			throw new AssertionError(output);
+		}
+		
+		return result;
 	}
 
 	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values, long delay) {
@@ -256,16 +319,7 @@ public class SeleniumDriverFixture {
 		
 		String output = null;
 		try {
-			output = commandProcessor.doCommand(command.getSeleniumCommand(), values);
-
-			if (output != null && LOG.isDebugEnabled()) {
-				LOG.debug("Command processor returned '" + output + "'");
-			}
-
-			// Deal with Http status code
-			if (commandProcessor instanceof HttpCommandProcessor && output.startsWith("OK,")) {
-				output = output.substring(3);
-			}
+			output = executeCommand(command.getSeleniumCommand(), values);
 			
 			if (command.isAndWaitCommand()) {
 				commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
@@ -284,15 +338,47 @@ public class SeleniumDriverFixture {
 		return output;
 	}
 
-	private boolean checkResult(ExtendedSeleniumCommand command,
-			String expected, String actual) {
+	private String executeCommand(String methodName, final String[] values) {
+		String output = commandProcessor.doCommand(methodName, values);
+
+		if (output != null && LOG.isDebugEnabled()) {
+			LOG.debug("Command processor returned '" + output + "'");
+		}
+
+		// Deal with Http status code
+		if (commandProcessor instanceof HttpCommandProcessor && output.startsWith("OK,")) {
+			output = output.substring(3);
+		}
+		return output;
+	}
+
+	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
 		boolean result = command.matches(expected, actual);
 		LOG.info("command " + command.getSeleniumCommand() + " with value '" + expected + "' compared to output '" + actual + "' is: " + result);
 		return result;
 	}
 
+	private void captureScreenshot(String methodName, String[] values) {
+		final File file = FitNesseUtil.asFile(screenshotBaseDir + "/" + String.format("%04d-%s.png", globalStepNumber++, methodName.trim()));
+		LOG.info("Storing screenshot in " + file.getAbsolutePath());
+
+		String output = executeCommand("captureScreenshotToString", new String[] { });
+
+		writeToFile(file, output);
+	}
+	
 	private void writeToFile(final String filename, final String output) {
 		File file = FitNesseUtil.asFile(filename);
+		writeToFile(file, output);
+	}
+
+	private void writeToFile(final File file, final String output) {
+		final File parent = file.getParentFile();
+		
+		if (parent != null && !parent.exists()) {
+			parent.mkdirs();
+		}
+		
 		try {
 			FileOutputStream w = new FileOutputStream(file);
 			w.write(Base64.decodeBase64(output));

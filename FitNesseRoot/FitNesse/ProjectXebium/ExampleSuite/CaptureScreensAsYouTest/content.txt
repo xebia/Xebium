@@ -1,0 +1,29 @@
+Demonstrate how to make a test run tracable by capturing screenshots automatically after every execution step
+
+There are basically 2 versions: create a screenshot after every action (not verify-/assert-), or create a screenshot when a test fails.
+
+!|comment|
+|script|
+| save screenshot after | !-failure/error/every step/step/nothing/none-! |
+| save screenshot after | !-failure/error/every step/step/nothing/none-! | in folder | http://files/testResults/screenshots |
+| save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
+
+| script | selenium driver fixture |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
+| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.VariablesExample-! |
+| ensure | do | setTimeout | on | 1000 |
+| $pageName= | is | getText | on | //span |
+| $title= | is | getTitle |
+| ensure | do | click | on | link=Search |
+| ensure | do | waitForElementPresent | on | //form[@action='search'] |
+| ensure | do | type | on | searchString | with | $pageName |
+| ensure | do | click | on | searchType |
+| ensure | do | waitForTextPresent | on | $title |
+| note | And now do the same thing with an error in the test: |
+| save screenshot after | error |
+| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.VariablesExample-! |
+| ensure | do | click | on | link=Search |
+| note | check is verified for. We want this to pass, so define a 'reject' rule. |
+| reject | do | verifyElementPresent | on | //form[@action='nosearch'] |
+| stop browser |
