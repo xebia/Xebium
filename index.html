@@ -111,12 +111,12 @@ git://github.com/xebia/Xebium</pre>
       <p>Prerequisites</p
       <p>Make sure both FitNesse and Firefox with the Selenium IDE plugin are installed.</p>
       <ul>
-        <li>Save the <a href="https://github.com/downloads/xebia/Xebium/xebium-1.0-SNAPSHOT-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
+        <li>Save the <a href="http://os.xebia.com/maven2/com/xebia/incubator/xebium/0.3/xebium-0.3-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
         <li>Start FitNesse</li>
         <li>edit the root page of your tests; insert:
             <pre>
 !define TEST_SYSTEM {slim}
-!path Xebium-1.0-SNAPSHOT-jar-with-dependencies.jar</pre>
+!path xebium-0.3-jar-with-dependencies.jar</pre>
         </li>
         <li>Create a testpage (nested under the the rootpage and perhaps within a testSuite).</li>
         <li>Edit it, add the following import:
@@ -124,14 +124,13 @@ git://github.com/xebia/Xebium</pre>
 | Import |
 | com.xebia.incubator.xebium |</pre>
         </li>
-        <li>Open SeleniumIDE and go to <i>Options -> Options...</i>.<br/> Click the <i>Formats</i> tab and click the <i>Add</i> button.</li>          
-        <li>Provide a descriptive name like Xebium and copy the contents <a href="https://github.com/xebia/Xebium/blob/master/src/main/resources/FitnesseSeleniumIDE.js">FitnesseSeleniumIDE.js</a> into the text editor and press save. </li>
-        <li>Goto <i>Options -> Format</i> and select the previously created Xebium format.</li>
+        <li>Open Firefox and add the Selenium-Xebium-formatter from the following location:<br/> <a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-xebium-formatter/">selenium-xebium-formatter</a></li>          
+        <li>Follow the installation steps, use the Open with option and select Firefox for applicaiton, when finished restart Firefox</li>
+        <li>When using SeleniumIDE 1.0.11 goto <i>Options -> Options...</i> and check the "enable experimental features" checkbox</li>
+        <li>Goto <i>Options -> Format</i> and select the xebium-formatter from the list of formats.</li>
         <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy its content into the copy buffer.</li>
         <li>Go back to to the previously created testpage in FitNesse and paste the recorded script from the buffer.</li>
-        <li>The only thing left is to change the test url, which is by default<small>*</small> set to localhost, into the url of the site you actually want to test against.</li>
         <li>Save it, and run the FitNesse test.<br/><br/>
-        <small>* Change the default base url by opening SeleniumIDE and going to <i>Options>Options...</i> select the <i>Formats</i> tab and select the Xebium format, now change the "Default base url" into your test url.</small>
       </ul>
       <h3>Screencast</h3>
       A screencast will come soon...
