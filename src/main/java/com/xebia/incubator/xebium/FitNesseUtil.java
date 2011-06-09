@@ -5,7 +5,7 @@ import java.io.File;
 public class FitNesseUtil {
 
 	private FitNesseUtil() {
-
+		// Static class
 	}
 
 	/**
@@ -18,7 +18,6 @@ public class FitNesseUtil {
 	public static String removeAnchorTag(String scriptName) {
 		if (scriptName.startsWith("<a") && scriptName.endsWith("</a>")) {
 			scriptName = scriptName.split(">", 2)[1].split("<", 2)[0];
-//			LOG.debug("Extracted script name from URL: " + scriptName);
 		}
 		return scriptName;
 	}

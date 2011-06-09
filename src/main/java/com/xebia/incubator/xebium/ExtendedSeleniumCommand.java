@@ -2,6 +2,7 @@ package com.xebia.incubator.xebium;
 
 import static org.apache.commons.lang.StringUtils.removeStartIgnoreCase;
 import static org.apache.commons.lang.StringUtils.trim;
+import static com.xebia.incubator.xebium.Globber.convertGlobToRegEx;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -317,7 +318,7 @@ public class ExtendedSeleniumCommand {
 	}
 
 	private Pattern globToRegExp(String pattern) {
-		return Pattern.compile(".*" + Globber.convertGlobToRegEx(pattern) + ".*", Pattern.DOTALL);
+		return Pattern.compile(".*" + convertGlobToRegEx(pattern) + ".*", Pattern.DOTALL);
 	}
 
 }

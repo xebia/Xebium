@@ -1,5 +1,8 @@
 package com.xebia.incubator.xebium;
 
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+
 import java.io.File;
 
 import org.slf4j.Logger;
@@ -46,7 +49,7 @@ public class SeleneseScriptFixture {
 
 	public void startServerWithBrowserOnUrl(String browser, String url) throws Exception {
 		this.browser = getBrowserCode(browser);
-		browserURL = FitNesseUtil.removeAnchorTag(url);
+		browserURL = removeAnchorTag(url);
 
 		startServer();
 	}
@@ -56,11 +59,11 @@ public class SeleneseScriptFixture {
 	}
 	
 	public void setBrowserUrl(String browserUrl) {
-		this.browserURL = FitNesseUtil.removeAnchorTag(browserUrl);
+		this.browserURL = removeAnchorTag(browserUrl);
 	}
 	
 	public void setOutputFile(String outputFileName) {
-		this.outputFile = FitNesseUtil.asFile(outputFileName);
+		this.outputFile = asFile(outputFileName);
 	}
 	
 	public String runSuite(String scriptName) throws Exception {
@@ -68,7 +71,7 @@ public class SeleneseScriptFixture {
 			throw new IllegalStateException("Remote control should have been started before tests are executed");
 		}
 
-		File suiteFile = FitNesseUtil.asFile(scriptName);
+		File suiteFile = asFile(scriptName);
 
 		String result = null;
 		try {

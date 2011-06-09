@@ -1,6 +1,9 @@
 package com.xebia.incubator.xebium;
 
 import static org.apache.commons.lang.StringUtils.join;
+import static org.apache.commons.lang.StringUtils.trim;
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,7 +56,7 @@ public class SeleniumDriverFixture {
 	}
 	
 	private CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
-		browserUrl = FitNesseUtil.removeAnchorTag(browserUrl);
+		browserUrl = removeAnchorTag(browserUrl);
 		WebDriver driver;
 		
 		if ("firefox".equalsIgnoreCase(browser)) {
@@ -125,7 +128,7 @@ public class SeleniumDriverFixture {
 	 * @param serverPort
 	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
-		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browser, FitNesseUtil.removeAnchorTag(browserUrl));
+		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl));
 		commandProcessor.start();
 		LOG.debug("Started HTML command processor");
 	}
@@ -194,13 +197,13 @@ public class SeleniumDriverFixture {
 	
 	/**
 	 * <p><code>
-	 * | save screenshot after | <i>failure</i> | in folder | <i>FitNesseRoot/files/testResults/screenshots/!today(yyMMddhhmmss) |
+	 * | save screenshot after | <i>failure</i> | in folder | <i>http://files/testResults/screenshots/${PAGE_NAME} |
 	 * | save screenshot after | <i>error</i> |
 	 * </code></p>
 	 */
 	public void saveScreenshotAfterInFolder(String crit, String baseDir) {
 		saveScreenshotAfter(crit);
-		screenshotBaseDir = FitNesseUtil.removeAnchorTag(baseDir);
+		screenshotBaseDir = removeAnchorTag(baseDir);
 	}
 	
 	/**
@@ -359,7 +362,7 @@ public class SeleniumDriverFixture {
 	}
 
 	private void captureScreenshot(String methodName, String[] values) {
-		final File file = FitNesseUtil.asFile(screenshotBaseDir + "/" + String.format("%04d-%s.png", globalStepNumber++, methodName.trim()));
+		final File file = asFile(screenshotBaseDir + "/" + String.format("%04d-%s.png", globalStepNumber++, trim(methodName)));
 		LOG.info("Storing screenshot in " + file.getAbsolutePath());
 
 		String output = executeCommand("captureScreenshotToString", new String[] { });
@@ -368,7 +371,7 @@ public class SeleniumDriverFixture {
 	}
 	
 	private void writeToFile(final String filename, final String output) {
-		File file = FitNesseUtil.asFile(filename);
+		File file = asFile(filename);
 		writeToFile(file, output);
 	}
 
