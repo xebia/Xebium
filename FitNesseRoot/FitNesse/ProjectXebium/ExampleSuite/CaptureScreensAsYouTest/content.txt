@@ -2,11 +2,26 @@ Demonstrate how to make a test run tracable by capturing screenshots automatical
 
 There are basically 2 versions: create a screenshot after every action (not verify-/assert-), or create a screenshot when a test fails.
 
-!|comment|
-|script|
-| save screenshot after | !-failure/error/every step/step/nothing/none-! |
-| save screenshot after | !-failure/error/every step/step/nothing/none-! | in folder | http://files/testResults/screenshots |
+To capture only screen on errors, do either
+
+|Comment|
+| save screenshot after | failure |
+| save screenshot after | error | in folder | http://files/testResults/screenshots |
+
+The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches http://files/testResults/screenshots, which is browsable).
+
+To capture screenshots after every step (not verify- and assert- statements), you can use either ''step'' or ''every step''.
+
+|Comment|
+| save screenshot after | step |
 | save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
+
+If no screenshots are required (the default), define either ''nothing'' or ''none'', depending on your taste.
+
+|Comment|
+| save screenshot after | nothing |
+| save screenshot after | none | in folder | http://files/testResults/screenshots |
+
 
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
