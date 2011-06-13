@@ -37,9 +37,7 @@ public class SeleniumDriverFixture {
 		STEP
 	}
 
-	private static Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
-
-	private static Map<String, Integer> globalStepNumber = new HashMap<String, Integer>();
+	private static final Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
 	private CommandProcessor commandProcessor;
 
@@ -49,10 +47,10 @@ public class SeleniumDriverFixture {
 	
 	private long pollDelay = 100;
 
+	private ScreenCapture screenCapture;
+	
 	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
 
-	private String screenshotBaseDir = "FitNesseRoot/files/testResults/screenshots";
-	
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
 	}
@@ -92,6 +90,7 @@ public class SeleniumDriverFixture {
 	public void startBrowserOnUrl(final String browser, final String browserUrl) {
 		commandProcessor = startWebDriverCommandProcessor(browser, browserUrl);
 		LOG.debug("Started command processor");
+		screenCapture = new ScreenCapture(commandProcessor);
 	}
 
 	/**
@@ -130,9 +129,10 @@ public class SeleniumDriverFixture {
 	 * @param serverPort
 	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
-		commandProcessor = new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl));
+		commandProcessor = new HttpCommandProcessorAdapter(new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl)));
 		commandProcessor.start();
 		LOG.debug("Started HTML command processor");
+		screenCapture = new ScreenCapture(commandProcessor);
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class SeleniumDriverFixture {
 	 */
 	public void saveScreenshotAfterInFolder(String crit, String baseDir) {
 		saveScreenshotAfter(crit);
-		screenshotBaseDir = removeAnchorTag(baseDir);
+		screenCapture.setScreenshotBaseDir(removeAnchorTag(baseDir));
 	}
 	
 	/**
@@ -293,7 +293,7 @@ public class SeleniumDriverFixture {
 		
 		if ((!command.isAssertCommand() && !command.isVerifyCommand() &&screenshotPolicy == ScreenshotPolicy.STEP)
 				|| (!result && screenshotPolicy == ScreenshotPolicy.FAILURE)) {
-			captureScreenshot(methodName, values);
+			screenCapture.captureScreenshot(methodName, values);
 		}
 
 		if (!result && command.isAssertCommand()) {
@@ -350,10 +350,6 @@ public class SeleniumDriverFixture {
 			LOG.debug("Command processor returned '" + output + "'");
 		}
 
-		// Deal with Http status code
-		if (commandProcessor instanceof HttpCommandProcessor && output.startsWith("OK,")) {
-			output = output.substring(3);
-		}
 		return output;
 	}
 
@@ -363,42 +359,12 @@ public class SeleniumDriverFixture {
 		return result;
 	}
 
-	private void captureScreenshot(String methodName, String[] values) {
-		final File file = asFile(screenshotBaseDir + "/" + String.format("%04d-%s.png", nextStepNumber(), trim(methodName)));
-		LOG.info("Storing screenshot in " + file.getAbsolutePath());
-
-		String output = executeCommand("captureScreenshotToString", new String[] { });
-
-		writeToFile(file, output);
-	}
-	
-	private int nextStepNumber() {
-		Integer i = globalStepNumber.get(screenshotBaseDir);
-		if (i == null) {
-			i = 1;
-		}
-		globalStepNumber.put(screenshotBaseDir, i + 1);
-		return i;
-	}
-
 	private void writeToFile(final String filename, final String output) {
 		File file = asFile(filename);
-		writeToFile(file, output);
-	}
-
-	private void writeToFile(final File file, final String output) {
-		final File parent = file.getParentFile();
-		
-		if (parent != null && !parent.exists()) {
-			parent.mkdirs();
-		}
-		
 		try {
-			FileOutputStream w = new FileOutputStream(file);
-			w.write(Base64.decodeBase64(output));
-			w.close();
+			ScreenCapture.writeToFile(file, output);
 		} catch (IOException e) {
-			throw new RuntimeException("Unable to create writer for file " + file, e);
+			throw new RuntimeException(e);
 		}
 	}
 
