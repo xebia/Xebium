@@ -8,6 +8,8 @@ import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -37,6 +39,8 @@ public class SeleniumDriverFixture {
 
 	private static Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
+	private static Map<String, Integer> globalStepNumber = new HashMap<String, Integer>();
+
 	private CommandProcessor commandProcessor;
 
 	private long timeout = 30000;
@@ -46,8 +50,6 @@ public class SeleniumDriverFixture {
 	private long pollDelay = 100;
 
 	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
-
-	private int globalStepNumber = 1;
 
 	private String screenshotBaseDir = "FitNesseRoot/files/testResults/screenshots";
 	
@@ -362,7 +364,7 @@ public class SeleniumDriverFixture {
 	}
 
 	private void captureScreenshot(String methodName, String[] values) {
-		final File file = asFile(screenshotBaseDir + "/" + String.format("%04d-%s.png", globalStepNumber++, trim(methodName)));
+		final File file = asFile(screenshotBaseDir + "/" + String.format("%04d-%s.png", nextStepNumber(), trim(methodName)));
 		LOG.info("Storing screenshot in " + file.getAbsolutePath());
 
 		String output = executeCommand("captureScreenshotToString", new String[] { });
@@ -370,6 +372,15 @@ public class SeleniumDriverFixture {
 		writeToFile(file, output);
 	}
 	
+	private int nextStepNumber() {
+		Integer i = globalStepNumber.get(screenshotBaseDir);
+		if (i == null) {
+			i = 1;
+		}
+		globalStepNumber.put(screenshotBaseDir, i + 1);
+		return i;
+	}
+
 	private void writeToFile(final String filename, final String output) {
 		File file = asFile(filename);
 		writeToFile(file, output);
