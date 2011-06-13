@@ -40,14 +40,14 @@ public class ExtendedSeleniumCommand {
 	// keywords copied from org.openqa.selenium.WebDriverCommandProcessor
 	private static final Set<String> WEB_DRIVER_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
 		"addLocationStrategy",
-		"addSelection",
+		"addSelection", // loc
 		"altKeyDown",
 		"altKeyUp",
-		"assignId",
+		"assignId", // loc
 		"attachFile",
 		"captureScreenshotToString",
-		"click",
-		"check",
+		"click", // loc
+		"check", // loc
 		"chooseCancelOnNextConfirmation",
 		"chooseOkOnNextConfirmation",
 		"close",
@@ -56,12 +56,12 @@ public class ExtendedSeleniumCommand {
 		"controlKeyUp",
 		"deleteAllVisibleCookies",
 		"deleteCookie",
-		"doubleClick",
-		"dragdrop",
-		"dragAndDrop",
-		"dragAndDropToObject",
+		"doubleClick", // loc
+		"dragdrop", // loc
+		"dragAndDrop", // loc
+		"dragAndDropToObject", // loc, loc
 		"fireEvent",
-		"focus",
+		"focus", // loc
 		"getAlert",
 		"getAllButtons",
 		"getAllFields",
@@ -98,7 +98,7 @@ public class ExtendedSeleniumCommand {
 		"getValue",
 		"getXpathCount",
 		"goBack",
-		"highlight",
+		"highlight", // loc
 		"isAlertPresent",
 		"isChecked",
 		"isConfirmationPresent",
@@ -126,9 +126,9 @@ public class ExtendedSeleniumCommand {
 		"openWindow",
 		"refresh",
 		"removeAllSelections",
-		"removeSelection",
+		"removeSelection", // loc
 		"runScript",
-		"select",
+		"select", // loc
 		"selectFrame",
 		"selectWindow",
 		"setBrowserLogLevel",
@@ -137,10 +137,10 @@ public class ExtendedSeleniumCommand {
 		"setTimeout",
 		"shiftKeyDown",
 		"shiftKeyUp",
-		"submit",
-		"type",
-		"typeKeys",
-		"uncheck",
+		"submit", // loc
+		"type", // loc
+		"typeKeys", // loc
+		"uncheck", // loc
 		"useXpathLibrary",
 		"waitForCondition",
 		"waitForFrameToLoad",
