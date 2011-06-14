@@ -3,8 +3,10 @@ package com.xebia.incubator.xebium;
 import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
 import static org.apache.commons.lang.StringUtils.trim;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,11 +28,12 @@ class ScreenCapture {
 	
 	private static final int INITIAL_STEP_NUMBER = 1;
 
+	// ensure step indexes are maintained among ScreenCapture instances
+	private static Map<String, Integer> stepNumbers = new HashMap<String, Integer>();
+
 	// screenshotBaseDir is guaranteed to have a trailing path separtor.
 	private String screenshotBaseDir = "FitNesseRoot/files/testResults/screenshots/".replace("/", PATH_SEP);
 	
-	private static Map<String, Integer> stepNumbers = new HashMap<String, Integer>();
-
 	private CommandProcessor commandProcessor;
 
 	
@@ -39,7 +42,7 @@ class ScreenCapture {
 	}
 	
 	void setScreenshotBaseDir(String screenshotBaseDir) {
-		this.screenshotBaseDir = screenshotBaseDir;
+		this.screenshotBaseDir = asFile(screenshotBaseDir).getAbsolutePath();
 		if (!this.screenshotBaseDir.endsWith(PATH_SEP)) {
 			this.screenshotBaseDir += PATH_SEP;
 		}
@@ -47,7 +50,7 @@ class ScreenCapture {
 	
 	void captureScreenshot(String methodName, String[] values) {
 		int stepNumber = nextStepNumber();
-		final File file = asFile(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
+		final File file = new File(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
 		LOG.info("Storing screenshot in " + file.getAbsolutePath());
 
 		try {
@@ -80,20 +83,33 @@ class ScreenCapture {
 	}
 
 	/**
-	 * Provide an easy to use index.html file for viewing the screenshots.
+	 * <p>Provide an easy to use index.html file for viewing the screenshots.
+	 * </p>
+	 * <p>The base directory is expected to exist at this point.
+	 * </p>
 	 * 
 	 * @param stepNumber
 	 * @param file
 	 * @param methodName
 	 * @param values
+	 * @throws IOException 
 	 */
 	private void updateIndexFile(int stepNumber, File file, String methodName,
-			String[] values) {
-		final File parent = new File(file.getParent() + PATH_SEP + "index.html");
+			String[] values) throws IOException {
+		final File indexFile = new File(screenshotBaseDir + "index.html");
 
-		if (stepNumber == INITIAL_STEP_NUMBER) {
-			// TODO: start new index.html file
-		} // TODO: else: append screenshot to existing index.html file
+		BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, stepNumber > INITIAL_STEP_NUMBER));
+		try {
+			String title = "| " + methodName + " | " + (values.length > 0 ? values[0] : "") + " | " + (values.length > 1 ? values[1] : "") + " |";
+			w.write("<h2>" + stepNumber + ". " + title + "</h2>\n");
+			w.write("<img src='" + file.getName() +"' alt='" + title + "'/>\n");
+		} finally {
+			try {
+				w.close();
+			} catch (IOException e) {
+				LOG.error("Unable to close screenshot file " + file.getPath(), e);
+			}
+		}
 	}
 
 	static void writeToFile(final File file, final String output) throws IOException {
