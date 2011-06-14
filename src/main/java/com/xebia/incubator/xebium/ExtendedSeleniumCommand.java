@@ -206,7 +206,7 @@ public class ExtendedSeleniumCommand {
 	
 	public String getSeleniumCommand() {
 		// for commands like "waitForCondition"
-		if (WEB_DRIVER_COMMANDS.contains(methodName)) {
+		if (isSupportedByWebDriver(methodName)) {
 			return methodName;
 		}
 		
