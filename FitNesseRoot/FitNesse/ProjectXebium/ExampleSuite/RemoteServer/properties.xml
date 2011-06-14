@@ -2,12 +2,12 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help/>
+	<Help>Demonstrate how to start a Selenium Server from within your test case</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suites/>
+	<Suites></Suites>
 	<Test/>
 	<Versions/>
 	<WhereUsed/>
