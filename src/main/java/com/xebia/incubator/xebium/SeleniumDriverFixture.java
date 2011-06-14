@@ -25,17 +25,12 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
+import com.xebia.incubator.xebium.ScreenCapture.ScreenshotPolicy;
 
 /**
  * Main fixture. Starts a browser session and execute commands.
  */
 public class SeleniumDriverFixture {
-
-	enum ScreenshotPolicy {
-		NONE,
-		FAILURE,
-		STEP
-	}
 
 	private static final Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
@@ -49,8 +44,6 @@ public class SeleniumDriverFixture {
 
 	private ScreenCapture screenCapture;
 	
-	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
-
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
 	}
@@ -186,15 +179,8 @@ public class SeleniumDriverFixture {
 	 * | save screenshot after | <i>none</i> |
 	 * </code></p>
 	 */
-	public void saveScreenshotAfter(String crit) {
-		if ("none".equals(crit) || "nothing".equals(crit)) {
-			screenshotPolicy  = ScreenshotPolicy.NONE;
-		} else if ("failure".equals(crit) || "error".equals(crit)) {
-			screenshotPolicy  = ScreenshotPolicy.FAILURE;
-		} else if ("step".equals(crit) || "every step".equals(crit)) {
-			screenshotPolicy  = ScreenshotPolicy.STEP;
-		}
-		LOG.info("Screenshot policy set to " + screenshotPolicy);
+	public void saveScreenshotAfter(String policy) {
+		screenCapture.setScreenshotPolicy(policy);
 	}
 	
 	/**
@@ -203,8 +189,8 @@ public class SeleniumDriverFixture {
 	 * | save screenshot after | <i>error</i> |
 	 * </code></p>
 	 */
-	public void saveScreenshotAfterInFolder(String crit, String baseDir) {
-		saveScreenshotAfter(crit);
+	public void saveScreenshotAfterInFolder(String policy, String baseDir) {
+		saveScreenshotAfter(policy);
 		screenCapture.setScreenshotBaseDir(removeAnchorTag(baseDir));
 	}
 	
@@ -270,7 +256,9 @@ public class SeleniumDriverFixture {
 
 		String output;
 		boolean result = true;
-		
+
+		// TODO: Do additional validation on elements for a subset of commands.
+
 		if (command.requiresPolling()) {
 			long timeoutTime = System.currentTimeMillis() + timeout;
 			
@@ -291,8 +279,7 @@ public class SeleniumDriverFixture {
 			}
 		}
 		
-		if ((!command.isAssertCommand() && !command.isVerifyCommand() &&screenshotPolicy == ScreenshotPolicy.STEP)
-				|| (!result && screenshotPolicy == ScreenshotPolicy.FAILURE)) {
+		if (screenCapture.requireScreenshot(command, result)) {
 			screenCapture.captureScreenshot(methodName, values);
 		}
 
@@ -369,8 +356,9 @@ public class SeleniumDriverFixture {
 	}
 
 	public void stopBrowser() {
-		this.commandProcessor.stop();
-		this.commandProcessor = null;
+		commandProcessor.stop();
+		commandProcessor = null;
+		
 		LOG.info("Command processor stopped");
 	}
 

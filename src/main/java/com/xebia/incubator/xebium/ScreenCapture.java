@@ -22,6 +22,13 @@ import com.thoughtworks.selenium.CommandProcessor;
  */
 class ScreenCapture {
 
+	enum ScreenshotPolicy {
+		NONE,
+		FAILURE,
+		STEP
+	}
+
+
 	private static final Logger LOG = LoggerFactory.getLogger(ScreenCapture.class);
 
 	private static final String PATH_SEP = System.getProperty("file.separator");
@@ -36,6 +43,8 @@ class ScreenCapture {
 	
 	private CommandProcessor commandProcessor;
 
+	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
+
 	
 	ScreenCapture(CommandProcessor commandProcessor) {
 		this.commandProcessor = commandProcessor;
@@ -48,6 +57,31 @@ class ScreenCapture {
 		}
 	}
 	
+	void setScreenshotPolicy(String policy) {
+		if ("none".equals(policy) || "nothing".equals(policy)) {
+			screenshotPolicy = ScreenshotPolicy.NONE;
+		} else if ("failure".equals(policy) || "error".equals(policy)) {
+			screenshotPolicy =ScreenshotPolicy.FAILURE;
+		} else if ("step".equals(policy) || "every step".equals(policy)) {
+			screenshotPolicy = ScreenshotPolicy.STEP;
+		}
+		LOG.info("Screenshot policy set to " + screenshotPolicy);
+	}
+
+	/**
+	 * Is a screenshot desired, based on the command and the test result.
+	 * 
+	 * @param command
+	 * @param result
+	 * @return
+	 */
+	boolean requireScreenshot(final ExtendedSeleniumCommand command,
+			boolean result) {
+		return (!command.isAssertCommand() && !command.isVerifyCommand() && screenshotPolicy == ScreenshotPolicy.STEP)
+				|| (!result && screenshotPolicy == ScreenshotPolicy.FAILURE);
+	}
+
+
 	void captureScreenshot(String methodName, String[] values) {
 		int stepNumber = nextStepNumber();
 		final File file = new File(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
