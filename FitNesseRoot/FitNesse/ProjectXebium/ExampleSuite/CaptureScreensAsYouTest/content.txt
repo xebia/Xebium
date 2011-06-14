@@ -32,23 +32,28 @@ Now, say we want to do a test (all parts, !-SetUp-!, test and !-TearDown-! are s
 
 | script |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
-| save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
 
 
 !2 Test case
+
+Record every step:
+
 | script |
+| save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
 | ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.VariablesExample-! |
 | ensure | do | setTimeout | on | 1000 |
 | $pageName= | is | getText | on | //span |
 | $title= | is | getTitle |
 | ensure | do | click | on | link=Search |
-| save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME}2 |
 | ensure | do | waitForElementPresent | on | //form[@action='search'] |
 | ensure | do | type | on | searchString | with | $pageName |
 | ensure | do | click | on | searchType |
 | ensure | do | waitForTextPresent | on | $title |
-| note | And now do the same thing with an error in the test: |
-| save screenshot after | error |
+
+ And now let's only record screenshots of pages that have an error.
+
+| script |
+| save screenshot after | error | in folder | http://files/testResults/screenshots/${PAGE_NAME}_err |
 | ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.VariablesExample-! |
 | ensure | do | click | on | link=Search |
 | note | check is verified for. We want this to pass, so define a 'reject' rule. |
@@ -62,10 +67,13 @@ Now you can see the files in the folder specified above. There is even an index 
 | ensure | do | verifyElementPresent | on | link=0001-open.png |
 | ensure | do | verifyElementPresent | on | link=0002-setTimeout.png |
 | ensure | do | verifyElementPresent | on | link=0003-click.png |
+| ensure | do | verifyElementPresent | on | link=0007-waitForTextPresent.png |
 | ensure | do | verifyElementPresent | on | link=index.html |
 | ensure | do | clickAndWait | on | link=index.html |
 | ensure | do | verifyTextPresent | on | !-1. | open | /FitNesse.ProjectXebium.ExampleSuite.VariablesExample | |-! |
-
+| ensure | do | open | on | /files/testResults/screenshots/CaptureScreensAsYouTest_err/ |
+| ensure | do | verifyElementPresent | on | link=0001-verifyElementPresent.png |
+| ensure | do | verifyElementPresent | on | link=index.html |
 
 !2 Tear Down
 | script |
