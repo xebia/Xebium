@@ -24,7 +24,7 @@ public class SeleniumDriverFixtureTest {
 	@Before
 	public void setup() throws Exception {
 		this.seleniumDriverFixture = new SeleniumDriverFixture();
-		seleniumDriverFixture.setCommandProcessorForUnitTest(commandProcessor);
+		seleniumDriverFixture.setCommandProcessor(commandProcessor);
 	}
 
 	@Test

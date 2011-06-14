@@ -1,19 +1,12 @@
 package com.xebia.incubator.xebium;
 
-import static org.apache.commons.lang.StringUtils.join;
-import static org.apache.commons.lang.StringUtils.trim;
 import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
 import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+import static org.apache.commons.lang.StringUtils.join;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,11 +14,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
-import com.xebia.incubator.xebium.ScreenCapture.ScreenshotPolicy;
 
 /**
  * Main fixture. Starts a browser session and execute commands.
@@ -43,6 +37,8 @@ public class SeleniumDriverFixture {
 	private long pollDelay = 100;
 
 	private ScreenCapture screenCapture;
+
+	private LocatorCheck locatorCheck;
 	
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
@@ -81,9 +77,8 @@ public class SeleniumDriverFixture {
 	 * @param browserUrl
 	 */
 	public void startBrowserOnUrl(final String browser, final String browserUrl) {
-		commandProcessor = startWebDriverCommandProcessor(browser, browserUrl);
+		setCommandProcessor(startWebDriverCommandProcessor(browser, browserUrl));
 		LOG.debug("Started command processor");
-		screenCapture = new ScreenCapture(commandProcessor);
 	}
 
 	/**
@@ -122,10 +117,15 @@ public class SeleniumDriverFixture {
 	 * @param serverPort
 	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
-		commandProcessor = new HttpCommandProcessorAdapter(new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl)));
+		setCommandProcessor(new HttpCommandProcessorAdapter(new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl))));
 		commandProcessor.start();
 		LOG.debug("Started HTML command processor");
+	}
+
+	void setCommandProcessor(CommandProcessor commandProcessor) {
+		this.commandProcessor = commandProcessor;
 		screenCapture = new ScreenCapture(commandProcessor);
+		locatorCheck = new LocatorCheck(commandProcessor);
 	}
 
 	/**
@@ -254,12 +254,12 @@ public class SeleniumDriverFixture {
 		
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 
-		String output;
+		String output = null;
 		boolean result = true;
 
-		// TODO: Do additional validation on elements for a subset of commands.
-
-		if (command.requiresPolling()) {
+		if (!locatorCheck.verifyElementPresent(command, values)) {
+			result = false;
+		} else if (command.requiresPolling()) {
 			long timeoutTime = System.currentTimeMillis() + timeout;
 			
 			do {
@@ -360,12 +360,5 @@ public class SeleniumDriverFixture {
 		commandProcessor = null;
 		
 		LOG.info("Command processor stopped");
-	}
-
-	/**
-	 * Setter for unit tests. Never invoke from non-unit tests!!
-	 */
-	public void setCommandProcessorForUnitTest(final CommandProcessor commandProcessor) {
-		this.commandProcessor = commandProcessor;
 	}
 }

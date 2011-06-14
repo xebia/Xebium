@@ -5,6 +5,6 @@
 | ensure | do | open | on | / |
 | ensure | do | clickAndWait | on | //img |
 | ensure | do | clickAndWait | on | link=Example Suite |
-| ensure | do | clickAndWait | on | link=Screenshot Test |
+| ensure | do | clickAndWait | on | link=Screenshot Example |
 | ensure | do | captureEntirePageScreenshot | on | http://files/testResults/screenshotTest.png |
 | stop browser |

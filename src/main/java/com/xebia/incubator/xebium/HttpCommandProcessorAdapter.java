@@ -36,42 +36,42 @@ public class HttpCommandProcessorAdapter implements CommandProcessor {
 	}
 
 
-	public boolean getBoolean(String arg0, String[] arg1) {
-		throw new NotImplementedException();
+	public boolean getBoolean(String command, String[] args) {
+		return httpCommandProcessor.getBoolean(command, args);
 	}
 
 
-	public boolean[] getBooleanArray(String arg0, String[] arg1) {
-		throw new NotImplementedException();
+	public boolean[] getBooleanArray(String command, String[] args) {
+		return httpCommandProcessor.getBooleanArray(command, args);
 	}
 
 
-	public Number getNumber(String arg0, String[] arg1) {
-		throw new NotImplementedException();
+	public Number getNumber(String command, String[] args) {
+		return httpCommandProcessor.getNumber(command, args);
 	}
 
 
-	public Number[] getNumberArray(String arg0, String[] arg1) {
-		throw new NotImplementedException();
+	public Number[] getNumberArray(String command, String[] args) {
+		return httpCommandProcessor.getNumberArray(command, args);
 	}
 
 
 	public String getRemoteControlServerLocation() {
-		throw new NotImplementedException();
+		return httpCommandProcessor.getRemoteControlServerLocation();
 	}
 
 
-	public String getString(String arg0, String[] arg1) {
-		throw new NotImplementedException();
+	public String getString(String command, String[] args) {
+		return httpCommandProcessor.getString(command, args);
 	}
 
 
-	public String[] getStringArray(String arg0, String[] arg1) {
-		throw new NotImplementedException();
+	public String[] getStringArray(String command, String[] args) {
+		return httpCommandProcessor.getStringArray(command, args);
 	}
 
 
-	public void setExtensionJs(String arg0) {
+	public void setExtensionJs(String command) {
 		throw new NotImplementedException();
 	}
 
