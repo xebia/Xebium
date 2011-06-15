@@ -36,7 +36,7 @@ public class SeleniumDriverFixture {
 	
 	private long pollDelay = 100;
 
-	private ScreenCapture screenCapture;
+	private ScreenCapture screenCapture = new ScreenCapture();
 
 	private LocatorCheck locatorCheck;
 	
@@ -124,7 +124,7 @@ public class SeleniumDriverFixture {
 
 	void setCommandProcessor(CommandProcessor commandProcessor) {
 		this.commandProcessor = commandProcessor;
-		screenCapture = new ScreenCapture(commandProcessor);
+		screenCapture.setCommandProcessor(commandProcessor);
 		locatorCheck = new LocatorCheck(commandProcessor);
 	}
 

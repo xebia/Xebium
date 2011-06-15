@@ -46,7 +46,7 @@ class ScreenCapture {
 	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
 
 	
-	ScreenCapture(CommandProcessor commandProcessor) {
+	void setCommandProcessor(CommandProcessor commandProcessor) {
 		this.commandProcessor = commandProcessor;
 	}
 	
