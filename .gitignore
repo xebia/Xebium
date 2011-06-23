@@ -2,10 +2,13 @@
 .classpath
 .project
 .settings/
+FitNesseRoot/FitNesse/
 FitNesseRoot/ErrorLogs/
-FitNesseRoot/RecentChanges
-FitNesseRoot/files/selenium/testResults.html
-FitNesseRoot/files/testResults/
+FitNesseRoot/RecentChanges/
+FitNesseRoot/files/
+FitNesseRoot/properties
+FitNesseRoot/updateDoNotCopyOverList
+FitNesseRoot/updateList
 target/
 *.log
 .idea
