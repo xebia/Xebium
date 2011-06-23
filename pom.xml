@@ -92,13 +92,14 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+
+    <!-- test dependencies -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- test dependencies -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -123,6 +124,26 @@
       <version>1.1</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.fitnesse</groupId>
+      <artifactId>fitnesse</artifactId>
+      <version>${fitnesse.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.fitnesse</groupId>
+      <artifactId>fitlibrary</artifactId>
+      <version>${fitlibrary.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.fitnesse.plugins</groupId>
+      <artifactId>maven-classpath-plugin</artifactId>
+      <version>1.3-SNAPSHOT</version>
+      <scope>runtime</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
