@@ -1,9 +1,0 @@
-!*> setup
-
-!path target/dependency/fitnesse-20100303.jar
-
-|import|
-|fitnesse.slim.test|
-|fitnesse.fixtures|
-
-*!
