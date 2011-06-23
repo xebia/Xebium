@@ -8,8 +8,8 @@
 
 | script | selenium driver fixture | 
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
-| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.BasicFixtureExample-! |
-| ensure | do | verifyTitle | on | !-FitNesse.ProjectXebium.ExampleSuite.BasicFixtureExample-! |
+| ensure | do | open | on | !-/ProjectXebium.ExampleSuite.BasicFixtureExample-! |
+| ensure | do | verifyTitle | on | !-ProjectXebium.ExampleSuite.BasicFixtureExample-! |
 | ensure | do | verifyTextPresent | on | Xebium |
 | ensure | do | verifyText | on | //tr[1]/td[2] | with | selenium driver fixture |
 | stop browser |

@@ -2,7 +2,7 @@
 
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT} |
-| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.VariablesExample-! |
+| ensure | do | open | on | !-/ProjectXebium.ExampleSuite.VariablesExample-! |
 | $pageName= | is | getText | on | //span |
 | $title= | is | getTitle |
 | ensure | do | clickAndWait | on | link=Search |

@@ -1,6 +1,6 @@
 !1 Welcome to the Xebia App-Incubator XEBIUM Project
 
 !3 Press image below to enter the project
-[[!img http://files/images/xebium!.jpg][FitNesse.ProjectXebium]]
+[[!img http://files/images/Xebium!.jpg][ProjectXebium]]
 
 !note Release v20100303
