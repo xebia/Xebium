@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xebium</artifactId>
   <groupId>com.xebia.incubator</groupId>
@@ -41,6 +42,11 @@
       <url>http://source.valtech.com/repo/content/repositories/releases/
       </url>
     </pluginRepository>
+    <pluginRepository>
+      <id>os-xebia</id>
+      <name>Xebia Open Source Repository</name>
+      <url>http://os.xebia.com/repository/</url>
+    </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
@@ -63,16 +69,6 @@
   </scm>
 
   <dependencies>
-    <dependency>
-      <groupId>org.fitnesse</groupId>
-      <artifactId>fitnesse</artifactId>
-      <version>${fitnesse.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.fitnesse</groupId>
-      <artifactId>fitlibrary</artifactId>
-      <version>${fitlibrary.version}</version>
-    </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-control</artifactId>
@@ -125,8 +121,8 @@
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
-         <artifactId>wagon-ssh</artifactId>
-         <version>1.0-beta-7</version>
+        <artifactId>wagon-ssh</artifactId>
+        <version>1.0-beta-7</version>
       </extension>
     </extensions>
 
@@ -183,7 +179,7 @@
     <profile>
       <id>ide</id>
       <activation>
-      	<activeByDefault>true</activeByDefault>
+        <activeByDefault>true</activeByDefault>
       </activation>
       <build>
         <plugins>
@@ -237,6 +233,49 @@
             </dependencies>
           </plugin>
           <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>start-fitnesse</id>
+                <phase>test</phase>
+                <configuration>
+                  <tasks>
+                    <property name="plugin_classpath" refid="maven.plugin.classpath"/>
+                    <echo taskname="fitnesse" message="Starting..." />
+                    <echo message="plugin classpath:  ${plugin_classpath}"/>
+                    <java classname="fitnesseMain.FitNesseMain"
+                      classpathref="maven.plugin.classpath"
+                      fork="true">
+                      <arg value="-p" />
+                      <arg value="${fitnesse.port}" />
+                      <arg value="-d" />
+                      <arg value="." />
+                      <arg value="-e" />
+                      <arg value="${fitnesse.expiration}" />
+                    </java>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.fitnesse</groupId>
+                <artifactId>fitnesse</artifactId>
+                <version>${fitnesse.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.fitnesse</groupId>
+                <artifactId>fitlibrary</artifactId>
+                <version>${fitlibrary.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+<!-- 
+          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.1.1</version>
@@ -261,11 +300,12 @@
               </execution>
             </executions>
           </plugin>
+ -->
         </plugins>
       </build>
     </profile>
   </profiles>
-  
+
   <url>http://xebia.github.com/Xebium</url>
 
   <developers>
