@@ -70,6 +70,18 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.fitnesse</groupId>
+      <artifactId>fitnesse</artifactId>
+      <version>${fitnesse.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.fitnesse</groupId>
+      <artifactId>fitlibrary</artifactId>
+      <version>${fitlibrary.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-control</artifactId>
       <version>${selenium.version}</version>
@@ -241,11 +253,9 @@
                 <phase>test</phase>
                 <configuration>
                   <tasks>
-                    <property name="plugin_classpath" refid="maven.plugin.classpath"/>
                     <echo taskname="fitnesse" message="Starting..." />
-                    <echo message="plugin classpath:  ${plugin_classpath}"/>
                     <java classname="fitnesseMain.FitNesseMain"
-                      classpathref="maven.plugin.classpath"
+                      classpathref="maven.runtime.classpath"
                       fork="true">
                       <arg value="-p" />
                       <arg value="${fitnesse.port}" />
@@ -261,18 +271,6 @@
                 </goals>
               </execution>
             </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.fitnesse</groupId>
-                <artifactId>fitnesse</artifactId>
-                <version>${fitnesse.version}</version>
-              </dependency>
-              <dependency>
-                <groupId>org.fitnesse</groupId>
-                <artifactId>fitlibrary</artifactId>
-                <version>${fitlibrary.version}</version>
-              </dependency>
-            </dependencies>
           </plugin>
 <!-- 
           <plugin>
