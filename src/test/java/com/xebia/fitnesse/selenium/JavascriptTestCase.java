@@ -139,6 +139,7 @@ public class JavascriptTestCase {
 					 , result);
     }
 
+
     @Test
     public void testExecuteCommandOnTargetWithValueToSelenese() {
         eval("var cmd = getCommandForSource('| ensure | do | {command} | on | {target} | with | complex value |');");
@@ -146,6 +147,15 @@ public class JavascriptTestCase {
         assertEquals("{target}", eval("cmd.target"));
         assertEquals("complex value", eval("cmd.value"));
     }
+
+    @Test
+    public void testExecuteCommandOnTargetWithValueWithSpacesToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | command | on | some  target | with | some  value |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("some  target", eval("cmd.target"));
+        assertEquals("some  value", eval("cmd.value"));
+    }
+
 
     @Test
     public void testExecuteCommandOnTargetToSelenese() {
@@ -204,6 +214,20 @@ public class JavascriptTestCase {
         assertEquals("${value}", eval("cmd.value"));
     }
 
+    @Test
+    public void testExecuteCommandOnTextSeparatedByBars() {
+    	eval("var cmd = getCommandForSource('| ensure | do | verifyTitle | on | !-example.com | Examplish stuff | Home-! |');");
+        assertEquals("verifyTitle", eval("cmd.command"));
+        assertEquals("example.com | Examplish stuff | Home", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+
+    	eval("var cmd = getCommandForSource('| ensure | do | command | on | blah | with | !-example.com | Examplish stuff | Home-! |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("blah", eval("cmd.target"));
+        assertEquals("example.com | Examplish stuff | Home", eval("cmd.value"));
+
+    }
+    
     @Test
     public void testExecuteCommentToSelenese() {
         eval("var cmd = getCommandForSource('| note | My comments |');");
