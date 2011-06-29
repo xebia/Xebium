@@ -8,7 +8,7 @@
   <name>Xebium</name>
   <packaging>jar</packaging>
   <properties>
-    <selenium.version>2.0rc2</selenium.version>
+    <selenium.version>2.0rc3</selenium.version>
     <fitnesse.version>20110104</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
     <fitnesse.port>8000</fitnesse.port>
@@ -80,11 +80,6 @@
       <artifactId>fitlibrary</artifactId>
       <version>${fitlibrary.version}</version>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-remote-control</artifactId>
-      <version>${selenium.version}</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -257,12 +252,9 @@
                     <java classname="fitnesseMain.FitNesseMain"
                       classpathref="maven.runtime.classpath"
                       fork="true">
-                      <arg value="-p" />
-                      <arg value="${fitnesse.port}" />
-                      <arg value="-d" />
-                      <arg value="." />
-                      <arg value="-e" />
-                      <arg value="${fitnesse.expiration}" />
+                      <arg line="-p ${fitnesse.port}" />
+                      <arg line="-d ." />
+                      <arg line="-e ${fitnesse.expiration}" />
                     </java>
                   </tasks>
                 </configuration>
