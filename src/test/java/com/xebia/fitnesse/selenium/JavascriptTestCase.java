@@ -235,6 +235,11 @@ public class JavascriptTestCase {
     }
 
     @Test
+    public void testExecuteCommentWithMoreTextToSelenese() {
+        eval("var cmd = getCommandForSource('| note | My comments |  and some more |  ');");
+        assertEquals("My comments |  and some more", eval("cmd.comment"));
+    }
+    @Test
     public void shouldExecuteCommandOnTargetToFitnesse() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
 		eval("var commands = [];");

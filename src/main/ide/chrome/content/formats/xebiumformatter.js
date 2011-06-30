@@ -149,7 +149,7 @@ function getCommandForSource(line) {
 		return new Command(match[2].replace(/^get/, 'store'), unescape(match[1]));
 
 	// format: | note | ${text} |
-	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|/.exec(line)) {
+	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*$/.exec(line)) {
 		return new Comment(match[1]);
 		
 	// Ignore | script/scenario/start browser/stop browser |, log the rest
