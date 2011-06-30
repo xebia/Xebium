@@ -11,8 +11,12 @@ function format(testCase, name) {
      if ('true' == options.noStartStop) {
          commandsText += formatCommands(testCase.commands);
      } else {
-		 commandsText += '| start browser | ' + options.browser + ' | on url | ' + baseUrl + ' |\n';
-	     commandsText += formatCommands(testCase.commands);
+    	 if (testCase.startBrowserLine) {
+    		 commandsText += testCase.startBrowserLine + '\n';
+    	 } else {
+    		 commandsText += '| start browser | ' + options.browser + ' | on url | ' + baseUrl + ' |\n';
+    	 }
+		 commandsText += formatCommands(testCase.commands);
 	     commandsText += '| stop browser |\n';
      }
      
@@ -110,7 +114,15 @@ function parse(testCase, source) {
         		log.error(err);
         	}
         }
-        if (command) commands.push(command);    
+        
+        if (command) {
+            if (command.baseUrl) {
+            	testCase.setBaseURL(command.baseUrl);
+            	testCase.startBrowserLine = command.line;
+            } else {
+            	commands.push(command);
+            }
+        }
     }
     
      testCase.commands = commands;
@@ -152,11 +164,19 @@ function getCommandForSource(line) {
 	} else if (match = /^\|\s*note\s*\|\s*(.+?)\s*\|\s*$/.exec(line)) {
 		return new Comment(match[1]);
 		
+	// format: | start browser | someBrowser | on url | http://example.com |
+	} else if (match = /^\|\s*start\s+browser\s*\|\s*([^\|\s]+)\s*\|\s*on\s+url\s*\|\s*([^\|]+?)\s*\|/.exec(line)) {
+		return {
+			'line': line,
+			'browser': match[1],
+			'baseUrl': match[2]
+		};
+		
 	// Ignore | script/scenario/start browser/stop browser |, log the rest
 	} else if (!/^\s*$/.test(line)
 			&& !/^\|\s*script\s*\|.*/i.test(line)
 			&& !/^\|\s*scenario\s*\|.*/i.test(line)
-			&& !/^\|\s*(start|stop)\s+browser\s*\|.*/.test(line)) {
+			&& !/^\|\s*stop\s+browser\s*\|.*/.test(line)) {
 		throw "unparsable";
 	}
 }

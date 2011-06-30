@@ -139,6 +139,15 @@ public class JavascriptTestCase {
 					 , result);
     }
 
+	@Test
+	public void testStartBrowserLine() {
+		String result = (String) eval("var tc = new TestCase(); tc.startBrowserLine = '| start browser | foo |  bar | baz |'; format(tc, 'name');");
+		
+		assertEquals("| script | selenium driver fixture |\n" +
+					 "| start browser | foo |  bar | baz |\n" +
+					 "| stop browser |\n" 
+					 , result);
+	}
 
     @Test
     public void testExecuteCommandOnTargetWithValueToSelenese() {
@@ -239,6 +248,7 @@ public class JavascriptTestCase {
         eval("var cmd = getCommandForSource('| note | My comments |  and some more |  ');");
         assertEquals("My comments |  and some more", eval("cmd.comment"));
     }
+    
     @Test
     public void shouldExecuteCommandOnTargetToFitnesse() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
@@ -296,6 +306,26 @@ public class JavascriptTestCase {
 				, result);
     }
 
+    @Test
+    public void shouldParseStartBrowserLineToFitnesse() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('someUrl', 'http://example.com'))");
+        eval("commands.push(new Command('testWikiWord', 'WikiWord', 'W10W'))");
+        eval("commands.push(new Command('testVariable', 'foo', '${locVar}'))");
+        eval("commands.push(new Command('testEmail', 'anonymous@example.com'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+                "| ensure | do | someUrl | on | !-http://example.com-! |\n" +
+                "| ensure | do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
+                "| ensure | do | testVariable | on | foo | with | $locVar |\n" +
+                "| ensure | do | testEmail | on | !-anonymous@example.com-! |\n" +
+				"| stop browser |\n"
+				, result);
+    }
     
     @Test
     public void shouldExecuteCommandOnTargetWithValueToSelenese() {
@@ -318,7 +348,6 @@ public class JavascriptTestCase {
     public void shouldExecuteStoreCommandToSelenese() {
 		// Only open and check command should be parsed
 		eval("var fittable = '| script | selenium driver fixture |\\n' +" +
-				"'| start browser | firefox | on url | http://example.com |\\n' +" +
 				"'| $MyVar= | is | getValue | on | link=Test |\\n' +" +
                 "'| stop browser |\\n';");
 		eval("var tc = new TestCase();");
@@ -335,7 +364,6 @@ public class JavascriptTestCase {
     public void shouldMakeCommentsForNonFitnesseLines() {
 		// Only open and check command should be parsed
 		eval("var fittable = '| script | selenium driver fixture |\\n' +" +
-				"'| start browser | firefox | on url | http://example.com |\\n' +" +
 				"'some crap\\n' +" +
 				"'different crap\\n' +" +
                 "'| stop browser |\\n';");
@@ -381,14 +409,12 @@ public class JavascriptTestCase {
 		assertEquals("open", eval("commands[0].command"));
         assertEquals("http://www.google.com", eval("commands[0].target"));
         assertEquals("dummy", eval("commands[0].value"));
-		assertEquals("open", eval("commands[0].command"));
 
     }
 
     @Test
     public void shouldParseSubstitutedVariables() {
     	eval("var fittable = 'script\tselenium driver fixture\\n' +" +
-			    "'start browser\tfirefox\ton url\thttp://localhost:8000/\\n' +" +
 			    "'ensure\tdo\topen\ton\t/FitNesse.ProjectXebium.ExampleSuite.VariablesExample\\n' +" +
 			    "'ensure\tdo\tsetTimeout\ton\t1000\\n' +" +
 			    "'$pageName<-[VariablesExample]\tis\tgetText\ton\t//span\\n' +" +
