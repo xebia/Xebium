@@ -8,8 +8,8 @@
   <name>Xebium</name>
   <packaging>jar</packaging>
   <properties>
-    <selenium.version>2.0rc3</selenium.version>
-    <fitnesse.version>20110104</fitnesse.version>
+  	<selenium.version>2.0.0</selenium.version>
+  	<fitnesse.version>20110104</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
@@ -81,6 +81,13 @@
       <version>${fitlibrary.version}</version>
       <scope>runtime</scope>
     </dependency>
+<!--
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-remote-control</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+-->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-server</artifactId>
@@ -248,7 +255,7 @@
                 <phase>test</phase>
                 <configuration>
                   <tasks>
-                    <echo taskname="fitnesse" message="Starting..." />
+                    <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
                     <java classname="fitnesseMain.FitNesseMain"
                       classpathref="maven.runtime.classpath"
                       fork="true">
@@ -264,33 +271,6 @@
               </execution>
             </executions>
           </plugin>
-<!-- 
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.1.1</version>
-            <executions>
-              <execution>
-                <phase>test</phase>
-                <goals>
-                  <goal>java</goal>
-                </goals>
-                <configuration>
-                  <mainClass>fitnesseMain.FitNesseMain</mainClass>
-                  <arguments>
-                    <argument>-o</argument>
-                    <argument>-p</argument>
-                    <argument>${fitnesse.port}</argument>
-                    <argument>-e</argument>
-                    <argument>${fitnesse.expiration}</argument>
-                    <argument>-d</argument>
-                    <argument>.</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
- -->
         </plugins>
       </build>
     </profile>
