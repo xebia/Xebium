@@ -1,43 +1,40 @@
-Demonstrate how to make a test run tracable by capturing screenshots automatically after every execution step
-
-There are basically 2 versions: create a screenshot after every action (not verify-/assert-), or create a screenshot when a test fails.
-
-To capture only screen on errors, do either
-
-|Comment|
-| save screenshot after | failure |
-| save screenshot after | error | in folder | http://files/testResults/screenshots |
-
-The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches http://files/testResults/screenshots, which is browsable).
-
+!2  Demonstrate how to make a test run traceable by adding screenshot's to the testresults
+There are three options supported:
+'''1. Create a screenshot after every action (not verify-/assert-)'''
 To capture screenshots after every step (not verify- and assert- statements), you can use either ''step'' or ''every step''.
-
+ 
 |Comment|
 | save screenshot after | step |
 | save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
-
+ 
+'''2. Create a screenshot only when a test fails.'''
+To capture only screen on errors, do either:
+ 
+|Comment|
+| save screenshot after | failure |
+| save screenshot after | error | in folder | http://files/testResults/screenshots |
+ 
+The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches http://files/testResults/screenshots, which can be browsed through Files in the Fitnesse menu).
+ 
+'''3. No screenshots required'''
 If no screenshots are required (the default), define either ''nothing'' or ''none'', depending on your taste.
-
+ 
 |Comment|
 | save screenshot after | nothing |
 | save screenshot after | none | in folder | http://files/testResults/screenshots |
-
-
-Now, say we want to do a test (all parts, !-SetUp-!, test and !-TearDown-! are shown here for completeness)
-
-
-!2 Set Up
+ 
+Now, say we want to do a test (all parts, !-SetUp-!, test and !-TearDown-! are included here for completeness)
+----
+!*> '''Set Up'''
 | library |
 | selenium driver fixture |
-
+ 
 | script |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
-
-
-!2 Test case
-
-Record every step:
-
+ 
+*!
+!* '''1. Create a screenshot after every action (not verify-/assert-)'''
+ 
 | script |
 | save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
 | ensure | do | open | on | !-/ProjectXebium.ExampleSuite.VariablesExample-! |
@@ -49,9 +46,9 @@ Record every step:
 | ensure | do | type | on | searchString | with | $pageName |
 | ensure | do | click | on | searchType |
 | ensure | do | waitForTextPresent | on | $title |
-
- And now let's only record screenshots of pages that have an error.
-
+*!
+!* '''2. Create a screenshot only when a test fails.'''
+ 
 | script |
 | save screenshot after | error | in folder | http://files/testResults/screenshots/${PAGE_NAME}_err |
 | ensure | do | open | on | !-/ProjectXebium.ExampleSuite.VariablesExample-! |
@@ -59,9 +56,10 @@ Record every step:
 | note | check is verified for. We want this to pass, so define a 'reject' rule. |
 | reject | do | verifyElementPresent | on | //form[@action='nosearch'] |
 | save screenshot after | nothing |
-
-Now you can see the files in the folder specified above. There is even an index file present.
-
+ 
+*!
+!* '''3. Verify the result of the above steps and test No screenshots required'''
+ 
 | script |
 | ensure | do | open | on | /files/testResults/screenshots/CaptureScreensAsYouTest/ |
 | ensure | do | verifyElementPresent | on | link=0001-open.png |
@@ -74,7 +72,10 @@ Now you can see the files in the folder specified above. There is even an index 
 | ensure | do | open | on | /files/testResults/screenshots/CaptureScreensAsYouTest_err/ |
 | ensure | do | verifyElementPresent | on | link=0001-verifyElementPresent.png |
 | ensure | do | verifyElementPresent | on | link=index.html |
-
-!2 Tear Down
+ 
+*!
+!*> '''Tear Down'''
 | script |
 | stop browser |
+ 
+*!
