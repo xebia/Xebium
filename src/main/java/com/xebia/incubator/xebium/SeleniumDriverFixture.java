@@ -126,6 +126,8 @@ public class SeleniumDriverFixture {
 		this.commandProcessor = commandProcessor;
 		screenCapture.setCommandProcessor(commandProcessor);
 		locatorCheck = new LocatorCheck(commandProcessor);
+		executeCommand("setTimeout", new String[] { "" + this.timeout });
+		LOG.info("Started new command processor (timeout: " + timeout + "ms, step delay: " + stepDelay + "ms, poll interval: " + pollDelay + "ms)");
 	}
 
 	/**
@@ -342,7 +344,7 @@ public class SeleniumDriverFixture {
 
 	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
 		boolean result = command.matches(expected, actual);
-		LOG.info("command " + command.getSeleniumCommand() + " with value '" + expected + "' compared to output '" + actual + "' is: " + result);
+		LOG.info("command " + command.getSeleniumCommand() + " returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
 		return result;
 	}
 
