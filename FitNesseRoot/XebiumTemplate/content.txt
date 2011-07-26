@@ -2,6 +2,8 @@ This page can act as a starting point for your own test suites.
 
 !contents -R2 -g -p -f -h
 
+Also have a look at the pom.xml (or use it as parent pom). It contains a maven plugin that populates all test suites with the maven path. This is required since otherwise !-FitNesse-! is not able to figure that out for itself.
+
 !***> Preset variables
 !define TEST_SYSTEM {slim}
 !define BROWSER {firefox}
