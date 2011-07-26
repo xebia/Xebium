@@ -1,0 +1,9 @@
+This is the first test suite
+
+!contents
+
+
+!*****> '''Classpath'''
+# begin of maven classpath
+# end of maven classpath
+*****!

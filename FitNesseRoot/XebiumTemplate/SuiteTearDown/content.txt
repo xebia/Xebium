@@ -1,0 +1,4 @@
+After all tests are executed, the browser can be shut down.
+
+| script |
+| stop browser |

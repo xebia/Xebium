@@ -1,0 +1,8 @@
+|import|
+|com.xebia.incubator.xebium|
+
+| library |
+| selenium driver fixture |
+
+| script |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT} |

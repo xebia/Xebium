@@ -1,0 +1,8 @@
+This page can act as a starting point for your own test suites.
+
+!contents -R2 -g -p -f -h
+
+!***> Preset variables
+!define TEST_SYSTEM {slim}
+!define BROWSER {firefox}
+***!

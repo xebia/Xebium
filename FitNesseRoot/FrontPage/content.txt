@@ -3,4 +3,6 @@
 !3 Press image below to enter the project
 [[!img http://files/images/Xebium!.jpg][ProjectXebium]]
 
+If you want to start using Xebium, the XebiumTemplate might be a good starting point.
+
 !note Release v20100303

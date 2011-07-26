@@ -1,0 +1,8 @@
+Okay, This is a bit of a dull test case.
+
+| script |
+| Given a working fitnesse instance |
+| When I open the link to the template project |
+| Then the template directory structure is shown |
+
+Next step would be to make the statements somewhat more sophisticated, e.g. by making certain parts variable. Read the !-FitNesse-! documentation on [[Scenario libraries][.FitNesse.UserGuide.SliM.ScenarioTable]].

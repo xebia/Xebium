@@ -1,0 +1,11 @@
+In the Scenario library the logical steps in the test case can be translated to Xebium statements. Normally this means splitting up the test recorded with Selenium IDE.
+
+| scenario | Given a working fitnesse instance |
+| ensure | do | open | on | / |
+| ensure | do | verifyTextPresent | on | !-XebiumTemplate-! |
+
+| scenario | When I open the link to the template project |
+| ensure | do | clickAndWait | on | link=XebiumTemplate |
+
+| scenario | Then the template directory structure is shown |
+| ensure | do | verifyTextPresent | on | !-Scenario Library-! |
