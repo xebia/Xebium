@@ -8,20 +8,14 @@
   <name>Xebium</name>
   <packaging>jar</packaging>
   <properties>
-    <selenium.version>2.2.0</selenium.version>
+    <selenium.version>2.5.0</selenium.version>
     <fitnesse.version>20110104</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
-    <fitnesse.port>8000</fitnesse.port>
+    <fitnesse.port>8001</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
   </properties>
 
   <repositories>
-
-    <!-- Central repository -->
-    <repository>
-      <id>repo1</id>
-      <url>http://repo1.maven.org/maven2/</url>
-    </repository>
     <repository>
       <id>vt-oss-releases</id>
       <name>Valtech Open Source Releases</name>
@@ -221,6 +215,7 @@
 
     <profile>
       <id>fitnesse</id>
+
       <build>
         <plugins>
           <plugin>

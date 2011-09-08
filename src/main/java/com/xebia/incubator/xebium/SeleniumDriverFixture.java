@@ -54,7 +54,7 @@ public class SeleniumDriverFixture {
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
 			// Allow Basic Authentication without confirmation
-			profile.setPreference("network.http.phishy-userpass-length", 255);
+			// Not accepted in Se2.5: profile.setPreference("network.http.phishy-userpass-length", 255);
 			driver = new FirefoxDriver(profile);
 		} else if ("iexplore".equalsIgnoreCase(browser)) {
 			driver = new InternetExplorerDriver();
@@ -278,6 +278,8 @@ public class SeleniumDriverFixture {
 				result = true;
 			} else if (command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
 				result = checkResult(command, values[values.length - 1], output);
+			} else {
+				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
 			}
 		}
 		
@@ -344,7 +346,7 @@ public class SeleniumDriverFixture {
 
 	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
 		boolean result = command.matches(expected, actual);
-		LOG.info("command " + command.getSeleniumCommand() + " returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+		LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
 		return result;
 	}
 
