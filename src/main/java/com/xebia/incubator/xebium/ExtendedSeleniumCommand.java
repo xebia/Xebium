@@ -161,7 +161,7 @@ public class ExtendedSeleniumCommand {
 	}
 	
 	public boolean isWaitForCommand() {
-		return methodName.startsWith(WAIT_FOR);
+		return methodName.startsWith(WAIT_FOR) && !isSupportedByWebDriver(methodName);
 	}
 	
 	/**
