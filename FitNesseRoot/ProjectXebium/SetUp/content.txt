@@ -3,3 +3,6 @@
 
 |import|
 |com.xebia.incubator.xebium|
+
+| library |
+| selenium driver fixture |
