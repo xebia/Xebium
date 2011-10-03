@@ -1,7 +1,5 @@
 package com.xebia.incubator.xebium;
 
-import org.apache.commons.lang.NotImplementedException;
-
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 
@@ -71,8 +69,8 @@ public class HttpCommandProcessorAdapter implements CommandProcessor {
 	}
 
 
-	public void setExtensionJs(String command) {
-		throw new NotImplementedException();
+	public void setExtensionJs(String extensionJs) {
+		httpCommandProcessor.setExtensionJs(extensionJs);
 	}
 
 

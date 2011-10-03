@@ -1,5 +1,9 @@
+Starting and stopping a Selenium Server is done by the !-SeleniumServerFixture-!. Alternatively, options can be applied.
+
 | script | selenium server fixture |
-| start selenium server | -proxyInjectionMode |
+| start selenium server |
+
+Optionally, commands can be passed. Check the Selenium Server documentation at http://seleniumhq.org if you run into trouble when executing tests.
 
 | script | selenium driver fixture | 
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ | using remote server |

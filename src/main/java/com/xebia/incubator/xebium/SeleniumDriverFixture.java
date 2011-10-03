@@ -78,6 +78,7 @@ public class SeleniumDriverFixture {
 	 */
 	public void startBrowserOnUrl(final String browser, final String browserUrl) {
 		setCommandProcessor(startWebDriverCommandProcessor(browser, browserUrl));
+		setTimeoutOnSelenium();
 		LOG.debug("Started command processor");
 	}
 
@@ -119,6 +120,7 @@ public class SeleniumDriverFixture {
 	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
 		setCommandProcessor(new HttpCommandProcessorAdapter(new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl))));
 		commandProcessor.start();
+		setTimeoutOnSelenium();
 		LOG.debug("Started HTML command processor");
 	}
 
@@ -126,7 +128,6 @@ public class SeleniumDriverFixture {
 		this.commandProcessor = commandProcessor;
 		screenCapture.setCommandProcessor(commandProcessor);
 		locatorCheck = new LocatorCheck(commandProcessor);
-		executeCommand("setTimeout", new String[] { "" + this.timeout });
 		LOG.info("Started new command processor (timeout: " + timeout + "ms, step delay: " + stepDelay + "ms, poll interval: " + pollDelay + "ms)");
 	}
 
@@ -143,7 +144,14 @@ public class SeleniumDriverFixture {
 		this.timeout = timeout;
 		doOn("setTimeout", "" + timeout);
 	}
-		
+
+	/**
+	 * Set the default timeout on the selenium instance.
+	 */
+	private void setTimeoutOnSelenium() {
+		executeCommand("setTimeout", new String[] { "" + this.timeout });
+	}
+	
 	/**
 	 * <p>Set delay between steps.</p>
 	 * <p><code>
