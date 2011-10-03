@@ -8,7 +8,7 @@
   <name>Xebium</name>
   <packaging>jar</packaging>
   <properties>
-    <selenium.version>2.6.0</selenium.version>
+    <selenium.version>2.7.0</selenium.version>
     <fitnesse.version>20110104</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
     <fitnesse.port>8001</fitnesse.port>
