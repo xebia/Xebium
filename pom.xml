@@ -67,13 +67,11 @@
       <groupId>org.fitnesse</groupId>
       <artifactId>fitnesse</artifactId>
       <version>${fitnesse.version}</version>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.fitnesse</groupId>
       <artifactId>fitlibrary</artifactId>
       <version>${fitlibrary.version}</version>
-      <scope>runtime</scope>
     </dependency>
 <!--
     <dependency>
@@ -98,7 +96,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -125,18 +122,6 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.fitnesse</groupId>
-      <artifactId>fitnesse</artifactId>
-      <version>${fitnesse.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.fitnesse</groupId>
-      <artifactId>fitlibrary</artifactId>
-      <version>${fitlibrary.version}</version>
-      <scope>runtime</scope>
-    </dependency>
     <dependency>
       <groupId>org.fitnesse.plugins</groupId>
       <artifactId>maven-classpath-plugin</artifactId>
