@@ -1,5 +1,5 @@
 !contents -R2 -h -g
 
 !*****> '''Classpath'''
-!pomFile pom.xml
+!pomFile pom.xml@runtime
 *****!

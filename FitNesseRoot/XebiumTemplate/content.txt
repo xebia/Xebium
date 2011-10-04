@@ -8,5 +8,5 @@ Also have a look at the pom.xml (or use it as parent pom). It contains a maven p
 !define TEST_SYSTEM {slim}
 !define BROWSER {firefox}
 
-!pomFile pom.xml
+!pomFile pom.xml@runtime
 ***!
