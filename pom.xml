@@ -88,6 +88,13 @@
       <scope>runtime</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.fitnesse.plugins</groupId>
+      <artifactId>maven-classpath-plugin</artifactId>
+      <version>1.3-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- test dependencies -->
     <dependency>
       <groupId>junit</groupId>
@@ -212,14 +219,6 @@
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <version>1.6</version>
-            <dependencies>
-              <dependency>
-                <groupId>org.fitnesse.plugins</groupId>
-                <artifactId>maven-classpath-plugin</artifactId>
-                <version>1.3-SNAPSHOT</version>
-                <scope>test</scope>
-              </dependency>
-            </dependencies>
             <executions>
               <execution>
                 <id>start-fitnesse</id>
@@ -227,7 +226,7 @@
                 <configuration>
                   <tasks>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
-                    <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
+                    <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
                       <arg line="-e ${fitnesse.expiration}" />
