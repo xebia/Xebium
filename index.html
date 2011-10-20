@@ -86,25 +86,59 @@
     
     <div class="thin-line">&nbsp;</div>
 
-    <div class="author">
+    <div class="features">
+    <div class="feature-block">
+      
+      <h3>Getting started</h3>
+      
+      <ul>
+      	<li>Prerequisites:</li>
+      		<p>Make sure both FitNesse and Firefox with the Selenium IDE plugin are installed.</p>
+      <p class="important">[IMPORTANT]<br>Please be aware of the fact that the installation below depends on a previously released version of Xebium. <br>
+      In the meantime development on Xebium has continued, which has led to new features and broader browser (version) support. The 0.3 version of Xebium-jar-with-dependencies best functions with Firefox 4.0.x and does not support any Firefox version higher than 4.x. <br><br>
+      For the most up-to-date version of Xebium, please follow the <b>Quickstart (for Developers)</b> on the right, which results in a fully setup Fitnesse installation, including the latest version of Xebium and detailed examples of it's capabilities</p>
+      	<li>Save the <a href="http://os.xebia.com/maven2/com/xebia/incubator/xebium/0.5/xebium-0.5-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
+        <li>Start FitNesse</li>
+        <li>edit the root page of your tests; insert:
+            <pre>!define TEST_SYSTEM {slim}
+!path xebium-0.3-jar-with-dependencies.jar</pre>
+        </li>
+        <li>Create a testpage (nested under the the rootpage and perhaps within a testSuite).</li>
+        <li>Edit it, add the following import:
+            <pre>| Import |
+| com.xebia.incubator.xebium |</pre>
+        </li>
+        <li>Open Firefox and add the Selenium-Xebium-formatter from the following location:<br/> <a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-xebium-formatter/">selenium-xebium-formatter</a></li>          
+        <li>Follow the installation steps, use the Open with option and select Firefox for applicaiton, when finished restart Firefox</li>
+        <li>When using SeleniumIDE 1.0.11 (or higher) goto <i>Options -&gt; Options...</i> and check the "enable experimental features" checkbox</li>
+        <li>Goto <i>Options -&gt; Format</i> and select the xebium-formatter from the list of formats.</li>
+        <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy its content into the copy buffer.</li>
+        <li>Go back to to the previously created testpage in FitNesse and paste the recorded script from the buffer.</li>
+        <li>Save it, and run the FitNesse test.</li>
+      </ul>
+
+    </div>
+
+    <div class="feature-block">
         <h3>Quickstart (for developers)</h3>
         <ul> 
             <li>Prerequisites: 
-            	<pre>For retrieving the project from Github <a href="http://git-scm.com/">Git</a> is required</pre>
-            	<pre>For building the project <a href="http://maven.apache.org/">Maven</a> is required</pre>
-            	<pre>The following commands should be executed from a commandline terminal</pre>
+            	<p>For retrieving the project from Github <a href="http://git-scm.com/">Git</a> is required</p>
+            	<p>For building the project <a href="http://maven.apache.org/">Maven</a> is required</p>
+            	<p>The following commands should be executed from a commandline terminal</p>
         </li>
             <li>clone/fork the github project by running:
-		    <pre><b><i>$ git clone git://github.com/xebia/Xebium</i></b></pre>
-            <li>Now build the project and start the Fitnesse server from the projects root folder:
-            	<pre><b><i>$ mvn -Pfitnesse test</i></b></pre>
-            </li>
+            <pre>$ git clone git://github.com/xebia/Xebium</pre>
+            <li>Now build the project and start the Fitnesse server from the projects root folder:</li>
+            	<pre>$ mvn -Pfitnesse test</pre>
             <li>After these two steps the application should be succesfully started, showing something like:</li>
-            	<pre><b><i>FitNesse (v20110104) Started...<br>[java] 	port:              8001<br>[java] 	root page:         fitnesse.wiki.FileSystemPage at ./FitNesseRoot<br>[java] 	page version expiration set to 0 days.</i></b></pre>
-            </li>
+            	<pre>FitNesse (v20110104) Started...
+[java] 	port:              8001
+[java] 	root page:         fitnesse.wiki.FileSystemPage at ./FitNesseRoot
+[java] 	page version expiration set to 0 days.</pre>
             <li>Open Firefox to enter the Fitnesse Wiki</li>
             	<pre><a href="http://localhost:8000">http://localhost:8000/</a></pre>
-            <h3>You are ready to go!</h3>
+            <li class="ready">You are ready to go!</li>
         </ul>
         
         
@@ -114,45 +148,8 @@
             <h3>Screencast</h3>
       A screencast will come soon...
     </div>
-
-    
-    <div class="more">
-      
-      <h3>Getting started</h3>
-      
-      <ul>
-      	<li>Prerequisites:</li>
-      		<pre>Make sure both FitNesse and Firefox with the Selenium IDE plugin are installed.</pre>
-      </ul>
-      <ul>[IMPORTANT]<br><i>Please be aware of the fact that the installation below depends on a previously released version of Xebium. <br>
-      In the meantime development on Xebium has continued, which has led to new features and broader browser (version) support. The 0.3 version of Xebium-jar-with-dependencies best functions with Firefox 4.0.x and does not support any Firefox version higher than 4.x. <br><br>
-      For the most up-to-date version of Xebium, please follow the <b>Quickstart (for Developers)</b> on the right, which results in a fully setup Fitnesse installation, including the latest version of Xebium and detailed examples of it's capabilities</i>
-      </ul>
-      <ul>
-      	<li>Save the <a href="http://os.xebia.com/maven2/com/xebia/incubator/xebium/0.3/xebium-0.3-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
-        <li>Start FitNesse</li>
-        <li>edit the root page of your tests; insert:
-            <pre><b>
-!define TEST_SYSTEM {slim}
-!path xebium-0.3-jar-with-dependencies.jar</b>
-	</pre>
-        </li>
-        <li>Create a testpage (nested under the the rootpage and perhaps within a testSuite).</li>
-        <li>Edit it, add the following import:
-            <pre><b>
-| Import |
-| com.xebia.incubator.xebium |</b></pre>
-        </li>
-        <li>Open Firefox and add the Selenium-Xebium-formatter from the following location:<br/> <a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-xebium-formatter/">selenium-xebium-formatter</a></li>          
-        <li>Follow the installation steps, use the Open with option and select Firefox for applicaiton, when finished restart Firefox</li>
-        <li>When using SeleniumIDE 1.0.11 (or higher) goto <i>Options -> Options...</i> and check the "enable experimental features" checkbox</li>
-        <li>Goto <i>Options -> Format</i> and select the xebium-formatter from the list of formats.</li>
-        <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy its content into the copy buffer.</li>
-        <li>Go back to to the previously created testpage in FitNesse and paste the recorded script from the buffer.</li>
-        <li>Save it, and run the FitNesse test.<br/><br/>
-      </ul>
-
     </div>
+
     <div id="bottom-block">
       <div class="disclaimer">
         disclaimer:
