@@ -1,49 +1,54 @@
-<!DOCTYPE HTML>
-<html>
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Xebium — Selenium from FitNesse</title>
-    <meta name="keywords" content="selenium, fitnesse, integration testing, ui testing">
-      <meta name="description" content="selenium, fitnesse, integration testing, ui testing">
-    <link rel="stylesheet" type="text/css" href="index.css" media="all">
+    <title>Xebium - Selenium from FitNesse</title>
+    <meta name="keywords" content="selenium, fitnesse, integration testing, ui testing"/>
+      <meta name="description" content="selenium, fitnesse, integration testing, ui testing"/>
+    <link rel="stylesheet" type="text/css" href="index.css" media="all"/>
 </head>
 <body class="home">
-    <a id="fork-me" href="http://github.com/xebia/Xebium"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <div id="fork-me">
+    <a href="http://github.com/xebia/Xebium">
+      <img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+  </div>
     <div id="top-block">
-      <div id="top-left-block">
+      <div id="top-left-block" class="feature-block">
         <h1>Xebium</h1>
         <h2>Combine the power of Selenium and FitNesse and get more out of both!</h2>
-        <p>
-            Integration testing becomes easier and more fun with Xebium. Selenium is a great tool for regression testing,
-            and FitNesse is great for maintainable acceptance testing.
-            Combining them gives you the ease of FitNesse <strong>and</strong> the power of Selenium, in a non-intrusive way:
-            record your Selenium tests with the SeleniumIDE like you're used to,
-            translate them automatically and run them from FitNesse!            
-        </p>
-        <p>✔&nbsp; Full Selenium-IDE - FitNesse roundtrip with your web tests.
-        </p><p>✔&nbsp; Create data-driven tests.
-        </p><p>✔&nbsp; Tests are executed using the modern WebDriver interfaces.
-        </p><p>✔&nbsp; Tests are run from FitNesse using the SLIM engine.          
-
-        </p><div class="payment-buttons">
-          <a href="http://github.com/xebia/Xebium/zipball/master" class="download">Free Download</a>
+        <p>Integration testing becomes easier and more fun with Xebium.
+        Selenium is a great tool for regression testing, and FitNesse is great
+        for maintainable acceptance testing.  Combining them gives you the ease
+        of FitNesse <strong>and</strong> the power of Selenium, in a
+        non-intrusive way: record your Selenium tests with the SeleniumIDE like
+        you're used to, translate them automatically and run them from
+        FitNesse!</p>
+        <p>✔&nbsp; Full Selenium-IDE - FitNesse roundtrip with your web tests.</p>
+        <p>✔&nbsp; Tests are executed using the modern WebDriver interfaces.</p>
+        <p>✔&nbsp; Tests are run from FitNesse using the SLIM engine.</p>
+        <div class="download-button">
+          <a href="http://github.com/xebia/Xebium/zipball/master">Free Download</a>
           
         </div>
         <p class="note">
-          You can also clone the project with <a href="http://git-scm.com">Git</a>
-           by running: <pre>$ git clone git://github.com/xebia/Xebium</pre>
+          You can also clone the project with
+          <a href="http://git-scm.com">Git</a> by running:
         </p>
-      </div>
-      <div id="top-right-block">
-        <img src="xebium-screenshot.png" height="450" width="600" alt="Xebium">
+        <pre>$ git clone git://github.com/xebia/Xebium</pre>
       </div>
       
+      <div id="top-right-block">
+        <img src="xebium-screenshot.png" height="450" width="600" alt="Xebium"/>
+      </div>
+      <br class="clear"/>
     </div>
     
     <div class="features">
       
       <div class="feature-block">
-        <img src="seleniumIDE1.png" alt="SeleniumIDE table">
+        <img src="seleniumIDE1.png" alt="SeleniumIDE table"/>
         <h3>Two way translation</h3>
         <p>With use of the Xebium Format a script recorded in Seleinium IDE is automatically translated into wiki syntax and can be pasted into FitNesse.
         And reverse: Wiki syntax can be copied back to Selenium IDE and can run as a selenium script.
@@ -51,13 +56,11 @@
       </div>
       
       <div class="feature-block">
-        <img src="seleniumIDE2.png" alt="SeleniumIDE source">
+        <img src="seleniumIDE2.png" alt="SeleniumIDE source"/>
         <h3>Power of FitNesse</h3>
         <p>You can execute any custom build fixture code around the execution of the selenium test and use the default Setup and Teardown mechanism.
         This is great for bringing the system under test into the right state, setting up pre-conditions and cleaning up before running a test.</p>
       </div>
-      
-      <br clear="both">
       
       <div class="feature-block">
         <h3>Improved maintainability</h3>
@@ -84,78 +87,87 @@
             
     </div>
     
-    <div class="thin-line">&nbsp;</div>
-
     <div class="features">
-    <div class="feature-block">
-      
-      <h3>Getting started</h3>
-      
-      <ul>
-      	<li>Prerequisites:</li>
-      		<p>Make sure both FitNesse and Firefox with the Selenium IDE plugin are installed.</p>
-      <p class="important">[IMPORTANT]<br>Please be aware of the fact that the installation below depends on a previously released version of Xebium. <br>
-      In the meantime development on Xebium has continued, which has led to new features and broader browser (version) support. The 0.3 version of Xebium-jar-with-dependencies best functions with Firefox 4.0.x and does not support any Firefox version higher than 4.x. <br><br>
-      For the most up-to-date version of Xebium, please follow the <b>Quickstart (for Developers)</b> on the right, which results in a fully setup Fitnesse installation, including the latest version of Xebium and detailed examples of it's capabilities</p>
-      	<li>Save the <a href="http://os.xebia.com/maven2/com/xebia/incubator/xebium/0.5/xebium-0.5-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
-        <li>Start FitNesse</li>
-        <li>edit the root page of your tests; insert:
-            <pre>!define TEST_SYSTEM {slim}
+      <div class="feature-block">
+        
+        <h3>Getting started</h3>
+        
+        <ul>
+          <li>Prerequisites:
+            <p>Make sure both FitNesse and Firefox with the Selenium IDE plugin are installed.</p>
+            <p class="important">[IMPORTANT]<br/>Please be aware of the fact that the installation below depends on a previously released version of Xebium. <br/>
+        In the meantime development on Xebium has continued, which has led to new features and broader browser (version) support. The 0.3 version of Xebium-jar-with-dependencies best functions with Firefox 4.0.x and does not support any Firefox version higher than 4.x. <br/><br/>
+            For the most up-to-date version of Xebium, please follow the <b>Quickstart (for Developers)</b> on the right, which results in a fully setup Fitnesse installation, including the latest version of Xebium and detailed examples of it's capabilities</p>
+          </li>
+          <li>Save the <a href="http://os.xebia.com/maven2/com/xebia/incubator/xebium/0.5/xebium-0.5-jar-with-dependencies.jar">Xebium-jar-with-dependencies.jar</a> file to the same location as fitnesse.jar</li>
+          <li>Start FitNesse</li>
+          <li>edit the root page of your tests; insert:
+              <pre>!define TEST_SYSTEM {slim}
 !path xebium-0.3-jar-with-dependencies.jar</pre>
-        </li>
-        <li>Create a testpage (nested under the the rootpage and perhaps within a testSuite).</li>
-        <li>Edit it, add the following import:
-            <pre>| Import |
+          </li>
+          <li>Create a testpage (nested under the the rootpage and perhaps within a testSuite).</li>
+          <li>Edit it, add the following import:
+              <pre>| Import |
 | com.xebia.incubator.xebium |</pre>
-        </li>
-        <li>Open Firefox and add the Selenium-Xebium-formatter from the following location:<br/> <a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-xebium-formatter/">selenium-xebium-formatter</a></li>          
-        <li>Follow the installation steps, use the Open with option and select Firefox for applicaiton, when finished restart Firefox</li>
-        <li>When using SeleniumIDE 1.0.11 (or higher) goto <i>Options -&gt; Options...</i> and check the "enable experimental features" checkbox</li>
-        <li>Goto <i>Options -&gt; Format</i> and select the xebium-formatter from the list of formats.</li>
-        <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy its content into the copy buffer.</li>
-        <li>Go back to to the previously created testpage in FitNesse and paste the recorded script from the buffer.</li>
-        <li>Save it, and run the FitNesse test.</li>
-      </ul>
-
-    </div>
-
-    <div class="feature-block">
-        <h3>Quickstart (for developers)</h3>
-        <ul> 
-            <li>Prerequisites: 
-            	<p>For retrieving the project from Github <a href="http://git-scm.com/">Git</a> is required</p>
-            	<p>For building the project <a href="http://maven.apache.org/">Maven</a> is required</p>
-            	<p>The following commands should be executed from a commandline terminal</p>
-        </li>
-            <li>clone/fork the github project by running:
-            <pre>$ git clone git://github.com/xebia/Xebium</pre>
-            <li>Now build the project and start the Fitnesse server from the projects root folder:</li>
-            	<pre>$ mvn -Pfitnesse test</pre>
-            <li>After these two steps the application should be succesfully started, showing something like:</li>
-            	<pre>FitNesse (v20110104) Started...
-[java] 	port:              8001
-[java] 	root page:         fitnesse.wiki.FileSystemPage at ./FitNesseRoot
-[java] 	page version expiration set to 0 days.</pre>
-            <li>Open Firefox to enter the Fitnesse Wiki</li>
-            	<pre><a href="http://localhost:8000">http://localhost:8000/</a></pre>
-            <li class="ready">You are ready to go!</li>
+          </li>
+          <li>Open Firefox and add the Selenium-Xebium-formatter from the following location:<br/> <a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-xebium-formatter/">selenium-xebium-formatter</a></li>          
+          <li>Follow the installation steps, use the Open with option and select Firefox for applicaiton, when finished restart Firefox</li>
+          <li>When using SeleniumIDE 1.0.11 (or higher) goto <i>Options -&gt; Options...</i> and check the "enable experimental features" checkbox</li>
+          <li>Goto <i>Options -&gt; Format</i> and select the xebium-formatter from the list of formats.</li>
+          <li>Now go ahead and record any test in seleniumIDE. When a test is finished, click the Source tab and copy its content into the copy buffer.</li>
+          <li>Go back to to the previously created testpage in FitNesse and paste the recorded script from the buffer.</li>
+          <li>Save it, and run the FitNesse test.</li>
         </ul>
+
+      </div>
+
+      <div class="feature-block">
+          <h3>Quickstart (for developers)</h3>
+          <ul> 
+              <li>Prerequisites: 
+                  <p>For retrieving the project from Github <a href="http://git-scm.com/">Git</a> is required</p>
+                  <p>For building the project <a href="http://maven.apache.org/">Maven</a> is required</p>
+                  <p>The following commands should be executed from a commandline terminal</p>
+          </li>
+          <li>clone/fork the github project by running:
+            <pre>$ git clone git://github.com/xebia/Xebium</pre>
+          </li>
+          <li>Now build the project and start the Fitnesse server from the projects root folder:
+            <pre>$ mvn -Pfitnesse test</pre>
+          </li>
+          <li>After these two steps the application should be succesfully started, showing something like:
+                  <pre>FitNesse (v20110104) Started...
+  [java] 	port:              8001
+  [java] 	root page:         fitnesse.wiki...
+  [java] 	page version expiration set...</pre>
+           </li>
+              <li>Open Firefox to enter the Fitnesse Wiki
+                  <pre><a href="http://localhost:8000">http://localhost:8000/</a></pre>
+           </li>
+           <li class="ready">You are ready to go!</li>
+          </ul>
+          
+          
+         <h3>Authors</h3>      
         
-        
-       <h3>Authors</h3>      
-      
-      <p>Xebium is written by a group of passionate java developers from Xebia in the <a href="http://app-incubator.xebia.com/">Xebia App incubator</a> project.</p>
-            <h3>Screencast</h3>
-      A screencast will come soon...
-    </div>
+        <p>Xebium is written by a group of passionate java developers from Xebia in the <a href="http://app-incubator.xebia.com/">Xebia App incubator</a> project.</p>
+              <h3>Screencast</h3>
+        A screencast will come soon...
+      </div>
     </div>
 
     <div id="bottom-block">
       <div class="disclaimer">
-        disclaimer:
-        <br>
-        <span>
-          The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement of third party rights. In no event shall the copyright holder or holders included in this notice be liable for any claim, or any special indirect or consequential damages, or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software.</span>
+        <h5>disclaimer:</h5>
+        <p>The software is provided "as is", without warranty of any kind,
+        express or implied, including but not limited to the warranties of
+        merchantability, fitness for a particular purpose and noninfringement
+        of third party rights. In no event shall the copyright holder or
+        holders included in this notice be liable for any claim, or any special
+        indirect or consequential damages, or any damages whatsoever resulting
+        from loss of use, data or profits, whether in an action of contract,
+        negligence or other tortious action, arising out of or in connection
+        with the use or performance of this software.</p>
       </div>      
     </div>
     <div id="footer">
