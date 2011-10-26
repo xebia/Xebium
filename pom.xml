@@ -10,7 +10,7 @@
     <selenium.version>2.8.0</selenium.version>
     <fitnesse.version>20111003</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
-    <fitnesse.port>8001</fitnesse.port>
+    <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <slf4j.version>1.6.2</slf4j.version>
   </properties>
