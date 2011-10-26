@@ -28,8 +28,13 @@ p.important {
   }
 #fork-me img { z-index: 999; position: absolute; top: 0; right: 0; border: 0; }
 
+ul.sellingpoints {
+  padding-left: 0;
+  list-style: disc url(list-item.png) inside;
+}
+
 #top-block {
-    background: white url('gradient-bg.png') repeat-x scroll right bottom;
+  background: white url('gradient-bg.png') repeat-x scroll right bottom;
   border-bottom: 1px solid #b4b4b4 }
 
 #top-right-block {
