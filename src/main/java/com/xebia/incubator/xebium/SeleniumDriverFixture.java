@@ -349,7 +349,7 @@ public class SeleniumDriverFixture {
 	}
 
 	private String executeCommand(String methodName, final String[] values) {
-		String output = commandProcessor.getString(methodName, values);
+		String output = commandProcessor.doCommand(methodName, values);
 
 		if (output != null && LOG.isDebugEnabled()) {
 			LOG.debug("Command processor returned '" + output + "'");

@@ -73,11 +73,11 @@ public class ExtendedSeleniumCommand {
 		"getConfirmation",
 		"getCookie",
 		"getCookieByName",
-		"getElementHeight",
-		"getElementIndex",
-		"getElementPositionLeft",
-		"getElementPositionTop",
-		"getElementWidth",
+		"getElementHeight", // num
+		"getElementIndex", // num
+		"getElementPositionLeft", // num
+		"getElementPositionTop", // num
+		"getElementWidth", // num
 		"getEval",
 		"getExpression",
 		"getHtmlSource",
@@ -149,6 +149,14 @@ public class ExtendedSeleniumCommand {
 		"windowFocus",
 		"windowMaximize"
 	}));
+
+//	GetCssCount.java
+//	GetElementHeight.java
+//	GetElementIndex.java
+//	GetElementPositionLeft.java
+//	GetElementPositionTop.java
+//	GetElementWidth.java
+//	GetXpathCount.java
 
 	// Commands that return 
 	private static final Set<String> ARRAY_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
