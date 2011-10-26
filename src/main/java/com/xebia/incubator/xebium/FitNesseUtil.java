@@ -38,5 +38,21 @@ public class FitNesseUtil {
 	}
 
 	
+	/**
+	 * Construct a <code>String</code> representation of a <code>String[]</code> the same way Selenium IDE does.
+	 */
+	public static String stringArrayToString(String[] stringArray) {
+		StringBuilder b = new StringBuilder(64);
+		boolean comma = false;
+		for (String s: stringArray) {
+			if (comma) {
+				b.append(',');
+			} else {
+				comma = true;
+			}
+			b.append(s.replace("\\", "\\\\").replace(",", "\\,"));
+		}
+		return b.toString();
+	}
 	
 }

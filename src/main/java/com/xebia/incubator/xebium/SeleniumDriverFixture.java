@@ -2,10 +2,12 @@ package com.xebia.incubator.xebium;
 
 import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
 import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
 import static org.apache.commons.lang.StringUtils.join;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
@@ -323,7 +325,11 @@ public class SeleniumDriverFixture {
 		
 		String output = null;
 		try {
-			output = executeCommand(command.getSeleniumCommand(), values);
+			if (command.returnTypeIsArray()) {
+				output = executeArrayCommand(command.getSeleniumCommand(), values);
+			} else {
+				output = executeCommand(command.getSeleniumCommand(), values);
+			}
 			
 			if (command.isAndWaitCommand()) {
 				commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
@@ -343,13 +349,23 @@ public class SeleniumDriverFixture {
 	}
 
 	private String executeCommand(String methodName, final String[] values) {
-		String output = commandProcessor.doCommand(methodName, values);
+		String output = commandProcessor.getString(methodName, values);
 
 		if (output != null && LOG.isDebugEnabled()) {
 			LOG.debug("Command processor returned '" + output + "'");
 		}
 
 		return output;
+	}
+
+	private String executeArrayCommand(String methodName, final String[] values) {
+		String[] output = commandProcessor.getStringArray(methodName, values);
+
+		if (output != null && LOG.isDebugEnabled()) {
+			LOG.debug("Command processor returned '" + Arrays.asList(output) + "'");
+		}
+
+		return stringArrayToString(output);
 	}
 
 	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
