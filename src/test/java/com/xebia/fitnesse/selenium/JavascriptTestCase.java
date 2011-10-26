@@ -278,13 +278,14 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-				"| $locVar= | is | getLocation |\n" +
-                "| $bar= | is | getTest | on | foo |\n" +
+				"| $locVar= | is | storeLocation |\n" +
+                "| $bar= | is | storeTest | on | foo |\n" +
                 "| ensure | do | verifyTest | on | foo | with | $locVar |\n" +
 				"| stop browser |\n"
 				, result);
     }
 
+   
     @Test
     public void shouldWikiWordsAndUrlsToFitnesse() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
