@@ -5,10 +5,20 @@ import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
 import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
 import static org.apache.commons.lang.StringUtils.join;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
+import java.util.Properties;
 
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +26,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,6 +65,10 @@ public class SeleniumDriverFixture {
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
 			// Ensure we deal with untrusted and unverified hosts.
+			File userPrefs = new File("firefox.properties");
+			if (userPrefs.exists()) {
+				profile.updateUserPrefs(userPrefs);
+			}
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
 			// Allow Basic Authentication without confirmation
@@ -64,12 +80,63 @@ public class SeleniumDriverFixture {
 			driver = new ChromeDriver();
 		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
 			driver = new HtmlUnitDriver(true);
+		} else if ("remote".equalsIgnoreCase(browser)) {
+			driver = newRemoteDriver();
 		} else {
 			throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'");
 		}
 		return new WebDriverCommandProcessor(browserUrl, driver);
 	}
 
+	/**
+	 * Create a new remote-webdriver. It can be configured according to the specs on
+	 * https://saucelabs.com/docs/ondemand/additional-config.
+	 * 
+	 * @return a fresh RemoteWebDriver instance
+	 */
+	private WebDriver newRemoteDriver() {
+		File propFile = new File(System.getProperty("xebium.remote.properties", "remote.properties"));
+		InputStream inStream = null;
+		try {
+			inStream = new BufferedInputStream(new FileInputStream(propFile));
+			Properties props = new Properties();
+			props.load(inStream);
+			
+			URL onDemandUrl = new URL(props.getProperty("onDemandUrl"));
+			String browserName = props.getProperty("browserName", "firefox");
+			String version = props.getProperty("version", "");
+			Platform platform = Platform.valueOf(props.getProperty("platform", "ANY").toUpperCase());
+			
+			LOG.info("Connecting to remote server " + onDemandUrl + " requesting browser " + browserName + " v" + version + " on " + platform);
+			
+			DesiredCapabilities capabilities = new DesiredCapabilities(browserName, version, platform);
+			
+			// Remove properties that are already set
+			props.remove("onDemandUrl");
+			props.remove("browserName");
+			props.remove("version");
+			props.remove("platform");
+			
+			for (Entry<Object, Object> p : props.entrySet()) {
+				capabilities.setCapability((String) p.getKey(), p.getValue());
+			}
+			
+			RemoteWebDriver driver = new RemoteWebDriver(onDemandUrl, capabilities);
+			
+	        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+	        return driver;
+			
+		} catch (Exception e) {
+			throw new RuntimeException("Could not instantiate remote driver using properties from file '" + propFile + "'", e);
+		} finally {
+			if (inStream != null) {
+				try { inStream.close(); } catch (IOException e) { LOG.error("Unable to close file handler"); }
+			}
+		}
+	}
+
+	
 	/**
 	 * <p><code>
 	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> |
