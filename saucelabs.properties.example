@@ -1,0 +1,12 @@
+#
+# Copy/rename this file to saucelabs.properties
+#
+# This is a sample property file that contains the properties required to
+# log on to sauce labs (for a few tests).
+#
+
+# Account user name
+sauce.user=myname
+
+# a UUID (format 12345678-abcd-ed01-2345-67890abcdef0)
+sauce.accesskey=eb1b599d-57eb-4767-8f68-47be256cb3d3

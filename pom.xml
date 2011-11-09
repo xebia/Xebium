@@ -226,10 +226,13 @@
                 <configuration>
                   <tasks>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
+                    <property file="saucelabs.properties" />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
                       <arg line="-e ${fitnesse.expiration}" />
+                      <jvmarg value="-Dsauce.user=${sauce.user}" />
+                      <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
                     </java>
                   </tasks>
                 </configuration>
