@@ -160,17 +160,17 @@ public class ExtendedSeleniumCommand {
 
 	// Commands that return 
 	private static final Set<String> ARRAY_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
-			"getAllButtons", // arr
-			"getAllFields", // arr
-			"getAllLinks", // arr
-			"getAllWindowTitles", // arr
-			"getAttributeFromAllWindows", // arr
-			"getSelectedIds", // arr 
-			"getSelectedIndexes", // arr
-			"getSelectedLabels", // arr
-			"getSelectedValues", // arr
-			"getSelectOptions" // arr
-		}));
+		"getAllButtons", // arr
+		"getAllFields", // arr
+		"getAllLinks", // arr
+		"getAllWindowTitles", // arr
+		"getAttributeFromAllWindows", // arr
+		"getSelectedIds", // arr 
+		"getSelectedIndexes", // arr
+		"getSelectedLabels", // arr
+		"getSelectedValues", // arr
+		"getSelectOptions" // arr
+	}));
 
 	private String methodName;
 	
