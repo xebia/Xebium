@@ -14,6 +14,8 @@
   <name>Xebium</name>
   <packaging>jar</packaging>
 
+  <url>http://xebia.github.com/Xebium</url>
+
   <description>
     A Selenium2 fixture for FitNesse.
   </description>
@@ -226,8 +228,16 @@
     </profile>
   </profiles>
 
-  <url>http://xebia.github.com/Xebium</url>
+  <issueManagement>
+  	<system>GitHub</system>
+  	<url>https://github.com/xebia/Xebium/issues</url>
+  </issueManagement>
 
+  <organization>
+    <name>Xebia B.V.</name>
+    <url>http://xebia.com</url>
+  </organization>
+  
   <developers>
     <developer>
       <id>sgrijpink</id>
