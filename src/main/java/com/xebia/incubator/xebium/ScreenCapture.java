@@ -77,7 +77,10 @@ class ScreenCapture {
 	 */
 	boolean requireScreenshot(final ExtendedSeleniumCommand command,
 			boolean result) {
-		return (!command.isAssertCommand() && !command.isVerifyCommand() && screenshotPolicy == ScreenshotPolicy.STEP)
+		return (!command.isAssertCommand()
+				&& !command.isVerifyCommand()
+				&& !command.isWaitForCommand()
+				&& screenshotPolicy == ScreenshotPolicy.STEP)
 				|| (!result && screenshotPolicy == ScreenshotPolicy.FAILURE);
 	}
 
