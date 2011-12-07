@@ -21,7 +21,7 @@
   </description>
 
   <properties>
-    <selenium.version>2.12.0</selenium.version>
+    <selenium.version>2.14.0</selenium.version>
     <fitnesse.version>20111025</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
     <fitnesse.port>8000</fitnesse.port>
