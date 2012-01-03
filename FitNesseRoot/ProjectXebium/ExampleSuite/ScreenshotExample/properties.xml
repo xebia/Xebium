@@ -2,12 +2,12 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>Creating a Screenshot of your browser in a test</Help>
+	<Help>Creating a spcific Screenshot of your browser during a test</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suites/>
+	<Suites></Suites>
 	<Test/>
 	<Versions/>
 	<WhereUsed/>
