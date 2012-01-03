@@ -15,6 +15,7 @@ public class ExtendedSeleniumCommandTest {
 		assertFalse(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
 		assertFalse(command.isWaitForCommand());
+		assertFalse(command.isStoreCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertTrue(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
@@ -27,6 +28,7 @@ public class ExtendedSeleniumCommandTest {
 		assertTrue(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
 		assertFalse(command.isWaitForCommand());
+		assertFalse(command.isStoreCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
@@ -39,6 +41,7 @@ public class ExtendedSeleniumCommandTest {
 		assertTrue(command.isVerifyCommand());
 		assertTrue(command.isNegateCommand());
 		assertFalse(command.isWaitForCommand());
+		assertFalse(command.isStoreCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
@@ -51,6 +54,7 @@ public class ExtendedSeleniumCommandTest {
 		assertFalse(command.isVerifyCommand());
 		assertFalse(command.isNegateCommand());
 		assertTrue(command.isWaitForCommand());
+		assertFalse(command.isStoreCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
@@ -64,10 +68,25 @@ public class ExtendedSeleniumCommandTest {
 		assertFalse(command.isVerifyCommand());
 		assertTrue(command.isNegateCommand());
 		assertTrue(command.isWaitForCommand());
+		assertFalse(command.isStoreCommand());
 		assertFalse(command.isAndWaitCommand());
 		assertFalse(command.isAssertCommand());
 		assertEquals("isTextPresent", command.getSeleniumCommand());
 	}
+
+	@Test
+	public void testStoreTextPresent() {
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand("storeTextPresent");
+		
+		assertFalse(command.isVerifyCommand());
+		assertFalse(command.isNegateCommand());
+		assertFalse(command.isWaitForCommand());
+		assertTrue(command.isStoreCommand());
+		assertFalse(command.isAndWaitCommand());
+		assertFalse(command.isAssertCommand());
+		assertEquals("isTextPresent", command.getSeleniumCommand());
+	}
+
 
 	@Test
 	public void testClick() {

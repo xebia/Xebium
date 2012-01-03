@@ -2,10 +2,12 @@ package com.xebia.incubator.xebium;
 
 import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
 import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
 import static org.apache.commons.lang.StringUtils.join;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
@@ -51,6 +53,10 @@ public class SeleniumDriverFixture {
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
 			// Ensure we deal with untrusted and unverified hosts.
+			File userPrefs = new File("firefox.properties");
+			if (userPrefs.exists()) {
+				profile.updateUserPrefs(userPrefs);
+			}
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
 			// Allow Basic Authentication without confirmation
@@ -63,11 +69,16 @@ public class SeleniumDriverFixture {
 		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
 			driver = new HtmlUnitDriver(true);
 		} else {
-			throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'");
+			try {
+				driver = new RemoteWebDriverBuilder(browser).newDriver();
+			} catch (Exception e) {
+				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'", e);
+			}
 		}
 		return new WebDriverCommandProcessor(browserUrl, driver);
 	}
 
+	
 	/**
 	 * <p><code>
 	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> |
@@ -323,7 +334,11 @@ public class SeleniumDriverFixture {
 		
 		String output = null;
 		try {
-			output = executeCommand(command.getSeleniumCommand(), values);
+			if (command.returnTypeIsArray()) {
+				output = executeArrayCommand(command.getSeleniumCommand(), values);
+			} else {
+				output = executeCommand(command.getSeleniumCommand(), values);
+			}
 			
 			if (command.isAndWaitCommand()) {
 				commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
@@ -350,6 +365,16 @@ public class SeleniumDriverFixture {
 		}
 
 		return output;
+	}
+
+	private String executeArrayCommand(String methodName, final String[] values) {
+		String[] output = commandProcessor.getStringArray(methodName, values);
+
+		if (output != null && LOG.isDebugEnabled()) {
+			LOG.debug("Command processor returned '" + Arrays.asList(output) + "'");
+		}
+
+		return stringArrayToString(output);
 	}
 
 	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {

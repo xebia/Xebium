@@ -63,34 +63,34 @@ public class ExtendedSeleniumCommand {
 		"fireEvent",
 		"focus", // loc
 		"getAlert",
-		"getAllButtons",
-		"getAllFields",
-		"getAllLinks",
-		"getAllWindowTitles",
+		"getAllButtons", // arr
+		"getAllFields", // arr
+		"getAllLinks", // arr
+		"getAllWindowTitles", // arr
 		"getAttribute",
-		"getAttributeFromAllWindows",
+		"getAttributeFromAllWindows", // arr
 		"getBodyText",
 		"getConfirmation",
 		"getCookie",
 		"getCookieByName",
-		"getElementHeight",
-		"getElementIndex",
-		"getElementPositionLeft",
-		"getElementPositionTop",
-		"getElementWidth",
+		"getElementHeight", // num
+		"getElementIndex", // num
+		"getElementPositionLeft", // num
+		"getElementPositionTop", // num
+		"getElementWidth", // num
 		"getEval",
 		"getExpression",
 		"getHtmlSource",
 		"getLocation",
 		"getSelectedId",
-		"getSelectedIds",
+		"getSelectedIds", // arr 
 		"getSelectedIndex",
-		"getSelectedIndexes",
+		"getSelectedIndexes", // arr
 		"getSelectedLabel",
-		"getSelectedLabels",
+		"getSelectedLabels", // arr
 		"getSelectedValue",
-		"getSelectedValues",
-		"getSelectOptions",
+		"getSelectedValues", // arr
+		"getSelectOptions", // arr
 		"getSpeed",
 		"getTable",
 		"getText",
@@ -150,7 +150,32 @@ public class ExtendedSeleniumCommand {
 		"windowMaximize"
 	}));
 
+//	GetCssCount.java
+//	GetElementHeight.java
+//	GetElementIndex.java
+//	GetElementPositionLeft.java
+//	GetElementPositionTop.java
+//	GetElementWidth.java
+//	GetXpathCount.java
+
+	// Commands that return 
+	private static final Set<String> ARRAY_COMMANDS = new HashSet<String>(Arrays.asList(new String[] {
+		"getAllButtons", // arr
+		"getAllFields", // arr
+		"getAllLinks", // arr
+		"getAllWindowTitles", // arr
+		"getAttributeFromAllWindows", // arr
+		"getSelectedIds", // arr 
+		"getSelectedIndexes", // arr
+		"getSelectedLabels", // arr
+		"getSelectedValues", // arr
+		"getSelectOptions" // arr
+	}));
+
 	private String methodName;
+	
+	// The real selenium command name, assigned by getSeleniumCommand() on first invocation.
+	private String seleniumCommandName;
 	
 	public ExtendedSeleniumCommand(String methodName) {
 		this.methodName = methodName;
@@ -205,8 +230,15 @@ public class ExtendedSeleniumCommand {
 	}
 	
 	public String getSeleniumCommand() {
+		
+		// fast track: once resolved return the previous value.
+		if (seleniumCommandName != null) {
+			return seleniumCommandName;
+		}
+		
 		// for commands like "waitForCondition"
 		if (isSupportedByWebDriver(methodName)) {
+			seleniumCommandName = methodName;
 			return methodName;
 		}
 		
@@ -236,6 +268,9 @@ public class ExtendedSeleniumCommand {
 		if (isAndWaitCommand()) {
 			seleniumName = seleniumName.substring(0, seleniumName.length() - AND_WAIT.length());
 		}
+		
+		seleniumCommandName = seleniumName;
+		
 		return seleniumName;
 	}
 
@@ -319,6 +354,13 @@ public class ExtendedSeleniumCommand {
 
 	private Pattern globToRegExp(String pattern) {
 		return Pattern.compile(".*" + convertGlobToRegEx(pattern) + ".*", Pattern.DOTALL);
+	}
+
+	/**
+	 * @return true if an array is returned.
+	 */
+	public boolean returnTypeIsArray() {
+		return ARRAY_COMMANDS.contains(getSeleniumCommand());
 	}
 
 }

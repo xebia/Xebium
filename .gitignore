@@ -13,3 +13,4 @@ target/
 *.log
 .idea
 *.iml
+saucelabs.properties

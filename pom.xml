@@ -1,54 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xebium</artifactId>
   <groupId>com.xebia.incubator</groupId>
   <version>0.6-SNAPSHOT</version>
   <name>Xebium</name>
   <packaging>jar</packaging>
+
+  <url>http://xebia.github.com/Xebium</url>
+
+  <description>
+    A Selenium2 fixture for FitNesse.
+  </description>
+
   <properties>
-    <selenium.version>2.7.0</selenium.version>
-    <fitnesse.version>20111003</fitnesse.version>
+    <selenium.version>2.14.0</selenium.version>
+    <fitnesse.version>20111025</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
-    <fitnesse.port>8001</fitnesse.port>
+    <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <slf4j.version>1.6.2</slf4j.version>
   </properties>
-
-  <repositories>
-     <repository>
-      <id>vt-oss-releases</id>
-      <name>Valtech Open Source Releases</name>
-      <url>http://source.valtech.com/repo/content/repositories/releases/
-      </url>
-    </repository>
-    <repository>
-      <id>os-xebia</id>
-      <name>Xebia Open Source Repository</name>
-      <url>http://os.xebia.com/repository/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>os-xebia</id>
-      <name>Xebia Open Source Repository</name>
-      <url>http://os.xebia.com/repository/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <distributionManagement>
-    <repository>
-      <id>os-xebia-deploy</id>
-      <name>Xebia Open Source Repository</name>
-      <url>scp://os.xebia.com/data/websites/os.xebia.com/maven2</url>
-    </repository>
-    <snapshotRepository>
-      <id>os-xebia-deploy</id>
-      <name>Xebia Open Source Repository</name>
-      <url>scp://os.xebia.com/data/websites/os.xebia.com/maven2</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <scm>
     <connection>scm:git:git://github.com/xebia/Xebium.git</connection>
@@ -75,12 +54,14 @@
       <version>${fitnesse.version}</version>
       <scope>runtime</scope>
     </dependency>
+    <!--
     <dependency>
       <groupId>org.fitnesse</groupId>
       <artifactId>fitlibrary</artifactId>
       <version>${fitlibrary.version}</version>
       <scope>runtime</scope>
     </dependency>
+     -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -91,7 +72,7 @@
     <dependency>
       <groupId>org.fitnesse.plugins</groupId>
       <artifactId>maven-classpath-plugin</artifactId>
-      <version>1.3-SNAPSHOT</version>
+      <version>1.3</version>
       <scope>test</scope>
     </dependency>
 
@@ -226,10 +207,13 @@
                 <configuration>
                   <tasks>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
+                    <property file="saucelabs.properties" />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
                       <arg line="-e ${fitnesse.expiration}" />
+                      <jvmarg value="-Dsauce.user=${sauce.user}" />
+                      <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
                     </java>
                   </tasks>
                 </configuration>
@@ -244,8 +228,16 @@
     </profile>
   </profiles>
 
-  <url>http://xebia.github.com/Xebium</url>
+  <issueManagement>
+  	<system>GitHub</system>
+  	<url>https://github.com/xebia/Xebium/issues</url>
+  </issueManagement>
 
+  <organization>
+    <name>Xebia B.V.</name>
+    <url>http://xebia.com</url>
+  </organization>
+  
   <developers>
     <developer>
       <id>sgrijpink</id>

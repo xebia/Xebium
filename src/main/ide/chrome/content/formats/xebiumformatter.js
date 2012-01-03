@@ -59,12 +59,10 @@ function getSourceForCommand(commandObj) {
          
         if (/^store/.test(command)) {
          	if (value === '') {
-             	return "| $" + target + "= | is | " + command.replace(/^store/, "get") + " |";
+             	return "| $" + target + "= | is | " + command + " |";
          	} else {
-             	return "| $" + value + "= | is | " + command.replace(/^store/, "get") + " | on | " + escape(target) + " |";
+             	return "| $" + value + "= | is | " + command + " | on | " + escape(target) + " |";
          	}
-//        } else if (/^set/.test(command)) {
-//        	return "| set " + command.replace(/^set([A-Z])/, /\1l/
      	} else if (value === '') {
              return "| ensure | do | " + command + " | on | " + escape(target) + " |";
         } else {
@@ -154,10 +152,12 @@ function getCommandForSource(line) {
 
 	// format: | $value= | is | ${command} | on | ${target} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
+		// Keep get->store mapping here for legacy
 		return new Command(match[2].replace(/^get/, 'store'), unescape(match[3]), unescape(match[1]));
 
 	// format: | $value= | is | ${command} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|/.exec(line)) {
+		// Keep get->store mapping here for legacy
 		return new Command(match[2].replace(/^get/, 'store'), unescape(match[1]));
 
 	// format: | note | ${text} |
