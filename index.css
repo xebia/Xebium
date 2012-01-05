@@ -90,6 +90,11 @@ ul.sellingpoints {
   margin-top: 40px;
   overflow: hidden;
   border-bottom: 1px solid #b4b4b4 }
+.feature-header {
+    margin-left: 5%;
+    width: 94%;
+    margin-right: 5%;
+    margin-bottom: 40px; }
 .feature-block {
   width: 45%;
   float: left;
