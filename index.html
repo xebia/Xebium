@@ -110,21 +110,21 @@
         <ul>
             <li>Prerequisites: 
             	<p>Download the latest stable project version by simply pressing <a href="http://github.com/xebia/Xebium/zipball/master">Free Download</a></p>
-		<p>Alternatively the latest project version can be retrieved from Github allowing you <br>to easily stay up-to-date, in order to do so <a href="http://git-scm.com/" alt="git-scm.com">Git</a> is required</p>
+		<p>Alternatively the latest project version can be retrieved from Github allowing you to easily stay up-to-date, in order to do so <a href="http://git-scm.com/" alt="git-scm.com">Git</a> is required</p>
             	<p>For building the project <a href="http://maven.apache.org/">Maven</a> is required and needs to be setup</p>
 	    </li>
             <li>Extract the downloaded zip file into a directory of choice
-		<p>Open the command-line terminal and navigate to this directory</p>
-	    <li>Alternatively use <a href="http://git-scm.com/" alt="git-scm.com">Git</a> to clone the project from github<br>by running the following command (from the command-line terminal):
+		<p>Open the command-line terminal and navigate to this directory</p></li>
+	    <li>Alternatively use <a href="http://git-scm.com/" alt="git-scm.com">Git</a> to clone the project from github by running the following command (from the command-line terminal):
 		    <pre>$ git clone git://github.com/xebia/Xebium</pre></li>
-            <li>Now build the project and start the Fitnesse server from the projects root folder with<br>the following command (from the command-line terminal):
+            <li>Now build the project and start the Fitnesse server from the projects root folder with the following command (from the command-line terminal):
             	<pre>$ mvn -Pfitnesse test</pre>
-		<p>Maven will retrieve all necessary dependencies into a Maven repository,<br>the first time this might take a couple of minutes</p>
+		<p>Maven will retrieve all necessary dependencies into a Maven repository, the first time this might take a couple of minutes</p>
             </li>
-            <li>After these two steps the application should be successfully started, showing something like:</li>
+            <li>After these two steps the application should be successfully started, showing something like:
             	<pre>FitNesse (v20110104) Started...<br>[java] 	port:              8001<br>[java] 	root page:         fitnesse.wiki.FileSystemPage at ./FitNesseRoot<br>[java] 	page version expiration set to 0 days.</pre>
 		<p>Leave the terminal window open to keep FitNesse running (<i>control-c</i> will shutdown the server)</p>    
-	</li>
+            </li>
 	    <p><b>With this Step 1 is completed</b></p>
         </ul>
         
@@ -136,18 +136,18 @@
       <ul>
       	<li>Prerequisites:</li>
 	    <p>Make sure <a href="http://www.mozilla.org">Firefox</a> is installed and contains the <a href="http://seleniumhq.org">Selenium IDE</a> plug-in.</p>
-	<li>First we need to add the Selenium-Xebium-formatter to Firefox</li>
+	<li>First we need to add the Selenium-Xebium-formatter to Firefox
 	<p>Open Firefox and go to the following location: <a href="https://addons.mozilla.org/en-US/firefox/addon/selenium-xebium-formatter/" alt="Selenium-Xebium-Formatter plug-in">selenium-xebium-formatter</a></p>          
         <p>Choose the <i>+ Add to Firefox</i> option</p>
 	<p>When prompted with the <i>Open with</i> option select <i>Firefox</i> and press <i>OK</i></p>
-	<p>Restart Firefox</p>
-        <li>To use the Xebium-formatter in Selenium IDE it first needs to be activated</li>
+	<p>Restart Firefox</p></li>
+        <li>To use the Xebium-formatter in Selenium IDE it first needs to be activated
 	<p>Open Selenium IDE in the Firefox <i>Tools</i> menu</p>
 	<p>From the Selenium IDE menu choose <i>Options -> Options...</i> </p>
 	<p>On the <i>General</i> tab check the "enable experimental features" <br>and "disable format change warning messages" check-boxes</p>
         <p>Go to <i>Options -> Format</i> and select the xebium-formatter from the list.</p>
 	<p><b>You are now finished with Step 2</b></p>
-	<p>Continue to the <b>Getting Started</b> section to create your first Xebium test case</p>
+	<p>Continue to the <b>Getting Started</b> section to create your first Xebium test case</p></li>
       </ul>          
       </div>
     </div>
@@ -155,9 +155,9 @@
      <div class="features">
         <div class="feature-header">
           <h3>Getting Started</h3>
-          <p>The Following sections describe how to create a new test page in FitNesse and how to record and add a simple Selenium script<br><br>
-             Be aware that using the Record&Play functionality from Selenium does not always make very reliable tests, use the recorded scripts as the basis for your test but keep in mind that these scripts often need to adjusted to make them more reliable and robust<br><br>
-             In the ExampleSuite of the Xebium project many ways are shown how to improve your tests; FitNesse Scenario Tables allow you to create readable and reusable components from your recorded scripts. With X-Path and CSS you can improve object recognition. Don't take test automation lightly, it's a powerful instrument!</p>
+            <p>The Following sections describe how to create a new test page in FitNesse and how to record and add a simple Selenium script<br></p>
+            <p>Be aware that using the Record&Play functionality from Selenium does not always make very reliable tests, use the recorded scripts as the basis for your test but keep in mind that these scripts often need to adjusted to make them more reliable and robust</p>
+            <p>In the ExampleSuite of the Xebium project many ways are shown how to improve your tests; FitNesse Scenario Tables allow you to create readable and reusable components from your recorded scripts. With X-Path and CSS you can improve object recognition. Don't take test automation lightly, it's a powerful instrument!</p>
         </div>
         <div class="feature-block">
  	<h3>Recording a Selenium IDE Script</h3>
@@ -165,14 +165,14 @@
 		<p>In the Firefox menu select <i>Tools>Selenium IDE</i></p></li>
 		
 		<li>Selenium IDE opens with the record function already activate
-		<p>If not push the <i>Record</i> button to start recording</p>
-		<li>Browse to a website of your choice and navigate through it; For example:
+		<p>If not push the <i>Record</i> button to start recording</p></li>
+		<li>Browse to a website of your choice and navigate through it, here's an example:
                 <ol>
-		<li>1. Surf to <a href="http://www.google.com">www.google.com</a></li>
-		<li>2. Enter the search term "Xebium" in the search field</li>
-		<li>3. Press the magnifying glass symbol (with your mouse, do not use the enter key at this point)</li>
-		<li>4. On the Google search result page verify the Xebium link is being displayed</li></ol>
-		<p>The latter is done by right clicking your mouse on the link and selecting the <br><i>waitForText link=Xebium - Selenium from FitNesse Xebium - Selenium from FitNesse Xebium</i> <br>option from the bottom of the menu</p></li>
+		<li>Surf to <a href="http://www.google.com">www.google.com</a></li>
+		<li>Enter the search term "Xebium" in the search field</li>
+		<li>Press the magnifying glass symbol (with your mouse, do not use the enter key at this point)</li>
+		<li>On the Google search result page verify the Xebium link is being displayed</li></ol>
+		<p>The latter is done by right clicking your mouse on the link and selecting the <i>waitForText link=Xebium - Selenium from FitNesse Xebium - Selenium from FitNesse Xebium</i> option from the bottom of the menu</p>
 		<p>The right mouse button allows you to add additional verifications to the script that is being recorded<br>In addition to this manually countless commands and checks can be added</p></li>
 
 	        <li>Now you have a first simple Selenium script
@@ -187,16 +187,17 @@
         	<h3>Create a Test in FitNesse</h3>
              <ul><li>Open a browser to enter the Fitnesse Wiki url
             	<p><a href="http://localhost:8000">http://localhost:8000/</a></p></li>
-            <li>If the installation steps have all been completed successfully you should now see the FitNesse wiki<br> with the <font color="purple"> Xebium! </font> logo</li>
+            <li>If the installation steps have all been completed successfully you should now see the FitNesse wiki with the <font color="purple"> Xebium! </font> logo</li>
 		<p>Click the <font color="purple">Xebium!</font> logo to view the sample project</p>
 	     </li>
 	     <li>Enter the ExampleSuite by clicking the link to start your testing experience
-		<p>The ExampleSuite contains several examples of specific ways to use<br>the <font color="purple"> Xebium! </font> fixture</p>
+		<p>The ExampleSuite contains several examples of specific ways to use the <font color="purple"> Xebium! </font> fixture</p>
 	     </li>
 	     <li>Now you are ready for creating your own first test
 	     <p>Press the <i>Add child</i> link on top of the page</p>
 	     <p>A dialog panel is shown allowing you to enter a page name</p>
-	     <p>Select the <i>Test</i> radio-button and use MyNewTest for a name<br>It's required to use <a href="http://en.wikipedia.org/wiki/CamelCase" alt="Wikipedia on CamelCase">CamelCase</a> in order for FitNesse to create a new page</p>
+	     <p>Select the <i>Test</i> radio-button and use MyNewTest for a name</p>
+             <p>It's required to use <a href="http://en.wikipedia.org/wiki/CamelCase" alt="Wikipedia on CamelCase">CamelCase</a> in order for FitNesse to create a new page</p>
 	     <p>In the content table of the ExampleSuite a new link appears <i>My New Test</i></p>
 	     <p>Open the new page by clicking the link</p></li>
 	     <li>Now you are ready to add the recorded Selenium IDE script<br>
