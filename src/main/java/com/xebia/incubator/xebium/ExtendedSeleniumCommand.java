@@ -353,7 +353,7 @@ public class ExtendedSeleniumCommand {
 	}
 
 	private Pattern globToRegExp(String pattern) {
-		return Pattern.compile(".*" + convertGlobToRegEx(pattern) + ".*", Pattern.DOTALL);
+		return Pattern.compile(convertGlobToRegEx(pattern), Pattern.DOTALL);
 	}
 
 	/**
