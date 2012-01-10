@@ -14,6 +14,7 @@ import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.slf4j.Logger;
@@ -42,6 +43,8 @@ public class SeleniumDriverFixture {
 
 	private LocatorCheck locatorCheck;
 	
+    private File customProfilePreferencesFile;
+
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
 	}
@@ -52,11 +55,12 @@ public class SeleniumDriverFixture {
 		
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
-			// Ensure we deal with untrusted and unverified hosts.
-			File userPrefs = new File("firefox.properties");
-			if (userPrefs.exists()) {
-				profile.updateUserPrefs(userPrefs);
-			}
+
+            if (customProfilePreferencesFile != null) {
+                new PreferencesWrapper(customProfilePreferencesFile).addTo(profile);
+            }
+
+            // Ensure we deal with untrusted and unverified hosts.
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
 			// Allow Basic Authentication without confirmation
@@ -78,6 +82,9 @@ public class SeleniumDriverFixture {
 		return new WebDriverCommandProcessor(browserUrl, driver);
 	}
 
+    public void loadCustomBrowserPreferencesFromFile(String filename) {
+        this.customProfilePreferencesFile = new File(filename);
+    }
 	
 	/**
 	 * <p><code>
