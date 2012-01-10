@@ -13,15 +13,6 @@ public class Globber {
 		line = line.trim();
 		int strLen = line.length();
 		StringBuilder sb = new StringBuilder(strLen);
-		// Remove beginning and ending * globs because they're useless
-		if (line.startsWith("*")) {
-			line = line.substring(1);
-			strLen--;
-		}
-		if (line.endsWith("*")) {
-			line = line.substring(0, strLen - 1);
-			strLen--;
-		}
 		boolean escaping = false;
 		int inCurlies = 0;
 		for (char currentChar : line.toCharArray()) {

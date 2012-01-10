@@ -21,7 +21,7 @@
   </description>
 
   <properties>
-    <selenium.version>2.14.0</selenium.version>
+    <selenium.version>2.16.0</selenium.version>
     <fitnesse.version>20111025</fitnesse.version>
     <fitlibrary.version>20091020</fitlibrary.version>
     <fitnesse.port>8000</fitnesse.port>
@@ -208,6 +208,9 @@
                   <tasks>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
                     <property file="saucelabs.properties" />
+                    <!-- "Sensible" defaults -->
+                    <property name="sauce.user" value="[provide user through saucelabs.properties]" />
+                    <property name="sauce.accesskey" value="[provide accesskey through saucelabs.properties]" />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />

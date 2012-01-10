@@ -202,7 +202,7 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertTrue(command.matches("regexp:.*multiple lines.*", text));
 		assertTrue(command.matches("regexpi:.*multiple lines.*", text));
-		assertEquals("multiple lines", Globber.convertGlobToRegEx("*multiple lines*"));
+		assertEquals(".*multiple lines.*", Globber.convertGlobToRegEx("*multiple lines*"));
 		assertTrue(command.matches("glob:*multiple lines*", text));
 
 	}
