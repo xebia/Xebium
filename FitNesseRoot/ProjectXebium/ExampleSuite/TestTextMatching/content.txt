@@ -1,6 +1,6 @@
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:8000 |
-| set step delay | slow |
+| set step delay to| slow |
 | ensure | do | open | on | / |
 | ensure | do | verifyText | on | css=span.page_title | with | !-FrontPage-! |
 | ensure | do | verifyNotText | on | css=span.page_title | with | Page |

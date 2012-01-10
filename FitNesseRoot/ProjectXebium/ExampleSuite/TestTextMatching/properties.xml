@@ -2,12 +2,12 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help/>
+	<Help>Test to verify correct globbing on a when doing a verify (regression test)</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suites/>
+	<Suites></Suites>
 	<Test/>
 	<Versions/>
 	<WhereUsed/>
