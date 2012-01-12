@@ -7,6 +7,7 @@ import static org.apache.commons.lang.StringUtils.join;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Arrays;
 
 import org.openqa.selenium.WebDriver;
@@ -56,15 +57,22 @@ public class SeleniumDriverFixture {
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
 
-            if (customProfilePreferencesFile != null) {
-                new PreferencesWrapper(customProfilePreferencesFile).addTo(profile);
-            }
+			if (customProfilePreferencesFile != null) {
+				PreferencesWrapper prefs = new PreferencesWrapper(customProfilePreferencesFile);
+				prefs.addTo(profile);
+				try {
+					StringWriter writer = new StringWriter(512);
+					prefs.writeTo(writer);
+					LOG.info("Added properties to firefox profile: " + writer.toString());
+				} catch (IOException e) {
+					LOG.error("Unable to log firefox profile settings", e);
+				}
+			}
 
-            // Ensure we deal with untrusted and unverified hosts.
+			// Ensure we deal with untrusted and unverified hosts.
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
-			// Allow Basic Authentication without confirmation
-			// Not accepted in Se2.5: profile.setPreference("network.http.phishy-userpass-length", 255);
+			
 			driver = new FirefoxDriver(profile);
 		} else if ("iexplore".equalsIgnoreCase(browser)) {
 			driver = new InternetExplorerDriver();
