@@ -79,12 +79,14 @@ public class SeleniumDriverFixture {
 		} else if ("chrome".equalsIgnoreCase(browser)) {
 			driver = new ChromeDriver();
 		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
+			driver = new HtmlUnitDriver();
+		} else if ("htmlUnit+js".equalsIgnoreCase(browser)) {
 			driver = new HtmlUnitDriver(true);
 		} else {
 			try {
 				driver = new RemoteWebDriverBuilder(browser).newDriver();
 			} catch (Exception e) {
-				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome' or 'htmlUnit'", e);
+				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', 'htmlUnit' or 'htmlUnit+js'", e);
 			}
 		}
 		return new WebDriverCommandProcessor(browserUrl, driver);
