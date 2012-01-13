@@ -11,8 +11,10 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mozilla.javascript.Context;
+import org.mozilla.javascript.ContextFactory;
 import org.mozilla.javascript.JavaScriptException;
 import org.mozilla.javascript.RhinoException;
 import org.mozilla.javascript.Scriptable;
@@ -24,14 +26,21 @@ public class JavascriptTestCase {
 	final static String TEST_ENVIRONMENT = "src/test/resources/testCase.js";
 	final static String FILE_UNDER_TEST = "src/main/ide/chrome/content/formats/xebiumformatter.js";
 
-	final String EOL = System.getProperty("line.separator");
+	final static String EOL = System.getProperty("line.separator");
+
+	private static ContextFactory contextFactory;
 
 	private Context context;
 	private ScriptableObject globalScope;
 
-    @Before
+	@BeforeClass
+	public static void classInit() {
+    	contextFactory = new ContextFactory();
+	}
+
+	@Before
 	public void init() throws Exception {
-		context = Context.enter();
+		context = contextFactory.enterContext();
 		globalScope = context.initStandardObjects();
 		String script;
 		script = loadScript(TEST_ENVIRONMENT);
