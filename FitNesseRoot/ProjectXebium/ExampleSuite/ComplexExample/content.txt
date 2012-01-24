@@ -8,7 +8,7 @@
 | $title= | is | getTitle |
 | ensure | do | click | on | link=Search |
 | ensure | do | waitForElementPresent | on | //form[@action='search'] |
-| ensure | do | verifySelectOptions | on | !-//select[@id='PageType']-! | with | Suite,Test,Normal |
+| ensure | do | verifySelectOptions | on | !-//select[@id='PageType']-! | with | Suite,Test,Static |
 | ensure | do | type | on | searchString | with | $pageName |
 | ensure | do | click | on | searchType |
 | ensure | do | waitForTextPresent | on | $title |

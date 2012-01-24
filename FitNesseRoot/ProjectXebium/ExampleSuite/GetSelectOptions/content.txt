@@ -1,0 +1,6 @@
+| script | selenium driver fixture |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT} |
+| ensure | do | open | on | !-/ProjectXebium.ExampleSuite.GetSelectedOptions?searchForm-! |
+| ensure | do | verifyText | on | css=span.page_title | with | Search Form |
+| ensure | do | verifySelectOptions | on | id=Action | with | !-Don't care,Edit,Versions,Properties,Refactor,WhereUsed,RecentChanges,Files,Search-! |
+| stop browser |

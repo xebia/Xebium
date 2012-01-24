@@ -33,7 +33,7 @@ Now, say we want to do a test (all parts, !-SetUp-!, test and !-TearDown-! are i
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
  
 *!
-!* '''1. Create a screenshot after every action (not verify-/assert-)'''
+!* '''1. Create a screenshot after every action (not verify-/assert-/wait-)'''
  
 | script |
 | save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME} |
@@ -65,7 +65,8 @@ Now, say we want to do a test (all parts, !-SetUp-!, test and !-TearDown-! are i
 | ensure | do | verifyElementPresent | on | link=0001-open.png |
 | ensure | do | verifyElementPresent | on | link=0002-setTimeout.png |
 | ensure | do | verifyElementPresent | on | link=0003-click.png |
-| ensure | do | verifyElementPresent | on | link=0007-waitForTextPresent.png |
+| ensure | do | verifyElementPresent | on | link=0004-type.png |
+| ensure | do | verifyElementPresent | on | link=0005-click.png |
 | ensure | do | verifyElementPresent | on | link=index.html |
 | ensure | do | clickAndWait | on | link=index.html |
 | ensure | do | verifyTextPresent | on | !-1. | open | /ProjectXebium.ExampleSuite.VariablesExample | |-! |

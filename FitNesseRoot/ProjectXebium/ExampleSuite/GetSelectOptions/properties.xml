@@ -2,13 +2,12 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>Running a simple test on sauce labs infra (requires extra configuration)</Help>
+	<Help>Test to verify correct working of "getSelectOptions/verifySelectOptions" (regression test)</Help>
 	<Properties/>
-	<Prune/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suites></Suites>
+	<Suites/>
 	<Test/>
 	<Versions/>
 	<WhereUsed/>

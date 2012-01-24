@@ -4,10 +4,11 @@
 	<Files/>
 	<Help>Run a test on the Sauce Labs cloud, using the Selenium 1 (RC) interface</Help>
 	<Properties/>
+	<Prune/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suites/>
+	<Suites></Suites>
 	<Test/>
 	<Versions/>
 	<WhereUsed/>
