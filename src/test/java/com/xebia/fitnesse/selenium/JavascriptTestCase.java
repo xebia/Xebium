@@ -231,7 +231,15 @@ public class JavascriptTestCase {
         assertEquals("${target}", eval("cmd.target"));
         assertEquals("${value}", eval("cmd.value"));
     }
-
+    
+    @Test
+    public void testExecuteCommandOnVariableWithEmbeddedVariableToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | waitForText | on | link=$myVariable | with | Text and $myVariable |');");
+        assertEquals("waitForText", eval("cmd.command"));
+        assertEquals("link=${myVariable}", eval("cmd.target"));
+        assertEquals("Text and ${myVariable}", eval("cmd.value"));
+    }
+    
     @Test
     public void testExecuteCommandOnTextSeparatedByBars() {
     	eval("var cmd = getCommandForSource('| ensure | do | verifyTitle | on | !-example.com | Examplish stuff | Home-! |');");
@@ -337,6 +345,20 @@ public class JavascriptTestCase {
 				, result);
     }
     
+    @Test
+    public void shoudlParseVariablesInText() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('waitForText', 'link=${myVariable}', 'Text${myVariable} Text'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+                "| ensure | do | waitForText | on | link=$myVariable | with | Text$myVariable Text |\n" +
+				"| stop browser |\n"
+				, result);
+    }
     @Test
     public void shouldExecuteCommandOnTargetWithValueToSelenese() {
 		// Only open and check command should be parsed
