@@ -41,8 +41,7 @@ function formatCommands(commands) {
 
 function getSourceForCommand(commandObj) {
 	function escape(s) {
-		var m;
-		if (m = /^\$\{(\w+)\}$/.exec(s)) { return '$' + m[1]; }
+		s = s.replace(/\$\{(\w+)\}/g, "$$$1");
      	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /@/.test(s)) { return "!-" + s + "-!"; }
 		return s;
 	}
