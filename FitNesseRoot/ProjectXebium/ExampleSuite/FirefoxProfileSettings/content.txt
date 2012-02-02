@@ -1,9 +1,0 @@
-
-| script | selenium driver fixture |
-| load custom browser preferences from file | firefoxexample.js |
-| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
-| ensure | do | open | on | !-/ProjectXebium.ExampleSuite.BasicFixtureExample-! |
-| ensure | do | verifyTitle | on | !-ProjectXebium.ExampleSuite.BasicFixtureExample-! |
-| ensure | do | verifyTextPresent | on | Xebium |
-| ensure | do | waitForText | on | //tr[1]/td[2] | with | selenium driver fixture |
-| stop browser |
