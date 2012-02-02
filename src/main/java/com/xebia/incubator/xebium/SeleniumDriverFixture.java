@@ -241,7 +241,8 @@ public class SeleniumDriverFixture {
 	 * @param target
 	 * @return
 	 */
-	public boolean doOn(final String command, final String target) {
+	public boolean doOn(final String command, String target) {
+		target = GuiMap.getLocator(target);
 		LOG.info("Performing | " + command + " | " + target + " |");
 		return executeDoCommand(command, new String[] { target });
 	}
@@ -256,7 +257,8 @@ public class SeleniumDriverFixture {
 	 * @param value
 	 * @return
 	 */
-	public boolean doOnWith(final String command, final String target, final String value) {
+	public boolean doOnWith(final String command, String target, final String value) {
+		target = GuiMap.getLocator(target);
 		LOG.info("Performing | " + command + " | " + target + " | " + value + " |");
 		return executeDoCommand(command, new String[] { target, value });
 	}
@@ -283,7 +285,8 @@ public class SeleniumDriverFixture {
 	 * @param target
 	 * @return
 	 */
-	public String isOn(final String command, final String target) {
+	public String isOn(final String command, String target) {
+		target = GuiMap.getLocator(target);
 		LOG.info("Storing result from | " + command + " | " + target + " |");
 		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { target }, stepDelay);
 	}
