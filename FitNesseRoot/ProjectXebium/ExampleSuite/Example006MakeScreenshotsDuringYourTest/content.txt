@@ -1,0 +1,17 @@
+!2 !help
+!3 This example demonstrates how to create a screenshot of the active browser page in your test.
+'''Use the ''captureEntirePageScreenshot'' command and specify a location'''
+
+'''Executed steps:
+1. Open the current page.
+2. Verify the page title "${PAGE_NAME}".
+3. Create a Screenshot of the browser window.'''
+
+!| script | selenium driver fixture |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}  |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | verifyTextPresent | on | ${PAGE_NAME} |
+| ensure | do | captureEntirePageScreenshot | on | http://files/testResults/screenshots/${PAGE_NAME}/screenshotTest.png |
+| stop browser |
+
+'''View the screenshot resulting from this test here: http://files/testResults/screenshots/Example006MakeScreenshotsDuringYourTest/screenshotTest.png''', or navigate to it through the ''Files'' menu.'''

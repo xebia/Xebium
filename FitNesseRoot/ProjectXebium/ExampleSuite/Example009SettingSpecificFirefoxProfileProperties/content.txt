@@ -1,0 +1,17 @@
+!2 !help
+!3 Load a file setting custom Firefox profile properties
+'''Executed steps:
+1. Load custom browser preferences setting the Firefox startup homepage to ''Xebium''
+2. Open the browser
+3. Verify the home page is set to ''Xebium''
+4. Stop the browser'''
+!| script | selenium driver fixture |
+| load custom browser preferences from file | firefoxexample.js |
+| start browser | firefox | on url | http:// |
+| ensure | do | verifyTitle | on | Xebium - Selenium from FitNesse |
+| ensure | do | verifyTextPresent | on | Xebium |
+| stop browser |
+
+
+
+

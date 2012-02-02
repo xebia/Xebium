@@ -1,0 +1,29 @@
+!help
+!3 By default Xebium uses Webdriver/Selenium 2.x for executing tests, using the ''Remote Server'' option enables the use of Selenium Server
+'''Starting and stopping a Selenium Server is done by the ''!-SeleniumServerFixture-!''. 
+Optionally, commands can be passed, in this example the option ''-singleWindow'' causes the test to run in a single Browser window. 
+Check the Selenium Server documentation at http://seleniumhq.org if you run into trouble when executing tests.'''
+
+!3 1. Start the Selenium Server process
+| script | selenium server fixture |
+| start selenium server | -singleWindow |
+
+!3 2. Run a simple test
+'''Executed steps:
+1. Open the current page in a browser.
+2. wait for the page title.
+3. Verify the text ''Xebium'' is shown somewhere on the page.
+4. Verify the text ''${PAGE_NAME}'' is shown in the page_title element.'''
+
+!| script | selenium driver fixture | 
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ | using remote server |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | verifyTextPresent | on | Xebium |
+| ensure | do | verifyText | on | css=span.page_title | with | ${PAGE_NAME} |
+| stop browser |
+
+!3 3. Shutdown the Selenium Server process
+| script | selenium server fixture |
+| stop selenium server |
+

@@ -2,13 +2,13 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>This suite contains examples of the differnt ways to use the Xebium fixture</Help>
+	<Help>Examples of how to automatically capture screens after every step or after a failed command</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suite/>
 	<Suites/>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>

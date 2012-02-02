@@ -2,13 +2,13 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>This suite contains examples of the differnt ways to use the Xebium fixture</Help>
+	<Help>An example of Using a scenario for data driven tests</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suite/>
-	<Suites/>
+	<Suites></Suites>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>

@@ -2,13 +2,13 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>This suite contains examples of the differnt ways to use the Xebium fixture</Help>
+	<Help>Example of how to creating a Screenshot of your browser during a test</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suite/>
 	<Suites/>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>
