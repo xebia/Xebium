@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
@@ -32,6 +34,8 @@ public class SeleniumDriverFixture {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
+	private static final String ALIAS_PREFIX = "%";
+
 	private CommandProcessor commandProcessor;
 
 	private long timeout = 30000;
@@ -45,6 +49,8 @@ public class SeleniumDriverFixture {
 	private LocatorCheck locatorCheck;
 	
     private File customProfilePreferencesFile;
+
+	private Map<String, String> aliases = new HashMap<String, String>();
 
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
@@ -243,7 +249,7 @@ public class SeleniumDriverFixture {
 	 */
 	public boolean doOn(final String command, final String target) {
 		LOG.info("Performing | " + command + " | " + target + " |");
-		return executeDoCommand(command, new String[] { target });
+		return executeDoCommand(command, new String[] { unalias(target) });
 	}
 
 	/**
@@ -258,7 +264,7 @@ public class SeleniumDriverFixture {
 	 */
 	public boolean doOnWith(final String command, final String target, final String value) {
 		LOG.info("Performing | " + command + " | " + target + " | " + value + " |");
-		return executeDoCommand(command, new String[] { target, value });
+		return executeDoCommand(command, new String[] { unalias(target), unalias(value) });
 	}
 
 	/**
@@ -285,7 +291,35 @@ public class SeleniumDriverFixture {
 	 */
 	public String isOn(final String command, final String target) {
 		LOG.info("Storing result from | " + command + " | " + target + " |");
-		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { target }, stepDelay);
+		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { unalias(target) }, stepDelay);
+	}
+
+	/**
+	 * Add a new locator alias to the fixture.
+	 * 
+	 * @param alias
+	 * @param locator
+	 */
+	public void addAliasForLocator(String alias, String locator) {
+		LOG.info("Add alias: '" + alias + "' for '" + locator + "'");
+		aliases.put(alias, locator);
+	}
+	
+	/**
+	 * Clear the aliases table.
+	 */
+	public void clearAliases() {
+		aliases.clear();
+	}
+	
+	private String unalias(String value) {
+		String subst = value;
+		if (value != null && value.startsWith(ALIAS_PREFIX)) {
+			String alias = value.substring(ALIAS_PREFIX.length());
+			subst = aliases.get(alias);
+			LOG.info("Expanded alias '" + alias + "' to '" + subst + "'");
+		}
+		return subst;
 	}
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
@@ -415,4 +449,5 @@ public class SeleniumDriverFixture {
 		
 		LOG.info("Command processor stopped");
 	}
+	
 }

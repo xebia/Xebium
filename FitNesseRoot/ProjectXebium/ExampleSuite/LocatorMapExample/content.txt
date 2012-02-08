@@ -1,0 +1,27 @@
+2 mogelijke oplossingen:
+
+1. Load Fixture as Library, with table() method and use a DefineAliasForLocator class as dummy
+
+2. Add one extra method to the fixture and use a scenario to add aliases.
+
+!*> boilerplate
+| library |
+| selenium driver fixture |
+
+| scenario | define | alias | aliases | locator |
+| add alias | @alias | for locator| @locator |
+*!
+
+!| define aliases |
+| alias | locator |
+| pagePath | ${PAGE_PATH}.${PAGE_NAME} |
+| pageName | Xebium |
+| title | css=span.page_title |
+
+!| script |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | %pagePath |
+| ensure | do | waitForTitle | on | %pagePath |
+| ensure | do | verifyTextPresent | on | %pageName |
+| ensure | do | verifyText | on | %title | with | ${PAGE_NAME} |
+| stop browser |
