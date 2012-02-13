@@ -62,11 +62,9 @@ function getSourceForCommand(commandObj) {
          	} else {
              	return "| $" + value + "= | is | " + command + " | on | " + escape(target) + " |";
          	}
-     	} else if (value === '') {
-             return "| ensure | do | " + command + " | on | " + escape(target) + " |";
-        } else {
-            return "| ensure | do | " + command + " | on | " + escape(target) + " | with | " + escape(value) + " |";
-        }
+     	}
+
+ 		return "| ensure | do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
     }
     return "| note | !-Untranslatable: '" + commandObj.toString + "'-! |";
 }
