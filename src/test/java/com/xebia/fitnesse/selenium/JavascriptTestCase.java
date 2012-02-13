@@ -208,7 +208,6 @@ public class JavascriptTestCase {
 
     @Test
     public void shouldParseCheckCommand() {
-        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
         eval("var cmd = getCommandForSource('| check | do | command | on | blah | output |');");
         assertEquals("command", eval("cmd.command"));
         assertEquals("blah", eval("cmd.target"));
@@ -217,12 +216,28 @@ public class JavascriptTestCase {
 
     @Test
     public void shouldParseBareCheckCommand() {
-        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
         eval("var cmd = getCommandForSource('| check | do | command | output |');");
         assertEquals("command", eval("cmd.command"));
         assertEquals("output", eval("cmd.target"));
         assertEquals("", eval("cmd.value"));
     }
+
+    @Test
+    public void shouldParseActionCommand() {
+        eval("var cmd = getCommandForSource('| do | command | on | blah | with | output |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("blah", eval("cmd.target"));
+        assertEquals("output", eval("cmd.value"));
+    }
+
+    @Test
+    public void shouldParseBareActionCommand() {
+        eval("var cmd = getCommandForSource('| do | command | on | output |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("output", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+
 
     @Test
     public void testExecuteCommandOnEscapedTargetWithEscapedValueToSelenese() {
@@ -397,6 +412,22 @@ public class JavascriptTestCase {
 				"| stop browser |\n"
 				, result);
     }
+
+    @Test
+    public void shoudlEscapeBars() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('waitForText', 'Some | text', 'more | text'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+                "| check | is | waitForText | on | !-Some | text-! | !-more | text-! |\n" +
+				"| stop browser |\n"
+				, result);
+    }
+ 
     @Test
     public void shouldExecuteCommandOnTargetWithValueToSelenese() {
 		// Only open and check command should be parsed

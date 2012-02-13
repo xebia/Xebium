@@ -42,7 +42,7 @@ function formatCommands(commands) {
 function getSourceForCommand(commandObj) {
 	function escape(s) {
 		s = s.replace(/\$\{(\w+)\}/g, "$$$1");
-     	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /@/.test(s)) { return "!-" + s + "-!"; }
+     	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /[@\|]/.test(s)) { return "!-" + s + "-!"; }
 		return s;
 	}
 	
@@ -149,17 +149,12 @@ function getCommandForSource(line) {
 	
 	var match;
 	
-	// | check/ensure | is/do | ${command} | on | ${target} | [with |] ${value} |
-	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|]+?)\s*\|\s*with\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
-		return new Command(match[1], unescape(match[2]), unescape(match[3]));
-
-	// | check/ensure | is/do | ${command} | [on |] ${target} |
-	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
-		return new Command(match[1], unescape(match[2]));
-
-	// | check/ensure | is/do | ${command} |[ on |] (some copy-paste cases)
-	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|(?:\s*on\s*\|?)?/.exec(line)) {
-		return new Command(match[1]);
+	// | check/ensure | is/do | ${command} |[ on | ]${target} |[ [with |] ${value} |]
+	if (match = /^\|\s*(?:(?:ensure|check)\s*\|\s*|)(?:do|is)\s*\|\s*([^\|\s]+)\s*\|\s*(?:on\s*\|(?:\s*((?:!-.*?-!)?|[^\|]+?)\s*\|(?:\s*(?:with\s*\|\s*|)((?:!-.*?-!)|[^\|]+?)\s*\||)|)|((?:!-.*?-!)|[^\|]+?)\s*\|)/.exec(line)) {
+		return new Command(match[1],
+				match[2] ? unescape(match[2])
+						: (match[4] ? unescape(match[4]) : undefined),
+				match[3] ? unescape(match[3]) : undefined);
 
 	// format: | $value= | is | ${command} | on | ${target} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
