@@ -55,7 +55,9 @@ function getSourceForCommand(commandObj) {
         var command = commandObj.command;
         var target = commandObj.target;
         var value = commandObj.value;
-         
+        var def = commandObj.getDefinition();
+        //log.debug("command: " + command + " => " + (def ? def.name : "<NONE>") + " / " + def.isAccessor);
+        
         if (/^store/.test(command)) {
          	if (value === '') {
              	return "| $" + target + "= | is | " + command + " |";
@@ -64,7 +66,19 @@ function getSourceForCommand(commandObj) {
          	}
      	}
 
- 		return "| ensure | do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
+        if (def && def.isAccessor) {
+        	if (/^get/.test(def.name)) {
+        		if (value === '') {
+             		return "| check | is | " + command + " | " + escape(target) + " |";
+        		} else {
+             		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value) + " |";
+        		}
+        	} else {
+         		return "| ensure | do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
+        	}
+        } else {
+     		return "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
+        }
     }
     return "| note | !-Untranslatable: '" + commandObj.toString + "'-! |";
 }
@@ -135,16 +149,16 @@ function getCommandForSource(line) {
 	
 	var match;
 	
-	// | ensure | do | ${command} | on | ${target} | with | ${value} |
+	// | check/ensure | is/do | ${command} | on | ${target} | [with |] ${value} |
 	if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*([^\|]+?)\s*\|\s*with\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
 		return new Command(match[1], unescape(match[2]), unescape(match[3]));
 
-	// | ensure | do | ${command} | on | ${target} |
+	// | check/ensure | is/do | ${command} | [on |] ${target} |
 	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
 		return new Command(match[1], unescape(match[2]));
 
-	// | ensure | do | ${command} | on | (some copy-paste cases)
-	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|/.exec(line)) {
+	// | check/ensure | is/do | ${command} |[ on |] (some copy-paste cases)
+	} else if (match = /^\|\s*ensure\s*\|\s*do\s*\|\s*([^\|\s]+)\s*\|(?:\s*on\s*\|?)?/.exec(line)) {
 		return new Command(match[1]);
 
 	// format: | $value= | is | ${command} | on | ${target} |

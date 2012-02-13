@@ -120,6 +120,7 @@ Command.loadAPI = function() {
 	return this.functions;
 }
 
+
 function CommandDefinition(name) {
 	this.name = name;
 	this.params = [];

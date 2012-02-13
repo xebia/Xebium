@@ -24,6 +24,7 @@ import org.mozilla.javascript.Undefined;
 public class JavascriptTestCase {
 
 	final static String TEST_ENVIRONMENT = "src/test/resources/testCase.js";
+	final static String TEST_SETUP = "src/test/resources/testSetup.js";
 	final static String FILE_UNDER_TEST = "src/main/ide/chrome/content/formats/xebiumformatter.js";
 
 	final static String EOL = System.getProperty("line.separator");
@@ -42,14 +43,10 @@ public class JavascriptTestCase {
 	public void init() throws Exception {
 		context = contextFactory.enterContext();
 		globalScope = context.initStandardObjects();
-		String script;
-		script = loadScript(TEST_ENVIRONMENT);
-		assertNotNull(script);
-		eval(script);
 		
-		script = loadScript(FILE_UNDER_TEST);
-		assertNotNull(script);
-		eval(script);
+		loadScript(TEST_ENVIRONMENT);
+		loadScript(TEST_SETUP);
+		loadScript(FILE_UNDER_TEST);
 	}
 
     @After
@@ -83,7 +80,7 @@ public class JavascriptTestCase {
 		return value;
 	}
 
-	public String loadScript(String name) throws IOException {
+	public void loadScript(String name) throws IOException {
 		BufferedReader reader = null;
 		StringBuffer contents = new StringBuffer();
 		
@@ -101,7 +98,8 @@ public class JavascriptTestCase {
 				reader.close();
 			}
 		}
-		return contents.toString();
+		assertTrue(contents.length() > 0);
+		eval(contents.toString());
 	}
 
 	/**
@@ -209,6 +207,24 @@ public class JavascriptTestCase {
     }
 
     @Test
+    public void shouldParseCheckCommand() {
+        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
+        eval("var cmd = getCommandForSource('| check | do | command | on | blah | output |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("blah", eval("cmd.target"));
+        assertEquals("output", eval("cmd.value"));
+    }
+
+    @Test
+    public void shouldParseBareCheckCommand() {
+        // Can't parse line: '| ensure  | do  | deleteAllVisibleCookies  | on |'
+        eval("var cmd = getCommandForSource('| check | do | command | output |');");
+        assertEquals("command", eval("cmd.command"));
+        assertEquals("output", eval("cmd.target"));
+        assertEquals("", eval("cmd.value"));
+    }
+
+    @Test
     public void testExecuteCommandOnEscapedTargetWithEscapedValueToSelenese() {
         eval("var cmd = getCommandForSource('| ensure | do | command | on | !-target-! | with | !-value-!|');");
         assertEquals("command", eval("cmd.command"));
@@ -277,8 +293,8 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-				"| ensure | do | open | on | !-http://myurl.com-! |\n" +
-                "| ensure | do | open | on | foo | with | bar |\n" +
+				"| do | open | on | !-http://myurl.com-! |\n" +
+                "| do | open | on | foo | with | bar |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -289,7 +305,7 @@ public class JavascriptTestCase {
 		eval("var commands = [];");
         eval("commands.push(new Command('storeLocation', 'locVar'))");
         eval("commands.push(new Command('storeTest', 'foo', 'bar'))");
-        eval("commands.push(new Command('verifyTest', 'foo', '${locVar}'))");
+        eval("commands.push(new Command('verifyText', 'foo', '${locVar}'))");
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
@@ -297,7 +313,7 @@ public class JavascriptTestCase {
 				"| start browser | firefox | on url | http://example.com |\n" +
 				"| $locVar= | is | storeLocation |\n" +
                 "| $bar= | is | storeTest | on | foo |\n" +
-                "| ensure | do | verifyTest | on | foo | with | $locVar |\n" +
+                "| check | is | verifyText | on | foo | $locVar |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -316,10 +332,10 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| ensure | do | someUrl | on | !-http://example.com-! |\n" +
-                "| ensure | do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
-                "| ensure | do | testVariable | on | foo | with | $locVar |\n" +
-                "| ensure | do | testEmail | on | !-anonymous@example.com-! |\n" +
+                "| do | someUrl | on | !-http://example.com-! |\n" +
+                "| do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
+                "| do | testVariable | on | foo | with | $locVar |\n" +
+                "| do | testEmail | on | !-anonymous@example.com-! |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -337,14 +353,36 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| ensure | do | someUrl | on | !-http://example.com-! |\n" +
-                "| ensure | do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
-                "| ensure | do | testVariable | on | foo | with | $locVar |\n" +
-                "| ensure | do | testEmail | on | !-anonymous@example.com-! |\n" +
+                "| do | someUrl | on | !-http://example.com-! |\n" +
+                "| do | testWikiWord | on | !-WikiWord-! | with | !-W10W-! |\n" +
+                "| do | testVariable | on | foo | with | $locVar |\n" +
+                "| do | testEmail | on | !-anonymous@example.com-! |\n" +
+				"| stop browser |\n"
+				, result);
+    }
+ 
+    @Test
+    public void shouldParseRightActionToFitnesse() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('open', 'http://example.com'))");
+        eval("commands.push(new Command('verifyText', 'css=h1', 'Header'))");
+        eval("commands.push(new Command('waitForTextNotPresent', 'foo'))");
+        eval("commands.push(new Command('focus', 'input'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+                "| do | open | on | !-http://example.com-! |\n" +
+                "| check | is | verifyText | on | css=h1 | Header |\n" +
+                "| ensure | do | waitForTextNotPresent | on | foo |\n" +
+                "| do | focus | on | input |\n" +
 				"| stop browser |\n"
 				, result);
     }
     
+
     @Test
     public void shoudlParseVariablesInText() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
@@ -355,7 +393,7 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| ensure | do | waitForText | on | link=$myVariable | with | Text$myVariable Text |\n" +
+                "| check | is | waitForText | on | link=$myVariable | Text$myVariable Text |\n" +
 				"| stop browser |\n"
 				, result);
     }
