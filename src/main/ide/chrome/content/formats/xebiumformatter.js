@@ -42,7 +42,22 @@ function formatCommands(commands) {
 function getSourceForCommand(commandObj) {
 	function escape(s) {
 		s = s.replace(/\$\{(\w+)\}/g, "$$$1");
-     	if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /[@\|]/.test(s)) { return "!-" + s + "-!"; }
+		var match;
+		if (match = /^regexpi?:(.*)$/.exec(s)) {
+			// Cheating: regexpi is transformed to normal regexp.
+			return "=~/" + match[1] + "/";
+		} else if (match = /^exact:(.*)$/.exec(s)) {
+			s = match[1];
+		} else if (match = /^(?:glob:)?(.*)$/.exec(s)) {
+			if (/\*/.test(match[1])) {
+				return "=~/" + match[1].replace(/([\\.+?|\[\](){}^$])/g, "\\$1").replace(/\*/g, '.*') + "/";
+			} else {
+				s =  match[1];
+			}
+		}
+		if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /[@\|]/.test(s)) {
+			return "!-" + s + "-!";
+		}
 		return s;
 	}
 	
@@ -67,15 +82,13 @@ function getSourceForCommand(commandObj) {
      	}
 
         if (def && def.isAccessor) {
-        	if (/^get/.test(def.name)) {
-        		if (value === '') {
-             		return "| check | is | " + command + " | " + escape(target) + " |";
-        		} else {
-             		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value) + " |";
-        		}
-        	} else {
-         		return "| ensure | do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
-        	}
+        	if (/^is/.test(def.name)) {
+        		return "| ensure | is | " + command + " | on | " + escape(target) + " |";
+        	} else if (value) {
+         		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value) + " |";
+    		} else {
+         		return "| check | is | " + command + " | " + escape(target) + " |";
+    		}
         } else {
      		return "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
         }
@@ -140,10 +153,22 @@ function parse(testCase, source) {
 function getCommandForSource(line) {
 	function unescape(s) {
 		var m;
-		// Convert variable from $fit to ${selenese} style
-		s = s.replace(/\$(\w+)/g, '${$1}');
+		if (m = /^=~\/(.*)\/$/.exec(s)) {
+			s = m[1];
+			if (/[^\\][*.+?|\[\](){}^$]/.test(s.replace(/\.\*/g, ''))) {
+				// left out check for "[^\\]\\" (double backslash) since that will always succeed for escape
+				s = 'regexp:' + s;
+			} else {
+				// No unescaped regexp special characters here, convert to glob pattern
+				s = s.replace(/\.\*/g, '*').replace(/\\([\\.+?|\[\](){}^$])/g, "$1");
+			}
+		} else if (/\*/.test(s)) {
+			s = 'exact:' + s;
+		}
 		// Clear escape characters from text section
 		if (m = /^!-(.+?)-!$/.exec(s)) { s = m[1]; }
+		// Convert variable from $fit to ${selenese} style
+		s = s.replace(/\$(\w+)/g, '${$1}');
 		return s;
 	}
 	
