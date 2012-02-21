@@ -408,12 +408,16 @@ public class SeleniumDriverFixture {
 			} else {
 				output = executeCommand(command.getSeleniumCommand(), values);
 			}
-			
-			if (command.isAndWaitCommand()) {
-				commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
-			}
 		} catch (final SeleniumException e) {
-			LOG.error("Execution of command failed: " + e.getMessage());
+			output = "Execution of command failed: " + e.getMessage();
+			LOG.error(output);
+			if (!(command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand())) {
+				throw e;
+			}
+		}
+		
+		if (command.isAndWaitCommand()) {
+			commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
 		}
 		
 		if (delay > 0) {
