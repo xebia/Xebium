@@ -192,6 +192,7 @@ public class ExtendedSeleniumCommandTest {
 		assertFalse(command.matches("A?D", "ABCD"));
 		assertFalse(command.matches("A*D", "DCBA"));
 		assertTrue(command.matches("(14)", "(14)"));
+		assertTrue(command.matches("A(14)D", "A(14)D"));
 		assertFalse(command.matches("A*D", null));
 	}
 
@@ -202,7 +203,6 @@ public class ExtendedSeleniumCommandTest {
 		
 		assertTrue(command.matches("regexp:.*multiple lines.*", text));
 		assertTrue(command.matches("regexpi:.*multiple lines.*", text));
-		assertEquals(".*multiple lines.*", Globber.convertGlobToRegEx("*multiple lines*"));
 		assertTrue(command.matches("glob:*multiple lines*", text));
 
 	}
