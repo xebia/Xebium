@@ -10,6 +10,7 @@ public class Globber {
 	}
 	
 	public static String convertGlobToRegEx(String line) {
+		
 		line = line.trim();
 		int strLen = line.length();
 		StringBuilder sb = new StringBuilder(strLen);
