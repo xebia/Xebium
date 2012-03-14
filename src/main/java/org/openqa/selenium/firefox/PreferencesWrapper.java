@@ -18,7 +18,7 @@
 
 package org.openqa.selenium.firefox;
 
-import java.io.File;
+import java.io.Reader;
 
 
 /**
@@ -34,7 +34,7 @@ public class PreferencesWrapper extends Preferences {
      * @param file
      *        a file containing Firefox preferences. The file is expected to contain .js style firefox preferences.
      */
-    public PreferencesWrapper(File file) {
-        super(file);
+    public PreferencesWrapper(Reader reader) {
+		super(reader);
     }
 }

@@ -40,7 +40,7 @@ public class WebDriverTest {
 	@Test
 	public void testWebDriverCommandProcessor() throws MalformedURLException {
 		
-		WebDriverCommandProcessor processor = new WebDriverCommandProcessor("http://www.google.com", DesiredCapabilities.firefox());
+		WebDriverCommandProcessor processor = new WebDriverCommandProcessor("http://www.google.com", new FirefoxDriver());
 		
 		processor.start();
 		
@@ -53,7 +53,7 @@ public class WebDriverTest {
 	@Test
 	public void testCaptureScreenshhotCommand() throws MalformedURLException {
 		
-		WebDriverCommandProcessor processor = new WebDriverCommandProcessor("http://www.google.com", DesiredCapabilities.firefox());
+		WebDriverCommandProcessor processor = new WebDriverCommandProcessor("http://www.google.com", new FirefoxDriver());
 		
 		processor.start();
 		
