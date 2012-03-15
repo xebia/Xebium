@@ -48,7 +48,7 @@ public class LocatorCheck {
 		"submit", // loc
 		"type", // loc
 		"typeKeys", // loc
-		"uncheck", // loc
+		"uncheck" // loc
 	}));
 
 	private CommandProcessor commandProcessor;

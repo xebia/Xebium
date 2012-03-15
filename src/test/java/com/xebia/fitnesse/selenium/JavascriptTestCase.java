@@ -392,7 +392,7 @@ public class JavascriptTestCase {
                 "| do | open | on | !-http://example.com-! |\n" +
                 "| check | is | verifyText | on | css=h1 | Header |\n" +
                 "| ensure | is | waitForTextNotPresent | on | foo |\n" +
-                "| do | focus | on | input |\n" +
+                "| ensure | do | focus | on | input |\n" +
 				"| stop browser |\n"
 				, result);
     }
