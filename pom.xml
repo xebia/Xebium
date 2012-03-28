@@ -251,6 +251,7 @@
                 <id>start-fitnesse</id>
                 <phase>test</phase>
                 <configuration>
+                  <failOnError>false</failOnError>
                   <target>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
                     <property file="saucelabs.properties" />
