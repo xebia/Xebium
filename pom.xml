@@ -34,7 +34,9 @@
     <fitlibrary.version>20091020</fitlibrary.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
+    <fitnesse.regression>ProjectXebium.ExampleSuite.Example001SimpleTestScript</fitnesse.regression>
     <slf4j.version>1.6.2</slf4j.version>
+    <antrun-plugin.version>1.6</antrun-plugin.version>
   </properties>
 
   <scm>
@@ -202,12 +204,11 @@
 
     <profile>
       <id>fitnesse</id>
-
       <build>
         <plugins>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.6</version>
+            <version>${antrun-plugin.version}</version>
             <executions>
               <execution>
                 <id>start-fitnesse</id>
@@ -222,6 +223,44 @@
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
+                      <arg line="-e ${fitnesse.expiration}" />
+                      <jvmarg value="-Dsauce.user=${sauce.user}" />
+                      <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
+                    </java>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>ci</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${antrun-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>start-fitnesse</id>
+                <phase>test</phase>
+                <configuration>
+                  <tasks>
+                    <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
+                    <property file="saucelabs.properties" />
+                    <!-- "Sensible" defaults -->
+                    <property name="sauce.user" value="[provide user through saucelabs.properties]" />
+                    <property name="sauce.accesskey" value="[provide accesskey through saucelabs.properties]" />
+                    <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
+                      <arg line="-p ${fitnesse.port}" />
+                      <arg line="-d ." /> 
+                      <arg line="-c ${fitnesse.regression}?test&amp;format=text&amp;responder=suite" />
                       <arg line="-e ${fitnesse.expiration}" />
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
                       <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
