@@ -214,7 +214,7 @@
                 <id>start-fitnesse</id>
                 <phase>test</phase>
                 <configuration>
-                  <tasks>
+                  <target>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
                     <property file="saucelabs.properties" />
                     <!-- "Sensible" defaults -->
@@ -227,7 +227,7 @@
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
                       <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
                     </java>
-                  </tasks>
+                  </target>
                 </configuration>
                 <goals>
                   <goal>run</goal>
@@ -251,7 +251,7 @@
                 <id>start-fitnesse</id>
                 <phase>test</phase>
                 <configuration>
-                  <tasks>
+                  <target>
                     <echo taskname="fitnesse" message="Starting FitNesse ${fitnesse.version}... (Selenium ${selenium.version})" />
                     <property file="saucelabs.properties" />
                     <!-- "Sensible" defaults -->
@@ -265,7 +265,7 @@
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
                       <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
                     </java>
-                  </tasks>
+                  </target>
                 </configuration>
                 <goals>
                   <goal>run</goal>
