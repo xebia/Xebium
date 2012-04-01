@@ -217,7 +217,7 @@ public class SeleniumDriverFixture {
 	 */
 	public void setTimeoutTo(long timeout) {
 		this.timeout = timeout;
-		doOn("setTimeout", "" + timeout);
+		setTimeoutOnSelenium();
 	}
 
 	/**
@@ -377,8 +377,10 @@ public class SeleniumDriverFixture {
 			
 			do {
 				output = executeCommand(command, values, pollDelay);
-				result = checkResult(command, values[values.length - 1], output);
+				result = checkResult(command, values[values.length - 1], output, false);
 			} while (!result && timeoutTime > System.currentTimeMillis());
+			
+			LOG.info("WaitFor- command '" + command.getSeleniumCommand() +  (result ? "' succeeded" : "' failed"));
 
 		} else {
 
@@ -388,7 +390,7 @@ public class SeleniumDriverFixture {
 				writeToFile(values[0], output);
 				result = true;
 			} else if (command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
-				result = checkResult(command, values[values.length - 1], output);
+				result = checkResult(command, values[values.length - 1], output, true);
 			} else {
 				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
 			}
@@ -473,9 +475,11 @@ public class SeleniumDriverFixture {
 		return stringArrayToString(output);
 	}
 
-	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
+	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual, boolean logLine) {
 		boolean result = command.matches(expected, actual);
-		LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+		if (logLine) {
+			LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+		}
 		return result;
 	}
 
