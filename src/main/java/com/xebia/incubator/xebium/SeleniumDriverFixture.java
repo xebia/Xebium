@@ -82,9 +82,8 @@ public class SeleniumDriverFixture {
 		
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
-
 			if (customProfilePreferencesFile != null) {
-				PreferencesWrapper prefs = loadFirefoxProfile();
+				PreferencesWrapper prefs = loadFirefoxPreferences();
 
 				prefs.addTo(profile);
 				try {
@@ -119,7 +118,7 @@ public class SeleniumDriverFixture {
 		return new WebDriverCommandProcessor(browserUrl, driver);
 	}
 
-	private PreferencesWrapper loadFirefoxProfile() {
+	private PreferencesWrapper loadFirefoxPreferences() {
 		PreferencesWrapper prefs;
 		FileReader reader;
 		try {

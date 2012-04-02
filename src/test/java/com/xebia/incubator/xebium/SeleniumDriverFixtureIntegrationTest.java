@@ -5,10 +5,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
 public class SeleniumDriverFixtureIntegrationTest {
 
 	@Test
+	@Ignore
 	public void testDefaultTest() {
 		//		|script|selenium driver fixture|
 		final SeleniumDriverFixture fixture = new SeleniumDriverFixture();
@@ -23,6 +23,7 @@ public class SeleniumDriverFixtureIntegrationTest {
 	}
 
 	@Test
+	@Ignore
 	public void testVerifyCommands() {
 		// !!! Make sure FitNesse is running on localhost:8000
 
@@ -40,6 +41,14 @@ public class SeleniumDriverFixtureIntegrationTest {
 		//		| ensure | do | verifyText | on | //tr[1]/td[2] | with | selenium driver fixture |
 		assertTrue(fixture.doOnWith("verifyText", "//tr[1]/td[2]", "selenium driver fixture"));
 		//		| stop browser |
+		fixture.stopBrowser();
+	}
+
+	@Test
+	public void loadFirefoxProfile() {
+		SeleniumDriverFixture fixture = new SeleniumDriverFixture();
+		fixture.loadCustomBrowserPreferencesFromFile("firefoxexample.json");
+		fixture.startBrowserOnUrl("firefox", "http://localhost:8000");
 		fixture.stopBrowser();
 	}
 
