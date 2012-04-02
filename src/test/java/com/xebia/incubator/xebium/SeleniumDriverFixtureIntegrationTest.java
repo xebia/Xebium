@@ -45,6 +45,7 @@ public class SeleniumDriverFixtureIntegrationTest {
 	}
 
 	@Test
+	@Ignore
 	public void loadFirefoxProfile() {
 		SeleniumDriverFixture fixture = new SeleniumDriverFixture();
 		fixture.loadCustomBrowserPreferencesFromFile("firefoxexample.json");
