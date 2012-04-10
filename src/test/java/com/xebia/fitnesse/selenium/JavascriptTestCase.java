@@ -391,7 +391,7 @@ public class JavascriptTestCase {
 				"| start browser | firefox | on url | http://example.com |\n" +
                 "| do | open | on | !-http://example.com-! |\n" +
                 "| check | is | verifyText | on | css=h1 | Header |\n" +
-                "| ensure | is | waitForTextNotPresent | on | foo |\n" +
+                "| ensure | do | waitForTextNotPresent | on | foo |\n" +
                 "| ensure | do | focus | on | input |\n" +
 				"| stop browser |\n"
 				, result);
@@ -402,13 +402,13 @@ public class JavascriptTestCase {
     public void shoudlParseVariablesInText() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
 		eval("var commands = [];");
-        eval("commands.push(new Command('waitForText', 'link=${myVariable}', 'Text${myVariable} Text'))");
+        eval("commands.push(new Command('verifyText', 'link=${myVariable}', 'Text${myVariable} Text'))");
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | waitForText | on | link=$myVariable | Text$myVariable Text |\n" +
+                "| check | is | verifyText | on | link=$myVariable | Text$myVariable Text |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -417,13 +417,13 @@ public class JavascriptTestCase {
     public void shoudlEscapeBars() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
 		eval("var commands = [];");
-        eval("commands.push(new Command('waitForText', 'Some | text', 'more | text'))");
+        eval("commands.push(new Command('verifyText', 'Some | text', 'more | text'))");
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | waitForText | on | !-Some | text-! | !-more | text-! |\n" +
+                "| check | is | verifyText | on | !-Some | text-! | !-more | text-! |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -432,13 +432,13 @@ public class JavascriptTestCase {
     public void shoudlConvertExact() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
 		eval("var commands = [];");
-        eval("commands.push(new Command('waitForText', 'field', 'exact:Out*'))");
+        eval("commands.push(new Command('verifyText', 'field', 'exact:Out*'))");
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | waitForText | on | field | Out* |\n" +
+                "| check | is | verifyText | on | field | Out* |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -447,41 +447,60 @@ public class JavascriptTestCase {
     public void shoudlConvertGlob() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
 		eval("var commands = [];");
-        eval("commands.push(new Command('waitForText', 'field', 'glob:Test'))");
-        eval("commands.push(new Command('waitForText', 'field', 'glob:Test*Te?[]{}().*+^$st'))");
-        eval("commands.push(new Command('waitForText', 'field', 'Test'))");
-        eval("commands.push(new Command('waitForText', 'field', 'Test*Test*Test'))");
-        eval("commands.push(new Command('waitForText', 'field', 'X[ea]b*ium'))");
+        eval("commands.push(new Command('verifyText', 'field', 'glob:Test'))");
+        eval("commands.push(new Command('verifyText', 'field', 'glob:Test*Te?[]{}().*+^$st'))");
+        eval("commands.push(new Command('verifyText', 'field', 'Test'))");
+        eval("commands.push(new Command('verifyText', 'field', 'Test*Test*Test'))");
+        eval("commands.push(new Command('verifyText', 'field', 'X[ea]b*ium'))");
         
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | waitForText | on | field | Test |\n" +
-                "| check | is | waitForText | on | field | =~/Test.*Te\\?\\[\\]\\{\\}\\(\\)\\..*\\+\\^\\$st/ |\n" +
-                "| check | is | waitForText | on | field | Test |\n" +
-                "| check | is | waitForText | on | field | =~/Test.*Test.*Test/ |\n" +
-                "| check | is | waitForText | on | field | =~/X\\[ea\\]b.*ium/ |\n" +
+                "| check | is | verifyText | on | field | Test |\n" +
+                "| check | is | verifyText | on | field | =~/Test.*Te\\?\\[\\]\\{\\}\\(\\)\\..*\\+\\^\\$st/ |\n" +
+                "| check | is | verifyText | on | field | Test |\n" +
+                "| check | is | verifyText | on | field | =~/Test.*Test.*Test/ |\n" +
+                "| check | is | verifyText | on | field | =~/X\\[ea\\]b.*ium/ |\n" +
 				"| stop browser |\n"
 				, result);
     }
  
     @Test
-    public void shoudlConvertRegexp() {
+    public void shouldAlwaysMakeEnsureCommandsForWaitForCommands() {
 		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
 		eval("var commands = [];");
-        eval("commands.push(new Command('waitForText', 'field', 'regexp:.*A.*'))");
-        eval("commands.push(new Command('waitForText', 'field', 'regexpi:.*A.*'))");
-        eval("commands.push(new Command('waitForText', 'field', 'regexp:.*AsdFgh.*'))");
+        eval("commands.push(new Command('verifyText', 'field', 'Test'));");
+        eval("commands.push(new Command('waitForText', 'field', 'Test'));");
+        
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | waitForText | on | field | =~/.*A.*/ |\n" +
-                "| check | is | waitForText | on | field | =~/.*A.*/ |\n" +
-                "| check | is | waitForText | on | field | =~/.*AsdFgh.*/ |\n" +
+                "| check | is | verifyText | on | field | Test |\n" +
+                "| ensure | do | waitForText | on | field | with | Test |\n" +
+				"| stop browser |\n"
+				, result);
+    }
+    
+    
+    @Test
+    public void shoudlConvertRegexp() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('verifyText', 'field', 'regexp:.*A.*'))");
+        eval("commands.push(new Command('verifyText', 'field', 'regexpi:.*A.*'))");
+        eval("commands.push(new Command('verifyText', 'field', 'regexp:.*AsdFgh.*'))");
+		eval("tc.commands = commands;");
+		String result = (String) eval("format(tc, 'name');");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+                "| check | is | verifyText | on | field | =~/.*A.*/ |\n" +
+                "| check | is | verifyText | on | field | =~/.*A.*/ |\n" +
+                "| check | is | verifyText | on | field | =~/.*AsdFgh.*/ |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -612,7 +631,6 @@ public class JavascriptTestCase {
         assertEquals("regexp:Blah.*T?", eval("commands[0].value"));
     }
 
-
     @Test
     public void shouldParseDataPastedFromBrowser() {
 		// Only open and check command should be parsed
@@ -669,4 +687,39 @@ public class JavascriptTestCase {
         assertEquals("DIFF", eval("commands[7].value"));
     }
 
+    @Test
+    public void shouldParseFailedCheckCommands() {
+    	eval("var fittable = 'ensure\tdo\twaitForElementPresent\t[false] expected [link=Xebium]\\n' +" +
+    	"'check\tis\tverifyText\ton\tlink=Xebium\t[Execution of command failed: Element link=Xebium not found] expected [Xebium]\\n' +" +
+    	"'check\tis\twaitForTitle\t[Google] expected [xebia/Xebium á GitHub[?]]\\n' +" +
+    	"'check\tis\tverifyText\ton\tcss=h1\t/.*Page[a-z]?/ found in: FrontPage\\n' +" +
+    	"'check\tis\tverifyText\ton\tcss=h1\t/.*Page[a-z]?/ not found in: FrontPage';");
+
+		eval("var tc = new TestCase();");
+		eval("parse(tc, fittable);");
+		eval("var commands = tc.commands;");
+
+		assertEquals(5.0, eval("commands.length"));
+
+		assertEquals(eval("commands[0].comment").toString(), "waitForElementPresent", eval("commands[0].command"));
+        assertEquals("link=Xebium", eval("commands[0].target"));
+        assertEquals("", eval("commands[0].value"));
+
+		assertEquals(eval("commands[1].comment").toString(), "verifyText", eval("commands[1].command"));
+        assertEquals("link=Xebium", eval("commands[1].target"));
+        assertEquals("Xebium", eval("commands[1].value"));
+
+		assertEquals(eval("commands[2].comment").toString(), "waitForTitle", eval("commands[2].command"));
+        assertEquals("xebia/Xebium á GitHub[?]", eval("commands[2].target"));
+        assertEquals("", eval("commands[2].value"));
+
+		assertEquals(eval("commands[3].comment").toString(), "verifyText", eval("commands[3].command"));
+        assertEquals("css=h1", eval("commands[3].target"));
+        assertEquals("regexp:.*Page[a-z]?", eval("commands[3].value"));
+
+		assertEquals(eval("commands[4].comment").toString(), "verifyText", eval("commands[4].command"));
+        assertEquals("css=h1", eval("commands[4].target"));
+        assertEquals("regexp:.*Page[a-z]?", eval("commands[4].value"));
+
+    }
 }

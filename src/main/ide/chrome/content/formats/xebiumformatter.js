@@ -118,7 +118,7 @@ function getSourceForCommand(commandObj) {
          	}
      	}
 
-        if (def && def.isAccessor) {
+        if (def && def.isAccessor && !/^waitFor/.test(command)) {
         	if (/^is/.test(def.name)) {
         		return "| ensure | is | " + command + " | on | " + escape(target) + " |";
         	} else if (value) {
@@ -127,7 +127,7 @@ function getSourceForCommand(commandObj) {
          		return "| check | is | " + command + " | " + escape(target) + " |";
     		}
         } else {
-     		return (locatorCheck[def.name] ? "| ensure " : "") + "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
+     		return ((locatorCheck[def.name] || /^waitFor/.test(command)) ? "| ensure " : "") + "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
         }
     }
     return "| note | !-Untranslatable: '" + commandObj.toString + "'-! |";
@@ -190,6 +190,13 @@ function parse(testCase, source) {
 function getCommandForSource(line) {
 	function unescape(s) {
 		var m;
+		// Deal with output messages from FitNesse
+		if (m = /^\[.*\] expected \[(.*)\]$/.exec(s)) {
+			s = m[1];
+		} else if (m = /^(\/.*\/) (?:not )?found in: .*$/.exec(s)) {
+			s = '=~' + m[1];
+		}
+		
 		if (m = /^=~\/(.*)\/$/.exec(s)) {
 			s = m[1];
 			if (/[^\\][*.+?|\[\](){}^$]/.test(s.replace(/\.\*/g, ''))) {
