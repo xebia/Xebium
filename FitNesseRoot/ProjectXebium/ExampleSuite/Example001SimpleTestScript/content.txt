@@ -9,7 +9,7 @@
 !| script | selenium driver fixture | 
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
-| ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
+| check | is | waitForTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |
-| ensure | do | verifyText | on | css=span.page_title | with | ${PAGE_NAME} |
+| check | is | verifyText | on | css=span.page_title | ${PAGE_NAME} |
 | stop browser |

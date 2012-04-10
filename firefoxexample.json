@@ -1,0 +1,8 @@
+{
+ "frozen": {
+  "toolkit.telemetry.rejected": true,
+  "browser.startup.homepage": "http://xebia.github.com/Xebium/"
+ },
+ "mutable": {
+ }
+}

@@ -58,6 +58,26 @@ function formatCommands(commands) {
 
 
 function getSourceForCommand(commandObj) {
+	// For some commands, Xebium performs an extra "isElementPresent" check. See the LocatorCheck.java.
+	var locatorCheck = {
+			"addSelection": true, // loc
+			"assignId": true, // loc
+			"click": true, // loc
+			"check": true, // loc
+			"doubleClick": true, // loc
+			"dragdrop": true, // loc
+			"dragAndDrop": true, // loc
+			"dragAndDropToObject": true, // loc, loc
+			"focus": true, // loc
+			"highlight": true, // loc
+			"removeSelection": true, // loc
+			"select": true, // loc
+			"submit": true, // loc
+			"type": true, // loc
+			"typeKeys": true, // loc
+			"uncheck": true // loc
+		};
+
 	function escape(s) {
 		s = s.replace(/\$\{(\w+)\}/g, "$$$1");
 		var match;
@@ -78,7 +98,6 @@ function getSourceForCommand(commandObj) {
 		}
 		return s;
 	}
-	
 	var text = null;
 
     if (commandObj.type == 'comment') {
@@ -108,7 +127,7 @@ function getSourceForCommand(commandObj) {
          		return "| check | is | " + command + " | " + escape(target) + " |";
     		}
         } else {
-     		return "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
+     		return (locatorCheck[def.name] ? "| ensure " : "") + "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
         }
     }
     return "| note | !-Untranslatable: '" + commandObj.toString + "'-! |";

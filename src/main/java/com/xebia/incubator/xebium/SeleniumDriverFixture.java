@@ -24,6 +24,8 @@ import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
 import static org.apache.commons.lang.StringUtils.join;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
@@ -80,9 +82,9 @@ public class SeleniumDriverFixture {
 		
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
-
 			if (customProfilePreferencesFile != null) {
-				PreferencesWrapper prefs = new PreferencesWrapper(customProfilePreferencesFile);
+				PreferencesWrapper prefs = loadFirefoxPreferences();
+
 				prefs.addTo(profile);
 				try {
 					StringWriter writer = new StringWriter(512);
@@ -114,6 +116,26 @@ public class SeleniumDriverFixture {
 			}
 		}
 		return new WebDriverCommandProcessor(browserUrl, driver);
+	}
+
+	private PreferencesWrapper loadFirefoxPreferences() {
+		PreferencesWrapper prefs;
+		FileReader reader;
+		try {
+			reader = new FileReader(customProfilePreferencesFile);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			prefs = new PreferencesWrapper(reader);
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				LOG.error("Unable to close firefox profile settings file", e);
+			}
+		}
+		return prefs;
 	}
 
     public void loadCustomBrowserPreferencesFromFile(String filename) {
@@ -194,7 +216,7 @@ public class SeleniumDriverFixture {
 	 */
 	public void setTimeoutTo(long timeout) {
 		this.timeout = timeout;
-		doOn("setTimeout", "" + timeout);
+		setTimeoutOnSelenium();
 	}
 
 	/**
@@ -354,8 +376,10 @@ public class SeleniumDriverFixture {
 			
 			do {
 				output = executeCommand(command, values, pollDelay);
-				result = checkResult(command, values[values.length - 1], output);
+				result = checkResult(command, values[values.length - 1], output, false);
 			} while (!result && timeoutTime > System.currentTimeMillis());
+			
+			LOG.info("WaitFor- command '" + command.getSeleniumCommand() +  (result ? "' succeeded" : "' failed"));
 
 		} else {
 
@@ -365,7 +389,7 @@ public class SeleniumDriverFixture {
 				writeToFile(values[0], output);
 				result = true;
 			} else if (command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
-				result = checkResult(command, values[values.length - 1], output);
+				result = checkResult(command, values[values.length - 1], output, true);
 			} else {
 				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
 			}
@@ -450,9 +474,11 @@ public class SeleniumDriverFixture {
 		return stringArrayToString(output);
 	}
 
-	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
+	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual, boolean logLine) {
 		boolean result = command.matches(expected, actual);
-		LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+		if (logLine) {
+			LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+		}
 		return result;
 	}
 
