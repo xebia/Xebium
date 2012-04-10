@@ -316,7 +316,7 @@ public class SeleniumDriverFixture {
 	 * @return
 	 */
 	public String is(final String command) {
-		LOG.info("Storing result from  | " + command + " |");
+		LOG.info("Obtain result from  | " + command + " |");
 		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { }, stepDelay);
 	}
 
@@ -330,7 +330,7 @@ public class SeleniumDriverFixture {
 	 * @return
 	 */
 	public String isOn(final String command, final String target) {
-		LOG.info("Storing result from | " + command + " | " + target + " |");
+		LOG.info("Obtain result from | " + command + " | " + target + " |");
 		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { unalias(target) }, stepDelay);
 	}
 
@@ -376,7 +376,7 @@ public class SeleniumDriverFixture {
 			
 			do {
 				output = executeCommand(command, values, pollDelay);
-				result = checkResult(command, values[values.length - 1], output, false);
+				result = checkResult(command, values[values.length - 1], output);
 			} while (!result && timeoutTime > System.currentTimeMillis());
 			
 			LOG.info("WaitFor- command '" + command.getSeleniumCommand() +  (result ? "' succeeded" : "' failed"));
@@ -389,7 +389,9 @@ public class SeleniumDriverFixture {
 				writeToFile(values[0], output);
 				result = true;
 			} else if (command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
-				result = checkResult(command, values[values.length - 1], output, true);
+				String expected = values[values.length - 1];
+				result = checkResult(command, expected, output);
+				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
 			} else {
 				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
 			}
@@ -474,14 +476,10 @@ public class SeleniumDriverFixture {
 		return stringArrayToString(output);
 	}
 
-	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual, boolean logLine) {
-		boolean result = command.matches(expected, actual);
-		if (logLine) {
-			LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + actual + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
-		}
-		return result;
+	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
+		return command.matches(expected, actual);
 	}
-
+	
 	private void writeToFile(final String filename, final String output) {
 		File file = asFile(filename);
 		try {
