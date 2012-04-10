@@ -5,4 +5,3 @@
 
 If you want to start using Xebium, the XebiumTemplate might be a good starting point.
 
-!note Release v20100303

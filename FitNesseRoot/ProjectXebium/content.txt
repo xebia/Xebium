@@ -5,3 +5,6 @@
 !define TEST_SYSTEM {slim}
 
 *!
+!*****> '''Classpath'''
+!pomFile pom.xml@runtime
+*****!

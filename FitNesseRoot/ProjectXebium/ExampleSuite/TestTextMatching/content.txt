@@ -1,5 +1,5 @@
 | script | selenium driver fixture |
-| start browser | firefox | on url | http://localhost:8000 |
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT} |
 | set step delay to| slow |
 | ensure | do | open | on | / |
 | ensure | do | verifyText | on | css=span.page_title | with | !-FrontPage-! |
