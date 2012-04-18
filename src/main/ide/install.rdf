@@ -8,16 +8,14 @@
 		<em:creator>Arjan Molenaar</em:creator>
 		<em:description>A Selenium-IDE Formatter for Xebium, the Selenium fixture for FitNesse</em:description>
 		<em:type>2</em:type>
-<!--
-		<em:iconURL>chrome://xmlformatter/content/selenium-xml-logo.png</em:iconURL>
--->
-
+        <em:homepageURL>http://xebia.github.com/Xebium</em:homepageURL>
+        
 		<!-- Its a firefox plugin -->
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>3.0</em:minVersion>
-				<em:maxVersion>10.*</em:maxVersion>
+				<em:maxVersion>12.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 
@@ -25,7 +23,7 @@
 		<em:requires>   
 			<Description>
 				<em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id>
-				<em:minVersion>1.0.10</em:minVersion>
+				<em:minVersion>1.1.0</em:minVersion>
 				<em:maxVersion>1.*</em:maxVersion>
 			</Description>  
 		</em:requires>
