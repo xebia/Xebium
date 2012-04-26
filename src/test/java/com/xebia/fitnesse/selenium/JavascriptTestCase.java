@@ -262,7 +262,23 @@ public class JavascriptTestCase {
         assertEquals("${target}", eval("cmd.target"));
         assertEquals("${value}", eval("cmd.value"));
     }
-    
+
+    @Test
+    public void testExecuteCommandOnComplexGlobPatternToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | waitForText | on | css=td.CVFormatCell > div | with | glob:Aantal resultaten in het overzicht is: *361* |');");
+        assertEquals("waitForText", eval("cmd.command"));
+        assertEquals("css=td.CVFormatCell > div", eval("cmd.target"));
+        assertEquals("glob:Aantal resultaten in het overzicht is: *361*", eval("cmd.value"));
+    }
+
+    @Test
+    public void testExecuteCommandOnComplexXPathPatternToSelenese() {
+        eval("var cmd = getCommandForSource('| ensure | do | type | on | !-//*[@class=\"PromptViewCell\"]//input[contains (@id,\\'_8_2_D\\')]-! | with | 01-03-2011 |');");
+        assertEquals("type", eval("cmd.command"));
+        assertEquals("//*[@class=\"PromptViewCell\"]//input[contains (@id,'_8_2_D')]", eval("cmd.target"));
+        assertEquals("01-03-2011", eval("cmd.value"));
+    }
+
     @Test
     public void testExecuteCommandOnVariableWithEmbeddedVariableToSelenese() {
         eval("var cmd = getCommandForSource('| ensure | do | waitForText | on | link=$myVariable | with | Text and $myVariable |');");

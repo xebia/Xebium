@@ -188,7 +188,7 @@ function parse(testCase, source) {
 }
 
 function getCommandForSource(line) {
-	function unescape(s) {
+	function unescape(s, oper) {
 		var m;
 		// Deal with output messages from FitNesse
 		if (m = /^\[.*\] expected \[(.*)\]$/.exec(s)) {
@@ -197,17 +197,19 @@ function getCommandForSource(line) {
 			s = '=~' + m[1];
 		}
 		
-		if (m = /^=~\/(.*)\/$/.exec(s)) {
-			s = m[1];
-			if (/[^\\][*.+?|\[\](){}^$]/.test(s.replace(/\.\*/g, ''))) {
-				// left out check for "[^\\]\\" (double backslash) since that will always succeed for escape
-				s = 'regexp:' + s;
-			} else {
-				// No unescaped regexp special characters here, convert to glob pattern
-				s = s.replace(/\.\*/g, '*').replace(/\\([\\.+?|\[\](){}^$])/g, "$1");
+		if (oper === "check") {
+			if (m = /^=~\/(.*)\/$/.exec(s)) {
+				s = m[1];
+				if (/[^\\][*.+?|\[\](){}^$]/.test(s.replace(/\.\*/g, ''))) {
+					// left out check for "[^\\]\\" (double backslash) since that will always succeed for escape
+					s = 'regexp:' + s;
+				} else {
+					// No unescaped regexp special characters here, convert to glob pattern
+					s = s.replace(/\.\*/g, '*').replace(/\\([\\.+?|\[\](){}^$])/g, "$1");
+				}
+			} else if (/\*/.test(s)) {
+				s = 'exact:' + s;
 			}
-		} else if (/\*/.test(s)) {
-			s = 'exact:' + s;
 		}
 		// Clear escape characters from text section
 		if (m = /^!-(.+?)-!$/.exec(s)) { s = m[1]; }
@@ -219,11 +221,11 @@ function getCommandForSource(line) {
 	var match;
 	
 	// | check/ensure | is/do | ${command} |[ on | ]${target} |[ [with |] ${value} |]
-	if (match = /^\|\s*(?:(?:ensure|check)\s*\|\s*|)(?:do|is)\s*\|\s*([^\|\s]+)\s*\|\s*(?:on\s*\|(?:\s*((?:!-.*?-!)?|[^\|]+?)\s*\|(?:\s*(?:with\s*\|\s*|)((?:!-.*?-!)|[^\|]+?)\s*\||)|)|((?:!-.*?-!)|[^\|]+?)\s*\|)/.exec(line)) {
-		return new Command(match[1],
-				match[2] ? unescape(match[2])
-						: (match[4] ? unescape(match[4]) : undefined),
-				match[3] ? unescape(match[3]) : undefined);
+	if (match = /^\|\s*(?:(ensure|check)\s*\|\s*|)(?:do|is)\s*\|\s*([^\|\s]+)\s*\|\s*(?:on\s*\|(?:\s*((?:!-.*?-!)?|[^\|]+?)\s*\|(?:\s*(?:with\s*\|\s*|)((?:!-.*?-!)|[^\|]+?)\s*\||)|)|((?:!-.*?-!)|[^\|]+?)\s*\|)/.exec(line)) {
+		return new Command(match[2],
+				match[3] ? unescape(match[3])
+						: (match[5] ? unescape(match[5]) : undefined),
+				match[4] ? unescape(match[4], match[1]) : undefined);
 
 	// format: | $value= | is | ${command} | on | ${target} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
