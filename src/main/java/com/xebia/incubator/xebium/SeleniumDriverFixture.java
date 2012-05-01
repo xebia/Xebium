@@ -40,6 +40,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,6 +105,8 @@ public class SeleniumDriverFixture {
 			driver = new InternetExplorerDriver();
 		} else if ("chrome".equalsIgnoreCase(browser)) {
 			driver = new ChromeDriver();
+		} else if ("safari".equalsIgnoreCase(browser)) {
+			driver = new SafariDriver();
 		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
 			driver = new HtmlUnitDriver();
 		} else if ("htmlUnit+js".equalsIgnoreCase(browser)) {
