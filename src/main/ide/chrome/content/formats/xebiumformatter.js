@@ -78,19 +78,21 @@ function getSourceForCommand(commandObj) {
 			"uncheck": true // loc
 		};
 
-	function escape(s) {
+	function escape(s, oper) {
 		s = s.replace(/\$\{(\w+)\}/g, "$$$1");
-		var match;
-		if (match = /^regexpi?:(.*)$/.exec(s)) {
-			// Cheating: regexpi is transformed to normal regexp.
-			return "=~/" + match[1] + "/";
-		} else if (match = /^exact:(.*)$/.exec(s)) {
-			s = match[1];
-		} else if (match = /^(?:glob:)?(.*)$/.exec(s)) {
-			if (/\*/.test(match[1])) {
-				return "=~/" + match[1].replace(/([\\.+?|\[\](){}^$])/g, "\\$1").replace(/\*/g, '.*') + "/";
-			} else {
-				s =  match[1];
+		if (oper === "check") {
+			var match;
+			if (match = /^regexpi?:(.*)$/.exec(s)) {
+				// Cheating: regexpi is transformed to normal regexp.
+				return "=~/" + match[1] + "/";
+			} else if (match = /^exact:(.*)$/.exec(s)) {
+				s = match[1];
+			} else if (match = /^(?:glob:)?(.*)$/.exec(s)) {
+				if (/\*/.test(match[1])) {
+					return "=~/" + match[1].replace(/([\\.+?|\[\](){}^$])/g, "\\$1").replace(/\*/g, '.*') + "/";
+				} else {
+					s =  match[1];
+				}
 			}
 		}
 		if (/^https?:\/\//.test(s) || /^[A-Z][a-z0-9]+[A-Z]/.test(s) || /[@\|]/.test(s)) {
@@ -122,9 +124,9 @@ function getSourceForCommand(commandObj) {
         	if (/^is/.test(def.name)) {
         		return "| ensure | is | " + command + " | on | " + escape(target) + " |";
         	} else if (value) {
-         		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value) + " |";
+         		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value, "check") + " |";
     		} else {
-         		return "| check | is | " + command + " | " + escape(target) + " |";
+         		return "| check | is | " + command + " | " + escape(target, "check") + " |";
     		}
         } else {
      		return ((locatorCheck[def.name] || /^waitFor/.test(command)) ? "| ensure " : "") + "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";

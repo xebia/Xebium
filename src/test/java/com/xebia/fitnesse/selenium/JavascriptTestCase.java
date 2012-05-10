@@ -398,7 +398,7 @@ public class JavascriptTestCase {
 		eval("var commands = [];");
         eval("commands.push(new Command('open', 'http://example.com'))");
         eval("commands.push(new Command('verifyText', 'css=h1', 'Header'))");
-        eval("commands.push(new Command('waitForTextNotPresent', 'foo'))");
+        eval("commands.push(new Command('waitForTextNotPresent', '//c[blah=*]/d/e'))");
         eval("commands.push(new Command('focus', 'input'))");
 		eval("tc.commands = commands;");
 		String result = (String) eval("format(tc, 'name');");
@@ -407,7 +407,7 @@ public class JavascriptTestCase {
 				"| start browser | firefox | on url | http://example.com |\n" +
                 "| do | open | on | !-http://example.com-! |\n" +
                 "| check | is | verifyText | on | css=h1 | Header |\n" +
-                "| ensure | do | waitForTextNotPresent | on | foo |\n" +
+                "| ensure | do | waitForTextNotPresent | on | //c[blah=*]/d/e |\n" +
                 "| ensure | do | focus | on | input |\n" +
 				"| stop browser |\n"
 				, result);
