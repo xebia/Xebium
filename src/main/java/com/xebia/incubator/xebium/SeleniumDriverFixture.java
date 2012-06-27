@@ -32,6 +32,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.thoughtworks.selenium.CommandProcessor;
+import com.thoughtworks.selenium.HttpCommandProcessor;
+import com.thoughtworks.selenium.SeleniumException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,10 +46,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.thoughtworks.selenium.CommandProcessor;
-import com.thoughtworks.selenium.HttpCommandProcessor;
-import com.thoughtworks.selenium.SeleniumException;
 
 /**
  * Main fixture. Starts a browser session and execute commands.
@@ -60,27 +59,28 @@ public class SeleniumDriverFixture {
 	private CommandProcessor commandProcessor;
 
 	private long timeout = 30000;
-	
+
 	private long stepDelay = 0;
-	
+
 	private long pollDelay = 100;
 
 	private ScreenCapture screenCapture = new ScreenCapture();
 
 	private LocatorCheck locatorCheck;
-	
+
     private File customProfilePreferencesFile;
 
-	private Map<String, String> aliases = new HashMap<String, String>();
+    private final Map<String, String> aliases = new HashMap<String, String>();
 
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
+        clearAliases();
 	}
-	
+
 	private CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = removeAnchorTag(browserUrl);
 		WebDriver driver;
-		
+
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
 			if (customProfilePreferencesFile != null) {
@@ -99,7 +99,7 @@ public class SeleniumDriverFixture {
 			// Ensure we deal with untrusted and unverified hosts.
 			profile.setAcceptUntrustedCertificates(true);
 			profile.setAssumeUntrustedCertificateIssuer(true);
-			
+
 			driver = new FirefoxDriver(profile);
 		} else if ("iexplore".equalsIgnoreCase(browser)) {
 			driver = new InternetExplorerDriver();
@@ -144,12 +144,12 @@ public class SeleniumDriverFixture {
     public void loadCustomBrowserPreferencesFromFile(String filename) {
         this.customProfilePreferencesFile = new File(filename);
     }
-	
+
 	/**
 	 * <p><code>
 	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param browser
 	 * @param browserUrl
 	 */
@@ -163,7 +163,7 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> | using remote server |
 	 * </code></p>
-	 * 
+	 *
 	 * @param browser
 	 * @param browserUrl
 	 */
@@ -175,7 +175,7 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> | using remote server on host | <i>localhost</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param browser
 	 * @param browserUrl
 	 * @param serverHost
@@ -188,7 +188,7 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | start browser | <i>firefox</i> | on url | <i>http://localhost</i> | using remote server on host | <i>localhost</i> | on port | <i>4444</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param browser
 	 * @param browserUrl
 	 * @param serverHost
@@ -212,9 +212,9 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | set timeout to | 500 |
 	 * </code></p>
-	 * 
+	 *
 	 * <p>Set the timeout, both local and on the running selenium server.</p>
-	 * 
+	 *
 	 * @param timeout Timeout in milliseconds (ms)
 	 */
 	public void setTimeoutTo(long timeout) {
@@ -228,7 +228,7 @@ public class SeleniumDriverFixture {
 	private void setTimeoutOnSelenium() {
 		executeCommand("setTimeout", new String[] { "" + this.timeout });
 	}
-	
+
 	/**
 	 * <p>Set delay between steps.</p>
 	 * <p><code>
@@ -236,7 +236,7 @@ public class SeleniumDriverFixture {
 	 * | set step delay to | slow |
 	 * | set step delay to | fast |
 	 * </code></p>
-	 * 
+	 *
 	 * @param stepDelay delay in milliseconds
 	 */
 	public void setStepDelayTo(String stepDelay) {
@@ -248,19 +248,19 @@ public class SeleniumDriverFixture {
 			this.stepDelay = Long.parseLong(stepDelay);
 		}
 	}
-	
+
 	/**
 	 * Instruct the driver to create screenshots
 	 * <p><code>
 	 * | save screenshot after | <i>failure</i> |
 	 * | save screenshot after | <i>error</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * <p><code>
 	 * | save screenshot after | <i>every step</i> |
 	 * | save screenshot after | <i>step</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * <p><code>
 	 * | save screenshot after | <i>nothing</i> |
 	 * | save screenshot after | <i>none</i> |
@@ -269,7 +269,7 @@ public class SeleniumDriverFixture {
 	public void saveScreenshotAfter(String policy) {
 		screenCapture.setScreenshotPolicy(policy);
 	}
-	
+
 	/**
 	 * <p><code>
 	 * | save screenshot after | <i>failure</i> | in folder | <i>http://files/testResults/screenshots/${PAGE_NAME} |
@@ -280,12 +280,12 @@ public class SeleniumDriverFixture {
 		saveScreenshotAfter(policy);
 		screenCapture.setScreenshotBaseDir(removeAnchorTag(baseDir));
 	}
-	
+
 	/**
 	 * <p><code>
 	 * | ensure | do | <i>open</i> | on | <i>/</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param command
 	 * @param target
 	 * @return
@@ -299,7 +299,7 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | ensure | do | <i>type</i> | on | <i>searchString</i> | with | <i>some text</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param command
 	 * @param target
 	 * @param value
@@ -314,7 +314,7 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | <i>$title=</i> | is | <i>getTitle</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param command
 	 * @return
 	 */
@@ -327,7 +327,7 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | <i>$pageName=</i> | is | <i>getText</i> | on | <i>//span</i> |
 	 * </code></p>
-	 * 
+	 *
 	 * @param command
 	 * @param target
 	 * @return
@@ -339,7 +339,7 @@ public class SeleniumDriverFixture {
 
 	/**
 	 * Add a new locator alias to the fixture.
-	 * 
+	 *
 	 * @param alias
 	 * @param locator
 	 */
@@ -347,14 +347,17 @@ public class SeleniumDriverFixture {
 		LOG.info("Add alias: '" + alias + "' for '" + locator + "'");
 		aliases.put(alias, locator);
 	}
-	
+
 	/**
 	 * Clear the aliases table.
 	 */
 	public void clearAliases() {
 		aliases.clear();
+
+        // Have '%%' always resolve to '%'
+        aliases.put("%", "%");
 	}
-	
+
 	private String unalias(String value) {
 		String subst = value;
 		if (value != null && value.startsWith(ALIAS_PREFIX)) {
@@ -366,7 +369,7 @@ public class SeleniumDriverFixture {
 	}
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
-		
+
 		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 
 		String output = null;
@@ -376,12 +379,12 @@ public class SeleniumDriverFixture {
 			result = false;
 		} else if (command.requiresPolling()) {
 			long timeoutTime = System.currentTimeMillis() + timeout;
-			
+
 			do {
 				output = executeCommand(command, values, pollDelay);
 				result = checkResult(command, values[values.length - 1], output);
 			} while (!result && timeoutTime > System.currentTimeMillis());
-			
+
 			LOG.info("WaitFor- command '" + command.getSeleniumCommand() +  (result ? "' succeeded" : "' failed"));
 
 		} else {
@@ -399,7 +402,7 @@ public class SeleniumDriverFixture {
 				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
 			}
 		}
-		
+
 		if (screenCapture.requireScreenshot(command, result)) {
 			screenCapture.captureScreenshot(methodName, values);
 		}
@@ -407,7 +410,7 @@ public class SeleniumDriverFixture {
 		if (!result && command.isAssertCommand()) {
 			throw new AssertionError(output);
 		}
-		
+
 		return result;
 	}
 
@@ -415,11 +418,11 @@ public class SeleniumDriverFixture {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("executeCommand. Command: " + command.getSeleniumCommand() + " with values: [" + join(values, ", ") +"]");
 		}
-		
+
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
 		}
-		
+
 		// Handle special cases first
 		if ("pause".equals(command.getSeleniumCommand())) {
 			try {
@@ -429,7 +432,7 @@ public class SeleniumDriverFixture {
 			}
 			return null;
 		}
-		
+
 		String output = null;
 		try {
 			if (command.returnTypeIsArray()) {
@@ -444,11 +447,11 @@ public class SeleniumDriverFixture {
 				throw e;
 			}
 		}
-		
+
 		if (command.isAndWaitCommand()) {
 			commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
 		}
-		
+
 		if (delay > 0) {
 			try {
 				Thread.sleep(delay);
@@ -482,7 +485,7 @@ public class SeleniumDriverFixture {
 	private boolean checkResult(ExtendedSeleniumCommand command, String expected, String actual) {
 		return command.matches(expected, actual);
 	}
-	
+
 	private void writeToFile(final String filename, final String output) {
 		File file = asFile(filename);
 		try {
@@ -495,8 +498,8 @@ public class SeleniumDriverFixture {
 	public void stopBrowser() {
 		commandProcessor.stop();
 		commandProcessor = null;
-		
+
 		LOG.info("Command processor stopped");
 	}
-	
+
 }
