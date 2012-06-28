@@ -54,4 +54,30 @@ public class SeleniumDriverFixtureTest {
 		final boolean result = seleniumDriverFixture.doOnWith("verifySelectOptions", "//foo",  "Suite,Test,Normal");
 		assertThat(result, is(true));
 	}
+
+    @Test
+    public void shouldResolveAlias() {
+        String expectedString = "Het laatste nieuws het eerst op nu.nl";
+        String alias = "laatsteNieuws";
+
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn(expectedString);
+        seleniumDriverFixture.addAliasForLocator(alias, expectedString);
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%" + alias);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void shouldIgnoreMissingAlias() {
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%foo");
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%foo");
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void shouldIgnoreEmptyAlias() {
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%");
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%");
+        assertThat(result, is(true));
+    }
+
 }

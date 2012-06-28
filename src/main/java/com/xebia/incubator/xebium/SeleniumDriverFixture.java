@@ -356,13 +356,16 @@ public class SeleniumDriverFixture {
 	}
 	
 	private String unalias(String value) {
-		String subst = value;
+		String result = value;
 		if (value != null && value.startsWith(ALIAS_PREFIX)) {
 			String alias = value.substring(ALIAS_PREFIX.length());
-			subst = aliases.get(alias);
-			LOG.info("Expanded alias '" + alias + "' to '" + subst + "'");
+			String subst = aliases.get(alias);
+			if (subst != null) {
+			    LOG.info("Expanded alias '" + alias + "' to '" + result + "'");
+			    result = subst;
+			}
 		}
-		return subst;
+		return result;
 	}
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
