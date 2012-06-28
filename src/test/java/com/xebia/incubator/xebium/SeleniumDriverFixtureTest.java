@@ -3,15 +3,15 @@ package com.xebia.incubator.xebium;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.isA;
+import static org.mockito.Matchers.*;
 
-import com.thoughtworks.selenium.CommandProcessor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import com.thoughtworks.selenium.CommandProcessor;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SeleniumDriverFixtureTest {
@@ -47,29 +47,11 @@ public class SeleniumDriverFixtureTest {
 		final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1",  "*Het laatste nieuws het eerst op nu.nl");
 		assertThat(result, is(true));
 	}
-
+	
 	@Test
 	public void shouldMatchMultiValueStrings() {
 		given(commandProcessor.getStringArray(anyString(), isA(String[].class))).willReturn(new String[] { "Suite", "Test", "Normal" });
 		final boolean result = seleniumDriverFixture.doOnWith("verifySelectOptions", "//foo",  "Suite,Test,Normal");
 		assertThat(result, is(true));
 	}
-
-    @Test
-    public void shouldResolveAlias() {
-        String expectedString = "Het laatste nieuws het eerst op nu.nl";
-        String alias = "laatsteNieuws";
-
-        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn(expectedString);
-        seleniumDriverFixture.addAliasForLocator(alias, expectedString);
-        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%" + alias);
-        assertThat(result, is(true));
-    }
-
-    @Test
-    public void shouldSupportEscapedAlias() {
-        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%");
-        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%%");
-        assertThat(result, is(true));
-    }
 }
