@@ -90,6 +90,7 @@ public class ExtendedSeleniumCommand {
 		"getConfirmation",
 		"getCookie",
 		"getCookieByName",
+		"getCssCount", // num
 		"getElementHeight", // num
 		"getElementIndex", // num
 		"getElementPositionLeft", // num
