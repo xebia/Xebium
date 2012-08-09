@@ -122,7 +122,7 @@ function getSourceForCommand(commandObj) {
 
         if (def && def.isAccessor && !/^waitFor/.test(command)) {
         	if (/^is/.test(def.name)) {
-        		return "| ensure | is | " + command + " | on | " + escape(target) + " |";
+        		return "| ensure | do | " + command + " | on | " + escape(target) + " |";
         	} else if (value) {
          		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value, "check") + " |";
     		} else {
