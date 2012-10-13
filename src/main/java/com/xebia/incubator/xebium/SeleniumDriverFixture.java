@@ -72,6 +72,12 @@ public class SeleniumDriverFixture {
     private File customProfilePreferencesFile;
 
 	private Map<String, String> aliases = new HashMap<String, String>();
+	
+	/**
+	* Having a protected field with a reference to the WebDriver instance provides
+	* an opportunity to subclass SeleniumDriverFixture and add logic by using the driver
+	*/
+	protected WebDriver driver;
 
 	public SeleniumDriverFixture() {
 		LOG.info("Instantiating a fresh Selenium Driver Fixture");
@@ -79,7 +85,6 @@ public class SeleniumDriverFixture {
 	
 	private CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
 		browserUrl = removeAnchorTag(browserUrl);
-		WebDriver driver;
 		
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile = new FirefoxProfile();
