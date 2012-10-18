@@ -517,4 +517,13 @@ public class SeleniumDriverFixture {
 		LOG.info("Command processor stopped");
 	}
 
+	public CommandProcessor getCommandProcessor() {
+		return commandProcessor;
+	}
+
+	public WebDriver getWebDriver() {
+		return commandProcessor instanceof WebDriverCommandProcessor
+				? ((WebDriverCommandProcessor) commandProcessor).getWrappedDriver()
+				: null;
+	}
 }
