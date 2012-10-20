@@ -41,6 +41,7 @@ import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import com.opera.core.systems.OperaDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,11 +123,13 @@ public class SeleniumDriverFixture {
 			driver = new HtmlUnitDriver();
 		} else if ("htmlUnit+js".equalsIgnoreCase(browser)) {
 			driver = new HtmlUnitDriver(true);
+		} else if ("opera".equalsIgnoreCase(browser)) {
+            driver = new OperaDriver();
 		} else {
 			try {
 				driver = new RemoteWebDriverBuilder(browser).newDriver();
 			} catch (Exception e) {
-				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', 'htmlUnit' or 'htmlUnit+js'", e);
+				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', 'opera', 'htmlUnit' or 'htmlUnit+js'", e);
 			}
 		}
 		return new WebDriverCommandProcessor(browserUrl, driver);
