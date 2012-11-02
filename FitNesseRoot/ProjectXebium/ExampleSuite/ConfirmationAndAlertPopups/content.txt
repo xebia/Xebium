@@ -1,0 +1,18 @@
+This page shows the handling of alert() and confirm() popups.
+
+!-
+<ul>
+ <li><a href="#" onclick="javascript:alert('Alerting message')">Open alert popup</a></li>
+ <li><a href="#" onclick="javascript:confirm('Please confirm')">Open confirmation popup</a></li>
+</ul>
+-!
+
+!| script | selenium driver fixture | 
+| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| set step delay to | slow |
+| do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | click | on | link=Open alert popup |
+| check | is | assertAlert | Alerting message |
+| ensure | do | click | on | link=Open confirmation popup |
+| check | is | assertConfirmation | Please confirm |
+| stop browser |
