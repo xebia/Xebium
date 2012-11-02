@@ -35,6 +35,7 @@
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <slf4j.version>1.6.4</slf4j.version>
+    <operadriver.version>1.1</operadriver.version>
   </properties>
 
   <scm>
@@ -53,6 +54,11 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.opera</groupId>
+      <artifactId>operadriver</artifactId>
+      <version>${operadriver.version}</version>
     </dependency>
 
     <!-- runtime dependencies -->

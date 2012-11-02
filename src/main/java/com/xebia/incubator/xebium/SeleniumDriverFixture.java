@@ -41,6 +41,9 @@ import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import com.opera.core.systems.OperaDriver;
+import com.opera.core.systems.OperaProduct;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,11 +125,30 @@ public class SeleniumDriverFixture {
 			driver = new HtmlUnitDriver();
 		} else if ("htmlUnit+js".equalsIgnoreCase(browser)) {
 			driver = new HtmlUnitDriver(true);
+		} else if ("opera".equalsIgnoreCase(browser)) {
+            driver = new OperaDriver();
+        } else if ("opera-mobile-tablet".equalsIgnoreCase(browser)) {
+            DesiredCapabilities capabilities = DesiredCapabilities.opera();
+
+            // tell opera mobile to use the tablet ui
+            capabilities.setCapability("opera.product", OperaProduct.MOBILE);
+            capabilities.setCapability("opera.arguments", "-tabletui -displaysize 860x600");
+
+            driver = new OperaDriver(capabilities);
+        } else if ("opera-mobile-phone".equalsIgnoreCase(browser)) {
+            DesiredCapabilities capabilities = DesiredCapabilities.opera();
+
+            // tell opera mobile to use the mobile handset ui
+            capabilities.setCapability("opera.product", OperaProduct.MOBILE);
+            capabilities.setCapability("opera.arguments", "-mobileui");
+
+            driver = new OperaDriver(capabilities);
 		} else {
 			try {
 				driver = new RemoteWebDriverBuilder(browser).newDriver();
 			} catch (Exception e) {
-				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', 'htmlUnit' or 'htmlUnit+js'", e);
+				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', " +
+                        "'opera', 'opera-mobile-tablet', 'opera-mobile-phone', 'htmlUnit' or 'htmlUnit+js'", e);
 			}
 		}
 		return new WebDriverCommandProcessor(browserUrl, driver);
