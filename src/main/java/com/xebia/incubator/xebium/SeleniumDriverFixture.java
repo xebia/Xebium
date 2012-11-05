@@ -40,13 +40,13 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import com.opera.core.systems.OperaDriver;
-import com.opera.core.systems.OperaProduct;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.opera.core.systems.OperaDriver;
+import com.opera.core.systems.OperaProduct;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
@@ -445,7 +445,7 @@ public class SeleniumDriverFixture {
 		}
 
 		if (!result && command.isAssertCommand()) {
-			throw new AssertionError(output);
+			throw new AssertionAndStopTestError(output);
 		}
 
 		return result;
