@@ -22,3 +22,6 @@ and open a browser, pointing at http://localhost:8000.
 Click the Xebium link in order to get to the Xebium section and read on in the Getting Started page.
 
 Have fun!
+
+<hr/>
+PS. For those of you who import Xebium as an Eclipse project, run `mvn eclipse:ecipse` to get your classpath setup right.
