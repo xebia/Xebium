@@ -6,5 +6,6 @@
 
 *!
 !*****> '''Classpath'''
-!pomFile pom.xml@runtime
+!path target/classes
+!resolve -pom -c runtime pom.xml
 *****!

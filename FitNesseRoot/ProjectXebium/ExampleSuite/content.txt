@@ -5,7 +5,3 @@
 
 !contents -R2 -h -g
 
-!*****> '''Classpath'''
-!pomFile pom.xml@runtime
-*****!
-
