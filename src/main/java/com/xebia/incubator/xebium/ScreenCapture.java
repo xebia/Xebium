@@ -42,6 +42,7 @@ class ScreenCapture {
 
 	enum ScreenshotPolicy {
 		NONE,
+		ASSERTION,
 		FAILURE,
 		STEP
 	}
@@ -50,7 +51,7 @@ class ScreenCapture {
 	private static final Logger LOG = LoggerFactory.getLogger(ScreenCapture.class);
 
 	private static final String PATH_SEP = System.getProperty("file.separator");
-	
+
 	private static final int INITIAL_STEP_NUMBER = 1;
 
 	// ensure step indexes are maintained among ScreenCapture instances
@@ -58,23 +59,23 @@ class ScreenCapture {
 
 	// screenshotBaseDir is guaranteed to have a trailing path separtor.
 	private String screenshotBaseDir = "FitNesseRoot/files/testResults/screenshots/".replace("/", PATH_SEP);
-	
+
 	private CommandProcessor commandProcessor;
 
-	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.NONE;
+	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.ASSERTION;
 
-	
+
 	void setCommandProcessor(CommandProcessor commandProcessor) {
 		this.commandProcessor = commandProcessor;
 	}
-	
+
 	void setScreenshotBaseDir(String screenshotBaseDir) {
 		this.screenshotBaseDir = asFile(screenshotBaseDir).getAbsolutePath();
 		if (!this.screenshotBaseDir.endsWith(PATH_SEP)) {
 			this.screenshotBaseDir += PATH_SEP;
 		}
 	}
-	
+
 	void setScreenshotPolicy(String policy) {
 		if ("none".equals(policy) || "nothing".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.NONE;
@@ -82,24 +83,29 @@ class ScreenCapture {
 			screenshotPolicy =ScreenshotPolicy.FAILURE;
 		} else if ("step".equals(policy) || "every step".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.STEP;
+		} else if ("assertion".equals(policy) || "every assertion".equals(policy)) {
+			screenshotPolicy = ScreenshotPolicy.ASSERTION;
 		}
 		LOG.info("Screenshot policy set to " + screenshotPolicy);
 	}
 
 	/**
 	 * Is a screenshot desired, based on the command and the test result.
-	 * 
+	 *
 	 * @param command
 	 * @param result
 	 * @return
 	 */
 	boolean requireScreenshot(final ExtendedSeleniumCommand command,
 			boolean result) {
-		return (!command.isAssertCommand()
+		return
+			(!command.isAssertCommand()
 				&& !command.isVerifyCommand()
 				&& !command.isWaitForCommand()
 				&& screenshotPolicy == ScreenshotPolicy.STEP)
-				|| (!result && screenshotPolicy == ScreenshotPolicy.FAILURE);
+			|| (!result
+				&& (screenshotPolicy == ScreenshotPolicy.FAILURE
+					|| (command.isAssertCommand() && screenshotPolicy == ScreenshotPolicy.ASSERTION)));
 	}
 
 
@@ -110,15 +116,15 @@ class ScreenCapture {
 
 		try {
 			String output = executeCommand("captureScreenshotToString", new String[] { });
-	
+
 			writeToFile(file, output);
-			
+
 			updateIndexFile(stepNumber, file, methodName, values);
 		} catch (Exception e) {
 			LOG.warn("Unable to finish screenshot capturing: " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * @return next step number dependent on screenshot base dir.
 	 */
@@ -142,12 +148,12 @@ class ScreenCapture {
 	 * </p>
 	 * <p>The base directory is expected to exist at this point.
 	 * </p>
-	 * 
+	 *
 	 * @param stepNumber
 	 * @param file
 	 * @param methodName
 	 * @param values
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private void updateIndexFile(int stepNumber, File file, String methodName,
 			String[] values) throws IOException {
@@ -169,11 +175,11 @@ class ScreenCapture {
 
 	static void writeToFile(final File file, final String output) throws IOException {
 		final File parent = file.getParentFile();
-		
+
 		if (parent != null && !parent.exists()) {
 			parent.mkdirs();
 		}
-		
+
 		FileOutputStream w = new FileOutputStream(file);
 		try {
 			w.write(Base64.decodeBase64(output));
