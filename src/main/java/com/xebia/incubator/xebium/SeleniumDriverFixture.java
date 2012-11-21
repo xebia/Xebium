@@ -373,6 +373,15 @@ public class SeleniumDriverFixture {
 	}
 
 	/**
+	 * Same as {@link #is(String)}, only with "on" statement, analog to "do-on" command.
+	 *
+	 * @param command
+	 * @return
+	 */
+	public String isOn(final String command) {
+		return is(command);
+
+	/**
 	 * <p><code>
 	 * | <i>$pageName=</i> | is | <i>getText</i> | on | <i>//span</i> |
 	 * </code></p>
@@ -384,6 +393,17 @@ public class SeleniumDriverFixture {
 	public String isOn(final String command, final String target) {
 		LOG.info("Obtain result from | " + command + " | " + target + " |");
 		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { unalias(target) }, stepDelay);
+	}
+
+	/**
+	 * Same as {@link #isOn(String, String)}, only with "with" statement, analog to "do-on-with" command.
+	 *
+	 * @param command
+	 * @param target
+	 * @return
+	 */
+	public String isOnWith(final String command, final String target) {
+		return isOn(command, target);
 	}
 
 	/**
