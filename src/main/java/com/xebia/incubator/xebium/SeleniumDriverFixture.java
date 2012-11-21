@@ -24,29 +24,17 @@ import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
 import static org.apache.commons.lang.StringUtils.join;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.PreferencesWrapper;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.opera.core.systems.OperaDriver;
-import com.opera.core.systems.OperaProduct;
+import com.google.common.base.Supplier;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
@@ -59,6 +47,8 @@ public class SeleniumDriverFixture {
 	private static final Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
 	private static final String ALIAS_PREFIX = "%";
+
+	private static Supplier<WebDriver> webDriverSupplier = new DefaultWebDriverSupplier();
 
 	private CommandProcessor commandProcessor;
 
@@ -74,114 +64,48 @@ public class SeleniumDriverFixture {
 
 	private LocatorCheck locatorCheck;
 
-    private File customProfilePreferencesFile;
-
-	private File profileDirectory;
-
 	private Map<String, String> aliases = new HashMap<String, String>();
 
+	public static void configureWebDriverSupplier(Supplier<WebDriver> webDriverSupplier) {
+		SeleniumDriverFixture.webDriverSupplier = webDriverSupplier;
+	}
+
 	public SeleniumDriverFixture() {
-		LOG.info("Instantiating a fresh Selenium Driver Fixture");
+		LOG.info("Instantiating a fresh Selenium Driver Fixture with provider: {}", webDriverSupplier);
 	}
 
-	private CommandProcessor startWebDriverCommandProcessor(final String browser, String browserUrl) {
+	public SeleniumDriverFixture(String browserUrl) {
+		this();
+		setCommandProcessor(startWebDriverCommandProcessor(browserUrl));
+	}
+
+	private CommandProcessor startWebDriverCommandProcessor(String browserUrl) {
 		browserUrl = removeAnchorTag(browserUrl);
-		WebDriver driver;
-
-		if ("firefox".equalsIgnoreCase(browser)) {
-			FirefoxProfile profile;
-			// Load FireFox-profile if present
-			if (profileDirectory != null) {
-				profile = new FirefoxProfile(profileDirectory);
-				LOG.info("Firefox profile successfully loaded");
-			}
-			else {
-				profile = new FirefoxProfile();
-			}
-
-			if (customProfilePreferencesFile != null) {
-				PreferencesWrapper prefs = loadFirefoxPreferences();
-
-				prefs.addTo(profile);
-				try {
-					StringWriter writer = new StringWriter(512);
-					prefs.writeTo(writer);
-					LOG.info("Added properties to firefox profile: " + writer.toString());
-				} catch (IOException e) {
-					LOG.error("Unable to log firefox profile settings", e);
-				}
-			}
-
-			// Ensure we deal with untrusted and unverified hosts.
-			profile.setAcceptUntrustedCertificates(true);
-			profile.setAssumeUntrustedCertificateIssuer(true);
-
-			driver = new FirefoxDriver(profile);
-		} else if ("iexplore".equalsIgnoreCase(browser)) {
-			driver = new InternetExplorerDriver();
-		} else if ("chrome".equalsIgnoreCase(browser)) {
-			driver = new ChromeDriver();
-		} else if ("safari".equalsIgnoreCase(browser)) {
-			driver = new SafariDriver();
-		} else if ("htmlUnit".equalsIgnoreCase(browser)) {
-			driver = new HtmlUnitDriver();
-		} else if ("htmlUnit+js".equalsIgnoreCase(browser)) {
-			driver = new HtmlUnitDriver(true);
-		} else if ("opera".equalsIgnoreCase(browser)) {
-            driver = new OperaDriver();
-        } else if ("opera-mobile-tablet".equalsIgnoreCase(browser)) {
-            DesiredCapabilities capabilities = DesiredCapabilities.opera();
-
-            // tell opera mobile to use the tablet ui
-            capabilities.setCapability("opera.product", OperaProduct.MOBILE);
-            capabilities.setCapability("opera.arguments", "-tabletui -displaysize 860x600");
-
-            driver = new OperaDriver(capabilities);
-        } else if ("opera-mobile-phone".equalsIgnoreCase(browser)) {
-            DesiredCapabilities capabilities = DesiredCapabilities.opera();
-
-            // tell opera mobile to use the mobile handset ui
-            capabilities.setCapability("opera.product", OperaProduct.MOBILE);
-            capabilities.setCapability("opera.arguments", "-mobileui");
-
-            driver = new OperaDriver(capabilities);
-		} else {
-			try {
-				driver = new RemoteWebDriverBuilder(browser).newDriver();
-			} catch (Exception e) {
-				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', " +
-                        "'opera', 'opera-mobile-tablet', 'opera-mobile-phone', 'htmlUnit' or 'htmlUnit+js'", e);
-			}
-		}
-		return new WebDriverCommandProcessor(browserUrl, driver);
-	}
-
-	private PreferencesWrapper loadFirefoxPreferences() {
-		PreferencesWrapper prefs;
-		FileReader reader;
-		try {
-			reader = new FileReader(customProfilePreferencesFile);
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
-		}
-		try {
-			prefs = new PreferencesWrapper(reader);
-		} finally {
-			try {
-				reader.close();
-			} catch (IOException e) {
-				LOG.error("Unable to close firefox profile settings file", e);
-			}
-		}
-		return prefs;
+		return new WebDriverCommandProcessor(browserUrl, webDriverSupplier);
 	}
 
     public void loadCustomBrowserPreferencesFromFile(String filename) {
-        this.customProfilePreferencesFile = new File(filename);
+    	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
+    		((DefaultWebDriverSupplier) webDriverSupplier).setCustomProfilePreferencesFile(new File(filename));
+    	} else {
+    		throw new RuntimeException("You've configured a custom WebDriverProvider, therefore you can not configure the 'load custom browser preferences from file' property");
+    	}
     }
 
 	public void loadFirefoxProfileFromDirectory(String directory) {
-		this.profileDirectory = new File(directory);
+    	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
+    		((DefaultWebDriverSupplier) webDriverSupplier).setProfileDirectory(new File(directory));
+    	} else {
+    		throw new RuntimeException("You've configured a custom WebDriverProvider, therefore you can not configure the 'load firefox profile from directory' property");
+    	}
+	}
+
+	private void setBrowser(String browser) {
+    	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
+    		((DefaultWebDriverSupplier) webDriverSupplier).setBrowser(browser);
+    	} else {
+    		throw new RuntimeException("You've configured a custom WebDriverProvider, therefore you can not configure the 'browser' property");
+    	}
 	}
 
 	/**
@@ -193,7 +117,8 @@ public class SeleniumDriverFixture {
 	 * @param browserUrl
 	 */
 	public void startBrowserOnUrl(final String browser, final String browserUrl) {
-		setCommandProcessor(startWebDriverCommandProcessor(browser, browserUrl));
+		setBrowser(browser);
+		setCommandProcessor(startWebDriverCommandProcessor(browserUrl));
 		setTimeoutOnSelenium();
 		LOG.debug("Started command processor");
 	}
@@ -293,7 +218,9 @@ public class SeleniumDriverFixture {
 	 * <p><code>
 	 * | set stop browser on assertion | true |
 	 * </code></p>
+	 *
 	 * @param stopBrowserOnAssertion
+	 */
 	public void setStopBrowserOnAssertion(boolean stopBrowserOnAssertion) {
 		this.stopBrowserOnAssertion = stopBrowserOnAssertion;
 	}
@@ -380,6 +307,7 @@ public class SeleniumDriverFixture {
 	 */
 	public String isOn(final String command) {
 		return is(command);
+	}
 
 	/**
 	 * <p><code>

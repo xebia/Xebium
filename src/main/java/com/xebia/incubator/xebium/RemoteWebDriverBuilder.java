@@ -33,10 +33,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class RemoteWebDriverBuilder {
+import com.google.common.base.Supplier;
+
+public class RemoteWebDriverBuilder implements Supplier<WebDriver> {
 
 	private static final String REMOTE = "remote";
-	
+
 	private String remote;
 	private Map<String, String> capabilities;
 
@@ -47,7 +49,7 @@ public class RemoteWebDriverBuilder {
 		} catch (JSONException e) {
 			throw new RuntimeException("Unable to interpret browser information", e);
 		}
-		
+
 		try {
 			remote = jsonObject.getString(REMOTE);
 			jsonObject.remove(REMOTE);
@@ -56,7 +58,7 @@ public class RemoteWebDriverBuilder {
 			throw new RuntimeException("Unable to fetch required fields from json string", e);
 		}
 	}
-	
+
 	private Map<String, String> jsonObjectToMap(JSONObject jsonObject) throws JSONException {
 		// Assume you have a Map<String, String> in JSONObject
 		@SuppressWarnings("unchecked")
@@ -66,7 +68,7 @@ public class RemoteWebDriverBuilder {
 			String name = nameItr.next();
 		    outMap.put(name, jsonObject.getString(name));
 		}
-		
+
 	    String platform = outMap.get(PLATFORM);
 	    if (platform != null) {
 	    	outMap.put(PLATFORM, platform.toUpperCase());
@@ -74,29 +76,29 @@ public class RemoteWebDriverBuilder {
 
 		return  outMap;
 	}
-	
 
-	public URL getRemote() throws MalformedURLException {
-		return new URL(remote);
+
+	public URL getRemote() {
+		try {
+			return new URL(remote);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("URL '" + remote + "' is not a valid URL");
+		}
 	}
-	
-	public Capabilities getCapabilities() {		
+
+	public Capabilities getCapabilities() {
 		return new DesiredCapabilities(capabilities);
-	}			
-			
+	}
+
 	/**
 	 * Create a new remote-webdriver. It can be configured according to the specs on
 	 * https://saucelabs.com/docs/ondemand/additional-config.
-	 * 
+	 *
 	 * @return a fresh RemoteWebDriver instance
-	 * @throws MalformedURLException 
+	 * @throws RuntimeException in case of any error
 	 */
-	public WebDriver newDriver() throws MalformedURLException {
-		RemoteWebDriver driver = new RemoteWebDriver(getRemote(), getCapabilities());
-		
-        //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        return driver;
+	public WebDriver get() {
+		return new RemoteWebDriver(getRemote(), getCapabilities());
 	}
 
 
