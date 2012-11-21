@@ -68,6 +68,8 @@ public class SeleniumDriverFixture {
 
 	private long pollDelay = 100;
 
+	private boolean stopBrowserOnAssertion = true;
+
 	private ScreenCapture screenCapture = new ScreenCapture();
 
 	private LocatorCheck locatorCheck;
@@ -287,6 +289,16 @@ public class SeleniumDriverFixture {
 	}
 
 	/**
+	 * <p>In case of an assertion (assert* selenese command), close the browser.</p>
+	 * <p><code>
+	 * | set stop browser on assertion | true |
+	 * </code></p>
+	 * @param stopBrowserOnAssertion
+	public void setStopBrowserOnAssertion(boolean stopBrowserOnAssertion) {
+		this.stopBrowserOnAssertion = stopBrowserOnAssertion;
+	}
+
+	/**
 	 * Instruct the driver to create screenshots
 	 * <p><code>
 	 * | save screenshot after | <i>failure</i> |
@@ -445,6 +457,9 @@ public class SeleniumDriverFixture {
 		}
 
 		if (!result && command.isAssertCommand()) {
+			if (stopBrowserOnAssertion) {
+				stopBrowser();
+			}
 			throw new AssertionAndStopTestError(output);
 		}
 
