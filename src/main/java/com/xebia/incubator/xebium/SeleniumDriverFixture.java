@@ -48,7 +48,7 @@ public class SeleniumDriverFixture {
 
 	private static final String ALIAS_PREFIX = "%";
 
-	private static Supplier<WebDriver> webDriverSupplier = new DefaultWebDriverSupplier();
+	private static Supplier<WebDriver> webDriverSupplier = new DefaultWebDriverSupplier();;
 
 	private CommandProcessor commandProcessor;
 
@@ -67,6 +67,7 @@ public class SeleniumDriverFixture {
 	private Map<String, String> aliases = new HashMap<String, String>();
 
 	public static void configureWebDriverSupplier(Supplier<WebDriver> webDriverSupplier) {
+		LOG.info("Configured WebDriver supplier to {}", webDriverSupplier);
 		SeleniumDriverFixture.webDriverSupplier = webDriverSupplier;
 	}
 
@@ -81,9 +82,13 @@ public class SeleniumDriverFixture {
 
 	private CommandProcessor startWebDriverCommandProcessor(String browserUrl) {
 		browserUrl = removeAnchorTag(browserUrl);
-		return new WebDriverCommandProcessor(browserUrl, webDriverSupplier);
+		return new WebDriverCommandProcessor(browserUrl, webDriverSupplier.get());
 	}
 
+    /**
+     * @param filename
+     * @deprecated Call on the web driver supplier directly.
+     */
     public void loadCustomBrowserPreferencesFromFile(String filename) {
     	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
     		((DefaultWebDriverSupplier) webDriverSupplier).setCustomProfilePreferencesFile(new File(filename));
@@ -92,6 +97,10 @@ public class SeleniumDriverFixture {
     	}
     }
 
+	/**
+	 * @param directory
+     * @deprecated Call on the web driver supplier directly.
+	 */
 	public void loadFirefoxProfileFromDirectory(String directory) {
     	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
     		((DefaultWebDriverSupplier) webDriverSupplier).setProfileDirectory(new File(directory));
@@ -100,6 +109,9 @@ public class SeleniumDriverFixture {
     	}
 	}
 
+	/**
+	 * @param browser Name of the browser, as accepted by the DefaultWebDriverSupplier.
+	 */
 	private void setBrowser(String browser) {
     	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
     		((DefaultWebDriverSupplier) webDriverSupplier).setBrowser(browser);
@@ -130,6 +142,7 @@ public class SeleniumDriverFixture {
 	 *
 	 * @param browser
 	 * @param browserUrl
+	 * @deprecated This call requires a Selenium 1 server. It is adviced to use WebDriver.
 	 */
 	public void startBrowserOnUrlUsingRemoteServer(final String browser, final String browserUrl) {
 		startBrowserOnUrlUsingRemoteServerOnHost(browser, browserUrl, "localhost");
@@ -143,6 +156,7 @@ public class SeleniumDriverFixture {
 	 * @param browser
 	 * @param browserUrl
 	 * @param serverHost
+	 * @deprecated This call requires a Selenium 1 server. It is adviced to use WebDriver.
 	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHost(final String browser, final String browserUrl, final String serverHost) {
 		startBrowserOnUrlUsingRemoteServerOnHostOnPort(browser, browserUrl, serverHost, 4444);
@@ -157,6 +171,7 @@ public class SeleniumDriverFixture {
 	 * @param browserUrl
 	 * @param serverHost
 	 * @param serverPort
+	 * @deprecated This call requires a Selenium 1 server. It is adviced to use WebDriver.
 	 */
 	public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
 		setCommandProcessor(new HttpCommandProcessorAdapter(new HttpCommandProcessor(serverHost, serverPort, browser, removeAnchorTag(browserUrl))));
@@ -420,7 +435,10 @@ public class SeleniumDriverFixture {
 		}
 
 		if (commandProcessor == null) {
-			throw new IllegalStateException("Command processor not running. First start it by invoking startBrowserOnUrl");
+			throw new IllegalStateException("Command processor not running. " +
+					(webDriverSupplier instanceof DefaultWebDriverSupplier
+							? "First start it by invoking startBrowserOnUrl"
+									: "Provide a url on construction of the driver"));
 		}
 
 		// Handle special cases first

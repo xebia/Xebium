@@ -12,7 +12,7 @@ public class RemoteWebDriverBuilderTest {
 
 	@Test
 	public void loadSettingsFromJson() throws MalformedURLException {
-		RemoteWebDriverBuilder builder = new RemoteWebDriverBuilder("{ \"remote\": \"http://localhost\", \"platform\": \"vista\", \"browserName\": \"firefox\" }");
+		RemoteWebDriverSupplier builder = new RemoteWebDriverSupplier("{ \"remote\": \"http://localhost\", \"platform\": \"vista\", \"browserName\": \"firefox\" }");
 		assertEquals(new URL("http://localhost"), builder.getRemote());
 		assertEquals(Platform.VISTA, builder.getCapabilities().getPlatform());
 		assertEquals("firefox", builder.getCapabilities().getBrowserName());
@@ -20,7 +20,7 @@ public class RemoteWebDriverBuilderTest {
 
 	@Test
 	public void loadSettingsFromJsonWithFullblownUrl() throws MalformedURLException {
-		RemoteWebDriverBuilder builder = new RemoteWebDriverBuilder("{ \"remote\": \"http://amolenaar:12345678-90ab-cdef-1234-etcetc@ondemand.saucelabs.com:80/wd/hub\", \"platform\": \"vista\", \"browserName\": \"firefox\" }");
+		RemoteWebDriverSupplier builder = new RemoteWebDriverSupplier("{ \"remote\": \"http://amolenaar:12345678-90ab-cdef-1234-etcetc@ondemand.saucelabs.com:80/wd/hub\", \"platform\": \"vista\", \"browserName\": \"firefox\" }");
 		assertEquals(new URL("http://amolenaar:12345678-90ab-cdef-1234-etcetc@ondemand.saucelabs.com:80/wd/hub"), builder.getRemote());
 		assertEquals(Platform.VISTA, builder.getCapabilities().getPlatform());
 		assertEquals("firefox", builder.getCapabilities().getBrowserName());
@@ -28,7 +28,7 @@ public class RemoteWebDriverBuilderTest {
 
 	@Test(expected=RuntimeException.class)
 	public void loadInvalidSettings() throws MalformedURLException {
-		RemoteWebDriverBuilder builder = new RemoteWebDriverBuilder("\"remote\": \"http://localhost\", \"platform\": \"vista\", \"browserName\": \"firefox\"");
+		RemoteWebDriverSupplier builder = new RemoteWebDriverSupplier("\"remote\": \"http://localhost\", \"platform\": \"vista\", \"browserName\": \"firefox\"");
 		assertEquals(new URL("http://localhost"), builder.getRemote());
 		assertEquals(Platform.VISTA, builder.getCapabilities().getPlatform());
 		assertEquals("firefox", builder.getCapabilities().getBrowserName());

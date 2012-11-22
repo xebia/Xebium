@@ -32,6 +32,13 @@ public class DefaultWebDriverSupplier implements Supplier<WebDriver> {
 
 	private File profileDirectory;
 
+	public DefaultWebDriverSupplier() {
+	}
+
+	public void setAsDefault() {
+		SeleniumDriverFixture.configureWebDriverSupplier(this);
+	}
+
 	public WebDriver get() {
 		return newWebDriver();
 	}
@@ -97,7 +104,7 @@ public class DefaultWebDriverSupplier implements Supplier<WebDriver> {
             driver = new OperaDriver(capabilities);
 		} else {
 			try {
-				driver = new RemoteWebDriverBuilder(browser).get();
+				driver = new RemoteWebDriverSupplier(browser).get();
 			} catch (Exception e) {
 				throw new RuntimeException("Unknown browser type. Should be one of 'firefox', 'iexplore', 'chrome', " +
                         "'opera', 'opera-mobile-tablet', 'opera-mobile-phone', 'htmlUnit' or 'htmlUnit+js'", e);
