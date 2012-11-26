@@ -18,11 +18,10 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Supplier;
 import com.opera.core.systems.OperaDriver;
 import com.opera.core.systems.OperaProduct;
 
-public class DefaultWebDriverSupplier implements Supplier<WebDriver> {
+public class DefaultWebDriverSupplier implements ConfigurableWebDriverSupplier {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
@@ -36,7 +35,7 @@ public class DefaultWebDriverSupplier implements Supplier<WebDriver> {
 	}
 
 	public void setAsDefault() {
-		SeleniumDriverFixture.configureWebDriverSupplier(this);
+		WebDriverFactory.configureWebDriverSupplier(this);
 	}
 
 	public WebDriver get() {

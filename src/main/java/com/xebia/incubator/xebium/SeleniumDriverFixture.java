@@ -86,24 +86,28 @@ public class SeleniumDriverFixture {
 	}
 
     /**
+     * Configure the custom Firefox preferences (javascript) file on the webdriver factory.
+     *
      * @param filename
-     * @deprecated Call on the web driver supplier directly.
      */
     public void loadCustomBrowserPreferencesFromFile(String filename) {
-    	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
-    		((DefaultWebDriverSupplier) webDriverSupplier).setCustomProfilePreferencesFile(new File(filename));
+    	final Supplier<WebDriver> webDriverSupplier = WebDriverFactory.getSupplier();
+    	if (webDriverSupplier instanceof ConfigurableWebDriverSupplier) {
+    		((ConfigurableWebDriverSupplier) webDriverSupplier).setCustomProfilePreferencesFile(new File(filename));
     	} else {
     		throw new RuntimeException("You've configured a custom WebDriverProvider, therefore you can not configure the 'load custom browser preferences from file' property");
     	}
     }
 
 	/**
+     * Configure the custom Firefox profiledirectory on the webdriver factory.
+     *
 	 * @param directory
-     * @deprecated Call on the web driver supplier directly.
 	 */
 	public void loadFirefoxProfileFromDirectory(String directory) {
-    	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
-    		((DefaultWebDriverSupplier) webDriverSupplier).setProfileDirectory(new File(directory));
+    	final Supplier<WebDriver> webDriverSupplier = WebDriverFactory.getSupplier();
+    	if (webDriverSupplier instanceof ConfigurableWebDriverSupplier) {
+    		((ConfigurableWebDriverSupplier) webDriverSupplier).setProfileDirectory(new File(directory));
     	} else {
     		throw new RuntimeException("You've configured a custom WebDriverProvider, therefore you can not configure the 'load firefox profile from directory' property");
     	}
@@ -113,8 +117,9 @@ public class SeleniumDriverFixture {
 	 * @param browser Name of the browser, as accepted by the DefaultWebDriverSupplier.
 	 */
 	private void setBrowser(String browser) {
-    	if (webDriverSupplier instanceof DefaultWebDriverSupplier) {
-    		((DefaultWebDriverSupplier) webDriverSupplier).setBrowser(browser);
+    	final Supplier<WebDriver> webDriverSupplier = WebDriverFactory.getSupplier();
+    	if (webDriverSupplier instanceof ConfigurableWebDriverSupplier) {
+    		((ConfigurableWebDriverSupplier) webDriverSupplier).setBrowser(browser);
     	} else {
     		throw new RuntimeException("You've configured a custom WebDriverProvider, therefore you can not configure the 'browser' property");
     	}
@@ -451,9 +456,9 @@ public class SeleniumDriverFixture {
 
 		if (commandProcessor == null) {
 			throw new IllegalStateException("Command processor not running. " +
-					(webDriverSupplier instanceof DefaultWebDriverSupplier
-							? "First start it by invoking startBrowserOnUrl"
-									: "Provide a url on construction of the driver"));
+					(WebDriverFactory.getSupplier() instanceof DefaultWebDriverSupplier
+							? "First start it by invoking startBrowserOnUrl."
+									: "Provide a url on construction of the driver."));
 		}
 
 		// Handle special cases first
