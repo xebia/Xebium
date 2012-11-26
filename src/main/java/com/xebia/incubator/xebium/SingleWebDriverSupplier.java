@@ -58,6 +58,6 @@ public class SingleWebDriverSupplier implements Supplier<WebDriver> {
 	}
 
 	public void setAsDefault() {
-		SeleniumDriverFixture.configureWebDriverSupplier(this);
+		WebDriverFactory.configureWebDriverSupplier(this);
 	}
 }

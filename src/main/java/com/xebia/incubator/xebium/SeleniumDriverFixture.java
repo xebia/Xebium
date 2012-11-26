@@ -48,8 +48,6 @@ public class SeleniumDriverFixture {
 
 	private static final String ALIAS_PREFIX = "%";
 
-	private static Supplier<WebDriver> webDriverSupplier = new DefaultWebDriverSupplier();;
-
 	private CommandProcessor commandProcessor;
 
 	private long timeout = 30000;
@@ -66,13 +64,8 @@ public class SeleniumDriverFixture {
 
 	private Map<String, String> aliases = new HashMap<String, String>();
 
-	public static void configureWebDriverSupplier(Supplier<WebDriver> webDriverSupplier) {
-		LOG.info("Configured WebDriver supplier to {}", webDriverSupplier);
-		SeleniumDriverFixture.webDriverSupplier = webDriverSupplier;
-	}
-
 	public SeleniumDriverFixture() {
-		LOG.info("Instantiating a fresh Selenium Driver Fixture with provider: {}", webDriverSupplier);
+		super();
 	}
 
 	public SeleniumDriverFixture(String browserUrl) {
@@ -82,7 +75,7 @@ public class SeleniumDriverFixture {
 
 	private CommandProcessor startWebDriverCommandProcessor(String browserUrl) {
 		browserUrl = removeAnchorTag(browserUrl);
-		return new WebDriverCommandProcessor(browserUrl, webDriverSupplier.get());
+		return new WebDriverCommandProcessor(browserUrl, WebDriverFactory.getInstance());
 	}
 
     /**
