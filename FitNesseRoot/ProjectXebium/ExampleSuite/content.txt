@@ -3,5 +3,5 @@
 | ensure | do | <command> | on | <target> |
 | ensure | do | <command> | on | <target> | with | <value> |
 
-!contents -R2 -h -g
+!contents -R1 -h -g
 
