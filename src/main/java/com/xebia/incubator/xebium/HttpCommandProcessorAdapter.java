@@ -26,12 +26,14 @@ import com.thoughtworks.selenium.HttpCommandProcessor;
  * </p>
  * <p>It removes the status codes provided by the HttpCommandProcessor.
  * </p>
+ *
+ * @deprecated Deprecated like the rest of the Selenium 1 simulation stuff.
  */
 public class HttpCommandProcessorAdapter implements CommandProcessor {
 
 	private HttpCommandProcessor httpCommandProcessor;
-	
-	
+
+
 	public HttpCommandProcessorAdapter(HttpCommandProcessor httpCommandProcessor) {
 		super();
 		this.httpCommandProcessor = httpCommandProcessor;
