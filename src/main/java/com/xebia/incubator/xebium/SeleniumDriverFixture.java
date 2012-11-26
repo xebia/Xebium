@@ -198,7 +198,22 @@ public class SeleniumDriverFixture {
 	 */
 	public void setTimeoutTo(long timeout) {
 		this.timeout = timeout;
-		setTimeoutOnSelenium();
+		if (commandProcessor != null) {
+			setTimeoutOnSelenium();
+		}
+	}
+
+	/**
+	 * <p><code>
+	 * | set timeout to | 500 | seconds |
+	 * </code></p>
+	 *
+	 * <p>Set the timeout, both local and on the running selenium server.</p>
+	 *
+	 * @param timeout Timeout in seconds
+	 */
+	public void setTimeoutToSeconds(long timeout) {
+		setTimeoutTo(timeout * 1000);
 	}
 
 	/**
