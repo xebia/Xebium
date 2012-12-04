@@ -36,6 +36,7 @@
     <fitnesse.expiration>0</fitnesse.expiration>
     <slf4j.version>1.6.4</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
+    <commons-lang.version>2.6</commons-lang.version>
   </properties>
 
   <scm>
@@ -59,6 +60,11 @@
       <groupId>com.opera</groupId>
       <artifactId>operadriver</artifactId>
       <version>${operadriver.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>${commons-lang.version}</version>
     </dependency>
 
     <!-- runtime dependencies -->
