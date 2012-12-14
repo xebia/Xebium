@@ -107,7 +107,7 @@ class ScreenCapture {
 
 	void captureScreenshot(String methodName, String[] values) {
 		int stepNumber = nextStepNumber();
-		final File file = new File(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
+		final File file = createFile(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
 		LOG.info("Storing screenshot in " + file.getAbsolutePath());
 
 		try {
@@ -170,7 +170,7 @@ class ScreenCapture {
 	}
 
 	private File initializeIndexIfNeeded() throws IOException {
-		File indexFile = new File(screenshotBaseDir + "index.html");
+		File indexFile = createFile(screenshotBaseDir + "index.html");
 		if (!indexFile.exists()) {
 			BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, false));
 			try {
@@ -182,13 +182,18 @@ class ScreenCapture {
 		return indexFile;
 	}
 
-	static void writeToFile(final File file, final String output) throws IOException {
-		final File parent = file.getParentFile();
+	private File createFile(String filename) {
+		File file = new File(filename);
+		File parent = file.getParentFile();
 
 		if (parent != null && !parent.exists()) {
 			parent.mkdirs();
 		}
 
+		return file;
+	}
+
+	static void writeToFile(final File file, final String output) throws IOException {
 		FileOutputStream w = new FileOutputStream(file);
 		try {
 			w.write(Base64.decodeBase64(output));
