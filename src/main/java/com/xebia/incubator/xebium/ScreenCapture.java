@@ -18,22 +18,17 @@
 
 package com.xebia.incubator.xebium;
 
-import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
-import static org.apache.commons.lang.StringUtils.trim;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.thoughtworks.selenium.CommandProcessor;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.thoughtworks.selenium.CommandProcessor;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static org.apache.commons.lang.StringUtils.trim;
 
 /**
  * Deals with the matters of capturing a screenshot and saving those to file.
@@ -157,7 +152,7 @@ class ScreenCapture {
 	 */
 	private void updateIndexFile(int stepNumber, File file, String methodName,
 			String[] values) throws IOException {
-		final File indexFile = new File(screenshotBaseDir + "index.html");
+		File indexFile = initializeIndexIfNeeded();
 
 		BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, stepNumber > INITIAL_STEP_NUMBER));
 		try {
@@ -171,6 +166,19 @@ class ScreenCapture {
 				LOG.error("Unable to close screenshot file " + file.getPath(), e);
 			}
 		}
+	}
+
+	private File initializeIndexIfNeeded() throws IOException {
+		File indexFile = new File(screenshotBaseDir + "index.html");
+		if (!indexFile.exists()) {
+			BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, false));
+			try {
+				w.write("<h1>Xebium screenshot overview</h1>\n");
+			} finally {
+				w.close();
+			}
+		}
+		return indexFile;
 	}
 
 	static void writeToFile(final File file, final String output) throws IOException {
