@@ -71,11 +71,12 @@ class ScreenCapture {
 		}
 	}
 
-	void setScreenshotPolicy(String policy) {
+	void setScreenshotPolicy(String policy) throws IOException {
 		if ("none".equals(policy) || "nothing".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.NONE;
 		} else if ("failure".equals(policy) || "error".equals(policy)) {
-			screenshotPolicy =ScreenshotPolicy.FAILURE;
+			screenshotPolicy = ScreenshotPolicy.FAILURE;
+			initializeIndexIfNeeded();
 		} else if ("step".equals(policy) || "every step".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.STEP;
 		} else if ("assertion".equals(policy) || "every assertion".equals(policy)) {
