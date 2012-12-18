@@ -18,22 +18,19 @@
 
 package com.xebia.incubator.xebium;
 
-import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
-import static org.apache.commons.lang.StringUtils.trim;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.thoughtworks.selenium.CommandProcessor;
+import fitnesse.FitNesseContext;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.thoughtworks.selenium.CommandProcessor;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static org.apache.commons.lang.StringUtils.trim;
 
 /**
  * Deals with the matters of capturing a screenshot and saving those to file.
@@ -57,13 +54,12 @@ class ScreenCapture {
 	// ensure step indexes are maintained among ScreenCapture instances
 	private static Map<String, Integer> stepNumbers = new HashMap<String, Integer>();
 
-	// screenshotBaseDir is guaranteed to have a trailing path separtor.
-	private String screenshotBaseDir = "FitNesseRoot/files/testResults/screenshots/".replace("/", PATH_SEP);
+	// screenshotBaseDir is guaranteed to have a trailing path separator.
+	private String screenshotBaseDir;
 
 	private CommandProcessor commandProcessor;
 
 	private ScreenshotPolicy screenshotPolicy = ScreenshotPolicy.ASSERTION;
-
 
 	void setCommandProcessor(CommandProcessor commandProcessor) {
 		this.commandProcessor = commandProcessor;
@@ -75,6 +71,16 @@ class ScreenCapture {
 			this.screenshotBaseDir += PATH_SEP;
 		}
 	}
+
+    private String getScreenshotBaseDir() {
+        if (StringUtils.isNotBlank(screenshotBaseDir)) {
+            return screenshotBaseDir;
+        } else {
+            String prefix = FitNesseContext.globalContext.getTestHistoryDirectory().getPath();
+            String postfix = "/screenshots/".replace("/", PATH_SEP);
+            return prefix + postfix;
+        }
+    }
 
 	void setScreenshotPolicy(String policy) {
 		if ("none".equals(policy) || "nothing".equals(policy)) {
@@ -111,7 +117,7 @@ class ScreenCapture {
 
 	void captureScreenshot(String methodName, String[] values) {
 		int stepNumber = nextStepNumber();
-		final File file = new File(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
+		final File file = new File(getScreenshotBaseDir() + String.format("%04d-%s.png", stepNumber, trim(methodName)));
 		LOG.info("Storing screenshot in " + file.getAbsolutePath());
 
 		try {
@@ -130,11 +136,11 @@ class ScreenCapture {
 	 */
 	private int nextStepNumber() {
 		synchronized (stepNumbers) {
-			Integer i = stepNumbers.get(screenshotBaseDir);
+			Integer i = stepNumbers.get(getScreenshotBaseDir());
 			if (i == null) {
 				i = INITIAL_STEP_NUMBER;
 			}
-			stepNumbers.put(screenshotBaseDir, i + 1);
+			stepNumbers.put(getScreenshotBaseDir(), i + 1);
 			return i;
 		}
 	}
@@ -157,7 +163,7 @@ class ScreenCapture {
 	 */
 	private void updateIndexFile(int stepNumber, File file, String methodName,
 			String[] values) throws IOException {
-		final File indexFile = new File(screenshotBaseDir + "index.html");
+		final File indexFile = new File(getScreenshotBaseDir() + "index.html");
 
 		BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, stepNumber > INITIAL_STEP_NUMBER));
 		try {
