@@ -1,10 +1,9 @@
 | script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT} |
-| set step delay to| slow |
+| set step delay to | slow |
 | ensure | do | open | on | / |
-| ensure | do | verifyText | on | css=span.page_title | with | !-FrontPage-! |
-| ensure | do | verifyNotText | on | css=span.page_title | with | Page |
-| ensure | do | verifyText | on | css=span.page_title | with | glob:*Page |
+| ensure | do | verifyText | on | css=h1 | with | !-FrontPage-! |
+| ensure | do | verifyNotText | on | css=h1 | with | Page |
+| ensure | do | verifyText | on | css=h1 | with | glob:*Page |
 | ensure | do | verifyTextPresent | on | Page |
 | stop browser |
-

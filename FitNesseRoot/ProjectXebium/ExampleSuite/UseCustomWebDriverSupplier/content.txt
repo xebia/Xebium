@@ -13,8 +13,8 @@ Then run the scripts. Note the url next to the fixture name.
 | check | is | verifyTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |
-| check | is | verifyText | on | css=span.page_title | ${PAGE_NAME} |
-| check | is | verifyText | on | css=span.page_title | with | ${PAGE_NAME} |
+| check | is | verifyText | on | css=h1 | ${PAGE_NAME} |
+| check | is | verifyText | on | css=h1 | with | ${PAGE_NAME} |
 | note | do not ''stop browser'' as it will prevent the selenium driver from restarting. |
 
 You can do the same through a library. Note that the same webdriver instance will be used.
@@ -27,8 +27,8 @@ You can do the same through a library. Note that the same webdriver instance wil
 | check | is | verifyTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |
-| check | is | verifyText | on | css=span.page_title | ${PAGE_NAME} |
-| check | is | verifyText | on | css=span.page_title | with | ${PAGE_NAME} |
+| check | is | verifyText | on | css=h1 | ${PAGE_NAME} |
+| check | is | verifyText | on | css=h1 | with | ${PAGE_NAME} |
 
 Tear down:
 | script |

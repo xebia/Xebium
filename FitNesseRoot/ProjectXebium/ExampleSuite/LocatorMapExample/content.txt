@@ -4,19 +4,20 @@
 
 2. Add one extra method to the fixture and use a scenario to add aliases.
 
-!*> boilerplate
+!***> boilerplate
+
 | library |
 | selenium driver fixture |
 
 | scenario | define | alias | aliases | locator |
-| add alias | @alias | for locator| @locator |
-*!
+| add alias | @alias | for locator | @locator |
 
+*!
 !| define aliases |
 | alias | locator |
 | pagePath | ${PAGE_PATH}.${PAGE_NAME} |
 | pageName | Xebium |
-| title | css=span.page_title |
+| title | css=h1 |
 
 !| script |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |

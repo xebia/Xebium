@@ -1,15 +1,19 @@
-!2 !help
-!3 The testscript below as it is formatted by Selenium IDE with the Selenium Xebium formatter
-'''Executed steps:
-1. Open the current page in a browser.
-2. wait for the page title.
-3. Verify the text ''Xebium'' is shown somewhere on the page.
-4. Verify the text ''${PAGE_NAME}'' is shown in the page_title element.'''
+The testscript below as it is formatted by Selenium IDE with the Selenium Xebium formatter.
 
-!| script | selenium driver fixture | 
+'''Executed steps: '''
+
+1. Open the current page in a browser.
+
+2. wait for the page title.
+
+3. Verify the text ''Xebium'' is shown somewhere on the page.
+
+4. Verify the text ''${PAGE_NAME}'' is shown in the page_title element.
+
+!| script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | waitForTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |
-| check | is | verifyText | on | css=span.page_title | ${PAGE_NAME} |
+| check | is | verifyText | on | css=h1 | ${PAGE_NAME} |
 | stop browser |

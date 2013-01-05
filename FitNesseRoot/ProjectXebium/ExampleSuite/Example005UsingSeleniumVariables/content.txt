@@ -10,10 +10,9 @@
 !| script | selenium driver fixture |
 | start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
-| $pageName= | is | getText | on | //*[@class='page_title'] |
+| $pageName= | is | getText | on | css=h1 |
 | $pageTitle= | is | getTitle |
-| ensure | do | click | on | link=Search |
-| ensure | do | waitForElementPresent | on | //form[@action='search'] |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME}?searchForm |
 | ensure | do | type | on | searchString | with | $pageName |
 | ensure | do | click | on | searchType |
 | ensure | do | waitForTextPresent | on | $pageTitle |
