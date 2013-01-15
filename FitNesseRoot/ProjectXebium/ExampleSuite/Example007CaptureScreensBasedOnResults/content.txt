@@ -43,9 +43,8 @@ The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches ht
 | save screenshot after | nothing | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_action |
 | ensure | do | open | on | /files/testResults/screenshots/${PAGE_NAME}_on_action |
 | ensure | do | verifyElementPresent | on | link=0001-open.png |
-| ensure | do | verifyElementPresent | on | link=0002-click.png |
-| ensure | do | verifyElementPresent | on | link=0003-type.png |
-| ensure | do | verifyElementPresent | on | link=0004-click.png |
+| ensure | do | verifyElementPresent | on | link=0002-type.png |
+| ensure | do | verifyElementPresent | on | link=0003-click.png |
 | ensure | do | verifyElementPresent | on | link=index.html |
 | ensure | do | clickAndWait | on | link=index.html |
 | ensure | do | verifyTextPresent | on | 1. !-|-! open !-|-! /${PAGE_PATH}.${PAGE_NAME}?searchForm !-|-! |
