@@ -62,22 +62,58 @@ public class SeleniumDriverFixtureTest {
 
         given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn(expectedString);
         seleniumDriverFixture.addAliasForLocator(alias, expectedString);
-        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%" + alias);
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%{" + alias + "}");
         assertThat(result, is(true));
     }
 
     @Test
     public void shouldIgnoreMissingAlias() {
-        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%foo");
-        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%foo");
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%{foo}");
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%{foo}");
         assertThat(result, is(true));
     }
 
     @Test
     public void shouldIgnoreEmptyAlias() {
-        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%");
-        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%");
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("%{}");
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%{}");
         assertThat(result, is(true));
     }
+    
+    @Test
+    public void shouldResolveAliasSurroundedByText() {
+        String expectedString = "Het laatste nieuws het eerst op nu.nl";
+        String alias = "laatsteNieuws";
+        String aliasValue = "laatste nieuws";
 
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn(expectedString);
+        seleniumDriverFixture.addAliasForLocator(alias, aliasValue);
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "Het %{" + alias + "} het eerst op nu.nl");
+        assertThat(result, is(true));
+    }
+    
+    @Test
+    public void shouldResolveMultipleAliases() {
+        String alias1 = "part1";
+        String expectedString1 = "Het laatste nieuws ";
+        String alias2 = "part2";
+        String expectedString2 = "het eerst op nu.nl";
+
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn(expectedString1 + expectedString2);
+        seleniumDriverFixture.addAliasForLocator(alias1, expectedString1);
+        seleniumDriverFixture.addAliasForLocator(alias2, expectedString2);
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%{" + alias1 + "}%{" + alias2 + "}");
+        assertThat(result, is(true));
+    }
+    
+    @Test
+    public void shouldResolveOnlyKnownAlias() {
+        String alias1 = "part1";
+        String expectedString1 = "Het laatste nieuws ";
+        
+        given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn(expectedString1 + "%{part2}");
+        seleniumDriverFixture.addAliasForLocator(alias1, expectedString1);
+        final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "%{" + alias1 + "}%{part2}");
+        assertThat(result, is(true));
+    }
 }

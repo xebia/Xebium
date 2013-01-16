@@ -46,7 +46,9 @@ public class SeleniumDriverFixture {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SeleniumDriverFixture.class);
 
-	private static final String ALIAS_PREFIX = "%";
+	private static final String ALIAS_PREFIX = "%{";
+	
+	private static final String ALIAS_SUFFIX = "}";
 
 	private CommandProcessor commandProcessor;
 
@@ -382,12 +384,15 @@ public class SeleniumDriverFixture {
 
 	private String unalias(String value) {
 		String result = value;
-		if (value != null && value.startsWith(ALIAS_PREFIX)) {
-			String alias = value.substring(ALIAS_PREFIX.length());
-			String subst = aliases.get(alias);
-			if (subst != null) {
-			    LOG.info("Expanded alias '" + alias + "' to '" + result + "'");
-			    result = subst;
+		int beginAlias = 0; 
+		while (result != null && result.indexOf((ALIAS_PREFIX), beginAlias) != -1)  {
+			beginAlias = result.indexOf(ALIAS_PREFIX, beginAlias)+ALIAS_PREFIX.length();
+			int endAlias = result.indexOf(ALIAS_SUFFIX, beginAlias);
+			String alias = result.substring(beginAlias, endAlias);
+			String actual = aliases.get(alias);
+			if (actual != null) {
+				result = result.replace(ALIAS_PREFIX + alias + ALIAS_SUFFIX, actual);
+				LOG.info("Expanded alias '" + alias + "' to '" + actual + "'");
 			}
 		}
 		return result;
