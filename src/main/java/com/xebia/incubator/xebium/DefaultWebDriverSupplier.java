@@ -1,11 +1,7 @@
 package com.xebia.incubator.xebium;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringWriter;
-
+import com.opera.core.systems.OperaDriver;
+import com.opera.core.systems.OperaProduct;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,8 +14,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.opera.core.systems.OperaDriver;
-import com.opera.core.systems.OperaProduct;
+import java.io.*;
 
 public class DefaultWebDriverSupplier implements ConfigurableWebDriverSupplier {
 
@@ -34,15 +29,7 @@ public class DefaultWebDriverSupplier implements ConfigurableWebDriverSupplier {
 	public DefaultWebDriverSupplier() {
 	}
 
-	public void setAsDefault() {
-		WebDriverFactory.configureWebDriverSupplier(this);
-	}
-
-	public WebDriver get() {
-		return newWebDriver();
-	}
-
-	private WebDriver newWebDriver() {
+	public WebDriver newWebDriver() {
 		WebDriver driver;
 		if ("firefox".equalsIgnoreCase(browser)) {
 			FirefoxProfile profile;

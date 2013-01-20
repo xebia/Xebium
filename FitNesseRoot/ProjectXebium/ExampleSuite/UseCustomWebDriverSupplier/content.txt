@@ -2,13 +2,14 @@ This example demonstrates how easy it is to configure a web driver apart from th
 
 First set up an alternative web-driver provider:
 
-!| script | single web driver supplier |
+!| script | default web driver supplier |
 | set browser | firefox |
-| set as default |
+| $Firefox= | new web driver |
 
 Then run the scripts. Note the url next to the fixture name.
 
-!| script | selenium driver fixture | http://localhost:${FITNESSE_PORT}/ |
+!| script | selenium driver fixture |
+| start driver | $Firefox | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
@@ -17,25 +18,14 @@ Then run the scripts. Note the url next to the fixture name.
 | check | is | verifyText | on | css=h1 | with | ${PAGE_NAME} |
 | note | do not ''stop browser'' as it will prevent the selenium driver from restarting. |
 
-You can do the same through a library. Note that the same webdriver instance will be used.
+Use the same !-WebDriver-! instance again, from a different fixture this time.
 
-| library |
-| selenium driver fixture | http://localhost:${FITNESSE_PORT}/ |
-
-!| script |
+!| script | selenium driver fixture |
+| start driver | $Firefox | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |
 | check | is | verifyText | on | css=h1 | ${PAGE_NAME} |
 | check | is | verifyText | on | css=h1 | with | ${PAGE_NAME} |
-
-Tear down:
-| script |
 | stop browser |
-
-
-Reset to default (normally you don't need to do this):
-
-!| script | default web driver supplier |
-| set as default |
