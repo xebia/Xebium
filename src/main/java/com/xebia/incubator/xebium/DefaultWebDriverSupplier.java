@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
@@ -88,6 +89,8 @@ public class DefaultWebDriverSupplier implements ConfigurableWebDriverSupplier {
             capabilities.setCapability("opera.arguments", "-mobileui");
 
             driver = new OperaDriver(capabilities);
+        } else if ("phantomjs".equalsIgnoreCase(browser)) {
+            driver = new PhantomJSDriver(DesiredCapabilities.phantomjs());
 		} else {
 			try {
 				driver = new RemoteWebDriverSupplier(browser).get();
