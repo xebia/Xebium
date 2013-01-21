@@ -24,4 +24,4 @@ Click the Xebium link in order to get to the Xebium section and read on in the G
 Have fun!
 
 <hr/>
-PS. For those of you who import Xebium as an Eclipse project, run `mvn eclipse:ecipse` to get your classpath setup right.
+PS. For those of you who import Xebium as an Eclipse project, run `mvn eclipse:eclipse` to get your classpath setup right.
