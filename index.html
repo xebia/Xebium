@@ -99,9 +99,8 @@
       		<pre>Step 1: Checking out and installing FitNesse and the Xebium project</pre>
       		<pre>Step 2: Setting up Firefox and the Selenium IDE plug-in with the Xebium formatter</pre></p>
             <p>[IMPORTANT]<br><i>Please be aware that Xebium has fixed dependencies on specific versions of Selenium and FitNesse.
-	      The current stable version <b>Xebium 0.5</b> depends on Selenium 2.7 which best functions with Firefox 7.0.x.<br>
-	      In the meantime development on Xebium has continued, which has led to new features and broader browser (version) support,
-	      using these newer development versions might introduce unexpected behavior and stability issues.</i></p>
+	      The current stable version <b>Xebium 0.10</b> depends on Selenium 2.29.0 which functions with Firefox versions upto 18.0.x.<br>
+	      In the meantime development on Xebium continues, which leads to new features and broader browser (version) support. Be aware; using these newer development versions might introduce unexpected behavior and stability issues.</i></p>
         </div>
 
       <div class="feature-block">
@@ -122,7 +121,7 @@
 		<p>Maven will retrieve all necessary dependencies into a Maven repository, the first time this might take a couple of minutes</p>
             </li>
             <li>After these two steps the application should be successfully started, showing something like:
-            	<pre>FitNesse (v20110104) Started...<br>[java] 	port:              8001<br>[java] 	root page:         fitnesse.wiki.FileSystemPage at ./FitNesseRoot<br>[java] 	page version expiration set to 0 days.</pre>
+            	<pre>FitNesse (v20121220) Started...<br>[java] 	port:              8000<br>[java] 	root page:         fitnesse.wiki.FileSystemPage at ./FitNesseRoot<br>[java] 	page version expiration set to 0 days.</pre>
 		<p>Leave the terminal window open to keep FitNesse running (<i>control-c</i> will shutdown the server)</p>    
             </li>
 	    <p><b>With this Step 1 is completed</b></p>
@@ -213,11 +212,13 @@
      <div class="features">
         <div class="feature-block">
             <h3>Further reading</h3>
+			<p>There is a Xebium support group on Google <a href="https://groups.google.com/forum/#!forum/xebium"/>Xebium User Forum</a></p>
             <p>You can find out more about Xebium on the <a href="http://blog.xebia.com/">Xebia blog site</a></p>
             <ol>
               <li><a href="http://blog.xebia.com/2011/05/04/introduction-to-xebium/">Introduction to Xebium</a></li>
               <li><a href="http://blog.xebia.com/2011/06/01/get-your-webtests-in-fitnesse-with-xebium/">Get your webtests in FitNesse with Xebium</a></p>
             </ol>
+			<p>Find out how to correctly setup your environment to run against IE, Chrome and Safari <a href="http://www.shooter-smith.co.uk/setting-up-ie-chrome-and-safari-drivers-to-work-with-xebium/">Setting Up  IE, Chrome and Safari drivers</a></p>
             <p>Xebium is a powerful instrument, but please don't take test automation lightly! The following blog by Gojko Adzic might give you some helpful guidelines: <a href="http://gojko.net/2010/04/13/how-to-implement-ui-testing-without-shooting-yourself-in-the-foot-2/" alt="how to implement ui testing without shooting yourself in the foot">UI Testing Explained</a></p> 
         </div>
         <div class="feature-block">
