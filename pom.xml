@@ -79,6 +79,7 @@
       <version>${fitnesse.version}</version>
       <scope>runtime</scope>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -86,12 +87,6 @@
       <scope>runtime</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.fitnesse.plugins</groupId>
-      <artifactId>maven-classpath-plugin</artifactId>
-      <version>1.3</version>
-      <scope>test</scope>
-    </dependency>
 
     <!-- test dependencies -->
     <dependency>
@@ -211,7 +206,6 @@
 
     <profile>
       <id>fitnesse</id>
-
       <build>
         <plugins>
           <plugin>
@@ -228,7 +222,7 @@
                     <!-- "Sensible" defaults -->
                     <property name="sauce.user" value="[provide user through saucelabs.properties]" />
                     <property name="sauce.accesskey" value="[provide accesskey through saucelabs.properties]" />
-                    <java classname="fitnesseMain.FitNesseMain" classpathref="maven.test.classpath" fork="true">
+                    <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
                       <arg line="-e ${fitnesse.expiration}" />
@@ -245,7 +239,58 @@
           </plugin>
         </plugins>
       </build>
+      <dependencies>
+        <dependency>
+          <groupId>org.fitnesse.plugins</groupId>
+          <artifactId>maven-classpath-plugin</artifactId>
+          <version>1.5</version>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
     </profile>
+
+    <profile>
+      <id>fitnesse-integration</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>start-fitnesse-integration</id>
+                <phase>integration-test</phase>
+                <configuration>
+                  <tasks>
+                    <echo taskname="fitnesse" message="Starting FitNesse..." />
+                    <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true" failonerror="true">
+                      <arg line="-p 8001" />
+                      <arg line="-c ProjectXebium.ExampleSuite?suite&amp;format=text" />
+                      <arg line="-d ." />
+                    </java>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>org.fitnesse.plugins</groupId>
+          <artifactId>maven-classpath-plugin</artifactId>
+          <version>1.5</version>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
   </profiles>
 
   <issueManagement>
