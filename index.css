@@ -33,7 +33,7 @@ ul.sellingpoints {
   list-style: disc url(list-item.png) inside;
 }
 
-#top-block {
+#top-block, .nav {
   background: white url('gradient-bg.png') repeat-x scroll right bottom;
   border-bottom: 1px solid #b4b4b4 }
 
@@ -84,6 +84,29 @@ ul.sellingpoints {
     -webkit-box-shadow: silver 0px 1px 3px;
     border:1px solid #653A71; }
 
+.nav ul {
+    padding: 0;
+    text-align: center;
+}
+.nav li:first-child {
+    border-left: 1px solid #b4b4b4;
+}
+.nav li {
+    list-style: none;
+    display: inline;
+    padding: 1em 3em;
+    border-right: 1px solid #b4b4b4;
+}
+.nav li+li {
+    list-style: none;
+    border-: 1px solid #b4b4b4;
+}
+
+.nav a, .nav a:hover {
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+}
+
 #bottom-block { background-color: rgb(252, 252, 252); padding: 30px 10px 30px 40px; }
 .features {
   clear: both;
@@ -102,8 +125,8 @@ ul.sellingpoints {
   position: relative;
   margin-bottom: 40px; }
 .feature-block img { width: 30%; max-width: 180px; -moz-border-radius: 8px 8px 8px 8px; -moz-box-shadow: 0px 1px 2px rgb(153, 153, 153); margin-left: 1px; margin-right: 20px; float: left; }
-.feature-block h3, .feature-block p { font-size: 14px; padding-right: 8%; margin-right: 10px; color: black; }
-.feature-block h3 { font-weight: bold; margin-top: 4px; margin-bottom: 0pt; }
+.feature-block h4, .feature-block p { font-size: 14px; padding-right: 8%; margin-right: 10px; color: black; }
+.feature-block h4 { font-weight: bold; margin-top: 4px; margin-bottom: 0pt; }
 
 .disclaimer { font-size: 9px; color: rgb(187, 187, 187); max-width: 600px; margin: 0 auto; }
 .disclaimer p { text-transform: uppercase; }

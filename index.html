@@ -47,7 +47,15 @@
       <br class="clear"/>
     </div>
     
-    <div class="features">
+    <div class="nav">
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#getting-started">Getting started</a></li>
+        <li><a href="#further-reading">Further reading</a></li>
+    </div>
+
+    <div id="features" class="features">
       
       <div class="feature-block">
         <img src="seleniumIDE1.png" alt="SeleniumIDE table"/>
@@ -89,7 +97,7 @@
             
     </div>
     
-    <div class="features">
+    <div id="installation" class="features">
         <div class="feature-header">
         
            <h3>Installation</h3>
@@ -105,7 +113,7 @@
 
       <div class="feature-block">
 
-      <h3>Step 1: Checking out and installing FitNesse and the Xebium Project</h3>
+      <h4>Step 1: Checking out and installing FitNesse and the Xebium Project</h4>
         <ul>
             <li>Prerequisites: 
             	<p>Download the latest stable project version by simply pressing <a href="http://github.com/xebia/Xebium/zipball/master">Free Download</a></p>
@@ -130,7 +138,7 @@
     </div>
 
       <div class="feature-block">
-      <h3>Step 2: Setting up Firefox and Selenium IDE with the Xebium formatter</h3>
+      <h4>Step 2: Setting up Firefox and Selenium IDE with the Xebium formatter</h4>
       
       <ul>
       	<li>Prerequisites:</li>
@@ -151,7 +159,7 @@
       </div>
     </div>
     
-     <div class="features">
+     <div id="getting-started" class="features">
         <div class="feature-header">
           <h3>Getting Started</h3>
             <p>The Following sections describe how to create a new test page in FitNesse and how to record and add a simple Selenium script<br></p>
@@ -159,7 +167,7 @@
             <p>In the ExampleSuite of the Xebium project many ways are shown how to improve your tests; FitNesse Scenario Tables allow you to create readable and reusable components from your recorded scripts. With X-Path and CSS you can improve object recognition.</p>
         </div>
         <div class="feature-block">
- 	<h3>Recording a Selenium IDE Script</h3>
+ 	<h4>Recording a Selenium IDE Script</h4>
 	     <ul><li>Open a new Firefox tab or window and start the Selenium IDE plug-in:
 		<p>In the Firefox menu select <i>Tools>Selenium IDE</i></p></li>
 		
@@ -183,7 +191,7 @@
 	     </ul>
         </div>
         <div class="feature-block">
-        	<h3>Create a Test in FitNesse</h3>
+        	<h4>Create a Test in FitNesse</h4>
              <ul><li>Open a browser to enter the Fitnesse Wiki url
             	<p><a href="http://localhost:8000">http://localhost:8000/</a></p></li>
             <li>If the installation steps have all been completed successfully you should now see the FitNesse wiki with the <font color="purple"> Xebium! </font> logo</li>
@@ -209,7 +217,7 @@
 		<li>Once the browser window closed the test is finished and the result is displayed</p></li></ul>
         </div>    
      </div>
-     <div class="features">
+     <div id="further-reading" class="features">
         <div class="feature-block">
             <h3>Further reading</h3>
 			<p>There is a Xebium support group on Google <a href="https://groups.google.com/forum/#!forum/xebium"/>Xebium User Forum</a></p>
@@ -251,5 +259,7 @@
           <img src="a-xebia-initiative-smaller.png" alt="A Xebia Initiative"/>
       </a>
     </div>
+    <script src="underscore-min.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript"></script>
   </body>
 </html>
