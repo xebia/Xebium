@@ -15,8 +15,18 @@
  * limitations under the License.
  *
  */
-
 package com.xebia.incubator.xebium;
+
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
+import static org.apache.commons.lang.StringUtils.join;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
@@ -25,15 +35,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.xebia.incubator.xebium.FitNesseUtil.*;
-import static org.apache.commons.lang.StringUtils.join;
 
 /**
  * Main fixture. Starts a browser session and execute commands.

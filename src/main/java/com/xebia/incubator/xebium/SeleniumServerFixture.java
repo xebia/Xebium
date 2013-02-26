@@ -15,7 +15,6 @@
  * limitations under the License.
  *
  */
-
 package com.xebia.incubator.xebium;
 
 import org.apache.commons.lang.StringUtils;

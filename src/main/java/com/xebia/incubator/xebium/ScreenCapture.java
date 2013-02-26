@@ -15,7 +15,6 @@
  * limitations under the License.
  *
  */
-
 package com.xebia.incubator.xebium;
 
 import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
