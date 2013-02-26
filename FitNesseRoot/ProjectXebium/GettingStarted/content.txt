@@ -29,4 +29,4 @@ Copy the contents of the Source tab to your !-FitNesse-! pages. Make sure you've
 
 Run, optimize and test!
 
-Also Check http://xebia.github.com/Xebium/ for a more detailed description
+Check the ExampleSuite and the other suites for more information on how to write good Xebium tests.
