@@ -1,7 +1,18 @@
-The format created by the Selenium IDE Xebium formatter turns out as follows (for either one or two arguments):
+For an overview of Selenium concepts and commands see http://release.seleniumhq.org/selenium-core/1.0.1/reference.html .
+
+Xebium accepts actions and assertions in the following form (taking either one or two parameters):
 
 | ensure | do | <command> | on | <target> |
 | ensure | do | <command> | on | <target> | with | <value> |
+
+An easy way to get started writing such scripts is using the Selenium IDE Xebium formatter.
+
+Accessors can be used for more advanced scripts:
+
+| check        | is | <command> | on | <target> | <expectedResult>                  |
+| $myVariable= | is | <command> | on | <target> | <expectedResult>                  |
+| check        | is | <command> | on | <target> | with | <value> | <expectedResult> |
+| $myVariable= | is | <command> | on | <target> | with | <value> | <expectedResult> |
 
 !contents -R1 -h -g
 
