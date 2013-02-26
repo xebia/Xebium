@@ -15,7 +15,6 @@
  * limitations under the License.
  *
  */
-
 package com.xebia.incubator.xebium;
 
 import static org.openqa.selenium.remote.CapabilityType.PLATFORM;
@@ -37,69 +36,67 @@ import com.google.common.base.Supplier;
 
 public class RemoteWebDriverSupplier implements Supplier<WebDriver> {
 
-	private static final String REMOTE = "remote";
+    private static final String REMOTE = "remote";
 
-	private String remote;
-	private Map<String, String> capabilities;
+    private String remote;
+    private Map<String, String> capabilities;
 
-	public RemoteWebDriverSupplier(String json) {
-		JSONObject jsonObject;
-		try {
-			jsonObject = new JSONObject(json);
-		} catch (JSONException e) {
-			throw new RuntimeException("Unable to interpret browser information", e);
-		}
+    public RemoteWebDriverSupplier(String json) {
+        JSONObject jsonObject;
+        try {
+            jsonObject = new JSONObject(json);
+        } catch (JSONException e) {
+            throw new RuntimeException("Unable to interpret browser information", e);
+        }
 
-		try {
-			remote = jsonObject.getString(REMOTE);
-			jsonObject.remove(REMOTE);
-			capabilities = jsonObjectToMap(jsonObject);
-		} catch (JSONException e) {
-			throw new RuntimeException("Unable to fetch required fields from json string", e);
-		}
-	}
+        try {
+            remote = jsonObject.getString(REMOTE);
+            jsonObject.remove(REMOTE);
+            capabilities = jsonObjectToMap(jsonObject);
+        } catch (JSONException e) {
+            throw new RuntimeException("Unable to fetch required fields from json string", e);
+        }
+    }
 
-	private Map<String, String> jsonObjectToMap(JSONObject jsonObject) throws JSONException {
-		// Assume you have a Map<String, String> in JSONObject
-		@SuppressWarnings("unchecked")
-		Iterator<String> nameItr = jsonObject.keys();
-		Map<String, String> outMap = new HashMap<String, String>();
-		while(nameItr.hasNext()) {
-			String name = nameItr.next();
-		    outMap.put(name, jsonObject.getString(name));
-		}
+    private Map<String, String> jsonObjectToMap(JSONObject jsonObject) throws JSONException {
+        // Assume you have a Map<String, String> in JSONObject
+        @SuppressWarnings("unchecked")
+        Iterator<String> nameItr = jsonObject.keys();
+        Map<String, String> outMap = new HashMap<String, String>();
+        while (nameItr.hasNext()) {
+            String name = nameItr.next();
+            outMap.put(name, jsonObject.getString(name));
+        }
 
-	    String platform = outMap.get(PLATFORM);
-	    if (platform != null) {
-	    	outMap.put(PLATFORM, platform.toUpperCase());
-	    }
+        String platform = outMap.get(PLATFORM);
+        if (platform != null) {
+            outMap.put(PLATFORM, platform.toUpperCase());
+        }
 
-		return  outMap;
-	}
+        return outMap;
+    }
 
+    public URL getRemote() {
+        try {
+            return new URL(remote);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("URL '" + remote + "' is not a valid URL");
+        }
+    }
 
-	public URL getRemote() {
-		try {
-			return new URL(remote);
-		} catch (MalformedURLException e) {
-			throw new RuntimeException("URL '" + remote + "' is not a valid URL");
-		}
-	}
+    public Capabilities getCapabilities() {
+        return new DesiredCapabilities(capabilities);
+    }
 
-	public Capabilities getCapabilities() {
-		return new DesiredCapabilities(capabilities);
-	}
-
-	/**
-	 * Create a new remote-webdriver. It can be configured according to the specs on
-	 * https://saucelabs.com/docs/ondemand/additional-config.
-	 *
-	 * @return a fresh RemoteWebDriver instance
-	 * @throws RuntimeException in case of any error
-	 */
-	public WebDriver get() {
-		return new RemoteWebDriver(getRemote(), getCapabilities());
-	}
-
+    /**
+     * Create a new remote-webdriver. It can be configured according to the specs on
+     * https://saucelabs.com/docs/ondemand/additional-config.
+     *
+     * @return a fresh RemoteWebDriver instance
+     * @throws RuntimeException in case of any error
+     */
+    public WebDriver get() {
+        return new RemoteWebDriver(getRemote(), getCapabilities());
+    }
 
 }

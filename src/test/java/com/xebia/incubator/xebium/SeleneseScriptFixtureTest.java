@@ -11,32 +11,32 @@ import org.junit.Test;
 @Ignore
 public class SeleneseScriptFixtureTest {
 
-	SeleneseScriptFixture fixture;
-	
-	@Before
-	public void setUp() throws Exception {
-		fixture = new SeleneseScriptFixture();
-		fixture.startServer();
-	}
-	
-	@After
-	public void tearDown() throws Exception {
-		fixture.stopServer();
-		fixture = null;
-	}
+    SeleneseScriptFixture fixture;
 
-	@Test
-	public void testRunScript() throws Exception {
-		assertEquals("PASSED", fixture.runSuite("http://files/selenium/testsuite.html"));
-	}
+    @Before
+    public void setUp() throws Exception {
+        fixture = new SeleneseScriptFixture();
+        fixture.startServer();
+    }
 
-	@Test
-	public void testRunScriptWithAnchor() throws Exception {
-		assertEquals("PASSED", fixture.runSuite("<a href='SomeFancyPancyUrl'>http://files/selenium/testsuite.html</a>"));
-	}
+    @After
+    public void tearDown() throws Exception {
+        fixture.stopServer();
+        fixture = null;
+    }
+
+    @Test
+    public void testRunScript() throws Exception {
+        assertEquals("PASSED", fixture.runSuite("http://files/selenium/testsuite.html"));
+    }
+
+    @Test
+    public void testRunScriptWithAnchor() throws Exception {
+        assertEquals("PASSED", fixture.runSuite("<a href='SomeFancyPancyUrl'>http://files/selenium/testsuite.html</a>"));
+    }
 
 	/*
-	@Test
+    @Test
 	@Ignore
 	public void simpleSeleniumTest() throws Exception {
 		Selenium selenium = new DefaultSelenium("localhost", 4444, "*safari", "http://google.nl");
