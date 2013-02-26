@@ -1,4 +1,5 @@
-!3 The format created by the Selenium IDE Xebium formatter turns out as follows (for either one or two arguments):
+The format created by the Selenium IDE Xebium formatter turns out as follows (for either one or two arguments):
+
 | ensure | do | <command> | on | <target> |
 | ensure | do | <command> | on | <target> | with | <value> |
 
