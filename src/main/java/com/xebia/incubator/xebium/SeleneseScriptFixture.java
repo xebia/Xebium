@@ -33,15 +33,15 @@ import org.openqa.selenium.server.htmlrunner.HTMLLauncher;
  */
 public class SeleneseScriptFixture {
 
-	private static Logger LOG = LoggerFactory.getLogger(SeleneseScriptFixture.class);
-	
-	private String browser = "*firefox";
-	private String browserURL = "http://google.com";
-	private File outputFile = new File("SeleniumScriptFixture.html");
-	private int timeoutInSeconds = 30;
-	private boolean multiWindow = false;
+    private static Logger LOG = LoggerFactory.getLogger(SeleneseScriptFixture.class);
 
-	private SeleniumServer remoteControl;
+    private String browser = "*firefox";
+    private String browserURL = "http://google.com";
+    private File outputFile = new File("SeleniumScriptFixture.html");
+    private int timeoutInSeconds = 30;
+    private boolean multiWindow = false;
+
+    private SeleniumServer remoteControl;
 
     protected String getBrowserCode(String browser) {
         if ("IE".equalsIgnoreCase(browser))
@@ -55,59 +55,59 @@ public class SeleneseScriptFixture {
         return browser;
     }
 
-	public void startServer() throws Exception {
-		RemoteControlConfiguration configuration = new RemoteControlConfiguration();
-		configuration.setProxyInjectionModeArg(true);
-		configuration.setPort(4444);
-		
-		remoteControl = new SeleniumServer(configuration);
-		remoteControl.start();
-	}
+    public void startServer() throws Exception {
+        RemoteControlConfiguration configuration = new RemoteControlConfiguration();
+        configuration.setProxyInjectionModeArg(true);
+        configuration.setPort(4444);
 
-	public void startServerWithBrowserOnUrl(String browser, String url) throws Exception {
-		this.browser = getBrowserCode(browser);
-		browserURL = removeAnchorTag(url);
+        remoteControl = new SeleniumServer(configuration);
+        remoteControl.start();
+    }
 
-		startServer();
-	}
+    public void startServerWithBrowserOnUrl(String browser, String url) throws Exception {
+        this.browser = getBrowserCode(browser);
+        browserURL = removeAnchorTag(url);
 
-	public void setTimeoutToSeconds(int timeoutInSeconds) {
-		this.timeoutInSeconds = timeoutInSeconds;
-	}
-	
-	public void setBrowserUrl(String browserUrl) {
-		this.browserURL = removeAnchorTag(browserUrl);
-	}
-	
-	public void setOutputFile(String outputFileName) {
-		this.outputFile = asFile(outputFileName);
-	}
-	
-	public String runSuite(String scriptName) throws Exception {
-		if (remoteControl == null) {
-			throw new IllegalStateException("Remote control should have been started before tests are executed");
-		}
+        startServer();
+    }
 
-		File suiteFile = asFile(scriptName);
+    public void setTimeoutToSeconds(int timeoutInSeconds) {
+        this.timeoutInSeconds = timeoutInSeconds;
+    }
 
-		String result = null;
-		try {
-			LOG.info("Server started, launching test suite");
-			HTMLLauncher launcher = new HTMLLauncher(remoteControl);
-			result = launcher.runHTMLSuite(browser, browserURL, suiteFile, outputFile, timeoutInSeconds, multiWindow);
-			LOG.info("Finished execution of test suite, result = " + result);
-		} catch (Exception e) {
-			LOG.error("Failed to run test suite", e);
-			throw e;
-		}
-		
-		LOG.debug("End of RunScript");
-		return result;
-	}
+    public void setBrowserUrl(String browserUrl) {
+        this.browserURL = removeAnchorTag(browserUrl);
+    }
 
-	public void stopServer() {
-		remoteControl.stop();
-		remoteControl = null;
-	}
-	
+    public void setOutputFile(String outputFileName) {
+        this.outputFile = asFile(outputFileName);
+    }
+
+    public String runSuite(String scriptName) throws Exception {
+        if (remoteControl == null) {
+            throw new IllegalStateException("Remote control should have been started before tests are executed");
+        }
+
+        File suiteFile = asFile(scriptName);
+
+        String result = null;
+        try {
+            LOG.info("Server started, launching test suite");
+            HTMLLauncher launcher = new HTMLLauncher(remoteControl);
+            result = launcher.runHTMLSuite(browser, browserURL, suiteFile, outputFile, timeoutInSeconds, multiWindow);
+            LOG.info("Finished execution of test suite, result = " + result);
+        } catch (Exception e) {
+            LOG.error("Failed to run test suite", e);
+            throw e;
+        }
+
+        LOG.debug("End of RunScript");
+        return result;
+    }
+
+    public void stopServer() {
+        remoteControl.stop();
+        remoteControl = null;
+    }
+
 }

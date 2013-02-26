@@ -25,9 +25,9 @@ import java.io.File;
  */
 public interface ConfigurableWebDriverSupplier {
 
-	public void setBrowser(String browser);
+    public void setBrowser(String browser);
 
-	public void setCustomProfilePreferencesFile(File customProfilePreferencesFile);
+    public void setCustomProfilePreferencesFile(File customProfilePreferencesFile);
 
-	public void setProfileDirectory(File profileDirectory);
+    public void setProfileDirectory(File profileDirectory);
 }

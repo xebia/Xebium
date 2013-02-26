@@ -30,85 +30,70 @@ import com.thoughtworks.selenium.HttpCommandProcessor;
  */
 public class HttpCommandProcessorAdapter implements CommandProcessor {
 
-	private HttpCommandProcessor httpCommandProcessor;
+    private HttpCommandProcessor httpCommandProcessor;
 
+    public HttpCommandProcessorAdapter(HttpCommandProcessor httpCommandProcessor) {
+        super();
+        this.httpCommandProcessor = httpCommandProcessor;
+    }
 
-	public HttpCommandProcessorAdapter(HttpCommandProcessor httpCommandProcessor) {
-		super();
-		this.httpCommandProcessor = httpCommandProcessor;
-	}
+    private String removeStatusCode(String output) {
+        if (output.startsWith("OK,")) {
+            return output.substring(3);
+        }
+        return output;
+    }
 
+    public String doCommand(String commandName, String[] args) {
+        String output = httpCommandProcessor.doCommand(commandName, args);
+        return removeStatusCode(output);
+    }
 
-	private String removeStatusCode(String output) {
-		if (output.startsWith("OK,")) {
-			return output.substring(3);
-		}
-		return output;
-	}
+    public boolean getBoolean(String command, String[] args) {
+        return httpCommandProcessor.getBoolean(command, args);
+    }
 
+    public boolean[] getBooleanArray(String command, String[] args) {
+        return httpCommandProcessor.getBooleanArray(command, args);
+    }
 
-	public String doCommand(String commandName, String[] args) {
-		String output = httpCommandProcessor.doCommand(commandName, args);
-		return removeStatusCode(output);
-	}
+    public Number getNumber(String command, String[] args) {
+        return httpCommandProcessor.getNumber(command, args);
+    }
 
+    public Number[] getNumberArray(String command, String[] args) {
+        return httpCommandProcessor.getNumberArray(command, args);
+    }
 
-	public boolean getBoolean(String command, String[] args) {
-		return httpCommandProcessor.getBoolean(command, args);
-	}
+    public String getRemoteControlServerLocation() {
+        return httpCommandProcessor.getRemoteControlServerLocation();
+    }
 
+    public String getString(String command, String[] args) {
+        return httpCommandProcessor.getString(command, args);
+    }
 
-	public boolean[] getBooleanArray(String command, String[] args) {
-		return httpCommandProcessor.getBooleanArray(command, args);
-	}
+    public String[] getStringArray(String command, String[] args) {
+        return httpCommandProcessor.getStringArray(command, args);
+    }
 
+    public void setExtensionJs(String extensionJs) {
+        httpCommandProcessor.setExtensionJs(extensionJs);
+    }
 
-	public Number getNumber(String command, String[] args) {
-		return httpCommandProcessor.getNumber(command, args);
-	}
+    public void start() {
+        httpCommandProcessor.start();
+    }
 
+    public void start(String optionsString) {
+        httpCommandProcessor.start(optionsString);
+    }
 
-	public Number[] getNumberArray(String command, String[] args) {
-		return httpCommandProcessor.getNumberArray(command, args);
-	}
+    public void start(Object optionsObject) {
+        httpCommandProcessor.start(optionsObject);
+    }
 
-
-	public String getRemoteControlServerLocation() {
-		return httpCommandProcessor.getRemoteControlServerLocation();
-	}
-
-
-	public String getString(String command, String[] args) {
-		return httpCommandProcessor.getString(command, args);
-	}
-
-
-	public String[] getStringArray(String command, String[] args) {
-		return httpCommandProcessor.getStringArray(command, args);
-	}
-
-
-	public void setExtensionJs(String extensionJs) {
-		httpCommandProcessor.setExtensionJs(extensionJs);
-	}
-
-
-	public void start() {
-		httpCommandProcessor.start();
-	}
-
-
-	public void start(String optionsString) {
-		httpCommandProcessor.start(optionsString);
-	}
-
-
-	public void start(Object optionsObject) {
-		httpCommandProcessor.start(optionsObject);
-	}
-
-
-	public void stop() {
-		httpCommandProcessor.stop();
-	}
+    public void stop() {
+        httpCommandProcessor.stop();
+    }
 }
