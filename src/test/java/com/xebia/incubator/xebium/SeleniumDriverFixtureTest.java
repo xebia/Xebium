@@ -1,17 +1,17 @@
 package com.xebia.incubator.xebium;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.isA;
 
+import com.thoughtworks.selenium.CommandProcessor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import com.thoughtworks.selenium.CommandProcessor;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SeleniumDriverFixtureTest {

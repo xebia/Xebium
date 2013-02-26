@@ -1,13 +1,15 @@
 package com.xebia.fitnesse.selenium;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,11 +25,11 @@ import org.mozilla.javascript.Undefined;
 
 public class JavascriptTestCase {
 
-    final static String TEST_ENVIRONMENT = "src/test/resources/testCase.js";
-    final static String TEST_SETUP = "src/test/resources/testSetup.js";
-    final static String FILE_UNDER_TEST = "src/main/ide/chrome/content/formats/xebiumformatter.js";
+    private final static String TEST_ENVIRONMENT = "src/test/resources/testCase.js";
+    private final static String TEST_SETUP = "src/test/resources/testSetup.js";
+    private final static String FILE_UNDER_TEST = "src/main/ide/chrome/content/formats/xebiumformatter.js";
 
-    final static String EOL = System.getProperty("line.separator");
+    private final static String EOL = System.getProperty("line.separator");
 
     private static ContextFactory contextFactory;
 

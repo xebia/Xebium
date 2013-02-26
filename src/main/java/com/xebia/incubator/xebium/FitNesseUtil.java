@@ -19,7 +19,7 @@ package com.xebia.incubator.xebium;
 
 import java.io.File;
 
-public class FitNesseUtil {
+public final class FitNesseUtil {
 
     private FitNesseUtil() {
         // Static class

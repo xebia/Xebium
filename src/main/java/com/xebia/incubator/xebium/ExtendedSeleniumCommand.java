@@ -33,17 +33,11 @@ import java.util.regex.Pattern;
 public class ExtendedSeleniumCommand {
 
     private static final String GET = "get";
-
     private static final String IS = "is";
-
     private static final String STORE = "store";
-
     private static final String VERIFY = "verify";
-
     private static final String ASSERT = "assert";
-
     private static final String WAIT_FOR = "waitFor";
-
     private static final String AND_WAIT = "AndWait";
 
     // Matching types

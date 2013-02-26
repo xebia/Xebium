@@ -164,6 +164,7 @@ public class SeleniumDriverFixture {
      * @param browserUrl
      * @param serverHost
      * @param serverPort
+     * 
      * @deprecated This call requires a Selenium 1 server. It is advised to use WebDriver.
      */
     public void startBrowserOnUrlUsingRemoteServerOnHostOnPort(final String browser, final String browserUrl, final String serverHost, final int serverPort) {
@@ -457,7 +458,7 @@ public class SeleniumDriverFixture {
             return null;
         }
 
-        String output = null;
+        String output;
         try {
             if (command.returnTypeIsArray()) {
                 output = executeArrayCommand(command.getSeleniumCommand(), values);

@@ -39,11 +39,8 @@ import com.thoughtworks.selenium.CommandProcessor;
  */
 class ScreenCapture {
 
-    enum ScreenshotPolicy {
-        NONE,
-        ASSERTION,
-        FAILURE,
-        STEP
+    private enum ScreenshotPolicy {
+        NONE, ASSERTION, FAILURE, STEP
     }
 
     private static final Logger LOG = LoggerFactory.getLogger(ScreenCapture.class);
@@ -93,8 +90,7 @@ class ScreenCapture {
      * @param result
      * @return
      */
-    boolean requireScreenshot(final ExtendedSeleniumCommand command,
-            boolean result) {
+    boolean requireScreenshot(final ExtendedSeleniumCommand command, boolean result) {
         return
                 (!command.isAssertCommand()
                         && !command.isVerifyCommand()

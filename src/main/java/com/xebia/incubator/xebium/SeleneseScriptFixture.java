@@ -44,14 +44,15 @@ public class SeleneseScriptFixture {
     private SeleniumServer remoteControl;
 
     protected String getBrowserCode(String browser) {
-        if ("IE".equalsIgnoreCase(browser))
+        if ("IE".equalsIgnoreCase(browser)) {
             return "*iehta";
-        if ("FIREFOX".equalsIgnoreCase(browser))
+        } else if ("FIREFOX".equalsIgnoreCase(browser)) {
             return "*firefox";
-        if ("SAFARI".equalsIgnoreCase(browser))
+        } else if ("SAFARI".equalsIgnoreCase(browser)) {
             return "*safari";
-        if ("OPERA".equalsIgnoreCase(browser))
+        } else if ("OPERA".equalsIgnoreCase(browser)) {
             return "*opera";
+        }
         return browser;
     }
 
