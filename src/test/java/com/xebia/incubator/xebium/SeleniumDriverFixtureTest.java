@@ -27,6 +27,13 @@ public class SeleniumDriverFixtureTest {
 		seleniumDriverFixture.setCommandProcessor(commandProcessor);
 	}
 
+    @Test
+    public void shouldVerifyRegularTextPresent() {
+        given(commandProcessor.doCommand("isTextPresent", new String[] { "foo" })).willReturn("true");
+        final boolean result = seleniumDriverFixture.doOn("verifyTextPresent", "foo");
+        assertThat(result, is(true));
+    }
+
 	@Test
 	public void shouldVerifyRegularTextWithRegularExpressions() throws Exception {
 		given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("Di 9 november 2010. Het laatste nieuws het eerst op nu.nl");
