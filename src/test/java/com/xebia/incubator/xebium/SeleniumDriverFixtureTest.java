@@ -28,13 +28,20 @@ public class SeleniumDriverFixtureTest {
 	}
 
     @Test
-    public void shouldVerifyRegularTextPresent() {
+    public void shouldDoVerifyRegularTextPresent() {
         given(commandProcessor.doCommand("isTextPresent", new String[] { "foo" })).willReturn("true");
         final boolean result = seleniumDriverFixture.doOn("verifyTextPresent", "foo");
         assertThat(result, is(true));
     }
 
-	@Test
+    @Test
+    public void checkIsRegularTextPresent() {
+        given(commandProcessor.doCommand("isTextPresent", new String[] { "foo" })).willReturn("true");
+        final String result = seleniumDriverFixture.isOn("isTextPresent", "foo");
+        assertThat(result, is("true"));
+    }
+
+    @Test
 	public void shouldVerifyRegularTextWithRegularExpressions() throws Exception {
 		given(commandProcessor.doCommand(anyString(), isA(String[].class))).willReturn("Di 9 november 2010. Het laatste nieuws het eerst op nu.nl");
 		final boolean result = seleniumDriverFixture.doOnWith("verifyText", "//*[@id='masthead']/div/h1", "regexp:.*Het laatste nieuws het eerst op nu.nl");
