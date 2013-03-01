@@ -3,8 +3,15 @@ jdk:
   - oraclejdk7
   - openjdk6
 
+# Ensure we have a visual env at our disposal
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
 # install dependencies
 install: mvn dependency:resolve
+
+script: mvn integration-test
 
 notifications:
   email:
