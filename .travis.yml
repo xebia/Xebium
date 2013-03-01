@@ -3,6 +3,8 @@ jdk:
   - oraclejdk7
   - openjdk6
 
+before_script: mvn dependency:go-offline
+
 notifications:
   email:
     - amolenaar@xebia.com
