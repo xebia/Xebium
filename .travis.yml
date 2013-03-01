@@ -4,7 +4,7 @@ jdk:
   - openjdk6
 
 # install dependencies
-install: mvn dependency:go-offline
+install: mvn dependency:resolve
 
 notifications:
   email:
