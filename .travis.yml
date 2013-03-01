@@ -11,8 +11,7 @@ before_install:
 # install dependencies
 install: mvn dependency:resolve
 
-# Disable: FitNesse tests fail.
-#script: mvn integration-test
+script: mvn integration-test
 
 notifications:
   email:
