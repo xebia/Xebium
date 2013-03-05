@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<properties>
+	<Edit>true</Edit>
+	<Files>true</Files>
+	<Help>Acceptance tests ran by the Maven Integration-test target</Help>
+	<Properties>true</Properties>
+	<RecentChanges>true</RecentChanges>
+	<Refactor>true</Refactor>
+	<Search>true</Search>
+	<Suite/>
+	<SymbolicLinks>
+		<UseCustomWebDriverSupplier>.ProjectXebium.ExampleSuite.UseCustomWebDriverSupplier</UseCustomWebDriverSupplier>
+		<Example001SimpleTestScript>.ProjectXebium.ExampleSuite.Example001SimpleTestScript</Example001SimpleTestScript>
+	</SymbolicLinks>
+	<Versions>true</Versions>
+	<WhereUsed>true</WhereUsed>
+</properties>

@@ -16,3 +16,4 @@ Accessors can be used for more advanced scripts:
 
 !contents -R1 -h -g
 
+!define BROWSER {firefox}

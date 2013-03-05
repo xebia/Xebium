@@ -1,0 +1,14 @@
+language: java
+jdk:
+  - oraclejdk7
+  - openjdk6
+
+install: mvn dependency:resolve --quiet
+
+script: mvn integration-test
+
+notifications:
+  email:
+    - amolenaar@xebia.com
+    - aengelen@xebia.com
+    - awulder@xebia.com
