@@ -15,5 +15,3 @@ Accessors can be used for more advanced scripts:
 | $myVariable= | is | <command> | on | <target> | with | <value> | <expectedResult> |
 
 !contents -R1 -h -g
-
-!define BROWSER {firefox}

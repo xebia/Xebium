@@ -10,7 +10,7 @@ Small test when waiting for a particular text to come.
 -!
 
 !| script | selenium driver fixture |
-| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
 | do | open | on | /FrontPage |
 | ensure | is | verifyTextPresent | on | image below |
 | ensure | do | waitForText | on | css=h1 | with | !-FrontPage-! |
