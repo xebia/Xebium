@@ -8,4 +8,5 @@
 	<Search>true</Search>
 	<Versions>true</Versions>
 	<WhereUsed>true</WhereUsed>
+	<Suite/>
 </properties>
