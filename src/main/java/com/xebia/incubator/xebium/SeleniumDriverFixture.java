@@ -18,6 +18,7 @@
 
 package com.xebia.incubator.xebium;
 
+import com.google.common.base.Supplier;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
@@ -264,7 +265,7 @@ public class SeleniumDriverFixture {
 	 * | save screenshot after | <i>none</i> |
 	 * </code></p>
 	 */
-	public void saveScreenshotAfter(String policy) {
+	public void saveScreenshotAfter(String policy) throws IOException {
 		screenCapture.setScreenshotPolicy(policy);
 	}
 
@@ -274,7 +275,7 @@ public class SeleniumDriverFixture {
 	 * | save screenshot after | <i>error</i> |
 	 * </code></p>
 	 */
-	public void saveScreenshotAfterInFolder(String policy, String baseDir) {
+	public void saveScreenshotAfterInFolder(String policy, String baseDir) throws IOException {
 		saveScreenshotAfter(policy);
 		screenCapture.setScreenshotBaseDir(removeAnchorTag(baseDir));
 	}
