@@ -20,7 +20,7 @@ The settings need to be in a JSON formatted file. The JSON object has a "frozen"
 
 !| script | selenium driver fixture |
 | load custom browser preferences from file | firefoxexample.json |
-| start browser | ${BROWSER} | on url | http:// |
+| start browser | firefox | on url | http:// |
 | ensure | do | verifyTitle | on | Xebium - Selenium from FitNesse |
 | ensure | do | verifyTextPresent | on | Xebium |
 | stop browser |

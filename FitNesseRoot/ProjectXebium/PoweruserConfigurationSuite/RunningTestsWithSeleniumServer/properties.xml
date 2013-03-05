@@ -7,6 +7,8 @@
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
+	<Suites>NotOnPhantomJS</Suites>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>
