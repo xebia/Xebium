@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static com.xebia.incubator.xebium.FitNesseUtil.*;
 import static org.apache.commons.lang.StringUtils.join;
@@ -49,6 +50,7 @@ public class SeleniumDriverFixture {
 
 	private CommandProcessor commandProcessor;
 
+	// in milliseconds
 	private long timeout = 30000;
 
 	private long stepDelay = 0;
@@ -214,6 +216,9 @@ public class SeleniumDriverFixture {
 	 */
 	private void setTimeoutOnSelenium() {
 		executeCommand("setTimeout", new String[] { "" + this.timeout });
+        WebDriver.Timeouts timeouts = getWebDriver().manage().timeouts();
+        timeouts.setScriptTimeout(this.timeout, TimeUnit.MILLISECONDS);
+        timeouts.pageLoadTimeout(this.timeout, TimeUnit.MILLISECONDS);
 	}
 
 	/**
@@ -319,7 +324,7 @@ public class SeleniumDriverFixture {
 	 */
 	public String is(final String command) {
 		LOG.info("Obtain result from  | " + command + " |");
-		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { }, stepDelay);
+		return executeCommand(new ExtendedSeleniumCommand(command), new String[]{}, stepDelay);
 	}
 
 	/**
