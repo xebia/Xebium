@@ -324,7 +324,7 @@ public class SeleniumDriverFixture {
 	 */
 	public String is(final String command) {
 		LOG.info("Obtain result from  | " + command + " |");
-		return executeCommand(new ExtendedSeleniumCommand(command), new String[]{}, stepDelay);
+		return is(command, new String[]{});
 	}
 
 	/**
@@ -348,8 +348,25 @@ public class SeleniumDriverFixture {
 	 */
 	public String isOn(final String command, final String target) {
 		LOG.info("Obtain result from | " + command + " | " + target + " |");
-		return executeCommand(new ExtendedSeleniumCommand(command), new String[] { unalias(target) }, stepDelay);
+		return is(command, new String[] { unalias(target) });
 	}
+
+    public String is(final String command, final String[] parameters) {
+        ExtendedSeleniumCommand seleniumCommand = new ExtendedSeleniumCommand(command);
+        String output = executeCommand(seleniumCommand, parameters, stepDelay);
+
+        if (seleniumCommand.isBooleanCommand() && seleniumCommand.isNegateCommand()) {
+             if ("true".equals(output)) {
+                output = "false";
+            } else if ("false".equals(output)) {
+                output = "true";
+            } else {
+                throw new IllegalStateException("Illegal boolean value: '" + output + "'");
+            }
+        }
+
+        return output;
+    }
 
 	/**
 	 * Same as {@link #isOn(String, String)}, only with "with" statement, analog to "do-on-with" command.

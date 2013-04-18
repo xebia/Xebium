@@ -18,6 +18,8 @@
 
 package com.xebia.incubator.xebium;
 
+import com.google.common.base.CaseFormat;
+
 import static org.apache.commons.lang.StringUtils.removeStartIgnoreCase;
 import static org.apache.commons.lang.StringUtils.trim;
 
@@ -34,18 +36,18 @@ import java.util.regex.Pattern;
  */
 public class ExtendedSeleniumCommand {
 
-	private static final String GET = "get";
+    private enum Verb {
+        GET, IS, STORE, VERIFY, ASSERT, WAIT_FOR;
 
-	private static final String IS = "is";
+        String getPrefix() {
+            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, name());
+        }
 
-	private static final String STORE = "store";
+        public String applyTo(String noun) {
+            return getPrefix() + noun;
+        }
+    }
 
-	private static final String VERIFY = "verify";
-
-	private static final String ASSERT = "assert";
-
-	private static final String WAIT_FOR = "waitFor";
-	
 	private static final String AND_WAIT = "AndWait";
 
 	// Matching types
@@ -204,7 +206,7 @@ public class ExtendedSeleniumCommand {
 	}
 	
 	public boolean isWaitForCommand() {
-		return methodName.startsWith(WAIT_FOR) && !isSupportedByWebDriver(methodName);
+		return isCommand(methodName, Verb.WAIT_FOR) && !isSupportedByWebDriver(methodName);
 	}
 	
 	/**
@@ -228,15 +230,15 @@ public class ExtendedSeleniumCommand {
 	}
 	
 	public boolean isAssertCommand() {
-		return methodName.startsWith(ASSERT);
+		return isCommand(methodName, Verb.ASSERT);
 	}
-	
-	public boolean isVerifyCommand() {
-		return methodName.startsWith(VERIFY);
+
+    public boolean isVerifyCommand() {
+		return isCommand(methodName, Verb.VERIFY);
 	}
 	
 	public boolean isStoreCommand() {
-		return methodName.startsWith(STORE);
+		return isCommand(methodName, Verb.STORE);
 	}
 	
 	public boolean isCaptureEntirePageScreenshotCommand() {
@@ -244,10 +246,19 @@ public class ExtendedSeleniumCommand {
 	}
 
 	public boolean isBooleanCommand() {
-		return getSeleniumCommand().startsWith(IS);
+		return isCommand(getSeleniumCommand(), Verb.IS);
 	}
-	
-	public String getSeleniumCommand() {
+
+    private boolean isCommand(String name, Verb... verbs) {
+        for (Verb verb : verbs) {
+            if (name.startsWith(verb.getPrefix())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getSeleniumCommand() {
 		
 		// fast track: once resolved return the previous value.
 		if (seleniumCommandName != null) {
@@ -262,22 +273,13 @@ public class ExtendedSeleniumCommand {
 		
 		String seleniumName = methodName;
 		
-		if (isAssertCommand() || isVerifyCommand() || isStoreCommand() || isWaitForCommand()) {
-			String noun = seleniumName;
-			
-			if (isNegateCommand()) {
-				//noun = noun.substring(0, noun.length() - NOT_PRESENT.length()) + "Present";
-				noun = noun.replaceAll("([a-z])Not([A-Z])", "$1$2");
-			}
-			
-			// ASSERT.length() == VERIFY.length()
-			noun = noun.substring(isStoreCommand() ? STORE.length() :
-				(isWaitForCommand() ? WAIT_FOR.length() : ASSERT.length()));
-			
-			if (isSupportedByWebDriver(IS + noun)) {
-				seleniumName = IS + noun;
-			} else if (isSupportedByWebDriver(GET + noun)) {
-				seleniumName = GET + noun;
+		if (isCommand(seleniumName, Verb.ASSERT, Verb.VERIFY, Verb.STORE, Verb.WAIT_FOR, Verb.IS)) {
+			String noun = getNoun(seleniumName);
+
+			if (isSupportedByWebDriver(Verb.IS.applyTo(noun))) {
+				seleniumName = Verb.IS.applyTo(noun);
+			} else if (isSupportedByWebDriver(Verb.GET.applyTo(noun))) {
+				seleniumName = Verb.GET.applyTo(noun);
 			}
 		} else if (isCaptureEntirePageScreenshotCommand()) {
 			seleniumName = "captureScreenshotToString";
@@ -292,7 +294,30 @@ public class ExtendedSeleniumCommand {
 		return seleniumName;
 	}
 
-	/**
+    private String getNoun(String seleniumName) {
+        String verbAndNoun;
+
+        if (isNegateCommand()) {
+            //noun = noun.substring(0, noun.length() - NOT_PRESENT.length()) + "Present";
+            verbAndNoun = seleniumName.replaceAll("([a-z])Not([A-Z])", "$1$2");
+        } else {
+            verbAndNoun = seleniumName;
+        }
+
+        return removeVerb(verbAndNoun);
+    }
+
+    private String removeVerb(String verbAndNoun) {
+        for (Verb verb : Verb.values()) {
+            String prefix = verb.getPrefix();
+            if (verbAndNoun.startsWith(prefix)) {
+                return verbAndNoun.substring(prefix.length());
+            }
+        }
+        throw new IllegalArgumentException("'" + verbAndNoun + "' does not start with a verb");
+    }
+
+    /**
 	 * <p><i>(From the Selenium docs)</i></p>
 	 * <p>
 	 * Various Pattern syntaxes are available for matching string values:
