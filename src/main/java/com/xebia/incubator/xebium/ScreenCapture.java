@@ -18,22 +18,17 @@
 
 package com.xebia.incubator.xebium;
 
-import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
-import static org.apache.commons.lang.StringUtils.trim;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.thoughtworks.selenium.CommandProcessor;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.thoughtworks.selenium.CommandProcessor;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static org.apache.commons.lang.StringUtils.trim;
 
 /**
  * Deals with the matters of capturing a screenshot and saving those to file.
@@ -76,11 +71,12 @@ class ScreenCapture {
 		}
 	}
 
-	void setScreenshotPolicy(String policy) {
+	void setScreenshotPolicy(String policy) throws IOException {
 		if ("none".equals(policy) || "nothing".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.NONE;
 		} else if ("failure".equals(policy) || "error".equals(policy)) {
-			screenshotPolicy =ScreenshotPolicy.FAILURE;
+			screenshotPolicy = ScreenshotPolicy.FAILURE;
+			initializeIndexIfNeeded();
 		} else if ("step".equals(policy) || "every step".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.STEP;
 		} else if ("assertion".equals(policy) || "every assertion".equals(policy)) {
@@ -111,7 +107,7 @@ class ScreenCapture {
 
 	void captureScreenshot(String methodName, String[] values) {
 		int stepNumber = nextStepNumber();
-		final File file = new File(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
+		final File file = createFile(screenshotBaseDir + String.format("%04d-%s.png", stepNumber, trim(methodName)));
 		LOG.info("Storing screenshot in " + file.getAbsolutePath());
 
 		try {
@@ -157,7 +153,7 @@ class ScreenCapture {
 	 */
 	private void updateIndexFile(int stepNumber, File file, String methodName,
 			String[] values) throws IOException {
-		final File indexFile = new File(screenshotBaseDir + "index.html");
+		File indexFile = initializeIndexIfNeeded();
 
 		BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, stepNumber > INITIAL_STEP_NUMBER));
 		try {
@@ -173,13 +169,31 @@ class ScreenCapture {
 		}
 	}
 
-	static void writeToFile(final File file, final String output) throws IOException {
-		final File parent = file.getParentFile();
+	private File initializeIndexIfNeeded() throws IOException {
+		File indexFile = createFile(screenshotBaseDir + "index.html");
+		if (!indexFile.exists()) {
+			BufferedWriter w = new BufferedWriter(new FileWriter(indexFile, false));
+			try {
+				w.write("<h1>Xebium screenshot overview</h1>\n");
+			} finally {
+				w.close();
+			}
+		}
+		return indexFile;
+	}
+
+	private File createFile(String filename) {
+		File file = new File(filename);
+		File parent = file.getParentFile();
 
 		if (parent != null && !parent.exists()) {
 			parent.mkdirs();
 		}
 
+		return file;
+	}
+
+	static void writeToFile(final File file, final String output) throws IOException {
 		FileOutputStream w = new FileOutputStream(file);
 		try {
 			w.write(Base64.decodeBase64(output));

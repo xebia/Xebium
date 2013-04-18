@@ -29,7 +29,7 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.30.0</selenium.version>
+    <selenium.version>2.32.0</selenium.version>
     <fitnesse.version>20121220</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
@@ -50,6 +50,16 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-server</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-remote-driver</artifactId>
       <version>${selenium.version}</version>
     </dependency>
     <dependency>
@@ -268,7 +278,7 @@
                     <echo taskname="fitnesse" message="Starting FitNesse..." />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true" failonerror="true">
                       <arg line="-p 8001" />
-                      <arg line="-c ProjectXebium.ExampleSuite?suite&amp;format=text" />
+                      <arg line="-c ProjectXebium.AcceptanceSuite?suite&amp;format=text" />
                       <arg line="-d ." />
                     </java>
                   </tasks>

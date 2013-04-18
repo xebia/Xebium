@@ -5,3 +5,4 @@
 
 !contents -R1 -h -g
 
+!define BROWSER {firefox}
