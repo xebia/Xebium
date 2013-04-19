@@ -281,8 +281,8 @@ public class SeleniumDriverFixture {
 	 * </code></p>
 	 */
 	public void saveScreenshotAfterInFolder(String policy, String baseDir) throws IOException {
-		saveScreenshotAfter(policy);
 		screenCapture.setScreenshotBaseDir(removeAnchorTag(baseDir));
+		saveScreenshotAfter(policy);
 	}
 
 	/**
