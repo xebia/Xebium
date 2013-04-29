@@ -14,3 +14,4 @@ target/
 .idea
 *.iml
 saucelabs.properties
+atlassian-ide-plugin.xml
