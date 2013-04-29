@@ -535,13 +535,23 @@ public class SeleniumDriverFixture {
 	private void writeToFile(final String filename, final String output) {
 		File file = asFile(filename);
 		try {
+            createParentDirectoryIfNeeded(file);
+
 			ScreenCapture.writeToFile(file, output);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void stopBrowser() {
+    private void createParentDirectoryIfNeeded(File file) throws IOException {
+        if (file.getParentFile() != null && !file.getParentFile().exists()) {
+            if (!file.getParentFile().mkdirs()) {
+                throw new IOException("Could not create parent directory " + file.getParent());
+            }
+        }
+    }
+
+    public void stopBrowser() {
 		commandProcessor.stop();
 		commandProcessor = null;
 
