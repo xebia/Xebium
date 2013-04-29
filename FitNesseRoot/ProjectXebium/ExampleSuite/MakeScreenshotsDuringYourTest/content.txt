@@ -14,4 +14,4 @@
 | ensure | do | captureEntirePageScreenshot | on | http://files/testResults/screenshots/${PAGE_NAME}/screenshotTest.png |
 | stop browser |
 
-'''View the screenshot resulting from this test here: http://files/testResults/screenshots/Example006MakeScreenshotsDuringYourTest/screenshotTest.png''', or navigate to it through the ''Files'' menu.'''
+'''View the screenshot resulting from this test at !-<a href="files/testResults/screenshots/MakeScreenshotsDuringYourTest/screenshotTest.png">files/testResults/screenshots/MakeScreenshotsDuringYourTest/screenshotTest.png</a>-!, or navigate to it through the ''Files'' menu.'''
