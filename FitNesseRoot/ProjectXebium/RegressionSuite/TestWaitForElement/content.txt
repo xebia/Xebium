@@ -1,0 +1,17 @@
+Small test when waiting for a particular text to come.
+
+!-
+<p id="showme" style="display: none">Hi there!</p>
+<script type="text/javascript">
+ setTimeout(function() {
+  document.getElementById("showme").removeAttribute("style");
+}, 4000);
+</script>
+-!
+
+!| script | selenium driver fixture |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| do | open | on | /FrontPage |
+| ensure | is | verifyTextPresent | on | image below |
+| ensure | do | waitForText | on | css=h1 | with | !-FrontPage-! |
+| stop browser |

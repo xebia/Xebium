@@ -1,0 +1,9 @@
+This test mimics the default test script from the [[Sauce Labs][http://saucelabs.com]] website. Check it out!
+
+To run this test, create an account with http://saucelabs.com. Ones logged in, go to "OnDemand", select an OS version and browser and figure out your user name and access key from the code snipped displayed. The username and access-key should be defined in a file saucelabs.properties (there is an example). Restart !-FitNesse-! and run the test.
+
+| script |
+| start browser | { "username": "${sauce.user}", "access-key": "${sauce.accesskey}", "os": "Windows 2003", "browser": "${BROWSER}", "browser-version": "7", "name": "Testing Selenium 1 from Xebium" } | on url | http://example.saucelabs.com | using remote server on host | ondemand.saucelabs.com | on port | 80 |
+| do | open | on | / |
+| ensure | do | verifyTitle | on | Cross browser testing with Selenium - Sauce Labs |
+| stop browser |

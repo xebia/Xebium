@@ -2,12 +2,13 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>This suite contains examples of the different ways to use the Xebium fixture</Help>
+	<Help>Example of a test loading specific firefox profile properties</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suite/>
+	<Suites>NotOnPhantomJS</Suites>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>

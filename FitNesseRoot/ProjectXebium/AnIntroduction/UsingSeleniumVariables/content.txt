@@ -1,0 +1,19 @@
+!2 !help
+'''Executed steps:
+1. Open the current page
+2. Store the pagename as shown above the page in a variable called ''pageName''.
+3. Store the title as shown in the titlebar of the browser in a variable called ''pageTitle''
+4. Open the Fitnesse search function.
+5. Now do a search on the pagename as was stored in step 2.
+6. Verify that in the resultlist of the query the title is returned as was stored in step 3.''' 
+
+!| script | selenium driver fixture |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| $pageName= | is | getText | on | css=h1 |
+| $pageTitle= | is | getTitle |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME}?searchForm |
+| ensure | do | type | on | searchString | with | $pageName |
+| ensure | do | click | on | searchType |
+| ensure | do | waitForTextPresent | on | $pageTitle |
+| stop browser |

@@ -1,0 +1,28 @@
+!2 !help
+!3 A testscript can be transformed, by renaming it and becomes a reusable scenario
+'''Executed steps: '''
+
+1. Open the current page in a browser. 
+
+2. wait for the page title. 
+
+3. Verify the text ''Xebium'' is shown somewhere on the page. 
+
+4. Verify the text ''${PAGE_NAME}'' is shown in the ''h1'' element.
+
+!3 1. Take the ''script'' (as it is used in Example 001) and rename ''script'' into ''scenario'' and provide a logical name to identify your script, in this example we use ''verify page title''
+!| scenario | verify page title |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | verifyTextPresent | on | Xebium |
+| ensure | do | verifyText | on | css=h1 | with | ${PAGE_NAME} |
+| stop browser |
+
+'''When adding the above scenario to the [[Scenario Library][.ProjectXebium.ScenarioLibrary]] (which is a Fitnesse special page type) it can be called from anywhere in the hierarchy of your Fitnesse project'''
+
+!3 2. Now the ''scenario'' can be executed from the testcase when providing the logical name in script fixture
+| script |
+| verify page title |
+
+'''After running the test the script that was executed is displayed by expanding the collapsible section'''

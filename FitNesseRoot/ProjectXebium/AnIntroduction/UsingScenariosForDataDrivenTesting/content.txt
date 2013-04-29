@@ -1,0 +1,34 @@
+!2 !help
+!3 Using an existing scenario for data driven testing by providing multiple values
+'''Executed steps: '''
+
+1. Open the current page in a browser.
+
+2. Open a menu item from the menu bar (on the left side of the screen) by providing its name replacing the variable ''@menuItem''.
+
+3. Verify the correct page header is shown on top of the opened page by providing it replacing the variable ''@pageTitle''.
+
+!3 1. Create a scenario taking two variables ''responder'' and ''title''
+!| scenario | open page | responder | and verify the page header | title |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME}?@responder |
+| check | is | verifyTitle | on | @title |
+| stop browser |
+
+'''When adding the above scenario to the [[Scenario Library][.ProjectXebium.ScenarioLibrary]] (which is a Fitnesse special page type) it can be called from anywhere in the hierarchy of your Fitnesse project'''
+
+!3 2. A single test using the scenario would look like this:
+!| script |
+| open page | edit | and verify the page header | Edit: ${PAGE_PATH}.${PAGE_NAME} |
+
+!3 3. For data driven testing do not use the ''script'' table, just create a table containing the scenario name, with on the second row the variable names, on each following row unique value replacing the variables:
+'''All steps of the test will be executed for each provided row with values'''
+
+!| open page and verify the page header |
+| responder | title |
+| edit | Edit: ${PAGE_PATH}.${PAGE_NAME} |
+| properties | Properties: ${PAGE_PATH}.${PAGE_NAME} |
+| whereUsed | Where Used Results |
+| refactor | Refactor: ${PAGE_PATH}.${PAGE_NAME} |
+
+'''After running this test the script that was executed is provided per step behind the executed values'''

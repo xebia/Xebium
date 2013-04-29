@@ -9,5 +9,6 @@
 	<Refactor/>
 	<Search/>
 	<Static/>
+	<Suite/>
 	<Suites/>
 </properties>

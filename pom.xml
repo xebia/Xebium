@@ -236,6 +236,7 @@
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
                       <arg line="-e ${fitnesse.expiration}" />
+                      <jvmarg value="-DBROWSER=firefox" />
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
                       <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
                     </java>
@@ -278,8 +279,9 @@
                     <echo taskname="fitnesse" message="Starting FitNesse..." />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true" failonerror="true">
                       <arg line="-p 8001" />
-                      <arg line="-c ProjectXebium.AcceptanceSuite?suite&amp;format=text" />
+                      <arg line="-c ProjectXebium?suite&amp;format=text&amp;excludeSuiteFilter=NotOnPhantomJS" />
                       <arg line="-d ." />
+                      <jvmarg value="-DBROWSER=phantomjs" />
                     </java>
                   </tasks>
                 </configuration>

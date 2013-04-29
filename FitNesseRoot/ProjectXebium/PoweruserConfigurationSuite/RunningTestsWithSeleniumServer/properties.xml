@@ -2,12 +2,13 @@
 <properties>
 	<Edit/>
 	<Files/>
-	<Help>This suite contains examples of the different ways to use the Xebium fixture</Help>
+	<Help>Example that demonstrates how to start a Selenium Server from within your test case</Help>
 	<Properties/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>
-	<Suite/>
+	<Suites>NotOnPhantomJS</Suites>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>

@@ -1,0 +1,32 @@
+Okay, since you got here, that means you've read the README and performed the steps described. Now it's time to start doing something useful.
+
+!1 Step 1: Install Firefox and Selenium-IDE (SeIDE)
+
+Install firefox by downloading the most recent version from http://mozilla.org/firefox.
+
+Start Firefox and go to http://seleniumhq.org/download/. There click on the download link for SeIDE. Firefox will tell you it prevented the add-on from being downloaded. Click ''Allow''. The plug-in (add-on) will be downloaded and installed. After installation Firefox will request a restart.
+
+The Selenium-IDE tool can be found in the Tools menu. Just launch it!
+
+!1 Step 2: Install the !-FitNesse-! formatter
+
+The formatter script can be found in src/main/resources. It needs to be installed in SeIDE in order to output tables understood by !-FitNesse-! (in the ''source'' tab). To install it, open SeIDE and go to ''Options'' -> ''Options...''. Click the ''Formats'' tab and click the ''Add'' button. Provide a descriptive name (e.g. !-FitNesse-! or Xebium) and copy the contents of the formatter script in the text section.
+
+Once that's done, close the options window and select the formatter in the ''Options'' -> ''Format'' menu.
+
+!1 Step 3: Record your test
+
+Make sure the Record button is on and start recording.
+
+!1 Step 4: Define tests in !-FitNesse-!
+
+Copy the contents of the Source tab to your !-FitNesse-! pages. Make sure you've set the Import right:
+
+| Import |
+| com.xebia.incubator.xebium |
+
+!1 Step 5: Run your tests from !-FitNesse-!
+
+Run, optimize and test!
+
+Check the ExampleSuite and the other suites for more information on how to write good Xebium tests.

@@ -20,7 +20,7 @@
 | title | css=h1 |
 
 !| script |
-| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | %pagePath |
 | ensure | do | waitForTitle | on | %pagePath |
 | ensure | do | verifyTextPresent | on | %pageName |

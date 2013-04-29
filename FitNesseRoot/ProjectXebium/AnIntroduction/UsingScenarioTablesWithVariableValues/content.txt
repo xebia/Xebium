@@ -1,0 +1,22 @@
+!2 !help
+!3 Extending a scenario to use variable input
+'''Executed steps:
+1. Open the current page in a browser.
+2. wait for the page title to appear.
+3. Verify a text variable text (replacing the variable ''@verifiedText'') is shown somewhere on the page.'''
+
+!3 1. Take the ''scenario'' (as it is used in Example 002) and change the logical name to ''verify page contains text'' and add a variable name ''verifiedText''
+!3 2. In the scenario add the variable preceded by an @ sign
+!| scenario | verify page contains text | verifiedText |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
+| ensure | do | verifyTextPresent | on | @verifiedText |
+| stop browser |
+'''When adding the above scenario to the [[Scenario Library][.ProjectXebium.ScenarioLibrary]] (which is a Fitnesse special page type) it can be called from anywhere in the hierarchy of your Fitnesse project'''
+
+!3 3. Now the ''scenario'' can be executed from the testcase by providing the scenario name and any given value, in this case ''Xebium''
+| script |
+| verify page contains text | Xebium |
+
+'''After running the test the script that was executed with the actual values provided is displayed by expanding the collapsible section'''

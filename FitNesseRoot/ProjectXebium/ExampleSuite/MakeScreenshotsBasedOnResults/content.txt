@@ -1,0 +1,68 @@
+!2 !help
+!3 This is an example of how to make a test run traceable by automatically adding screenshots either based on actions or on failures during the test
+'''1. Create a screenshot after every executed action specified in your test script (not verify-/assert-/waitFor-) To do so you can use either the ''step'' or ''every step'' setting.'''
+
+| Comment |
+| save screenshot after | step |
+| save screenshot after | every step | in folder | http://files/testResults/screenshots/ |
+
+'''2. Create a screenshot only when a test fails. To only capture the screen when an errors occurs use either the ''failure'' or ''error'' setting.'''
+
+| Comment |
+| save screenshot after | failure |
+| save screenshot after | error | in folder | http://files/testResults/screenshots/ |
+
+The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches http://files/testResults/screenshots, which can be browsed through Files in the Fitnesse menu).  '''3. No screenshots required If no screenshots are required (the default) or the option needs to be disabled again in your test, use either the ''nothing'' or ''none'' setting.'''
+
+| Comment |
+| save screenshot after | nothing |
+| save screenshot after | none | in folder | http://files/testResults/screenshots |
+
+'''Now here are two examples:'''
+
+!3 1. Example of capturing on each action
+'''Executed steps:'''
+
+''' 1. Enable screenshots on every action: ''save screenshot after every step''.'''
+
+''' 2. Open the current page.'''
+
+''' 3. Click on the menu item ''Search''.'''
+
+''' 4. Wait for the search field.'''
+
+''' 4. Type the search term: ''${PAGE_NAME}''. 5. Click the ''Search Titles'' button 6. Wait for the search result. 7. Disable screenshots being taken. 8. Verify all expected screenshots have been created. Step 2, 3, 4 and 5 are actions and should result in a screenshot being captured.'''
+
+!| script |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_action |
+| ensure | do | open | on | /${PAGE_PATH}.${PAGE_NAME}?searchForm |
+| ensure | do | type | on | searchString | with | ${PAGE_NAME} |
+| ensure | do | click | on | searchType |
+| ensure | do | waitForTextPresent | on | ${PAGE_NAME} |
+| save screenshot after | nothing | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_action |
+| ensure | do | open | on | /files/testResults/screenshots/${PAGE_NAME}_on_action |
+| ensure | do | verifyElementPresent | on | link=0001-open.png |
+| ensure | do | verifyElementPresent | on | link=0002-type.png |
+| ensure | do | verifyElementPresent | on | link=0003-click.png |
+| ensure | do | verifyElementPresent | on | link=index.html |
+| ensure | do | clickAndWait | on | link=index.html |
+| ensure | do | verifyTextPresent | on | 1. !-|-! open !-|-! /${PAGE_PATH}.${PAGE_NAME}?searchForm !-|-! |
+| stop browser |
+
+!3 2. Create a screenshot only when a test fails.
+'''Executed steps: 1. Enable screenshots only when a failure occurs. 2. Open the current page 3. Click on the ''Search'' menu item. 4. Verify that a ''No Search'' button exists on the Search page (this should fail). 5. Disable screenshots. 6. Verify if a non-existing text exists on the Search page. 7. Verify the expected screenshots have been created. Only step 4 should result in a screenshot being captured.'''
+
+!| script |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| save screenshot after | error | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_failure |
+| ensure | do | open | on | /${PAGE_PATH}.${PAGE_NAME}?searchForm |
+| note | check is verified for. We want this to pass, so define a 'reject' rule. |
+| reject | do | verifyElementPresent | on | //form[@action='nosearch'] |
+| save screenshot after | nothing | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_failure |
+| reject | do | verifyTextPresent | on | non-exising text |
+| ensure | do | open | on | /files/testResults/screenshots/${PAGE_NAME}_on_failure |
+| ensure | do | verifyElementPresent | on | link=0001-verifyElementPresent.png |
+| ensure | do | verifyElementPresent | on | link=index.html |
+| ensure | do | verifyElementNotPresent | on | link=0002-verifyTextPresent.png |
+| stop browser |
