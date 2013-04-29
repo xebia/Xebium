@@ -279,7 +279,7 @@
                     <echo taskname="fitnesse" message="Starting FitNesse..." />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true" failonerror="true">
                       <arg line="-p 8001" />
-                      <arg line="-c ProjectXebium?suite&amp;format=text&amp;excludeSuiteFilter=NotOnPhantomJS" />
+                      <arg line="-c ProjectXebium?suite&amp;format=html&amp;excludeSuiteFilter=NotOnPhantomJS" />
                       <arg line="-d ." />
                       <jvmarg value="-DBROWSER=phantomjs" />
                     </java>
