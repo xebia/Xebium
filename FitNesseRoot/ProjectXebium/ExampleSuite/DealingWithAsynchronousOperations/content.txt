@@ -1,0 +1,40 @@
+When an action kicks off an asynchronous operation, 'clickAndWait' is not sufficient. 
+
+The easiest and most natural way is to add a 'waitFor' command, such as 'waitForTitle' or 'waitForTextNotPresent':
+
+!|script      |selenium driver fixture                                                                          |
+|start browser|${BROWSER}|on url               |http://localhost:${FITNESSE_PORT}/                              |
+|ensure       |do        |open                 |on|/ProjectXebium.ExampleSuite.DealingWithAsynchronousOperations|
+|ensure       |do        |clickAndWait         |on|go                                                           |
+|ensure       |do        |waitForTextNotPresent|on|DealingWithAsynchronousOperations                            |
+|ensure       |do        |verifyTitle          |on|ProjectXebium                                                |
+|stop browser                                                                                                   |
+
+When there's no reliable change to wait for, the following javascript construct can be used:
+
+!|script      |selenium driver fixture                                                                 |
+|start browser|${BROWSER}|on url      |http://localhost:${FITNESSE_PORT}/                              |
+|ensure       |do        |open        |on|/ProjectXebium.ExampleSuite.DealingWithAsynchronousOperations|
+|ensure       |do        |storeEval   |on|document.tobereloaded = true                                 |
+|ensure       |do        |clickAndWait|on|go                                                           |
+|ensure       |do        |waitForEval |on|document.tobereloaded !== true       |with       |true       |
+|ensure       |do        |verifyTitle |on|ProjectXebium                                                |
+|stop browser                                                                                          |
+
+!2 form under test:
+
+!-
+<script>
+function goToProjectXebium() {
+  location.href = '/ProjectXebium';
+}
+
+function startAsynchronousWork() {
+  setTimeout(goToProjectXebium, 5000);
+}
+</script>
+
+<form onsubmit="startAsynchronousWork(); return false;">
+  <input type="submit" name="go" value="Take me to Project Xebium!">
+</form>
+-!
