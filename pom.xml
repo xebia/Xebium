@@ -36,7 +36,7 @@
     <maven-classpath-plugin.version>1.6</maven-classpath-plugin.version>
     <slf4j.version>1.6.4</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
-    <phantomjsdriver.version>1.0.1</phantomjsdriver.version>
+    <phantomjsdriver.version>1.0.3</phantomjsdriver.version>
     <commons-lang.version>2.6</commons-lang.version>
   </properties>
 
