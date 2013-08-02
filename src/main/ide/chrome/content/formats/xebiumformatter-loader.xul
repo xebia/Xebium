@@ -9,6 +9,7 @@
 	<html:script type="application/javascript">
 
         var ide_api = new API();
+        ide_api.addPlugin('xebiumformatter@xebia.com');
         ide_api.addPluginProvidedFormatter('xebiumformatter', 'Xebium Formatter', 'chrome://xebiumformatter/content/formats/xebiumformatter.js');
 	</html:script>
 </overlay>
