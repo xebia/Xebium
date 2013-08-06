@@ -1,15 +1,14 @@
 !2 !help
-
 Verify that an exception will prevent the rest of the tests on the page from running.
 
 >FailingTestPage
 
-!| script | selenium driver fixture | 
+!| script | selenium driver fixture |
 | start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME}.FailingTestPage |
 | ensure | do | clickAndWait | on | link=Test |
-| ensure | do | verifyTextPresent | on | scriptTable_2_3 |
-| check | is | verifyText | on | css=td > span.fail | reject |
+| ensure | do | verifyElementPresent | on | css=tr.exception-detail |
+| check | is | verifyText | on | css=td.fail | reject |
 | check | is | verifyText | on | css=span.ignore | Test not run |
 | note | check | is | verifyCssCount | on | css=span.ignore | 6 |
 | stop browser |
