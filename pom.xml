@@ -369,5 +369,11 @@
       <name>Boudewijn van Klingeren</name>
       <organization>Xebia B.V.</organization>
     </developer>
+    <developer>
+      <id>aengelen</id>
+      <email>aengelen@xebia.com</email>
+      <name>Arnout Engelen</name>
+      <organization>Xebia B.V.</organization>
+    </developer>
   </developers>
 </project>
