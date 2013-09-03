@@ -1,8 +1,8 @@
 By default, Selenium does not check if the validators used are valid. Xebium provides some extra check to ensure clicks that "fail" do actually fail.
 
-| script | selenium driver fixture | 
+!| script | selenium driver fixture | 
 | start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
-| ensure | do | open | on | !-/ProjectXebium.ExampleSuite.BasicFixtureExample-! |
+| ensure | do | open | on | /${PAGE_PATH}.${PAGE_NAME} |
 | reject | do | clickAndWait | on | link=nonExistantLink |
 | reject | do | type | on | nonExistant | with | bogus text |
 | stop browser |
