@@ -1,13 +1,12 @@
-!2 !help
-!3 Load a file setting custom Firefox profile properties
+!2 Load a file setting custom Firefox profile properties
 Executed steps:
-1. Load custom browser preferences setting the Firefox startup homepage to ''Xebium''
-2. Open the browser
-3. Verify the home page is set to ''Xebium''
-4. Stop the browser
 
-The settings need to be in a JSON formatted file. The JSON object has a "frozen" and "mutable" section. In each properties can be placed. E.g.
-{{{
+ * Load custom browser preferences setting the Firefox startup homepage to ''Xebium''
+ * Open the browser
+ * Verify the home page is set to ''Xebium''
+ * Stop the browser
+
+The settings need to be in a JSON formatted file. The JSON object has a "frozen" and "mutable" section. In each properties can be placed. E.g.{{{
 {
  "frozen": {
   "toolkit.telemetry.rejected": true,
@@ -24,7 +23,3 @@ The settings need to be in a JSON formatted file. The JSON object has a "frozen"
 | ensure | do | verifyTitle | on | Xebium - Selenium from FitNesse |
 | ensure | do | verifyTextPresent | on | Xebium |
 | stop browser |
-
-
-
-
