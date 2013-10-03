@@ -18,14 +18,5 @@
 				<em:maxVersion>23.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
-
-		<!-- This is an Se-IDE plugin, so we need to specify it as a requirement -->
-		<em:requires>   
-			<Description>
-				<em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id>
-				<em:minVersion>1.1.0</em:minVersion>
-				<em:maxVersion>2.*</em:maxVersion>
-			</Description>  
-		</em:requires>
 	</Description>
 </RDF>
