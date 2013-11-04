@@ -211,9 +211,9 @@
         <h3>Getting Started</h3>
 
         <p>The Following sections describe how to create a new test page in FitNesse and how to record and add a simple
-            Selenium script<br></p>
+            Selenium script.</p>
 
-        <p>Be aware that using the Record&Play functionality from Selenium does not always result in very reliable
+        <p>Be aware that using the record-&-play functionality from Selenium does not always result in very reliable
             tests, use the recorded scripts as the basis for your test but keep in mind that these scripts often need
             adjustments in order to make them reliable and robust</p>
 
@@ -221,81 +221,127 @@
             Tables allow you to create readable and reusable components from your recorded scripts. With XPath and CSS
             you can improve object recognition.</p>
     </div>
+
     <div class="feature-block">
+        <h4>Create a Test in FitNesse</h4>
+        <ul>
+            <li>To get started, we first need an idea of what we will test. Let's start with a test description.
+            <li>Open a browser to enter the Fitnesse Wiki url
+                <p><a href="http://localhost:8000">http://localhost:8000/</a></p></li>
+            <li>If the installation steps have all been completed successfully you should now see the FitNesse wiki with
+                the <span class="xebium"> Xebium!</span> logo.
+            </li>
+            <p>Click the <span class="xebium">Xebium!</span> logo to view the sample project.</p>
+            </li>
+            <li>Enter the ExampleSuite by clicking the link to start your testing experience.
+                <p>The ExampleSuite contains several examples on how to use the <span class="xebium">Xebium!</span>
+                    fixture</p>
+            </li>
+            <li>Now you are ready to create your own first test.
+                <p>In the <i>Add</i> menu, press <i>Test Page</i> to create a new page.</p>
+
+                <p>The new page name should get a name written in <a href="http://en.wikipedia.org/wiki/CamelCase"
+                                                                     alt="Wikipedia on CamelCase">CamelCase</a>.</p>
+
+                <p>In the content section of the page we can add a basic structure describing what our test is supposed to do:
+                    <pre>| Given a browser on google.com |
+| when a query is done for Xebium |
+| then search results should be found |</pre>
+                This is a quite basic example.</p></li>
+            <li>Now we have our test description. Let's hook it up to Xebium!</li>
+        </ul>
+
         <h4>Recording a Selenium IDE Script</h4>
         <ul>
             <li>Open a new Firefox tab or window and start the Selenium IDE plug-in:
-                <p>In the Firefox menu select <i>Tools>Selenium IDE</i></p></li>
+                <p>In the Firefox menu select <i>Tools>Selenium IDE</i>.</p></li>
 
-            <li>Selenium IDE opens with the record function already activate
-                <p>If not push the <i>Record</i> button to start recording</p></li>
-            <li>Browse to a website of your choice and navigate through it, here's an example:
+            <li>Selenium IDE opens with the record function already activate. If not push the <i>Record</i> button to start recording.</li>
+            <li>Perform the steps we outlined in the FitNesse test:
                 <ol>
-                    <li>Surf to <a href="http://www.google.com">www.google.com</a></li>
-                    <li>Enter the search term "Xebium" in the search field</li>
-                    <li>Press the magnifying glass symbol (with your mouse, do not use the enter key at this point)</li>
-                    <li>On the Google search result page verify the Xebium link is being displayed</li>
+                    <li>Surf to <a href="http://www.google.com">www.google.com</a>.</li>
+                    <li>Enter the search term "Xebium" in the search field.</li>
+                    <li>Press the magnifying glass symbol (with your mouse, do not use the enter key at this point).</li>
+                    <li>On the Google search result page verify the Xebium link is being displayed.</li>
                 </ol>
-                <p>The latter is done by right clicking your mouse on the link and selecting the <i>waitForText
-                    link=Xebium Xebium </i> option from the bottom of the menu</p>
+                <p>The latter is done by right clicking your mouse on the link and selecting the <em>waitForText
+                    link=Xebium Xebium </em> option from the bottom of the menu.</p>
 
                 <p>The right mouse button allows you to add additional verifications to the script that is being
-                    recorded<br>In addition to this countless commands and checks can be added manually in the Selenium
-                    IDE (Use the Command dropdown to see all possible options)</p>
+                    recorded. In addition to this countless commands and checks can be added manually in the Selenium
+                    IDE (Use the Command dropdown to see all possible options).</p>
             </li>
 
-            <li>Now you have a first simple Selenium script
-                <p>Run the script from the Selenium IDE in order to verify that it correctly works</p>
+            <li>Now you have a first simple Selenium script.
+                <p>Run the script from the Selenium IDE in order to verify that it correctly works.</p>
 
-                <p>If the test succeeds go to the <i>Source</i> tab</p>
+                <p>If the test succeeds go to the <i>Source</i> tab.</p>
 
                 <p>If all is right the script looks something like this:</p>
             <pre>| script | selenium driver fixture |
 | start browser | firefox | on url | http://www.google.com/ |
 | ensure | do | open | on | / |
-| ensure | do | type | on | id=lst-ib | with | Xebium |
+| ensure | do | type | on | name=q| with | Xebium |
 | ensure | do | click | on | name=btnG |
+| ensure | do | waitForElementPresent | on | link=Xebium - Selenium from FitNesse |
+| stop browser |</pre>
+                <p></p>
+            </li>
+            <li>In the next step we will use parts to the recorded actions to fill in the test script.</li>
+        </ul>
+    </div>
+
+    <div class="feature-block">
+        <h4>Connect it all together</h4>
+        <ul>
+            <li>At this point we have a test page in FitNesse and a test recorded according to the steps we described in the FitNesse test.
+            </li>
+            <li>Let's start with adding a scenario that describes the first test step. Go to the FitNesse page and edit it.
+                <p>Before the script steps we add a scenario table describing the first step:
+                <pre>!| scenario | Given a browser on google.com |
+| start browser | firefox | on url | http://www.google.com/ |
+| ensure | do | open | on | / |</pre>
+            </li>
+            <li>The second scenario <em>when a query is done for Xebium</em> will look like this:
+            <pre>!| scenario | when a query is done for Xebium |
+| ensure | do | type | on | id=lst-ib | with | Xebium |
+| ensure | do | click | on | name=btnG |</pre>
+            </li>
+            <li>Finally the <em>Then</em> step can be describes as:
+                <pre>!| scenario | then search results should be found |
 | ensure | do | waitForText | on | link=Xebium | with | Xebium |
 | stop browser |</pre>
             </li>
-            <li>Copy the content of the <i>Source</i> tab to your clipboard buffer</li>
-        </ul>
-    </div>
-    <div class="feature-block">
-        <h4>Create a Test in FitNesse</h4>
-        <ul>
-            <li>Open a browser to enter the Fitnesse Wiki url
-                <p><a href="http://localhost:8000">http://localhost:8000/</a></p></li>
-            <li>If the installation steps have all been completed successfully you should now see the FitNesse wiki with
-                the <font color="purple"> Xebium! </font> logo
-            </li>
-            <p>Click the <font color="purple">Xebium!</font> logo to view the sample project</p>
-            </li>
-            <li>Enter the ExampleSuite by clicking the link to start your testing experience
-                <p>The ExampleSuite contains several examples on how to use the <font color="purple"> Xebium! </font>
-                    fixture</p>
-            </li>
-            <li>Now you are ready to create your own first test
-                <p>In the <i>Add</i> menu, press <i>Test Page</i> to create a new page</p>
+            <li>Now all the technical steps are implemented. Let's make sure our script is using the right fixture:
+            <pre>| script | selenium driver fixture |
+| Given a browser on google.com |
+| when a query is done for Xebium |
+| then search results should be found |
+            </pre></li>
+            <li>Let's run the test: press the <em>Test</em> button and observe the result.</li>
+            <li>We can use a collapsed section in FitNesse to hide the technical details, so our page remains clean and readable. The final test page looks like this:
+            <pre>
+!*> Step implementations
+!| scenario | Given a browser on google.com |
+| start browser | firefox | on url | http://www.google.com/ |
+| ensure | do | open | on | / |
 
-                <p>The new page name should get a name written in <a href="http://en.wikipedia.org/wiki/CamelCase"
-                                                                     alt="Wikipedia on CamelCase">CamelCase</a></p>
+!| scenario | when a query is done for Xebium |
+| ensure | do | type | on | name=q | with | Xebium |
+| ensure | do | click | on | name=btnG |
 
-                <p>In the content table of the ExampleSuite a new link appears <i>My New Test</i></p>
+!| scenario | then search results should be found |
+| ensure | do | waitForElementPresent | on | link=Xebium - Selenium from FitNesse |
+| stop browser |
+*!
 
-                <p>Open the new page by clicking the link</p></li>
-            <li>Now you are ready to add the recorded Selenium IDE script<br>
-
-                <p>Click the <i>Edit</i> button in the left side menu of FitNesse</p>
-
-                <p>Paste the content from your clipboard into the FitNesse text editor</p>
-
-                <p>Press the <i>Save</i> button at the bottom of the page</p></li>
-            <li>Now go ahead and execute your test
-                <p>Press the Test button in the left side menu of FitNesse</p>
-
-                <p>A browser instance is launched, the Selenium script is Executed</p></li>
-            <li>Once the browser window closed the test is finished and the result is displayed</p></li>
+| script | selenium driver fixture |
+| Given a browser on google.com |
+| when a query is done for Xebium |
+| then search results should be found |
+            </pre></li>
+            <li>We made a small shortcuts here: normally you want to open a browser and execute a whole set of tests before shutting
+                down the browser. </li>
         </ul>
     </div>
 </div>
