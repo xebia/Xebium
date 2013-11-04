@@ -16,6 +16,7 @@ pre {
   /* border-bottom: 1px solid rgb(197, 197, 197); */
   padding: 3px;
   font-weight: bold;
+  overflow: scroll;
 }
 
 h1 { font-size: 50px; font-family: Myriad Pro,Helvetica Neue,Helvetica,sans-serif; font-weight: normal; margin: 0pt; color: black; }
@@ -143,4 +144,8 @@ ul.sellingpoints {
   position:relative;
   margin: 0 auto;
   text-align: center;
+}
+
+.xebium {
+    color: purple;
 }
