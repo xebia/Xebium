@@ -20,7 +20,7 @@ pre {
 }
 
 h1 { font-size: 50px; font-family: Myriad Pro,Helvetica Neue,Helvetica,sans-serif; font-weight: normal; margin: 0pt; color: black; }
-h2 { font-size: 20px; font-weight: normal; margin: 0pt 0pt 30px; color: rgb(102, 102, 102); }
+h2 { font-size: 20px; font-weight: normal; margin: 0pt 0pt 30px; color: rgb(102, 102, 102); margin-right: 8%; }
 .clear { clear: both }
 
 p.important {
