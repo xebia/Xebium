@@ -29,7 +29,7 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.35.0</selenium.version>
+    <selenium.version>2.38.0</selenium.version>
     <fitnesse.version>20130530</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
@@ -86,6 +86,12 @@
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>${commons-lang.version}</version>
+    </dependency>
+    <!-- for some reason FitNesse appears to conflict with guava 15 from selenium -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>14.0</version>
     </dependency>
 
     <!-- runtime dependencies -->
