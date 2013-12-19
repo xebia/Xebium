@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -98,7 +99,7 @@ public class RemoteWebDriverSupplier implements Supplier<WebDriver> {
 	 * @throws RuntimeException in case of any error
 	 */
 	public WebDriver get() {
-		return new RemoteWebDriver(getRemote(), getCapabilities());
+		return new Augmenter().augment(new RemoteWebDriver(getRemote(), getCapabilities()));
 	}
 
 
