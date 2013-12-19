@@ -75,8 +75,14 @@ public class SeleniumDriverFixture {
 
     private CommandProcessor startWebDriverCommandProcessor(String browserUrl, WebDriver webDriver) {
 		browserUrl = removeAnchorTag(browserUrl);
-		return new WebDriverCommandProcessor(browserUrl, webDriver);
+        WebDriverCommandProcessor driver = new WebDriverCommandProcessor(browserUrl, webDriver);
+        addMissingSeleneseCommands(driver);
+        return driver;
 	}
+
+    private void addMissingSeleneseCommands(WebDriverCommandProcessor driver) {
+        driver.addMethod("sendKeys", driver.getMethod("typeKeys"));
+    }
 
     /**
      * Configure the custom Firefox preferences (javascript) file on the webdriver factory.
