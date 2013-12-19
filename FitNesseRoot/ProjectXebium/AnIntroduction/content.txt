@@ -10,7 +10,9 @@ The Selenium-IDE tool can be found in the Tools menu. Just launch it!
 
 !1 Step 2: Install the !-FitNesse-! formatter
 
-The formatter script can be found in src/main/resources. It needs to be installed in SeIDE in order to output tables understood by !-FitNesse-! (in the ''source'' tab). To install it, open SeIDE and go to ''Options'' -> ''Options...''. Click the ''Formats'' tab and click the ''Add'' button. Provide a descriptive name (e.g. !-FitNesse-! or Xebium) and copy the contents of the formatter script in the text section.
+There are two ways to install the Xebium formatter. The simple way is to go to https://addons.mozilla.org and search for "xebium". The latest version of the Xebium formatter can be installed from there.
+
+If you're working from the source code, the formatter script can be found in main/ide/chrome/content/formats. It needs to be installed in SeIDE in order to output tables understood by !-FitNesse-! (in the ''source'' tab). To install it, open SeIDE and go to ''Options'' -> ''Options...''. Click the ''Formats'' tab and click the ''Add'' button. Provide a descriptive name (e.g. !-FitNesse-! or Xebium) and copy the contents of the formatter script in the text section.
 
 Once that's done, close the options window and select the formatter in the ''Options'' -> ''Format'' menu.
 
