@@ -475,35 +475,45 @@ public class SeleniumDriverFixture {
 							"First start it by invoking startBrowserOnUrl.");
 		}
 
-		// Handle special cases first
 		if ("pause".equals(command.getSeleniumCommand())) {
-			try {
-				Thread.sleep(Long.parseLong(values[0]));
-			} catch (Exception e) {
-				LOG.warn("Pause command interrupted", e);
-			}
+			pause(values[0]);
 			return null;
 		}
 
-		String output = null;
-		try {
-			if (command.returnTypeIsArray()) {
-				output = executeArrayCommand(command.getSeleniumCommand(), values);
-			} else {
-				output = executeCommand(command.getSeleniumCommand(), values);
-			}
-		} catch (final SeleniumException e) {
-			output = "Execution of command failed: " + e.getMessage();
-			LOG.error(output);
-			if (!(command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand())) {
-				throw e;
-			}
-		}
+		String output = getCommandOutput(command, values);
 
+		waitForPageLoadIfNeeded(command);
+		delayIfNeeded(delay);
+
+		return output;
+	}
+
+	private void waitForPageLoadIfNeeded(ExtendedSeleniumCommand command) {
 		if (command.isAndWaitCommand()) {
 			commandProcessor.doCommand("waitForPageToLoad", new String[] { "" + timeout });
 		}
+	}
 
+	private String getCommandOutput(ExtendedSeleniumCommand command, String[] values) {
+		try {
+			if (command.returnTypeIsArray()) {
+				return executeArrayCommand(command.getSeleniumCommand(), values);
+			} else {
+				return executeCommand(command.getSeleniumCommand(), values);
+			}
+		} catch (final SeleniumException e) {
+			String output = "Execution of command failed: " + e.getMessage();
+			LOG.error(output);
+
+			if (!(command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand())) {
+				throw e;
+			}
+
+			return output;
+		}
+	}
+
+	private void delayIfNeeded(long delay) {
 		if (delay > 0) {
 			try {
 				Thread.sleep(delay);
@@ -511,7 +521,14 @@ public class SeleniumDriverFixture {
 				LOG.warn("Step delay sleep command interrupted", e);
 			}
 		}
-		return output;
+	}
+
+	private void pause(String delayInMillis) {
+		try {
+			Thread.sleep(Long.parseLong(delayInMillis));
+		} catch (Exception e) {
+			LOG.warn("Pause command interrupted", e);
+		}
 	}
 
 	private String executeCommand(String methodName, final String[] values) {
