@@ -429,8 +429,11 @@ public class SeleniumDriverFixture {
 			long timeoutTime = System.currentTimeMillis() + timeout;
 
 			do {
-				output = executeCommand(command, values, pollDelay);
+				output = executeCommand(command, values, 0);
 				result = checkResult(command, values[values.length - 1], output);
+				if (!result) {
+					delayIfNeeded(pollDelay);
+				}
 			} while (!result && timeoutTime > System.currentTimeMillis());
 
 			LOG.info("WaitFor- command '" + command.getSeleniumCommand() +  (result ? "' succeeded" : "' failed"));
