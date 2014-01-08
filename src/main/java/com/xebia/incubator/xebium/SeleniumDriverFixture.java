@@ -18,10 +18,10 @@
 
 package com.xebia.incubator.xebium;
 
-import com.google.common.base.Supplier;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
+import com.xebia.incubator.xebium.fastseleniumemulation.FastWebDriverCommandProcessor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
 import org.slf4j.Logger;
@@ -65,6 +65,8 @@ public class SeleniumDriverFixture {
 
 	private Map<String, String> aliases = new HashMap<String, String>();
 
+    private boolean fast = true;
+
 	public SeleniumDriverFixture() {
 		super();
 	}
@@ -75,7 +77,12 @@ public class SeleniumDriverFixture {
 
     private CommandProcessor startWebDriverCommandProcessor(String browserUrl, WebDriver webDriver) {
 		browserUrl = removeAnchorTag(browserUrl);
-        WebDriverCommandProcessor driver = new WebDriverCommandProcessor(browserUrl, webDriver);
+        WebDriverCommandProcessor driver;
+        if (fast) {
+            return new FastWebDriverCommandProcessor(browserUrl, webDriver);
+        } else {
+            return new WebDriverCommandProcessor(browserUrl, webDriver);
+        }
         addMissingSeleneseCommands(driver);
         return driver;
 	}
@@ -91,6 +98,10 @@ public class SeleniumDriverFixture {
      */
     public void loadCustomBrowserPreferencesFromFile(String filename) {
         defaultWebDriverSupplier.setCustomProfilePreferencesFile(new File(filename));
+    }
+
+    public void useCommandProcessor(Boolean fast) {
+        this.fast = fast;
     }
 
 	/**

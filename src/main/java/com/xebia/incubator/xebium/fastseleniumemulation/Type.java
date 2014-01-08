@@ -1,0 +1,55 @@
+package com.xebia.incubator.xebium.fastseleniumemulation;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.internal.seleniumemulation.AlertOverride;
+import org.openqa.selenium.internal.seleniumemulation.SeleneseCommand;
+
+public class Type extends SeleneseCommand<Void> {
+	private final AlertOverride alertOverride;
+	private final ElementFinder finder;
+
+	public Type(AlertOverride alertOverride, ElementFinder finder) {
+		this.alertOverride = alertOverride;
+		this.finder = finder;
+	}
+
+	@Override
+	protected Void handleSeleneseCommand(WebDriver driver, String locator, String value) {
+		alertOverride.replaceAlertMethod(driver);
+
+		value = value.replace("\\10", Keys.ENTER);
+		value = value.replace("\\13", Keys.RETURN);
+		value = value.replace("\\27", Keys.ESCAPE);
+		value = value.replace("\\38", Keys.ARROW_UP);
+		value = value.replace("\\40", Keys.ARROW_DOWN);
+		value = value.replace("\\37", Keys.ARROW_LEFT);
+		value = value.replace("\\39", Keys.ARROW_RIGHT);
+
+		WebElement element = finder.findElement(driver, locator);
+
+		clear(element);
+		element.sendKeys(value);
+		triggerEvents(driver);
+
+		return null;
+	}
+
+	// Make sure onchange/onblur are triggered
+	private void triggerEvents(WebDriver driver) {
+		driver.findElement(By.tagName("body")).click();
+	}
+
+	private void clear(WebElement element) {
+		if (isInput(element) && element.isEnabled()) {
+			element.clear();
+		}
+	}
+
+	private boolean isInput(WebElement element) {
+		String tagName = element.getTagName();
+		return "input".equalsIgnoreCase(tagName) || "textarea".equalsIgnoreCase(tagName);
+	}
+}
