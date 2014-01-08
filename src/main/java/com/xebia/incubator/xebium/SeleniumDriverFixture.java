@@ -79,9 +79,9 @@ public class SeleniumDriverFixture {
 		browserUrl = removeAnchorTag(browserUrl);
         WebDriverCommandProcessor driver;
         if (fast) {
-            return new FastWebDriverCommandProcessor(browserUrl, webDriver);
+            driver = new FastWebDriverCommandProcessor(browserUrl, webDriver);
         } else {
-            return new WebDriverCommandProcessor(browserUrl, webDriver);
+            driver = new WebDriverCommandProcessor(browserUrl, webDriver);
         }
         addMissingSeleneseCommands(driver);
         return driver;
