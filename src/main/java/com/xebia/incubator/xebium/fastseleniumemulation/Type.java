@@ -20,6 +20,9 @@ public class Type extends SeleneseCommand<Void> {
 	protected Void handleSeleneseCommand(WebDriver driver, String locator, String value) {
 		alertOverride.replaceAlertMethod(driver);
 
+		if (value == null) {
+			value = "";
+		}
 		value = value.replace("\\10", Keys.ENTER);
 		value = value.replace("\\13", Keys.RETURN);
 		value = value.replace("\\27", Keys.ESCAPE);
@@ -32,24 +35,23 @@ public class Type extends SeleneseCommand<Void> {
 
 		clear(element);
 		element.sendKeys(value);
-		triggerEvents(driver);
+		triggerEvents(element, driver);
 
 		return null;
 	}
 
 	// Make sure onchange/onblur are triggered
-	private void triggerEvents(WebDriver driver) {
-		driver.findElement(By.tagName("body")).click();
+	private void triggerEvents(WebElement element, WebDriver driver) {
+		if ("input".equalsIgnoreCase(element.getTagName())) {
+			driver.findElement(By.tagName("body")).click();
+		}
 	}
 
 	private void clear(WebElement element) {
-		if (isInput(element) && element.isEnabled()) {
+		String tagName = element.getTagName();
+		if (("input".equalsIgnoreCase(tagName) || "textarea".equalsIgnoreCase(tagName)) && element.isEnabled()) {
 			element.clear();
 		}
 	}
 
-	private boolean isInput(WebElement element) {
-		String tagName = element.getTagName();
-		return "input".equalsIgnoreCase(tagName) || "textarea".equalsIgnoreCase(tagName);
-	}
 }
