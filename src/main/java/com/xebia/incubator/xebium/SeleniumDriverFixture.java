@@ -449,7 +449,11 @@ public class SeleniumDriverFixture {
 			throw new AssertionAndStopTestError(commandResult.output);
 		}
 
-		return commandResult.result;
+		if (commandResult.hasException()) {
+			throw new AssertionError(commandResult.getException());
+		} else {
+			return commandResult.result;
+		}
 	}
 
 	private SeleniumCommandResult executeDoCommandPolling(String[] values, ExtendedSeleniumCommand command) {
@@ -468,17 +472,21 @@ public class SeleniumDriverFixture {
 	}
 
 	private SeleniumCommandResult executeAndCheckResult(ExtendedSeleniumCommand command, String[] values, long delay) {
-		String output = executeCommand(command, values, delay);
+		try {
+			String output = executeCommand(command, values, delay);
 
-		if (command.requiresPolling() || command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
-			String expected = values[values.length - 1];
-			boolean result = checkResult(command, expected, output);
-			LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+			if (command.requiresPolling() || command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
+				String expected = values[values.length - 1];
+				boolean result = checkResult(command, expected, output);
+				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
 
-			return new SeleniumCommandResult(result, output);
-		} else {
-			LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
-			return success(output);
+				return new SeleniumCommandResult(result, output, null);
+			} else {
+				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
+				return success(output);
+			}
+		} catch (Exception e) {
+			return failure(e);
 		}
 	}
 
@@ -613,9 +621,12 @@ public class SeleniumDriverFixture {
 
 		private final String output;
 
-		private SeleniumCommandResult(boolean result, String output) {
+		private final Exception exception;
+
+		private SeleniumCommandResult(boolean result, String output, Exception e) {
 			this.result = result;
 			this.output = output;
+			this.exception = e;
 		}
 
 		public boolean failed() {
@@ -625,13 +636,27 @@ public class SeleniumDriverFixture {
 		public boolean succeeded() {
 			return result;
 		}
+
+		public boolean hasException() {
+			return exception != null;
+		}
+
+		public Exception getException() {
+			return exception;
+		}
 	}
 
 	private static SeleniumCommandResult success(String output) {
-		return new SeleniumCommandResult(true, output);
+		return new SeleniumCommandResult(true, output, null);
 	}
 
 	private static SeleniumCommandResult failure() {
-		return new SeleniumCommandResult(false, null);
+		return new SeleniumCommandResult(false, null, null);
 	}
+
+	private SeleniumCommandResult failure(Exception e) {
+		return new SeleniumCommandResult(false, null, e);
+	}
+
+
 }

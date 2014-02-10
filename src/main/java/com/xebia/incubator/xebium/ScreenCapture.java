@@ -92,7 +92,7 @@ class ScreenCapture {
 	 * @param result
 	 * @return
 	 */
-	boolean requireScreenshot(final ExtendedSeleniumCommand command,
+	public boolean requireScreenshot(final ExtendedSeleniumCommand command,
 			boolean result) {
 		return
 			(!command.isAssertCommand()
