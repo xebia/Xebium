@@ -4,14 +4,20 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.thoughtworks.selenium.CommandProcessor;
+import org.openqa.selenium.WebDriverException;
+
+import java.io.IOException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SeleniumDriverFixtureTest {
@@ -19,12 +25,16 @@ public class SeleniumDriverFixtureTest {
 	@Mock
 	private CommandProcessor commandProcessor;
 
+	@Mock
+	private ScreenCapture screenCapture;
+
 	private SeleniumDriverFixture seleniumDriverFixture;
 
 	@Before
 	public void setup() throws Exception {
 		this.seleniumDriverFixture = new SeleniumDriverFixture();
 		seleniumDriverFixture.setCommandProcessor(commandProcessor);
+		seleniumDriverFixture.setScreenCapture(screenCapture);
 	}
 
     @Test
@@ -108,4 +118,22 @@ public class SeleniumDriverFixtureTest {
         assertThat(result, is(true));
     }
 
+	@Test
+	public void shouldTakeScreenshotOnError() throws IOException {
+		seleniumDriverFixture.saveScreenshotAfter("FAILURE");
+
+		when(commandProcessor.getBoolean("isElementPresent", new String[] { "id=verwijderen" })).thenReturn(true);
+		when(commandProcessor.doCommand("click", new String[] {"id=verwijderen"}))
+				.thenThrow(new WebDriverException("Click failed: ReferenceError: Can't find variable: handle"));
+		when(screenCapture.requireScreenshot(any(ExtendedSeleniumCommand.class), anyBoolean()))
+				.thenReturn(true);
+
+		try {
+			seleniumDriverFixture.doOn("clickAndWait", "id=verwijderen");
+		} catch (Throwable t) {
+			// Not sure whether we want to propagate this exception... that's the current behaviour though.
+		}
+
+		verify(screenCapture).captureScreenshot("clickAndWait", new String[] { "id=verwijderen" });
+	}
 }
