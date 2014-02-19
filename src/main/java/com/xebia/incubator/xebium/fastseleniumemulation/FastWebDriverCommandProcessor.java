@@ -1,9 +1,7 @@
 package com.xebia.incubator.xebium.fastseleniumemulation;
 
-import com.thoughtworks.selenium.CommandProcessor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverCommandProcessor;
-import org.openqa.selenium.internal.WrapsDriver;
 import org.openqa.selenium.internal.seleniumemulation.*;
 
 /**
@@ -117,5 +115,7 @@ public class FastWebDriverCommandProcessor extends WebDriverCommandProcessor {
         addMethod("getText", new GetText(elementFinder));
 		// Not really equivalent... see also http://rostislav-matl.blogspot.nl/2011/03/moving-to-selenium-2-on-webdriver-part.html
         //addMethod("isTextPresent", new IsTextPresent());
+
+        addMethod("windowMaximize", new WindowMaximize());
     }
 }
