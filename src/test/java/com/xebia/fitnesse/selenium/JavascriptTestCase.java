@@ -344,7 +344,7 @@ public class JavascriptTestCase {
 				"| start browser | firefox | on url | http://example.com |\n" +
 				"| $locVar= | is | storeLocation |\n" +
                 "| $bar= | is | storeTest | on | foo |\n" +
-                "| check | is | verifyText | on | foo | $locVar |\n" +
+                "| check | is | getText | on | foo | $locVar |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -406,7 +406,7 @@ public class JavascriptTestCase {
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
                 "| do | open | on | !-http://example.com-! |\n" +
-                "| check | is | verifyText | on | css=h1 | Header |\n" +
+                "| check | is | getText | on | css=h1 | Header |\n" +
                 "| ensure | do | waitForTextNotPresent | on | //c[blah=*]/d/e |\n" +
                 "| ensure | do | focus | on | input |\n" +
 				"| stop browser |\n"
@@ -424,7 +424,7 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | verifyText | on | link=$myVariable | Text$myVariable Text |\n" +
+                "| check | is | getText | on | link=$myVariable | Text$myVariable Text |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -439,7 +439,7 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | verifyText | on | !-Some | text-! | !-more | text-! |\n" +
+                "| check | is | getText | on | !-Some | text-! | !-more | text-! |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -454,7 +454,7 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | verifyText | on | field | Out* |\n" +
+                "| check | is | getText | on | field | Out* |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -474,11 +474,11 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | verifyText | on | field | Test |\n" +
-                "| check | is | verifyText | on | field | =~/Test.*Te\\?\\[\\]\\{\\}\\(\\)\\..*\\+\\^\\$st/ |\n" +
-                "| check | is | verifyText | on | field | Test |\n" +
-                "| check | is | verifyText | on | field | =~/Test.*Test.*Test/ |\n" +
-                "| check | is | verifyText | on | field | =~/X\\[ea\\]b.*ium/ |\n" +
+                "| check | is | getText | on | field | Test |\n" +
+                "| check | is | getText | on | field | =~/Test.*Te\\?\\[\\]\\{\\}\\(\\)\\..*\\+\\^\\$st/ |\n" +
+                "| check | is | getText | on | field | Test |\n" +
+                "| check | is | getText | on | field | =~/Test.*Test.*Test/ |\n" +
+                "| check | is | getText | on | field | =~/X\\[ea\\]b.*ium/ |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -495,7 +495,7 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | verifyText | on | field | Test |\n" +
+                "| check | is | getText | on | field | Test |\n" +
                 "| ensure | do | waitForText | on | field | with | Test |\n" +
 				"| stop browser |\n"
 				, result);
@@ -514,9 +514,9 @@ public class JavascriptTestCase {
 		assertEquals(
                 "| script | selenium driver fixture |\n" +
 				"| start browser | firefox | on url | http://example.com |\n" +
-                "| check | is | verifyText | on | field | =~/.*A.*/ |\n" +
-                "| check | is | verifyText | on | field | =~/.*A.*/ |\n" +
-                "| check | is | verifyText | on | field | =~/.*AsdFgh.*/ |\n" +
+                "| check | is | getText | on | field | =~/.*A.*/ |\n" +
+                "| check | is | getText | on | field | =~/.*A.*/ |\n" +
+                "| check | is | getText | on | field | =~/.*AsdFgh.*/ |\n" +
 				"| stop browser |\n"
 				, result);
     }
@@ -707,7 +707,7 @@ public class JavascriptTestCase {
     public void shouldParseFailedCheckCommands() {
     	eval("var fittable = 'ensure\tdo\twaitForElementPresent\t[false] expected [link=Xebium]\\n' +" +
     	"'check\tis\tverifyText\ton\tlink=Xebium\t[Execution of command failed: Element link=Xebium not found] expected [Xebium]\\n' +" +
-    	"'check\tis\twaitForTitle\t[Google] expected [xebia/Xebium á GitHub[?]]\\n' +" +
+    	"'check\tis\twaitForTitle\t[Google] expected [xebia/Xebium ï¿½ GitHub[?]]\\n' +" +
     	"'check\tis\tverifyText\ton\tcss=h1\t/.*Page[a-z]?/ found in: FrontPage\\n' +" +
     	"'check\tis\tverifyText\ton\tcss=h1\t/.*Page[a-z]?/ not found in: FrontPage';");
 
@@ -726,7 +726,7 @@ public class JavascriptTestCase {
         assertEquals("Xebium", eval("commands[1].value"));
 
 		assertEquals(eval("commands[2].comment").toString(), "waitForTitle", eval("commands[2].command"));
-        assertEquals("xebia/Xebium á GitHub[?]", eval("commands[2].target"));
+        assertEquals("xebia/Xebium ï¿½ GitHub[?]", eval("commands[2].target"));
         assertEquals("", eval("commands[2].value"));
 
 		assertEquals(eval("commands[3].comment").toString(), "verifyText", eval("commands[3].command"));
@@ -738,4 +738,25 @@ public class JavascriptTestCase {
         assertEquals("regexp:.*Page[a-z]?", eval("commands[4].value"));
 
     }
+
+	@Test
+	public void testCheckIsRoundtrip() {
+		eval("var tc = new TestCase(); tc.baseUrl = 'http://example.com';");
+		eval("var commands = [];");
+        eval("commands.push(new Command('verifyText', 'loc', 'http://myurl.com'))");
+		eval("tc.commands = commands;");
+		eval("var formatted = format(tc, 'name');");
+		String result = (String) eval("formatted");
+		assertEquals(
+                "| script | selenium driver fixture |\n" +
+				"| start browser | firefox | on url | http://example.com |\n" +
+				"| check | is | getText | on | loc | !-http://myurl.com-! |\n" +
+				"| stop browser |\n"
+				, result);
+
+		eval("var tc2 = new TestCase()");
+		eval("parse(tc2, formatted)");
+		assertEquals(1.0, eval("tc2.commands.length"));
+		assertEquals("verifyText", eval("tc2.commands[0].command"));
+	}
 }
