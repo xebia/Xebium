@@ -2,9 +2,9 @@ package com.xebia.incubator.xebium.fastseleniumemulation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.internal.seleniumemulation.ElementFinder;
-import org.openqa.selenium.internal.seleniumemulation.JavascriptLibrary;
-import org.openqa.selenium.internal.seleniumemulation.SeleneseCommand;
+import com.thoughtworks.selenium.webdriven.ElementFinder;
+import com.thoughtworks.selenium.webdriven.JavascriptLibrary;
+import com.thoughtworks.selenium.webdriven.SeleneseCommand;
 
 public class GetText extends SeleneseCommand<String> {
     private final ElementFinder finder;

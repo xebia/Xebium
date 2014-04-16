@@ -1,7 +1,7 @@
 package com.xebia.incubator.xebium.fastseleniumemulation;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.internal.seleniumemulation.SeleneseCommand;
+import com.thoughtworks.selenium.webdriven.SeleneseCommand;
 
 
 public class WindowMaximize extends SeleneseCommand<Void> {

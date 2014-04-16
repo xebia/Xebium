@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.internal.seleniumemulation.AlertOverride;
-import org.openqa.selenium.internal.seleniumemulation.SeleneseCommand;
+import com.thoughtworks.selenium.webdriven.commands.AlertOverride;
+import com.thoughtworks.selenium.webdriven.SeleneseCommand;
 
 public class Type extends SeleneseCommand<Void> {
 	private final AlertOverride alertOverride;

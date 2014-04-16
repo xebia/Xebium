@@ -3,11 +3,11 @@ package com.xebia.incubator.xebium.fastseleniumemulation;
 import com.google.common.collect.Maps;
 import com.thoughtworks.selenium.SeleniumException;
 import org.openqa.selenium.*;
-import org.openqa.selenium.internal.seleniumemulation.JavascriptLibrary;
+import com.thoughtworks.selenium.webdriven.JavascriptLibrary;
 
 import java.util.Map;
 
-public class ElementFinder extends org.openqa.selenium.internal.seleniumemulation.ElementFinder {
+public class ElementFinder extends com.thoughtworks.selenium.webdriven.ElementFinder {
 	private final Map<String, String> additionalLocators = Maps.newHashMap();
 
 	public ElementFinder(JavascriptLibrary javascriptLibrary) {

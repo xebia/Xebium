@@ -1,8 +1,9 @@
 package com.xebia.incubator.xebium.fastseleniumemulation;
 
+import com.thoughtworks.selenium.webdriven.JavascriptLibrary;
+import com.thoughtworks.selenium.webdriven.WebDriverCommandProcessor;
+import com.thoughtworks.selenium.webdriven.commands.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverCommandProcessor;
-import org.openqa.selenium.internal.seleniumemulation.*;
 
 /**
  * The Selenium WebDriverCommandProcessor relies heavily on javascript.
@@ -79,7 +80,7 @@ public class FastWebDriverCommandProcessor extends WebDriverCommandProcessor {
 				elementFinder, "value"));
 		addMethod("getSelectOptions", new GetSelectOptions(javascriptLibrary, elementFinder));
 		addMethod("getTable", new GetTable(elementFinder, javascriptLibrary));
-		addMethod("getText", new org.openqa.selenium.internal.seleniumemulation.GetText(javascriptLibrary, elementFinder));
+		addMethod("getText", new com.thoughtworks.selenium.webdriven.commands.GetText(javascriptLibrary, elementFinder));
 		addMethod("getValue", new GetValue(elementFinder));
 		addMethod("highlight", new Highlight(elementFinder, javascriptLibrary));
 		addMethod("isChecked", new IsChecked(elementFinder));
@@ -87,7 +88,7 @@ public class FastWebDriverCommandProcessor extends WebDriverCommandProcessor {
 		addMethod("isElementPresent", new IsElementPresent(elementFinder));
 		addMethod("isOrdered", new IsOrdered(elementFinder, javascriptLibrary));
 		addMethod("isSomethingSelected", new IsSomethingSelected(javascriptLibrary));
-		addMethod("isTextPresent", new org.openqa.selenium.internal.seleniumemulation.IsTextPresent(javascriptLibrary));
+		addMethod("isTextPresent", new com.thoughtworks.selenium.webdriven.commands.IsTextPresent(javascriptLibrary));
 		addMethod("isVisible", new IsVisible(elementFinder));
 		addMethod("keyPress", new TypeKeys(alertOverride, elementFinder));
 		addMethod("mouseOver", new MouseEvent(elementFinder, javascriptLibrary, "mouseover"));
