@@ -22,8 +22,8 @@ import com.google.common.base.Supplier;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
+import com.thoughtworks.selenium.webdriven.WebDriverCommandProcessor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverCommandProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -186,6 +186,10 @@ public class SeleniumDriverFixture {
 		screenCapture.setCommandProcessor(commandProcessor);
 		locatorCheck = new LocatorCheck(commandProcessor);
 		LOG.info("Started new command processor (timeout: " + timeout + "ms, step delay: " + stepDelay + "ms, poll interval: " + pollDelay + "ms)");
+	}
+
+	void setScreenCapture(ScreenCapture screenCapture) {
+		this.screenCapture = screenCapture;
 	}
 
 	/**
@@ -418,54 +422,72 @@ public class SeleniumDriverFixture {
 
 	private boolean executeDoCommand(final String methodName, final String[] values) {
 
-		final ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
+		ExtendedSeleniumCommand command = new ExtendedSeleniumCommand(methodName);
 
-		String output = null;
-		boolean result = true;
+		SeleniumCommandResult commandResult;
 
 		if (!locatorCheck.verifyElementPresent(command, values)) {
-			result = false;
+			commandResult = failure();
 		} else if (command.requiresPolling()) {
-			long timeoutTime = System.currentTimeMillis() + timeout;
-
-			do {
-				output = executeCommand(command, values, 0);
-				result = checkResult(command, values[values.length - 1], output);
-				if (!result) {
-					delayIfNeeded(pollDelay);
-				}
-			} while (!result && timeoutTime > System.currentTimeMillis());
-
-			LOG.info("WaitFor- command '" + command.getSeleniumCommand() +  (result ? "' succeeded" : "' failed"));
-
+			commandResult = executeDoCommandPolling(values, command);
 		} else {
-
-			output = executeCommand(command, values, stepDelay);
+			commandResult = executeAndCheckResult(command, values, stepDelay);
 
 			if (command.isCaptureEntirePageScreenshotCommand()) {
-				writeToFile(values[0], output);
-				result = true;
-			} else if (command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
-				String expected = values[values.length - 1];
-				result = checkResult(command, expected, output);
-				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
-			} else {
-				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
+				writeToFile(values[0], commandResult.output);
 			}
 		}
 
-		if (screenCapture.requireScreenshot(command, result)) {
+		if (screenCapture.requireScreenshot(command, commandResult.result)) {
 			screenCapture.captureScreenshot(methodName, values);
 		}
 
-		if (!result && command.isAssertCommand()) {
+		if (commandResult.failed() && command.isAssertCommand()) {
 			if (stopBrowserOnAssertion) {
 				stopBrowser();
 			}
-			throw new AssertionAndStopTestError(output);
+			throw new AssertionAndStopTestError(commandResult.output);
 		}
 
-		return result;
+		if (commandResult.hasException()) {
+			throw new AssertionError(commandResult.getException());
+		} else {
+			return commandResult.result;
+		}
+	}
+
+	private SeleniumCommandResult executeDoCommandPolling(String[] values, ExtendedSeleniumCommand command) {
+		SeleniumCommandResult commandResult;
+		long timeoutTime = System.currentTimeMillis() + timeout;
+
+		do {
+			commandResult = executeAndCheckResult(command, values, 0);
+			if (commandResult.failed()) {
+				delayIfNeeded(pollDelay);
+			}
+		} while (commandResult.failed() && timeoutTime > System.currentTimeMillis());
+
+		LOG.info("WaitFor-command '" + command.getSeleniumCommand() +  (commandResult.succeeded() ? "' succeeded" : "' failed"));
+		return commandResult;
+	}
+
+	private SeleniumCommandResult executeAndCheckResult(ExtendedSeleniumCommand command, String[] values, long delay) {
+		try {
+			String output = executeCommand(command, values, delay);
+
+			if (command.requiresPolling() || command.isAssertCommand() || command.isVerifyCommand() || command.isWaitForCommand()) {
+				String expected = values[values.length - 1];
+				boolean result = checkResult(command, expected, output);
+				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "' => " + (result ? "ok" : "not ok, expected '" + expected + "'"));
+
+				return new SeleniumCommandResult(result, output, null);
+			} else {
+				LOG.info("Command '" + command.getSeleniumCommand() + "' returned '" + output + "'");
+				return success(output);
+			}
+		} catch (Exception e) {
+			return failure(e);
+		}
 	}
 
 	private String executeCommand(final ExtendedSeleniumCommand command, final String[] values, long delay) {
@@ -593,4 +615,48 @@ public class SeleniumDriverFixture {
 				? ((WebDriverCommandProcessor) commandProcessor).getWrappedDriver()
 				: null;
 	}
+
+	private static class SeleniumCommandResult {
+		private final boolean result;
+
+		private final String output;
+
+		private final Exception exception;
+
+		private SeleniumCommandResult(boolean result, String output, Exception e) {
+			this.result = result;
+			this.output = output;
+			this.exception = e;
+		}
+
+		public boolean failed() {
+			return !result;
+		}
+
+		public boolean succeeded() {
+			return result;
+		}
+
+		public boolean hasException() {
+			return exception != null;
+		}
+
+		public Exception getException() {
+			return exception;
+		}
+	}
+
+	private static SeleniumCommandResult success(String output) {
+		return new SeleniumCommandResult(true, output, null);
+	}
+
+	private static SeleniumCommandResult failure() {
+		return new SeleniumCommandResult(false, null, null);
+	}
+
+	private SeleniumCommandResult failure(Exception e) {
+		return new SeleniumCommandResult(false, null, e);
+	}
+
+
 }
