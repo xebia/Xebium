@@ -29,7 +29,7 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.40.0</selenium.version>
+    <selenium.version>2.41.0</selenium.version>
     <fitnesse.version>20130530</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>

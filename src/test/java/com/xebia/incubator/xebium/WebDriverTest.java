@@ -5,10 +5,10 @@ import static org.junit.Assert.assertNull;
 
 import java.net.MalformedURLException;
 
+import com.thoughtworks.selenium.webdriven.WebDriverCommandProcessor;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverCommandProcessor;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
