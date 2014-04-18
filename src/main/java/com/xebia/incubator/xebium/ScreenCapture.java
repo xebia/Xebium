@@ -76,7 +76,6 @@ class ScreenCapture {
 			screenshotPolicy = ScreenshotPolicy.NONE;
 		} else if ("failure".equals(policy) || "error".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.FAILURE;
-			initializeIndexIfNeeded();
 		} else if ("step".equals(policy) || "every step".equals(policy)) {
 			screenshotPolicy = ScreenshotPolicy.STEP;
 		} else if ("assertion".equals(policy) || "every assertion".equals(policy)) {
