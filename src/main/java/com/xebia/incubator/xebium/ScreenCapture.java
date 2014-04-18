@@ -86,10 +86,6 @@ class ScreenCapture {
 
 	/**
 	 * Is a screenshot desired, based on the command and the test result.
-	 *
-	 * @param command
-	 * @param result
-	 * @return
 	 */
 	public boolean requireScreenshot(final ExtendedSeleniumCommand command,
 			boolean result) {
@@ -144,10 +140,6 @@ class ScreenCapture {
 	 * <p>The base directory is expected to exist at this point.
 	 * </p>
 	 *
-	 * @param stepNumber
-	 * @param file
-	 * @param methodName
-	 * @param values
 	 * @throws IOException
 	 */
 	private void updateIndexFile(int stepNumber, File file, String methodName,
