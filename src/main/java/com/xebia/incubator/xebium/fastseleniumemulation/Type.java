@@ -49,7 +49,11 @@ public class Type extends SeleneseCommand<Void> {
 
 	private void clear(WebElement element) {
 		String tagName = element.getTagName();
-		if (("input".equalsIgnoreCase(tagName) || "textarea".equalsIgnoreCase(tagName)) && element.isEnabled()) {
+		String type = element.getAttribute("type");
+
+		if (("input".equalsIgnoreCase(tagName) || "textarea".equalsIgnoreCase(tagName))
+				&& element.isEnabled()
+				&& !"file".equalsIgnoreCase(type)) {
 			element.clear();
 		}
 	}
