@@ -99,7 +99,7 @@ public class SeleniumDriverFixture {
 	 * @param directory
 	 */
 	public void loadFirefoxProfileFromDirectory(String directory) {
-        defaultWebDriverSupplier.setCustomProfilePreferencesFile(new File(directory));
+        defaultWebDriverSupplier.setProfileDirectory(new File(directory));
 	}
 
 	/**
