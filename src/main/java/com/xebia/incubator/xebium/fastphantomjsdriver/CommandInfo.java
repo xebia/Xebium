@@ -1,60 +1,30 @@
 package com.xebia.incubator.xebium.fastphantomjsdriver;
 
-import org.apache.http.client.methods.HttpUriRequest;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.net.Urls;
-import org.openqa.selenium.remote.Command;
-import org.openqa.selenium.remote.SessionId;
-
-import java.net.URL;
+import org.openqa.selenium.remote.http.HttpMethod;
 
 public class CommandInfo {
 
-	private final String url;
-	private final HttpVerb verb;
+  private final String url;
+  private final HttpMethod method;
 
-	public CommandInfo(String url, HttpVerb verb) {
-		this.url = url;
-		this.verb = verb;
-	}
+  /**
+   * @deprecated Use {@link org.openqa.selenium.remote.CommandInfo(String, HttpMethod)}.
+   */
+  @Deprecated
+  public CommandInfo(String url, HttpVerb verb) {
+    this(url, verb.toHttpMethod());
+  }
 
-	HttpUriRequest getMethod(URL base, Command command) {
-		StringBuilder urlBuilder = new StringBuilder();
+  public CommandInfo(String url, HttpMethod method) {
+    this.url = url;
+    this.method = method;
+  }
 
-		urlBuilder.append(base.toExternalForm().replaceAll("/$", ""));
-		for (String part : url.split("/")) {
-			if (part.length() == 0) {
-				continue;
-			}
+  String getUrl() {
+    return url;
+  }
 
-			urlBuilder.append("/");
-			if (part.startsWith(":")) {
-				String value = get(part.substring(1), command);
-				if (value != null) {
-					urlBuilder.append(get(part.substring(1), command));
-				}
-			} else {
-				urlBuilder.append(part);
-			}
-		}
-
-		return verb.createMethod(urlBuilder.toString());
-	}
-
-	private String get(String propertyName, Command command) {
-		if ("sessionId".equals(propertyName)) {
-			SessionId id = command.getSessionId();
-			if (id == null) {
-				throw new WebDriverException("Session ID may not be null");
-			}
-			return id.toString();
-		}
-
-		// Attempt to extract the property name from the parameters
-		Object value = command.getParameters().get(propertyName);
-		if (value != null) {
-			return Urls.urlEncode(String.valueOf(value));
-		}
-		return null;
-	}
+  HttpMethod getMethod() {
+    return method;
+  }
 }
