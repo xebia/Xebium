@@ -65,7 +65,19 @@ public class SeleniumDriverFixture {
 
 	private Map<String, String> aliases = new HashMap<String, String>();
 
-    private boolean fast = true;
+	/**
+	 * Xebium uses the 'selenium emulation' command set, which can be handled by Selenium via the
+	 * WebDriverCommandProcessor.
+	 *
+	 * Selenium's implementation is backwards-compatible, slow and buggy. We provide a FastWebDriverCommandProcessor
+	 * which replaces some common commands with faster direct WebDriver calls, at the expense of some
+	 * backwards-compatibility.
+	 *
+	 * Set this field to 'false' to fall back to the original implementation.
+	 *
+	 * This has to be done before the 'start browser on url' call.
+	 */
+    private boolean useFastSeleniumEmulation = true;
 
 	public SeleniumDriverFixture() {
 		super();
@@ -78,7 +90,7 @@ public class SeleniumDriverFixture {
     private CommandProcessor startWebDriverCommandProcessor(String browserUrl, WebDriver webDriver) {
 		browserUrl = removeAnchorTag(browserUrl);
         WebDriverCommandProcessor driver;
-        if (fast) {
+        if (useFastSeleniumEmulation) {
             driver = new FastWebDriverCommandProcessor(browserUrl, webDriver);
         } else {
             driver = new WebDriverCommandProcessor(browserUrl, webDriver);
@@ -100,8 +112,8 @@ public class SeleniumDriverFixture {
         defaultWebDriverSupplier.setCustomProfilePreferencesFile(new File(filename));
     }
 
-    public void useCommandProcessor(Boolean fast) {
-        this.fast = fast;
+    public void useFastSeleniumEmulation(Boolean useFastSeleniumEmulation) {
+        this.useFastSeleniumEmulation = useFastSeleniumEmulation;
     }
 
 	/**
