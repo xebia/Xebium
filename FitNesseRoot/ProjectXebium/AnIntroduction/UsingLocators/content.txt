@@ -1,0 +1,19 @@
+!-
+Elements to be matched: (check source for HTML):
+<ul>
+ <li><div id="identifier">By identifier</div></li>
+ <li><a href="http://google.com">Link text</a></li>
+ <li><div>By xpath</div></li>
+ <li><div class="somecssclass">By CSS</div></li>
+</ul>
+-!
+
+!| script | selenium driver fixture |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
+| check | is | getText | on | identifier | By identifier |
+| check | is | getText | on | id=identifier | By identifier |
+| check | is | getText | on | link=Link text | Link text |
+| check | is | getText | on | //ul/li[3]/div | By xpath |
+| check | is | getText | on | css=.somecssclass | By CSS |
+| stop browser |
