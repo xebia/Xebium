@@ -23,7 +23,8 @@ public class Type extends SeleneseCommand<Void> {
 		if (value == null) {
 			value = "";
 		}
-        value = value.replace("\\08", Keys.TAB); // sglebs fix
+        value = value.replace("\\08", Keys.BACK_SPACE); // sglebs fix
+        value = value.replace("\\09", Keys.TAB); // sglebs fix
 		value = value.replace("\\10", Keys.ENTER);
 		value = value.replace("\\13", Keys.RETURN);
 		value = value.replace("\\27", Keys.ESCAPE);
