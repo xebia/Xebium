@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.xebia.incubator.xebium.FitNesseUtil.*;
 import static org.apache.commons.lang.StringUtils.join;
-
+import org.openqa.selenium.Keys;
 /**
  * Main fixture. Starts a browser session and execute commands.
  */
@@ -81,7 +81,15 @@ public class SeleniumDriverFixture {
 
 	public SeleniumDriverFixture() {
 		super();
+        initSpecialKeysMapping();
 	}
+
+    private void initSpecialKeysMapping() {
+        aliases.put("$KEY_BACKSPACE", Keys.chord(Keys.BACK_SPACE));
+        aliases.put("$KEY_TAB", Keys.chord(Keys.TAB));
+        aliases.put("$KEY_ENTER", Keys.chord(Keys.ENTER));
+        aliases.put("$KEY_RETURN", Keys.chord(Keys.RETURN));
+    }
 
     private WebDriver defaultWebDriverInstance() {
       return defaultWebDriverSupplier.newWebDriver();

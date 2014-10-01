@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xebium</artifactId>
   <groupId>com.xebia.incubator</groupId>
-  <version>0.13-SNAPSHOT</version>
+  <version>0.14-SNAPSHOT-mqm</version>
   <name>Xebium</name>
   <packaging>jar</packaging>
 
@@ -29,7 +29,7 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.42.0</selenium.version>
+    <selenium.version>2.43.1</selenium.version>
     <fitnesse.version>20130530</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
