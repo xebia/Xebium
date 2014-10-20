@@ -126,6 +126,10 @@ public class DefaultWebDriverSupplier implements ConfigurableWebDriverSupplier {
 		this.browser = browser;
 	}
 
+    public String getBrowser() {
+        return this.browser;
+    }
+
 	public void setCustomProfilePreferencesFile(
 			File customProfilePreferencesFile) {
 		this.customProfilePreferencesFile = customProfilePreferencesFile;

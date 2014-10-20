@@ -259,7 +259,8 @@ public class SeleniumDriverFixture {
 		executeCommand("setTimeout", new String[] { "" + this.timeout });
         WebDriver.Timeouts timeouts = getWebDriver().manage().timeouts();
         timeouts.setScriptTimeout(this.timeout, TimeUnit.MILLISECONDS);
-        timeouts.pageLoadTimeout(this.timeout, TimeUnit.MILLISECONDS);
+        if (!defaultWebDriverSupplier.getBrowser().toLowerCase().equals("safari"))  //mqm fix for #137 - safari does not support this API
+            timeouts.pageLoadTimeout(this.timeout, TimeUnit.MILLISECONDS);
 	}
 
 	/**
