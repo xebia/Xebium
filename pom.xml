@@ -29,10 +29,11 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.43.1</selenium.version>
-    <fitnesse.version>20130530</fitnesse.version>
+    <selenium.version>2.44.0</selenium.version>
+    <fitnesse.version>20140901</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
+	<fitnesse.dir>.</fitnesse.dir>
     <maven-classpath-plugin.version>1.7</maven-classpath-plugin.version>
     <slf4j.version>1.6.4</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
@@ -41,8 +42,8 @@
   </properties>
 
   <scm>
-    <connection>scm:git:git://github.com/xebia/Xebium.git</connection>
-    <developerConnection>scm:git:git@github.com:xebia/Xebium.git</developerConnection>
+    <connection>scm:git:git://github.com/sglebs/Xebium.git</connection>
+    <developerConnection>scm:git:git@github.com:sglebs/Xebium.git</developerConnection>
     <url>scm:git:http://github.com/xebia/Xebium</url>
   </scm>
 
@@ -245,7 +246,7 @@
                     <property name="sauce.accesskey" value="[provide accesskey through saucelabs.properties]" />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
-                      <arg line="-d ." />
+                      <arg line="-d ${fitnesse.dir}" />
                       <arg line="-e ${fitnesse.expiration}" />
                       <jvmarg value="-DBROWSER=firefox" />
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
@@ -291,7 +292,7 @@
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true" failonerror="true">
                       <arg line="-p 8001" />
                       <arg line="-c ProjectXebium?suite&amp;format=text&amp;excludeSuiteFilter=NotOnPhantomJS" />
-                      <arg line="-d ." />
+                      <arg line="-d ${fitnesse.dir}" />
                       <jvmarg value="-DBROWSER=phantomjs" />
                     </java>
                   </tasks>
