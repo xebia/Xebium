@@ -33,6 +33,7 @@
     <fitnesse.version>20130530</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
+    <orgjson.version>20140107</orgjson.version>
     <maven-classpath-plugin.version>1.7</maven-classpath-plugin.version>
     <slf4j.version>1.6.4</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
@@ -86,6 +87,11 @@
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>${commons-lang.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>${orgjson.version}</version>
     </dependency>
     <!-- for some reason FitNesse appears to conflict with guava 15 from selenium -->
     <dependency>
