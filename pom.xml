@@ -29,15 +29,15 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.45.0</selenium.version>
+    <selenium.version>2.44.0</selenium.version>
     <fitnesse.version>20140901</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
-	<fitnesse.dir>.</fitnesse.dir>
+    <orgjson.version>20140107</orgjson.version>
     <maven-classpath-plugin.version>1.7</maven-classpath-plugin.version>
     <slf4j.version>1.6.6</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
-    <phantomjsdriver.version>1.0.3</phantomjsdriver.version>
+    <phantomjsdriver.version>1.2.1</phantomjsdriver.version>
     <commons-lang.version>2.6</commons-lang.version>
   </properties>
 
@@ -79,7 +79,7 @@
       <version>${operadriver.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.github.detro.ghostdriver</groupId>
+      <groupId>com.codeborne</groupId>
       <artifactId>phantomjsdriver</artifactId>
       <version>${phantomjsdriver.version}</version>
     </dependency>
@@ -87,6 +87,11 @@
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>${commons-lang.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>${orgjson.version}</version>
     </dependency>
     <!-- for some reason FitNesse appears to conflict with guava 15 from selenium -->
     <dependency>
@@ -247,7 +252,7 @@
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ${fitnesse.dir}" />
-                      <arg line="-e ${fitnesse.expiration}" />   
+                      <arg line="-e ${fitnesse.expiration}" />
                       <jvmarg value="-DBROWSER=firefox" />
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
                       <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
@@ -326,7 +331,7 @@
     <name>Xebia B.V.</name>
     <url>http://xebia.com</url>
   </organization>
-  
+
   <developers>
     <developer>
       <id>sgrijpink</id>
