@@ -99,7 +99,9 @@ public class RemoteWebDriverSupplier implements Supplier<WebDriver> {
 	 * @throws RuntimeException in case of any error
 	 */
 	public WebDriver get() {
-		return new Augmenter().augment(new RemoteWebDriver(getRemote(), getCapabilities()));
+		RemoteWebDriver remoteWebDriver = new RemoteWebDriver(getRemote(), getCapabilities())   ;
+		remoteWebDriver.setFileDetector(new org.openqa.selenium.remote.LocalFileDetector()); // https://saucelabs.com/resources/selenium-file-upload
+		return new Augmenter().augment(remoteWebDriver);
 	}
 
 
