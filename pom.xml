@@ -30,7 +30,7 @@
 
   <properties>
     <selenium.version>2.45.0</selenium.version>
-    <fitnesse.version>20150114</fitnesse.version>
+    <fitnesse.version>20150424</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <orgjson.version>20140107</orgjson.version>
