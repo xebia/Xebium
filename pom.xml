@@ -251,7 +251,7 @@
                     <property name="sauce.accesskey" value="[provide accesskey through saucelabs.properties]" />
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
                       <arg line="-p ${fitnesse.port}" />
-                      <arg line="-d ${fitnesse.dir}" />
+                      <arg line="-d ${user.dir}" />
                       <arg line="-e ${fitnesse.expiration}" />
                       <jvmarg value="-DBROWSER=firefox" />
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
@@ -297,7 +297,7 @@
                     <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true" failonerror="true">
                       <arg line="-p 8001" />
                       <arg line="-c ProjectXebium?suite&amp;format=text&amp;excludeSuiteFilter=NotOnPhantomJS" />
-                      <arg line="-d ${fitnesse.dir}" />
+                      <arg line="-d ${user.dir}" />
                       <jvmarg value="-DBROWSER=phantomjs" />
                     </java>
                   </tasks>
