@@ -56,7 +56,6 @@ function formatCommands(commands) {
     return  commandsText;
 }
 
-
 function getSourceForCommand(commandObj) {
 	// For some commands, Xebium performs an extra "isElementPresent" check. See the LocatorCheck.java.
 	var locatorCheck = {
@@ -124,9 +123,9 @@ function getSourceForCommand(commandObj) {
         	if (/^is/.test(def.name)) {
         		return "| ensure | do | " + command + " | on | " + escape(target) + " |";
         	} else if (value) {
-         		return "| check | is | " + command + " | on | " + escape(target) + " | " + escape(value, "check") + " |";
+         		return "| check | is | " + command.replace(/^verify/, "get") + " | on | " + escape(target) + " | " + escape(value, "check") + " |";
     		} else {
-         		return "| check | is | " + command + " | " + escape(target, "check") + " |";
+         		return "| check | is | " + command.replace(/^verify/, "get") + " | " + escape(target, "check") + " |";
     		}
         } else {
      		return ((locatorCheck[def.name] || /^waitFor/.test(command)) ? "| ensure " : "") + "| do | " + command + " | on | " + escape(target) + (value === '' ? "" : " | with | " + escape(value)) + " |";
@@ -222,12 +221,19 @@ function getCommandForSource(line) {
 	
 	var match;
 	
-	// | check/ensure | is/do | ${command} |[ on | ]${target} |[ [with |] ${value} |]
-	if (match = /^\|\s*(?:(ensure|check)\s*\|\s*|)(?:do|is)\s*\|\s*([^\|\s]+)\s*\|\s*(?:on\s*\|(?:\s*((?:!-.*?-!)?|[^\|]+?)\s*\|(?:\s*(?:with\s*\|\s*|)((?:!-.*?-!)|[^\|]+?)\s*\||)|)|((?:!-.*?-!)|[^\|]+?)\s*\|)/.exec(line)) {
-		return new Command(match[2],
-				match[3] ? unescape(match[3])
-						: (match[5] ? unescape(match[5]) : undefined),
-				match[4] ? unescape(match[4], match[1]) : undefined);
+	// | check | is/do | ${command} |[ on | ]${target} |[ [with |] ${value} |]
+	if (match = /^\|\s*(?:check\s*\|\s*|)(?:do|is)\s*\|\s*([^\|\s]+)\s*\|\s*(?:on\s*\|(?:\s*((?:!-.*?-!)?|[^\|]+?)\s*\|(?:\s*(?:with\s*\|\s*|)((?:!-.*?-!)|[^\|]+?)\s*\||)|)|((?:!-.*?-!)|[^\|]+?)\s*\|)/.exec(line)) {
+        return new Command(match[1].replace(/^get/, 'verify'),
+            match[2] ? unescape(match[2])
+                : (match[4] ? unescape(match[4]) : undefined),
+            match[3] ? unescape(match[3], 'check') : undefined);
+
+    // | ensure | is/do | ${command} |[ on | ]${target} |[ [with |] ${value} |]
+    } else if (match = /^\|\s*(?:ensure\s*\|\s*|)(?:do|is)\s*\|\s*([^\|\s]+)\s*\|\s*(?:on\s*\|(?:\s*((?:!-.*?-!)?|[^\|]+?)\s*\|(?:\s*(?:with\s*\|\s*|)((?:!-.*?-!)|[^\|]+?)\s*\||)|)|((?:!-.*?-!)|[^\|]+?)\s*\|)/.exec(line)) {
+		return new Command(match[1],
+				match[2] ? unescape(match[2])
+						: (match[4] ? unescape(match[4]) : undefined),
+				match[3] ? unescape(match[3], 'ensure') : undefined);
 
 	// format: | $value= | is | ${command} | on | ${target} |
 	} else if (match = /^\|\s*\$([^\|\s]+)=\s*\|\s*is\s*\|\s*([^\|\s]+)\s*\|\s*on\s*\|\s*((!-.*-!)|[^\|]+?)\s*\|/.exec(line)) {
