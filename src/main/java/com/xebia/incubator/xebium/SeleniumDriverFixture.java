@@ -18,12 +18,12 @@
 
 package com.xebia.incubator.xebium;
 
-import com.google.common.base.Supplier;
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
+import com.xebia.incubator.xebium.fastseleniumemulation.FastWebDriverCommandProcessor;
+import com.thoughtworks.selenium.webdriven.WebDriverCommandProcessor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverCommandProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,6 +65,20 @@ public class SeleniumDriverFixture {
 
 	private Map<String, String> aliases = new HashMap<String, String>();
 
+	/**
+	 * Xebium uses the 'selenium emulation' command set, which can be handled by Selenium via the
+	 * WebDriverCommandProcessor.
+	 *
+	 * Selenium's implementation is backwards-compatible, slow and buggy. We provide a FastWebDriverCommandProcessor
+	 * which replaces some common commands with faster direct WebDriver calls, at the expense of some
+	 * backwards-compatibility.
+	 *
+	 * Set this field to 'false' to fall back to the original implementation.
+	 *
+	 * This has to be done before the 'start browser on url' call.
+	 */
+    private boolean useFastSeleniumEmulation = true;
+
 	public SeleniumDriverFixture() {
 		super();
 	}
@@ -75,7 +89,12 @@ public class SeleniumDriverFixture {
 
     private CommandProcessor startWebDriverCommandProcessor(String browserUrl, WebDriver webDriver) {
 		browserUrl = removeAnchorTag(browserUrl);
-        WebDriverCommandProcessor driver = new WebDriverCommandProcessor(browserUrl, webDriver);
+        WebDriverCommandProcessor driver;
+        if (useFastSeleniumEmulation) {
+            driver = new FastWebDriverCommandProcessor(browserUrl, webDriver);
+        } else {
+            driver = new WebDriverCommandProcessor(browserUrl, webDriver);
+        }
         addMissingSeleneseCommands(driver);
         return driver;
 	}
@@ -93,13 +112,17 @@ public class SeleniumDriverFixture {
         defaultWebDriverSupplier.setCustomProfilePreferencesFile(new File(filename));
     }
 
+    public void useFastSeleniumEmulation(Boolean useFastSeleniumEmulation) {
+        this.useFastSeleniumEmulation = useFastSeleniumEmulation;
+    }
+
 	/**
      * Configure the custom Firefox profiledirectory on the webdriver factory.
      *
 	 * @param directory
 	 */
 	public void loadFirefoxProfileFromDirectory(String directory) {
-        defaultWebDriverSupplier.setCustomProfilePreferencesFile(new File(directory));
+        defaultWebDriverSupplier.setProfileDirectory(new File(directory));
 	}
 
 	/**

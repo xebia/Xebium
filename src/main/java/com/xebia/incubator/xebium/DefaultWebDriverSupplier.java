@@ -2,6 +2,7 @@ package com.xebia.incubator.xebium;
 
 import com.opera.core.systems.OperaDriver;
 import com.opera.core.systems.OperaProduct;
+import com.xebia.incubator.xebium.fastphantomjsdriver.FastPhantomJSDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,7 +10,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.PreferencesWrapper;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
@@ -90,7 +90,7 @@ public class DefaultWebDriverSupplier implements ConfigurableWebDriverSupplier {
 
             driver = new OperaDriver(capabilities);
         } else if ("phantomjs".equalsIgnoreCase(browser)) {
-            driver = new PhantomJSDriver(DesiredCapabilities.phantomjs());
+            driver = new FastPhantomJSDriver(DesiredCapabilities.phantomjs());
 		} else {
 			try {
 				driver = new RemoteWebDriverSupplier(browser).get();
