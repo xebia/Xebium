@@ -34,7 +34,7 @@
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <orgjson.version>20140107</orgjson.version>
-    <maven-classpath-plugin.version>1.7</maven-classpath-plugin.version>
+    <maven-classpath-plugin.version>1.9</maven-classpath-plugin.version>
     <slf4j.version>1.7.12</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
     <phantomjsdriver.version>1.2.1</phantomjsdriver.version>
