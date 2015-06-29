@@ -29,13 +29,13 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.44.0</selenium.version>
-    <fitnesse.version>20130530</fitnesse.version>
+    <selenium.version>2.46.0</selenium.version>
+    <fitnesse.version>20150424</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <orgjson.version>20140107</orgjson.version>
     <maven-classpath-plugin.version>1.7</maven-classpath-plugin.version>
-    <slf4j.version>1.6.4</slf4j.version>
+    <slf4j.version>1.7.12</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
     <phantomjsdriver.version>1.2.1</phantomjsdriver.version>
     <commons-lang.version>2.6</commons-lang.version>
@@ -137,7 +137,7 @@
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-all</artifactId>
-      <version>1.1</version>
+      <version>1.3</version>
       <scope>test</scope>
     </dependency>
 
