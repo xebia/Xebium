@@ -4,7 +4,7 @@ Verify that an exception will prevent the rest of the tests on the page from run
 >FailingTestPage
 
 !| script | selenium driver fixture |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME}.FailingTestPage |
 | ensure | do | clickAndWait | on | link=Test |
 | ensure | do | verifyElementPresent | on | css=tr.exception-detail |

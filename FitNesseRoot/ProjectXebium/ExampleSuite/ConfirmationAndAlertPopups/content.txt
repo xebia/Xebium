@@ -8,7 +8,7 @@ This page shows the handling of alert() and confirm() popups.
 -!
 
 !| script | selenium driver fixture | 
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | set step delay to | slow |
 | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | click | on | link=Open alert popup |

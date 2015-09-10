@@ -1,0 +1,15 @@
+!***> Suite setup
+
+!2 Import the Xebium fixture in your test
+!3 This setup page is automatically included in all your tests
+
+|import                    |
+|com.xebia.incubator.xebium|
+
+|library                |
+|selenium driver fixture|
+
+|script                |fitnesse start fixture|
+|start fitnesse on port|${FITNESSE_SUT_PORT}  |
+
+***!

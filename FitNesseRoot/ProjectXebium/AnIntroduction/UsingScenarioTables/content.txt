@@ -12,7 +12,7 @@
 
 !3 1. Take the ''script'' (as it is used in Example 001) and rename ''script'' into ''scenario'' and provide a logical name to identify your script, in this example we use ''verify page title''
 !| scenario | verify page title |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |

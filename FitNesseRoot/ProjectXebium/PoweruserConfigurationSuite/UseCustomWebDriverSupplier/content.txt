@@ -9,7 +9,7 @@ First set up an alternative web-driver provider:
 Then run the scripts. Note the url next to the fixture name.
 
 !| script | selenium driver fixture |
-| start driver | $webDriver | on url | http://localhost:${FITNESSE_PORT}/ |
+| start driver | $webDriver | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
@@ -21,7 +21,7 @@ Then run the scripts. Note the url next to the fixture name.
 Use the same !-WebDriver-! instance again, from a different fixture this time.
 
 !| script | selenium driver fixture |
-| start driver | $webDriver | on url | http://localhost:${FITNESSE_PORT}/ |
+| start driver | $webDriver | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | verifyTitle | on | ${PAGE_PATH}.${PAGE_NAME} |

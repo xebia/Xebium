@@ -10,7 +10,7 @@
 '''Executed steps: 1. Open the current page in a browser. 2. wait for the page title. 3. Verify the text ''Xebium'' is shown somewhere on the page. 4. Verify the text ''${PAGE_NAME}'' is shown in the page_title element.'''
 
 !| script | selenium driver fixture |
-| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ | using remote server |
+| start browser | firefox | on url | http://localhost:${FITNESSE_SUT_PORT}/ | using remote server |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | Xebium |
