@@ -2,6 +2,17 @@ Xebium [![Build Status](https://travis-ci.org/xebia/Xebium.png?branch=master)](h
 ======
 [Xebium](http://xebia.github.com/Xebium/) combines the powers of FitNesse and Selenium. Visit the [xebium home page](http://xebia.github.com/Xebium/) for more details and examples.
 
+Maintainance mode
+-----------------
+
+While Xebium is no longer actively maintained by its original authors,
+we do strive to respond to issues and PR's as time allows.
+
+A version that depends on newer versions of FitNesse and Selenium is
+in the works at https://github.com/xebia/Xebium/pull/148, but (ironically)
+we feel our testsuite is insufficient to release it without further testing.
+Help is welcome.
+
 Features
 --------
 
