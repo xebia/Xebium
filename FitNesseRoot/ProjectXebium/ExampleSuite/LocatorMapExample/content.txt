@@ -17,12 +17,12 @@
 | alias | locator |
 | pagePath | ${PAGE_PATH}.${PAGE_NAME} |
 | pageName | Xebium |
-| title | css=h1 |
+| title | css=ol.breadcrumb li:nth-of-type(3) |
 
 !| script |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | %pagePath |
 | ensure | do | waitForTitle | on | %pagePath |
 | ensure | do | verifyTextPresent | on | %pageName |
-| ensure | do | verifyText | on | %title | with | ${PAGE_NAME} |
+| check | is | getText | on | %title | ${PAGE_NAME} |
 | stop browser |

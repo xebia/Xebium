@@ -10,7 +10,7 @@
 
 !3 1. Create a scenario taking two variables ''responder'' and ''title''
 !| scenario | open page | responder | and verify the page header | title |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME}?@responder |
 | check | is | verifyTitle | on | @title |
 | stop browser |

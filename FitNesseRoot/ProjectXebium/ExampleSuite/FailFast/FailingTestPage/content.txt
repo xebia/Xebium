@@ -2,7 +2,7 @@ Verify that an exception will prevent the rest of the tests on the page from run
 
 Error pops up here:
 !| script | selenium driver fixture | 
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | phantomjs | on url | http://localhost:${FITNESSE_PORT}/ |
 | set timeout to | 30000 |
 | ensure | do | open | on | ${PAGE_PATH} |
 | reject | do | assertTextPresent | on | Something that's not on the page |
@@ -10,7 +10,7 @@ Error pops up here:
 
 This one is ignored because of the error in the previous table:
 !| script | selenium driver fixture | 
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | phantomjs | on url | http://localhost:${FITNESSE_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH} |
 | ensure | do | assertTextPresent | on | Xebium |
 | stop browser |

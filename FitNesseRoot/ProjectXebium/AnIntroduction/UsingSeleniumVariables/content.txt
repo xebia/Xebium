@@ -8,7 +8,7 @@
 6. Verify that in the resultlist of the query the title is returned as was stored in step 3.''' 
 
 !| script | selenium driver fixture |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | $pageName= | is | getText | on | css=h1 |
 | $pageTitle= | is | getTitle |

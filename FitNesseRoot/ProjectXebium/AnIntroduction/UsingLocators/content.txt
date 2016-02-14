@@ -9,7 +9,7 @@ Elements to be matched: (check source for HTML):
 -!
 
 !| script | selenium driver fixture |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | check | is | getText | on | identifier | By identifier |
 | check | is | getText | on | id=identifier | By identifier |

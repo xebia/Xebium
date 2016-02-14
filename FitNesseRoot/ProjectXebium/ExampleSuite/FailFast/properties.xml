@@ -4,6 +4,7 @@
 	<Files/>
 	<Help>Demonstrate how assert- tests prevent further execution of the test</Help>
 	<Properties/>
+	<Prune/>
 	<RecentChanges/>
 	<Refactor/>
 	<Search/>

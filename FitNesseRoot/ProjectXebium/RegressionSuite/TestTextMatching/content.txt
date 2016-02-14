@@ -1,9 +1,9 @@
 | script | selenium driver fixture |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT} |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT} |
 | set step delay to | slow |
 | ensure | do | open | on | / |
-| ensure | do | verifyText | on | css=h1 | with | !-FrontPage-! |
+| ensure | do | verifyText | on | css=h1 | with | !-Welcome to the Xebia App-Incubator XEBIUM Project-! |
 | ensure | do | verifyNotText | on | css=h1 | with | Page |
-| ensure | do | verifyText | on | css=h1 | with | glob:*Page |
+| ensure | do | verifyText | on | css=h1 | with | glob:*Project |
 | ensure | do | verifyTextPresent | on | Page |
 | stop browser |

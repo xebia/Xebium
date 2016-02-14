@@ -3,7 +3,7 @@ When an action kicks off an asynchronous operation, 'clickAndWait' is not suffic
 The easiest and most natural way is to add a 'waitFor' command, such as 'waitForTitle' or 'waitForTextNotPresent':
 
 !|script      |selenium driver fixture                                                                          |
-|start browser|${BROWSER}|on url               |http://localhost:${FITNESSE_PORT}/                              |
+|start browser|${BROWSER}|on url               |http://localhost:${FITNESSE_SUT_PORT}/                              |
 |ensure       |do        |open                 |on|/ProjectXebium.ExampleSuite.DealingWithAsynchronousOperations|
 |ensure       |do        |clickAndWait         |on|go                                                           |
 |ensure       |do        |waitForTextNotPresent|on|DealingWithAsynchronousOperations                            |
@@ -13,7 +13,7 @@ The easiest and most natural way is to add a 'waitFor' command, such as 'waitFor
 When there's no reliable change to wait for, the following javascript construct can be used:
 
 !|script      |selenium driver fixture                                                                 |
-|start browser|${BROWSER}|on url      |http://localhost:${FITNESSE_PORT}/                              |
+|start browser|${BROWSER}|on url      |http://localhost:${FITNESSE_SUT_PORT}/                              |
 |ensure       |do        |open        |on|/ProjectXebium.ExampleSuite.DealingWithAsynchronousOperations|
 |ensure       |do        |storeEval   |on|document.tobereloaded = true                                 |
 |ensure       |do        |clickAndWait|on|go                                                           |

@@ -34,7 +34,7 @@ The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches ht
 ''' 4. Type the search term: ''${PAGE_NAME}''. 5. Click the ''Search Titles'' button 6. Wait for the search result. 7. Disable screenshots being taken. 8. Verify all expected screenshots have been created. Step 2, 3, 4 and 5 are actions and should result in a screenshot being captured.'''
 
 !| script |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | save screenshot after | every step | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_action |
 | ensure | do | open | on | /${PAGE_PATH}.${PAGE_NAME}?searchForm |
 | ensure | do | type | on | searchString | with | ${PAGE_NAME} |
@@ -54,7 +54,7 @@ The default folder is !-FitNesseRoot/files/testResults/screenshots-! (matches ht
 '''Executed steps: 1. Enable screenshots only when a failure occurs. 2. Open the current page 3. Click on the ''Search'' menu item. 4. Verify that a ''No Search'' button exists on the Search page (this should fail). 5. Disable screenshots. 6. Verify if a non-existing text exists on the Search page. 7. Verify the expected screenshots have been created. Only step 4 should result in a screenshot being captured.'''
 
 !| script |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | save screenshot after | error | in folder | http://files/testResults/screenshots/${PAGE_NAME}_on_failure |
 | ensure | do | open | on | /${PAGE_PATH}.${PAGE_NAME}?searchForm |
 | note | check is verified for. We want this to pass, so define a 'reject' rule. |

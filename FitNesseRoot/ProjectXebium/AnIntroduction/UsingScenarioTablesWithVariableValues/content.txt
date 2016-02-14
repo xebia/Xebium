@@ -8,7 +8,7 @@
 !3 1. Take the ''scenario'' (as it is used in Example 002) and change the logical name to ''verify page contains text'' and add a variable name ''verifiedText''
 !3 2. In the scenario add the variable preceded by an @ sign
 !| scenario | verify page contains text | verifiedText |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}/ |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | waitForTitle | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | @verifiedText |
