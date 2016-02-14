@@ -29,13 +29,14 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.44.0</selenium.version>
-    <fitnesse.version>20130530</fitnesse.version>
+    <selenium.version>2.46.0</selenium.version>
+    <fitnesse.version>20150424</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
+    <fitnesse.sut.port>8001</fitnesse.sut.port>
     <fitnesse.expiration>0</fitnesse.expiration>
     <orgjson.version>20140107</orgjson.version>
-    <maven-classpath-plugin.version>1.7</maven-classpath-plugin.version>
-    <slf4j.version>1.6.4</slf4j.version>
+    <maven-classpath-plugin.version>1.9</maven-classpath-plugin.version>
+    <slf4j.version>1.7.12</slf4j.version>
     <operadriver.version>1.1</operadriver.version>
     <phantomjsdriver.version>1.2.1</phantomjsdriver.version>
     <commons-lang.version>2.6</commons-lang.version>
@@ -99,14 +100,13 @@
       <artifactId>guava</artifactId>
       <version>14.0</version>
     </dependency>
-
-    <!-- runtime dependencies -->
     <dependency>
       <groupId>org.fitnesse</groupId>
       <artifactId>fitnesse</artifactId>
       <version>${fitnesse.version}</version>
-      <scope>runtime</scope>
     </dependency>
+
+    <!-- runtime dependencies -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -137,7 +137,7 @@
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-all</artifactId>
-      <version>1.1</version>
+      <version>1.3</version>
       <scope>test</scope>
     </dependency>
 
@@ -253,6 +253,7 @@
                       <arg line="-p ${fitnesse.port}" />
                       <arg line="-d ." />
                       <arg line="-e ${fitnesse.expiration}" />
+                      <jvmarg value="-DFITNESSE_SUT_PORT=${fitnesse.sut.port}" />
                       <jvmarg value="-DBROWSER=firefox" />
                       <jvmarg value="-Dsauce.user=${sauce.user}" />
                       <jvmarg value="-Dsauce.accesskey=${sauce.accesskey}" />
@@ -298,6 +299,7 @@
                       <arg line="-p 8001" />
                       <arg line="-c ProjectXebium?suite&amp;format=text&amp;excludeSuiteFilter=NotOnPhantomJS" />
                       <arg line="-d ." />
+                      <jvmarg value="-DFITNESSE_SUT_PORT=${fitnesse.sut.port}" />
                       <jvmarg value="-DBROWSER=phantomjs" />
                     </java>
                   </tasks>

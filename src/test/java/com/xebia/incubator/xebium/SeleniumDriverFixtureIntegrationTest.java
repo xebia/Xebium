@@ -29,7 +29,7 @@ public class SeleniumDriverFixtureIntegrationTest {
 
 		//		|script|selenium driver fixture|
 		final SeleniumDriverFixture fixture = new SeleniumDriverFixture();
-		//		| start browser | firefox | on url | http://localhost:${FITNESSE_PORT}/ |
+		//		| start browser | firefox | on url | http://localhost:${FITNESSE_SUT_PORT}/ |
 		fixture.startBrowserOnUrl("firefox", "http://localhost:8000");
 		//		| ensure | do | open | on | !-/FitNesse.ProjectXebium.ExampleSuite.TableFixture-! |
 		assertTrue(fixture.doOn("open", "/FitNesse.ProjectXebium.ExampleSuite.TableFixture"));

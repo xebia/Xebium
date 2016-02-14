@@ -1,5 +1,5 @@
 | script | selenium driver fixture |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT} |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT} |
 | set step delay to | slow |
 | ensure | do | open | on | /?searchForm |
 | ensure | do | sendKeys | on | searchString | with | !-Test query-! |

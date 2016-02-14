@@ -8,7 +8,7 @@
 3. Create a Screenshot of the browser window.'''
 
 !| script | selenium driver fixture |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT}  |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT}  |
 | ensure | do | open | on | ${PAGE_PATH}.${PAGE_NAME} |
 | ensure | do | verifyTextPresent | on | ${PAGE_NAME} |
 | ensure | do | captureEntirePageScreenshot | on | http://files/testResults/screenshots/${PAGE_NAME}/screenshotTest.png |

@@ -5,4 +5,4 @@
 | selenium driver fixture |
 
 | script |
-| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_PORT} |
+| start browser | ${BROWSER} | on url | http://localhost:${FITNESSE_SUT_PORT} |
