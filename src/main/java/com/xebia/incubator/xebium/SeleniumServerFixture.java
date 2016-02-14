@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
-import org.openqa.selenium.server.cli.RemoteControlLauncher;
 
 
 /**
@@ -60,7 +59,7 @@ public class SeleniumServerFixture {
 	        //String[] argv = StringUtils.isNotBlank(args) ? StringUtils.split(args) : new String[] {};
 	        String[] argv = StringUtils.split(args);
 	        
-	        configuration = RemoteControlLauncher.parseLauncherOptions(argv);
+	        configuration = SeleniumServer.parseLauncherOptions(argv);
 	        //checkArgsSanity(configuration);
 
 	        System.setProperty("org.openqa.jetty.http.HttpRequest.maxFormContentSize", "0"); // default max is 200k; zero is infinite
