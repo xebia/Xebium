@@ -29,8 +29,8 @@
   </licenses>
 
   <properties>
-    <selenium.version>2.46.0</selenium.version>
-    <fitnesse.version>20150424</fitnesse.version>
+    <selenium.version>2.52.0</selenium.version>
+    <fitnesse.version>20151230</fitnesse.version>
     <fitnesse.port>8000</fitnesse.port>
     <fitnesse.sut.port>8001</fitnesse.sut.port>
     <fitnesse.expiration>0</fitnesse.expiration>
