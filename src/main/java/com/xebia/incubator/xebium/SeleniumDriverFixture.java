@@ -68,6 +68,9 @@ public class SeleniumDriverFixture {
 
 	private Map<String, String> aliases = new HashMap<String, String>();
 
+    private AddMissingSeleneseCommands addcommands =
+            new AddMissingSeleneseCommands();
+
 	/**
 	 * Xebium uses the 'selenium emulation' command set, which can be handled by Selenium via the
 	 * WebDriverCommandProcessor.
