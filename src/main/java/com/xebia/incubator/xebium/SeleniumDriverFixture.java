@@ -18,23 +18,20 @@
 
 package com.xebia.incubator.xebium;
 
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
+import static org.apache.commons.lang.StringUtils.join;
+
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
-import com.xebia.incubator.xebium.fastseleniumemulation.FastWebDriverCommandProcessor;
 import com.thoughtworks.selenium.webdriven.WebDriverCommandProcessor;
+import com.xebia.incubator.xebium.fastseleniumemulation.FastWebDriverCommandProcessor;
+
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.thoughtworks.selenium.webdriven.SeleneseCommand;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.ContextClickAction;
-import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Mouse;
-import org.openqa.selenium.internal.Locatable;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,9 +39,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static com.xebia.incubator.xebium.FitNesseUtil.*;
-import static org.apache.commons.lang.StringUtils.join;
 
 /**
  * Main fixture. Starts a browser session and execute commands.
@@ -73,6 +67,9 @@ public class SeleniumDriverFixture {
 	private LocatorCheck locatorCheck;
 
 	private Map<String, String> aliases = new HashMap<String, String>();
+
+    private AddMissingSeleneseCommands addcommands =
+            new AddMissingSeleneseCommands();
 
 	/**
 	 * Xebium uses the 'selenium emulation' command set, which can be handled by Selenium via the
@@ -104,48 +101,9 @@ public class SeleniumDriverFixture {
         } else {
             driver = new WebDriverCommandProcessor(browserUrl, webDriver);
         }
-        addMissingSeleneseCommands(driver);
+        addcommands.addMissingSeleneseCommands(driver);
         return driver;
 	}
-
-    private void addMissingSeleneseCommands(WebDriverCommandProcessor driver) {
-        driver.addMethod("sendKeys", driver.getMethod("typeKeys"));
-
-        driver.addMethod("contextClick", new SeleneseCommand<Void>() {
-
-            @Override
-            protected Void handleSeleneseCommand(WebDriver driver,
-                    String locator, String value) {
-                Mouse mouse = ((HasInputDevices) driver).getMouse();
-
-                ContextClickAction rightClick = new ContextClickAction(mouse,
-                        (Locatable) (driver
-                                .findElement(By.xpath(locator))));
-
-                rightClick.perform();
-                return null;
-            }
-
-        });
-
-        if (driver.getWrappedDriver().toString().toLowerCase()
-                .contains("chrome")) {
-
-            driver.addMethod("doubleClick", new SeleneseCommand<Void>() {
-
-                @Override
-                protected Void handleSeleneseCommand(WebDriver driver,
-                        String locator, String value) {
-                    WebElement webElement =
-                            driver.findElement(By.xpath(locator));
-                    new Actions(driver).click(webElement).click()
-                            .perform();
-                    return null;
-                }
-            });
-        }
-
-    }
 
     /**
      * Configure the custom Firefox preferences (javascript) file on the webdriver factory.
