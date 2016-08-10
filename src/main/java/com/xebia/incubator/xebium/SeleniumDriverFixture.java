@@ -18,23 +18,20 @@
 
 package com.xebia.incubator.xebium;
 
+import static com.xebia.incubator.xebium.FitNesseUtil.asFile;
+import static com.xebia.incubator.xebium.FitNesseUtil.removeAnchorTag;
+import static com.xebia.incubator.xebium.FitNesseUtil.stringArrayToString;
+import static org.apache.commons.lang.StringUtils.join;
+
 import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
-import com.xebia.incubator.xebium.fastseleniumemulation.FastWebDriverCommandProcessor;
 import com.thoughtworks.selenium.webdriven.WebDriverCommandProcessor;
+import com.xebia.incubator.xebium.fastseleniumemulation.FastWebDriverCommandProcessor;
+
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.thoughtworks.selenium.webdriven.SeleneseCommand;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.ContextClickAction;
-import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Mouse;
-import org.openqa.selenium.internal.Locatable;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,9 +39,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static com.xebia.incubator.xebium.FitNesseUtil.*;
-import static org.apache.commons.lang.StringUtils.join;
 
 /**
  * Main fixture. Starts a browser session and execute commands.
@@ -111,38 +105,24 @@ public class SeleniumDriverFixture {
     private void addMissingSeleneseCommands(WebDriverCommandProcessor driver) {
         driver.addMethod("sendKeys", driver.getMethod("typeKeys"));
 
-        driver.addMethod("contextClick", new SeleneseCommand<Void>() {
+        driver.addMethod("contextClick", new MissingRightClickCommand());
 
-            @Override
-            protected Void handleSeleneseCommand(WebDriver driver,
-                    String locator, String value) {
-                Mouse mouse = ((HasInputDevices) driver).getMouse();
-
-                ContextClickAction rightClick = new ContextClickAction(mouse,
-                        (Locatable) (driver
-                                .findElement(By.xpath(locator))));
-
-                rightClick.perform();
-                return null;
-            }
-
-        });
-
+        /*
+         * The following code to be removed when
+         * 
+         * https://bugs.chromium.org/p/chromedriver/issues/detail?id=755
+         * 
+         * and
+         * 
+         * https://bugs.chromium.org/p/chromedriver/issues/detail?id=782
+         * 
+         * are resolved
+         */
+        
         if (driver.getWrappedDriver().toString().toLowerCase()
                 .contains("chrome")) {
 
-            driver.addMethod("doubleClick", new SeleneseCommand<Void>() {
-
-                @Override
-                protected Void handleSeleneseCommand(WebDriver driver,
-                        String locator, String value) {
-                    WebElement webElement =
-                            driver.findElement(By.xpath(locator));
-                    new Actions(driver).click(webElement).click()
-                            .perform();
-                    return null;
-                }
-            });
+            driver.addMethod("doubleClick", new MissingDoubleClickCommand());
         }
 
     }
